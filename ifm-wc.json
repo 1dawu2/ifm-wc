@@ -1,0 +1,48 @@
+{
+    "eula": "",
+    "vendor": "IFM",
+    "icon": "https://1dawu2.github.io/ifm-hack/icon.png",
+    "license": "MIT",
+    "id": "com.ifm.hack.stories",
+    "version": "0.0.1",
+    "name": "IFM HACK",
+    "newInstancePrefix": "IFM",
+    "description": "IFM Health Analysis Conversion Kit",
+    "webcomponents": [
+      {
+        "kind": "main",
+        "tag": "com-ifm-hack-stories",
+        "url": "https://sap-samples.github.io/analytics-cloud-custom-widget/Custom-Widget-Samples/dist/main.bundle.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+      }
+    ],
+    "properties": {
+      "clientID": {
+        "type": "string",
+        "default": ""
+      },
+      "height": {
+        "type": "string",
+        "default": ""
+      }
+    },
+    "dataBindings": {
+      "myDataSource": {
+        "feeds": [
+          {
+            "id": "dimensions",
+            "description": "Dimensions",
+            "type": "dimension"
+          },
+          {
+            "id": "measures",
+            "description": "Measures",
+            "type": "mainStructureMember"
+          }
+        ]
+      }
+    },
+    "methods": {},
+    "events": {}
+  }
