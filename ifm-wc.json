@@ -11,7 +11,7 @@
     "webcomponents": [
       {
         "kind": "main",
-        "tag": "com-ifm-wc-hack",
+        "tag": "com-ifm-hack-stories",
         "url": "https://1dawu2.github.io/ifm-wc/main.js",
         "integrity": "",
         "ignoreIntegrity": true

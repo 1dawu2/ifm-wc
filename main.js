@@ -12,7 +12,7 @@ var getScriptPromisify = (src) => {
             <div id="root" style="width: 100%; height: 100%;">
             </div>
           `;
-    class FunnelChartPrepped extends HTMLElement {
+    class IFMHack extends HTMLElement {
       constructor() {
         super();
   
@@ -56,5 +56,5 @@ var getScriptPromisify = (src) => {
       }
     }
   
-    customElements.define("github-sap-funnel-chart", FunnelChartPrepped);
+    customElements.define("com-ifm-hack-stories", FunnelChartPrepped);
   })();
