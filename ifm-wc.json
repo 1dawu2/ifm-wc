@@ -12,7 +12,7 @@
       {
         "kind": "main",
         "tag": "com-ifm-wc-hack",
-        "url": "https://1dawu2.github.io/dist/ifm-wc/my-component.entry.js",
+        "url": "https://1dawu2.github.io/dist/ifm-wc/ifm-wc.esm.js",
         "integrity": "",
         "ignoreIntegrity": true
       }
