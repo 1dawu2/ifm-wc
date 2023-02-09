@@ -1,7 +1,7 @@
 {
     "eula": "",
     "vendor": "IFM",
-    "icon": "https://1dawu2.github.io/ifm-hack/icon.png",
+    "icon": "https://1dawu2.github.io/ifm-wc/icon.png",
     "license": "MIT",
     "id": "com.ifm.hack.stories",
     "version": "0.0.1",
@@ -11,8 +11,8 @@
     "webcomponents": [
       {
         "kind": "main",
-        "tag": "com-ifm-hack-stories",
-        "url": "https://sap-samples.github.io/analytics-cloud-custom-widget/Custom-Widget-Samples/dist/main.bundle.js",
+        "tag": "com-ifm-wc-hack",
+        "url": "https://1dawu2.github.io/dist/ifm-wc/my-component.entry.js",
         "integrity": "",
         "ignoreIntegrity": true
       }
