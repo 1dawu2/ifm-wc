@@ -1,12 +1,18 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, ComponentDidLoad, ComponentInterface, Prop, h, State } from '@stencil/core';
 import { format } from '../../utils/utils';
+import { PokeApiService, Pokemon } from './ifm-api.service';
 
 @Component({
   tag: 'ifm-stories',
   styleUrl: 'ifm-stories.scss',
   shadow: true,
 })
-export class IFMStories {
+export class IFMStories implements ComponentInterface, ComponentDidLoad {
+  private pokeApiService = new PokeApiService();
+  private itemsPerPage = 10;
+  private offset = 0;
+  @State() private pokemons: Pokemon[];
+  @State() private pokemonCount: number;
   /**
    * The first name
    */
@@ -21,6 +27,18 @@ export class IFMStories {
    * The last name
    */
   @Prop() last: string;
+
+  componentDidLoad(): void {
+    this.loadPage();
+  }
+
+  private loadPage(): void {
+    this.pokeApiService.loadPage(this.offset, this.itemsPerPage)
+      .then(response => {
+        this.pokemons = response.results;
+        this.pokemonCount = response.count;
+      });
+  }
 
   private getText(): string {
     return format(this.first, this.middle, this.last);

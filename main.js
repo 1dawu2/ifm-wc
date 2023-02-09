@@ -32,6 +32,7 @@ var getScriptPromisify = (src) => {
   
       set myDataSource(dataBinding) {
         this._myDataSource = dataBinding;
+        console.log(this._myDataSource);
         this.render();
       }
   
@@ -52,7 +53,7 @@ var getScriptPromisify = (src) => {
             value: data[measure].raw,
           };
         });
-        console.log(data);
+        //console.log(data);
       }
     }
   
