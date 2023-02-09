@@ -1,36 +1,36 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { MyComponent } from './my-component';
+import { IFMStories } from './ifm-stories';
 
-describe('my-component', () => {
+describe('ifm-stories', () => {
   it('renders', async () => {
     const { root } = await newSpecPage({
-      components: [MyComponent],
-      html: '<my-component></my-component>',
+      components: [IFMStories],
+      html: '<ifm-stories></ifm-stories>',
     });
     expect(root).toEqualHtml(`
-      <my-component>
+      <ifm-stories>
         <mock:shadow-root>
           <div>
             Hello, World! I'm
           </div>
         </mock:shadow-root>
-      </my-component>
+      </ifm-stories>
     `);
   });
 
   it('renders with values', async () => {
     const { root } = await newSpecPage({
-      components: [MyComponent],
-      html: `<my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>`,
+      components: [IFMStories],
+      html: `<ifm-stories first="Stencil" last="'Don't call me a framework' JS"></ifm-stories>`,
     });
     expect(root).toEqualHtml(`
-      <my-component first="Stencil" last="'Don't call me a framework' JS">
+      <ifm-stories first="Stencil" last="'Don't call me a framework' JS">
         <mock:shadow-root>
           <div>
             Hello, World! I'm Stencil 'Don't call me a framework' JS
           </div>
         </mock:shadow-root>
-      </my-component>
+      </ifm-stories>
     `);
   });
 });
