@@ -56,5 +56,5 @@ var getScriptPromisify = (src) => {
       }
     }
   
-    customElements.define("com-ifm-hack-stories", FunnelChartPrepped);
+    customElements.define("com-ifm-hack-stories", IFMHack);
   })();
