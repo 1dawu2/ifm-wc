@@ -1,3 +1,6 @@
+import { defineCustomElements } from './ifm-hack/dist/ifm-hack/ifm-hack.esm.js';
+defineCustomElements();
+
 var getScriptPromisify = (src) => {
     return new Promise((resolve) => {
       $.getScript(src, resolve);

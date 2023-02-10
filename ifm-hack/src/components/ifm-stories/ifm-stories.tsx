@@ -47,6 +47,28 @@ export class IFMStories implements ComponentInterface, ComponentDidLoad {
   render() {
     return <div class="main">
       Hello, World! I'm {this.getText()}
+      {this.pokemons && this.pokemons.length
+        ? <div>
+          <p>Es existieren {this.pokemonCount} in der Datenbank.</p>
+          <p>Folgend sind die nächsten {this.pokemons.length}.</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.pokemons.map(pokemon =>
+                <tr>
+                  <td>{pokemon.name}</td>
+                </tr>,
+              )}
+            </tbody>
+          </table>
+        </div>
+        : <div>PokeApi wird befragt...</div>
+      }
       <article class="panel is-primary">
         <p class="panel-heading">
           Primary
