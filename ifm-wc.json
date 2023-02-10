@@ -14,7 +14,7 @@
         "tag": "com-ifm-hack-stories",
         "url": "https://1dawu2.github.io/ifm-wc/main.js",
         "integrity": "",
-        "ignoreIntegrity": true
+        "ignoreIntegrity": false
       }
     ],
     "properties": {
