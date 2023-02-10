@@ -1,4 +1,4 @@
-import { defineCustomElements } from './ifm-hack/dist/ifm-hack/ifm-hack.esm.js';
+import { IFMStories } from './ifm-hack/dist/ifm-hack/ifm-hack.esm.js';
 
 var getScriptPromisify = (src) => {
     return new Promise((resolve) => {
