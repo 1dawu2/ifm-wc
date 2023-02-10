@@ -12,9 +12,9 @@
       {
         "kind": "main",
         "tag": "com-ifm-hack-stories",
-        "url": "https://1dawu2.github.io/ifm-wc/main.js",
-        "integrity": "sha256-Blqtgh1rUkSakLS+e2QAhFIk19cBc7sN2ISUCR2zx+k=",
-        "ignoreIntegrity": false
+        "url": "https://1dawu2.github.io/ifm-wc/ifm-hack/dist/ifm-hack/ifm-hack.esm.js",
+        "integrity": "",
+        "ignoreIntegrity": true
       }
     ],
     "properties": {
