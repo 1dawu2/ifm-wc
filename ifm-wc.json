@@ -18,7 +18,7 @@
         "ignoreIntegrity": true
       },
       {
-        "kind": "style",
+        "kind": "styling",
         "tag": "com-ifm-style-app",
         "url": "https://1dawu2.github.io/ifm-wc/style.js",
         "integrity": "",
