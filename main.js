@@ -226,7 +226,7 @@ var getScriptPromisify = (src) => {
     }
 
   }
-  customElements.define("com-ifm-stories", IFMHack);
+  customElements.define("com-ifm-stories", IFMStories);
 
   function UI5(changedProperties, that) {
     var that_ = that;
