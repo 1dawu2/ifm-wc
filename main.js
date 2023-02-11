@@ -4,7 +4,9 @@ var getScriptPromisify = (src) => {
     });
   };
   
+  import IFMSotries from 'https://1dawu2.github.io/ifm-wc/ifm-hack/dist/ifm-hack/ifm-hack.esm.js';
   (function () {
+    
     const prepared = document.createElement("template");
     prepared.innerHTML = `
             <style>
