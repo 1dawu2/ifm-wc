@@ -118,5 +118,5 @@
             }
         }
     }
-    customElements.define("com-ifm-style-app", styleApp);
+    customElements.define("com-ifm-hack-style-app", styleApp);
 })();
