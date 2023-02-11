@@ -3,7 +3,7 @@
     "vendor": "IFM",
     "icon": "https://1dawu2.github.io/ifm-wc/icon.png",
     "license": "MIT",
-    "id": "com.ifm.hack.stories",
+    "id": "com.ifm.hack",
     "version": "0.0.1",
     "name": "IFM HACK",
     "newInstancePrefix": "IFM",
