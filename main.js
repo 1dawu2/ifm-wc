@@ -4,10 +4,10 @@ var getScriptPromisify = (src) => {
       $.getScript(src, resolve);
     });
   };
-  (function () {
-    const ifmStories = require('https://1dawu2.github.io/ifm-wc/ifm-hack/dist/ifm-hack/ifm-hack.esm.js');    
+  (function () {   
     const prepared = document.createElement("template");
     prepared.innerHTML = `
+            <script type="module" src="https://1dawu2.github.io/ifm-wc/ifm-hack/dist/ifm-hack/ifm-hack.esm.js"></script>
             <style>
             </style>
             <div id="root" style="width: 100%; height: 100%;">
