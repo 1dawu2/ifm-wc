@@ -8,22 +8,42 @@
     "name": "IFM HACK",
     "newInstancePrefix": "IFM",
     "description": "IFM Health Analysis Conversion Kit",
+    "imports": [ "input-controls" ],
     "webcomponents": [
       {
         "kind": "main",
-        "tag": "com-ifm-hack-stories",
+        "tag": "com-ifm-stories",
         "url": "https://1dawu2.github.io/ifm-wc/main.js",
+        "integrity": "",
+        "ignoreIntegrity": true
+      },
+      {
+        "kind": "style",
+        "tag": "com-ifm-style-app",
+        "url": "https://1dawu2.github.io/ifm-wc/style.js",
         "integrity": "",
         "ignoreIntegrity": true
       }
     ],
     "properties": {
-      "clientID": {
+      "metadata": {
         "type": "string",
+        "description": "For internal use",
         "default": ""
       },
-      "height": {
+      "restapiurl": {
         "type": "string",
+        "description": "The REST API URL",
+        "default": "http://localhost:3000/score"
+      },
+      "name": {
+        "type": "string",
+        "description": "widget name",
+        "default": ""
+      },
+      "score": {
+        "type": "string",
+        "description": "score",
         "default": ""
       }
     },
@@ -43,6 +63,66 @@
         ]
       }
     },
-    "methods": {},
-    "events": {}
+    "methods": {
+      "getRestAPIUrl": {
+        "returnType": "string",
+        "description": "Get the REST API URL",
+        "parameters": [      
+        ],
+        "body": "return this.restapiurl;"
+      },
+      "setRestAPIUrl": {
+        "description": "Set the REST API URL",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "string",
+            "description": "The new REST API URL"
+          }
+        ],
+        "body": "this.restapiurl = value;"
+      },
+      "getScore": {
+        "returnType": "string",
+        "description": "Get the score",
+        "parameters": [
+        ],
+        "body": "return this.score;"
+      },
+      "setScore": {
+        "description": "Set the score",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "string",
+            "description": "The new score"
+          }
+        ],
+        "body": "this.score = value;"
+      },
+      "getName": {
+        "returnType": "string",
+        "description": "Get widget name",
+        "parameters": [
+          
+        ],
+        "body": "return this.name;"
+      },
+      "setName": {
+        "description": "Set widget name",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "string",
+            "description": "The new widget name"
+          }
+        ],
+        "body": "this.name = value;"
+      }
+    },
+    "events": {
+      "onStart": {
+        "description": "onStart events trigger"
+      }
+    }
   }
