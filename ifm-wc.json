@@ -3,7 +3,7 @@
     "vendor": "IFM",
     "icon": "https://1dawu2.github.io/ifm-wc/icon.png",
     "license": "MIT",
-    "id": "com.ifm.hack",
+    "id": "com.ifm.hack.stories",
     "version": "0.0.1",
     "name": "IFM HACK",
     "newInstancePrefix": "IFM",
@@ -12,14 +12,14 @@
     "webcomponents": [
       {
         "kind": "main",
-        "tag": "com-ifm-stories",
+        "tag": "com-ifm-hack-stories",
         "url": "https://1dawu2.github.io/ifm-wc/main.js",
         "integrity": "",
         "ignoreIntegrity": true
       },
       {
         "kind": "styling",
-        "tag": "com-ifm-style-app",
+        "tag": "com-ifm-hack-style-app",
         "url": "https://1dawu2.github.io/ifm-wc/style.js",
         "integrity": "",
         "ignoreIntegrity": true
