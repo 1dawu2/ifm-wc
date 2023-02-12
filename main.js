@@ -8,6 +8,9 @@ var getScriptPromisify = (src) => {
 (function () {
   let _shadowRoot;
   let _score;
+  let _oAuthURL;
+  let _clientID;
+  let _apiSecret;
 
   let div;
   let Ar = [];
