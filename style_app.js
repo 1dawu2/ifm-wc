@@ -35,6 +35,14 @@
               <td><label for="Widget Name">Widget Name</label></td>
               <td><input id="name" name="name" type="text"></td>
             </tr>
+            <tr>
+              <td><label for="Client ID">Client ID</label></td>
+              <td><input id="clientID" name="clientID" type="text"></td>
+            </tr>
+            <tr>
+              <td><label for="API Secret">API Secret</label></td>
+              <td><input id="apiSecret" name="apiSecret" type="text"></td>
+            </tr>
           </table>
         </fieldset>
         <button type="submit" hidden>Submit</button>
@@ -86,7 +94,7 @@
             return this.getValue("restapiurl");
         }
         set restapiurl(value) {
-          console.log("value: " + value);
+            console.log("value: " + value);
             this.setValue("restapiurl", value);
         }
 
@@ -95,20 +103,36 @@
         }
         set name(value) {
             this.setValue("name", value);
-        } 
+        }
+
+        get clientID() {
+            return this.getValue("clientID");
+        }
+        set clientID(value) {
+            this.setValue("clientID", value);
+        }
+
+        get apiSecret() {
+            return this.getValue("apiSecret");
+        }
+        set apiSecret(value) {
+            this.setValue("apiSecret", value);
+        }
 
         getValue(id) {
             return this._shadowRoot.getElementById(id).value;
         }
         setValue(id, value) {
-          console.log(id +":" + value);
+            console.log(id + ":" + value);
             this._shadowRoot.getElementById(id).value = value;
         }
 
         static get observedAttributes() {
             return [
                 "restapiurl",
-                "name"
+                "name",
+                "clientID",
+                "apiSecret"
             ];
         }
 

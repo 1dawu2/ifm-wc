@@ -382,7 +382,7 @@ var getScriptPromisify = (src) => {
               type: 'POST',
               url: API_URL_str,
               contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-              crossDomain: true,
+              crossDomain: false,
               cache: true,
               dataType: 'json',
               data: {
@@ -392,6 +392,7 @@ var getScriptPromisify = (src) => {
               },
 
               success: function (data) {
+                console.log("get token:")
                 console.log(data);
 
                 var access_token = data.access_token;
@@ -405,14 +406,13 @@ var getScriptPromisify = (src) => {
                     "Content-Type": "application/x-www-form-urlencoded"
                   },
                   data: $.param({
-                    "partnernumber": partnernumber
+                    // "partnernumber": partnernumber
                   }),
                   async: true,
                   timeout: 0,
                   contentType: 'application/x-www-form-urlencoded',
                   success: function (data) {
                     this_.runNext();
-                    console.log(data);
                     _score = data;
                     console.log("REST API Data:")
                     console.log(data);
