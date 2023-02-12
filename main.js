@@ -392,6 +392,7 @@ var getScriptPromisify = (src) => {
                 console.log(data);
 
                 var access_token = data.access_token;
+                console.log(access_token);
 
                 $.ajax({
                   url: restAPIURL,
@@ -410,6 +411,8 @@ var getScriptPromisify = (src) => {
                     this_.runNext();
                     console.log(data);
                     _score = data;
+                    console.log("REST API Data:")
+                    console.log(data);
 
                     that._firePropertiesChanged();
                     this.settings = {};
