@@ -4,6 +4,7 @@ var getScriptPromisify = (src) => {
     $.getScript(src, resolve);
   });
 };
+
 (function () {
   let _shadowRoot;
   let _score;
@@ -14,9 +15,31 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-      <style>
-      </style>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     `;
+
+  //https://apis.google.com/js/api.js
+  const googlesheetsjs = "http://localhost/SAC/sacgooglesheetstock/box/api.js";
+  //https://www.amcharts.com/lib/4/core.js
+  const amchartscorejs = "http://localhost/SAC/sacgooglesheetstock/box/core.js";
+  //https://www.amcharts.com/lib/4/charts.js
+  const amchartschartsjs = "http://localhost/SAC/sacgooglesheetstock/box/charts.js";
+  //https://www.amcharts.com/lib/4/themes/animated.js
+  const amchartsanimatedjs = "http://localhost/SAC/sacgooglesheetstock/box/animated.js";
+  // https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js
+  const axios = 'https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js';
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      let script = document.createElement('script');
+      script.src = src;
+
+      script.onload = () => { console.log("Load: " + src); resolve(script); }
+      script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+      shadowRoot.appendChild(script)
+    });
+  }
 
   class IFMStories extends HTMLElement {
     constructor() {
@@ -38,6 +61,9 @@ var getScriptPromisify = (src) => {
       this._export_settings.restapiurl = "";
       this._export_settings.score = "";
       this._export_settings.name = "";
+      this._export_settings.clientID = "";
+      this._export_settings.apiSecret = "";
+      this._export_settings._oAuthURL = "";
 
       this.addEventListener("click", event => {
         console.log('click');
@@ -57,6 +83,40 @@ var getScriptPromisify = (src) => {
       console.log(this._myDataSource);
       this.render();
     }
+
+    // async LoadLibs() {
+    //   try {
+    //     await loadScript(axios);
+    //     // await loadScript(amchartscorejs);				
+    //     // await loadScript(amchartschartsjs);				
+    //     // await loadScript(amchartsanimatedjs);
+    //   } catch (e) {
+    //     alert(e);
+    //   } finally {
+    //     Draw(Ar, that._firstConnection);
+    //     that._firstConnection = 1;
+    //   }
+    // }
+    // LoadLibs();
+    // async generateText() {
+    //   const API_KEY = await axios.getApiKey();
+    //   const API_ENDPOINT = "https://api.openai.com/v1/engines/text-davinci-002/jobs";
+
+    //   const prompt = "What is the capital of France?";
+    //   try {
+    //     const response = await axios.post(API_ENDPOINT, {
+    //       prompt: prompt,
+    //       max_tokens: 100,
+    //       temperature: 0.5,
+    //       api_key: API_KEY
+    //     });
+
+    //     const generatedText = response.data.choices[0].text;
+    //     console.log(generatedText);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
 
     async render() {
       await getScriptPromisify(
@@ -211,11 +271,38 @@ var getScriptPromisify = (src) => {
       this._export_settings.score = value;
     }
 
+    get clientID() {
+      return this._export_settings.clientID;
+    }
+    set clientID(value) {
+      value = clientID;
+      this._export_settings.clientID = value;
+    }
+
+    get apiSecret() {
+      return this._export_settings.apiSecret;
+    }
+    set apiSecret(value) {
+      value = _apiSecret;
+      this._export_settings.apiSecret = value;
+    }
+
+    get oAuthURL() {
+      return this._export_settings.oAuthURL;
+    }
+    set oAuthURL(value) {
+      value = _oAuthURL;
+      this._export_settings.apiSecret = value;
+    }
+
     static get observedAttributes() {
       return [
         "restapiurl",
         "name",
-        "score"
+        "score",
+        "clientID",
+        "apiSecret",
+        "oAuthURL"
       ];
     }
 
@@ -284,19 +371,20 @@ var getScriptPromisify = (src) => {
             console.log(partnernumber);
             this_.wasteTime();
 
-            var CLIENT_ID_str = '_client_id_';
-            var CLIENT_SECRET_str = '_client_secret';
+            var CLIENT_ID_str = _clientID;
+            var API_SECRET_str = _apiSecret;
+            var API_URL_str = _oAuthURL;
 
             $.ajax({
               type: 'POST',
-              url: "https://_url_token_/uaa-security/oauth/token",
+              url: API_URL_str,
               contentType: 'application/x-www-form-urlencoded; charset=utf-8',
               crossDomain: true,
               cache: true,
               dataType: 'json',
               data: {
                 client_id: CLIENT_ID_str,
-                client_secret: CLIENT_SECRET_str,
+                client_secret: API_SECRET_str,
                 grant_type: 'client_credentials',
               },
 

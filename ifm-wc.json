@@ -45,6 +45,21 @@
         "type": "string",
         "description": "score",
         "default": ""
+      },
+      "clientID": {
+        "type": "string",
+        "description": "CLIENT ID",
+        "default": "XXX-XXX-XXX"
+      },
+      "apiSecret": {
+        "type": "string",
+        "description": "API SECRET",
+        "default": ""
+      },
+      "oAuthURL": {
+        "type": "string",
+        "description": "oAuth URL",
+        "default": ""
       }
     },
     "dataBindings": {
