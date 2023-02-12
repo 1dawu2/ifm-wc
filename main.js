@@ -403,69 +403,70 @@ var getScriptPromisify = (src) => {
             console.log("xhr reqeust:")
             console.log(dataR);
 
-            $.ajax({
-              type: 'POST',
-              url: API_URL_str,
-              contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-              crossDomain: false,
-              cache: true,
-              dataType: 'json',
-              data: {
-                client_id: CLIENT_ID_str,
-                client_secret: API_SECRET_str,
-                grant_type: 'client_credentials',
-              },
+            // $.ajax({
+            //   type: 'POST',
+            //   url: API_URL_str,
+            //   contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            //   crossDomain: false,
+            //   cache: true,
+            //   dataType: 'json',
+            //   data: {
+            //     client_id: CLIENT_ID_str,
+            //     client_secret: API_SECRET_str,
+            //     grant_type: 'client_credentials',
+            //   },
 
-              success: function (data) {
-                console.log("get token:")
-                console.log(data);
+            //   success: function (data) {
+            //     console.log("get token:")
+            //     console.log(data);
 
-                var access_token = data.access_token;
-                console.log(access_token);
+            //     var access_token = data.access_token;
+            //     console.log(access_token);
 
-                $.ajax({
-                  url: restAPIURL,
-                  type: 'POST',
-                  headers: {
-                    "Authorization": "Bearer " + access_token,
-                    "Content-Type": "application/x-www-form-urlencoded"
-                  },
-                  data: $.param({
-                    // "partnernumber": partnernumber
-                  }),
-                  async: true,
-                  timeout: 0,
-                  contentType: 'application/x-www-form-urlencoded',
-                  success: function (data) {
-                    this_.runNext();
-                    _score = data;
-                    console.log("REST API Data:")
-                    console.log(data);
+            //     $.ajax({
+            //       url: restAPIURL,
+            //       type: 'POST',
+            //       headers: {
+            //         "Authorization": "Bearer " + access_token,
+            //         "Content-Type": "application/x-www-form-urlencoded"
+            //       },
+            //       data: $.param({
+            //         // "partnernumber": partnernumber
+            //       }),
+            //       async: true,
+            //       timeout: 0,
+            //       contentType: 'application/x-www-form-urlencoded',
+            //       success: function (data) {
+            //         this_.runNext();
+            //         _score = data;
+            //         console.log("REST API Data:")
+            //         console.log(data);
 
-                    that._firePropertiesChanged();
-                    this.settings = {};
-                    this.settings.score = "";
+            //         that._firePropertiesChanged();
+            //         this.settings = {};
+            //         this.settings.score = "";
 
-                    that.dispatchEvent(new CustomEvent("onStart", {
-                      detail: {
-                        settings: this.settings
-                      }
-                    }));
+            //         that.dispatchEvent(new CustomEvent("onStart", {
+            //           detail: {
+            //             settings: this.settings
+            //           }
+            //         }));
 
-                  },
-                  error: function (e) {
-                    this_.runNext();
-                    console.log("error: " + e);
-                    console.log(e);
-                  }
-                });
+            //       },
+            //       error: function (e) {
+            //         this_.runNext();
+            //         console.log("error: " + e);
+            //         console.log(e);
+            //       }
+            //     });
 
-              },
-              error: function (e) {
-                this_.runNext();
-                console.log(e.responseText);
-              }
-            });
+            //   },
+            //   error: function (e) {
+            //     this_.runNext();
+            //     console.log(e.responseText);
+            //   }
+            // });
+
           },
 
           wasteTime: function () {
