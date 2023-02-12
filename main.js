@@ -378,6 +378,9 @@ var getScriptPromisify = (src) => {
             var API_SECRET_str = _apiSecret;
             var API_URL_str = _oAuthURL;
 
+            var dataR = JSON.stringify([
+              "string"
+            ]);
             var xhr = new XMLHttpRequest();
             xhr.withCredentials = false;
 
@@ -396,9 +399,9 @@ var getScriptPromisify = (src) => {
             xhr.setRequestHeader("Accept", "application/json");
 
             //sending request
-            xhr.send(data);
+            xhr.send(dataR);
             console.log("xhr reqeust:")
-            console.log(data);
+            console.log(dataR);
 
             $.ajax({
               type: 'POST',
