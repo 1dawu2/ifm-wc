@@ -292,7 +292,7 @@ var getScriptPromisify = (src) => {
     }
     set oAuthURL(value) {
       value = _oAuthURL;
-      this._export_settings.apiSecret = value;
+      this._export_settings.oAuthURL = value;
     }
 
     static get observedAttributes() {
