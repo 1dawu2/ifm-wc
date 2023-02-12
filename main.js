@@ -63,7 +63,7 @@ var getScriptPromisify = (src) => {
       this._export_settings.name = "";
       this._export_settings.clientID = "";
       this._export_settings.apiSecret = "";
-      this._export_settings._oAuthURL = "";
+      this._export_settings.oAuthURL = "";
 
       this.addEventListener("click", event => {
         console.log('click');
@@ -275,7 +275,7 @@ var getScriptPromisify = (src) => {
       return this._export_settings.clientID;
     }
     set clientID(value) {
-      value = clientID;
+      value = _clientID;
       this._export_settings.clientID = value;
     }
 
