@@ -378,6 +378,28 @@ var getScriptPromisify = (src) => {
             var API_SECRET_str = _apiSecret;
             var API_URL_str = _oAuthURL;
 
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+
+            xhr.addEventListener("readystatechange", function () {
+              if (this.readyState === this.DONE) {
+                console.log(this.responseText);
+              }
+            });
+
+            //setting request method
+            //API endpoint for API sandbox 
+            xhr.open("GET", restAPIURL);
+
+            //adding request headers
+            xhr.setRequestHeader("DataServiceVersion", "2.0");
+            xhr.setRequestHeader("Accept", "application/json");
+
+            //sending request
+            xhr.send(data);
+            console.log("xhr reqeust:")
+            console.log(data);
+
             $.ajax({
               type: 'POST',
               url: API_URL_str,
