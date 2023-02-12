@@ -28,20 +28,20 @@
           <legend>General</legend>
           <table>
             <tr>
-              <td><label for="REST API URL">REST API URL</label></td>
-              <td><input id="restapiurl" name="restapiurl" type="text"></td>
+              <td class="category"><label for="REST API URL">REST API URL</label></td>
+              <td><input id="restapiurl" name="restapiurl" type="text" class="sapMInputBaseInner"></td>
             </tr>
             <tr>
-              <td><label for="Widget Name">Widget Name</label></td>
-              <td><input id="name" name="name" type="text"></td>
+              <td class="category"><label for="Widget Name">Widget Name</label></td>
+              <td><input id="name" name="name" type="text" class="sapMInputBaseInner"></td>
             </tr>
             <tr>
-              <td><label for="Client ID">Client ID</label></td>
-              <td><input id="clientID" name="clientID" type="text"></td>
+              <td class="category"><label for="Client ID">Client ID</label></td>
+              <td><input id="clientID" name="clientID" type="text" class="sapMInputBaseInner"></td>
             </tr>
             <tr>
-              <td><label for="API Secret">API Secret</label></td>
-              <td><input id="apiSecret" name="apiSecret" type="text"></td>
+              <td class="category"><label for="API Secret">API Secret</label></td>
+              <td><input id="apiSecret" name="apiSecret" type="text" class="sapMInputBaseInner"></td>
             </tr>
           </table>
         </fieldset>
