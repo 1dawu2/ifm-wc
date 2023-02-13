@@ -336,7 +336,7 @@ var getScriptPromisify = (src) => {
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
-      div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div>';
+      div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div><div id="storyTable"></div>';
       _shadowRoot.appendChild(div1);
 
       that_.appendChild(div);
@@ -403,100 +403,162 @@ var getScriptPromisify = (src) => {
             console.log("xhr reqeust:")
             console.log(dataR);
 
-            // $.ajax({
-            //   type: 'POST',
-            //   url: API_URL_str,
-            //   contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-            //   crossDomain: false,
-            //   cache: true,
-            //   dataType: 'json',
-            //   data: {
-            //     client_id: CLIENT_ID_str,
-            //     client_secret: API_SECRET_str,
-            //     grant_type: 'client_credentials',
-            //   },
+            // Define a table [Note: you must include the table library to make the Table class work]
 
-            //   success: function (data) {
-            //     console.log("get token:")
-            //     console.log(data);
+            var oTable = new sap.ui.table.Table({
+              title: "SAC Stories",
+              visibleRowCount: 3,
+              selectionMode: sap.ui.table.SelectionMode.Single,
+              navigationMode: sap.ui.table.NavigationMode.Paginator,
+              fixedColumnCount: 3,
+              enableColumnReordering: true,
+              width: "1024px"
+            });
 
-            //     var access_token = data.access_token;
-            //     console.log(access_token);
+            // Use the Object defined for table to add new column into the table
 
-            //     $.ajax({
-            //       url: restAPIURL,
-            //       type: 'POST',
-            //       headers: {
-            //         "Authorization": "Bearer " + access_token,
-            //         "Content-Type": "application/x-www-form-urlencoded"
-            //       },
-            //       data: $.param({
-            //         // "partnernumber": partnernumber
-            //       }),
-            //       async: true,
-            //       timeout: 0,
-            //       contentType: 'application/x-www-form-urlencoded',
-            //       success: function (data) {
-            //         this_.runNext();
-            //         _score = data;
-            //         console.log("REST API Data:")
-            //         console.log(data);
+            oTable.addColumn(new sap.ui.table.Column({
+              label: new sap.ui.commons.Label({ text: "Story ID" }),             
+              template: new sap.ui.commons.TextField().bindProperty("value", "name"), 
+              sortProperty: "name",        
+              filterProperty: "name",       
+              width: "125px"
+  
+            }));
 
-            //         that._firePropertiesChanged();
-            //         this.settings = {};
-            //         this.settings.score = "";
+            var oModel = new sap.ui.model.json.JSONModel();
+            oModel.setData({modelData: dataR});
+            oTable.setModel(oModel);
+            oTable.bindRows("/modelData");
+            oTable.sort(oTable.getColumns()[0]);
+            oTable.placeAt("storyTable");
 
-            //         that.dispatchEvent(new CustomEvent("onStart", {
-            //           detail: {
-            //             settings: this.settings
-            //           }
-            //         }));
+      // var dataD = JSON.stringify({
+      //   "NamespaceID": "string",
+      //   "ProviderID": "string",
+      //   "EntitySetName": "string",
+      //   "ExternalID": "string",
+      //   "Description": "string"
+      // });
 
-            //       },
-            //       error: function (e) {
-            //         this_.runNext();
-            //         console.log("error: " + e);
-            //         console.log(e);
-            //       }
-            //     });
+      // var xhr = new XMLHttpRequest();
+      // xhr.withCredentials = false;
 
-            //   },
-            //   error: function (e) {
-            //     this_.runNext();
-            //     console.log(e.responseText);
-            //   }
-            // });
+      // xhr.addEventListener("readystatechange", function () {
+      //   if (this.readyState === this.DONE) {
+      //     console.log(this.responseText);
+      //   }
+      // });
 
-          },
+      // //setting request method
+      // //API endpoint for API sandbox 
+      // xhr.open("POST", "https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/dataexport/administration/Subscriptions");
 
-          wasteTime: function () {
-            busyDialog.open();
-          },
 
-          runNext: function () {
-            busyDialog.close();
-          },
+      // //adding request headers
+      // xhr.setRequestHeader("x-csrf-token", "Mandatory x-csrf-token that can be obtained by sending a GET request to <tenant-url>/api/v1/csrf with the header parameter x-csrf-token:fetch.");
+      // xhr.setRequestHeader("DataServiceVersion", "2.0");
+      // xhr.setRequestHeader("Accept", "application/json");
+      // xhr.setRequestHeader("Content-Type", "application/json");
+
+
+      // //sending request
+      // xhr.send(dataD);
+
+      // $.ajax({
+      //   type: 'POST',
+      //   url: API_URL_str,
+      //   contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+      //   crossDomain: false,
+      //   cache: true,
+      //   dataType: 'json',
+      //   data: {
+      //     client_id: CLIENT_ID_str,
+      //     client_secret: API_SECRET_str,
+      //     grant_type: 'client_credentials',
+      //   },
+
+      //   success: function (data) {
+      //     console.log("get token:")
+      //     console.log(data);
+
+      //     var access_token = data.access_token;
+      //     console.log(access_token);
+
+      //     $.ajax({
+      //       url: restAPIURL,
+      //       type: 'POST',
+      //       headers: {
+      //         "Authorization": "Bearer " + access_token,
+      //         "Content-Type": "application/x-www-form-urlencoded"
+      //       },
+      //       data: $.param({
+      //         // "partnernumber": partnernumber
+      //       }),
+      //       async: true,
+      //       timeout: 0,
+      //       contentType: 'application/x-www-form-urlencoded',
+      //       success: function (data) {
+      //         this_.runNext();
+      //         _score = data;
+      //         console.log("REST API Data:")
+      //         console.log(data);
+
+      //         that._firePropertiesChanged();
+      //         this.settings = {};
+      //         this.settings.score = "";
+
+      //         that.dispatchEvent(new CustomEvent("onStart", {
+      //           detail: {
+      //             settings: this.settings
+      //           }
+      //         }));
+
+      //       },
+      //       error: function (e) {
+      //         this_.runNext();
+      //         console.log("error: " + e);
+      //         console.log(e);
+      //       }
+      //     });
+
+      //   },
+      //   error: function (e) {
+      //     this_.runNext();
+      //     console.log(e.responseText);
+      //   }
+      // });
+
+    },
+
+      wasteTime: function () {
+        busyDialog.open();
+      },
+
+      runNext: function () {
+        busyDialog.close();
+      },
         });
-      });
+});
 
-      console.log("widgetName:" + widgetName);
-      var foundIndex = Ar.findIndex(x => x.id == widgetName);
-      var divfinal = Ar[foundIndex].div;
+console.log("widgetName:" + widgetName);
+var foundIndex = Ar.findIndex(x => x.id == widgetName);
+var divfinal = Ar[foundIndex].div;
 
-      //### THE APP: place the XMLView somewhere into DOM ###
-      var oView = sap.ui.xmlview({
-        viewContent: jQuery(divfinal).html(),
-      });
+//### THE APP: place the XMLView somewhere into DOM ###
+var oView = sap.ui.xmlview({
+  viewContent: jQuery(divfinal).html(),
+});
 
-      oView.placeAt(div);
+oView.placeAt(div);
 
-      if (that_._designMode) {
-        oView.byId("buttonId").setEnabled(false);
-        oView.byId("input").setEnabled(false);
-      } else {
-        oView.byId("buttonId").setEnabled(true);
-        oView.byId("input").setEnabled(true);
-      }
+if (that_._designMode) {
+  oView.byId("buttonId").setEnabled(false);
+  oView.byId("input").setEnabled(false);
+} else {
+  oView.byId("buttonId").setEnabled(true);
+  oView.byId("input").setEnabled(true);
+}
     });
   }
-})();
+}) ();

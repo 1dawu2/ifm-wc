@@ -23,24 +23,24 @@
               vertical-align: middle;
           }
       </style>
-      <form id="form" autocomplete="off">
+      <form id="form" autocomplete="off" class="sapFpaAppBuildingUiTextArea  sap-custom-text-area-placeholder">
         <fieldset> 
           <legend>General</legend>
           <table>
             <tr>
-              <td class="category"><label for="REST API URL">REST API URL</label></td>
+              <td><label for="REST API URL">REST API URL</label></td>
               <td><input id="restapiurl" name="restapiurl" type="text" class="sapMInputBaseInner"></td>
             </tr>
             <tr>
-              <td class="category"><label for="Widget Name">Widget Name</label></td>
+              <td><label for="Widget Name">Widget Name</label></td>
               <td><input id="name" name="name" type="text" class="sapMInputBaseInner"></td>
             </tr>
             <tr>
-              <td class="category"><label for="Client ID">Client ID</label></td>
+              <td><label for="Client ID">Client ID</label></td>
               <td><input id="clientID" name="clientID" type="text" class="sapMInputBaseInner"></td>
             </tr>
             <tr>
-              <td class="category"><label for="API Secret">API Secret</label></td>
+              <td><label for="API Secret">API Secret</label></td>
               <td><input id="apiSecret" name="apiSecret" type="text" class="sapMInputBaseInner"></td>
             </tr>
           </table>
