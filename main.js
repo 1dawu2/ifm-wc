@@ -406,33 +406,33 @@ var getScriptPromisify = (src) => {
 
             // Define a table [Note: you must include the table library to make the Table class work]
 
-            var oTable = new sap.ui.table.Table({
-              title: "SAC Stories",
-              visibleRowCount: 3,
-              selectionMode: sap.ui.table.SelectionMode.Single,
-              navigationMode: sap.ui.table.NavigationMode.Paginator,
-              fixedColumnCount: 3,
-              enableColumnReordering: true,
-              width: "1024px"
-            });
+            // var oTable = new sap.ui.table.Table({
+            //   title: "SAC Stories",
+            //   visibleRowCount: 3,
+            //   selectionMode: sap.ui.table.SelectionMode.Single,
+            //   navigationMode: sap.ui.table.NavigationMode.Paginator,
+            //   fixedColumnCount: 3,
+            //   enableColumnReordering: true,
+            //   width: "1024px"
+            // });
 
-            // Use the Object defined for table to add new column into the table
+            // // Use the Object defined for table to add new column into the table
 
-            oTable.addColumn(new sap.ui.table.Column({
-              label: new sap.ui.commons.Label({ text: "Story ID" }),             
-              template: new sap.ui.commons.TextField().bindProperty("value", "name"), 
-              sortProperty: "name",        
-              filterProperty: "name",       
-              width: "125px"
+            // oTable.addColumn(new sap.ui.table.Column({
+            //   label: new sap.ui.commons.Label({ text: "Story ID" }),             
+            //   template: new sap.ui.commons.TextField().bindProperty("value", "name"), 
+            //   sortProperty: "name",        
+            //   filterProperty: "name",       
+            //   width: "125px"
   
-            }));
+            // }));
 
-            var oModel = new sap.ui.model.json.JSONModel();
-            oModel.setData({modelData: dataR});
-            oTable.setModel(oModel);
-            oTable.bindRows("/modelData");
-            oTable.sort(oTable.getColumns()[0]);
-            oTable.placeAt("ui5_content_' + widgetName + '");
+            // var oModel = new sap.ui.model.json.JSONModel();
+            // oModel.setData({modelData: dataR});
+            // oTable.setModel(oModel);
+            // oTable.bindRows("/modelData");
+            // oTable.sort(oTable.getColumns()[0]);
+            // oTable.placeAt("ui5_content_' + widgetName + '");
 
             this_.runNext();
 
