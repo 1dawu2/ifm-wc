@@ -332,11 +332,11 @@ var getScriptPromisify = (src) => {
       console.log("--First Time --");
 
       let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content><Input id="input"  placeholder="Enter partner number..." liveChange=""/></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Score" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
+      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content><Input id="input"  placeholder="Enter partner number..." liveChange=""/></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Score" width="150px" press=".onButtonPress" /><div id="storyTable"></div></l:VerticalLayout></mvc:View></script>';
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
-      div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div><div id="storyTable"></div>';
+      div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
       _shadowRoot.appendChild(div1);
 
       that_.appendChild(div);
@@ -402,6 +402,7 @@ var getScriptPromisify = (src) => {
             xhr.send(dataR);
             console.log("xhr reqeust:")
             console.log(dataR);
+            _score = dataR;
 
             // Define a table [Note: you must include the table library to make the Table class work]
 
@@ -432,6 +433,8 @@ var getScriptPromisify = (src) => {
             oTable.bindRows("/modelData");
             oTable.sort(oTable.getColumns()[0]);
             oTable.placeAt("storyTable");
+
+            this_.runNext();
 
       // var dataD = JSON.stringify({
       //   "NamespaceID": "string",
