@@ -332,7 +332,7 @@ var getScriptPromisify = (src) => {
       console.log("--First Time --");
 
       let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content><Input id="input"  placeholder="Enter partner number..." liveChange=""/></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Score" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
+      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content><div id="sacTable"></div></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Score" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
@@ -370,8 +370,6 @@ var getScriptPromisify = (src) => {
           onButtonPress: function (oEvent) {
             var this_ = this;
 
-            var partnernumber = oView.byId("input").getValue();
-            console.log(partnernumber);
             this_.wasteTime();
 
             var CLIENT_ID_str = _clientID;
@@ -406,33 +404,33 @@ var getScriptPromisify = (src) => {
 
             // Define a table [Note: you must include the table library to make the Table class work]
 
-            // var oTable = new sap.ui.table.Table({
-            //   title: "SAC Stories",
-            //   visibleRowCount: 3,
-            //   selectionMode: sap.ui.table.SelectionMode.Single,
-            //   navigationMode: sap.ui.table.NavigationMode.Paginator,
-            //   fixedColumnCount: 3,
-            //   enableColumnReordering: true,
-            //   width: "1024px"
-            // });
+            var oTable = new sap.ui.table.Table({
+              title: "SAC Stories",
+              visibleRowCount: 3,
+              selectionMode: sap.ui.table.SelectionMode.Single,
+              navigationMode: sap.ui.table.NavigationMode.Paginator,
+              fixedColumnCount: 3,
+              enableColumnReordering: true,
+              width: "1024px"
+            });
 
-            // // Use the Object defined for table to add new column into the table
+            // Use the Object defined for table to add new column into the table
 
-            // oTable.addColumn(new sap.ui.table.Column({
-            //   label: new sap.ui.commons.Label({ text: "Story ID" }),             
-            //   template: new sap.ui.commons.TextField().bindProperty("value", "name"), 
-            //   sortProperty: "name",        
-            //   filterProperty: "name",       
-            //   width: "125px"
+            oTable.addColumn(new sap.ui.table.Column({
+              label: new sap.ui.commons.Label({ text: "Story ID" }),             
+              template: new sap.ui.commons.TextField().bindProperty("value", "name"), 
+              sortProperty: "name",        
+              filterProperty: "name",       
+              width: "125px"
   
-            // }));
+            }));
 
-            // var oModel = new sap.ui.model.json.JSONModel();
-            // oModel.setData({modelData: dataR});
-            // oTable.setModel(oModel);
-            // oTable.bindRows("/modelData");
-            // oTable.sort(oTable.getColumns()[0]);
-            // oTable.placeAt("ui5_content_' + widgetName + '");
+            var oModel = new sap.ui.model.json.JSONModel();
+            oModel.setData({modelData: dataR});
+            oTable.setModel(oModel);
+            oTable.bindRows("/modelData");
+            oTable.sort(oTable.getColumns()[0]);
+            oTable.placeAt("sacTable");
 
             this_.runNext();
 
@@ -557,10 +555,10 @@ oView.placeAt(div);
 
 if (that_._designMode) {
   oView.byId("buttonId").setEnabled(false);
-  oView.byId("input").setEnabled(false);
+  oView.byId("sacTable").setEnabled(false);
 } else {
   oView.byId("buttonId").setEnabled(true);
-  oView.byId("input").setEnabled(true);
+  oView.byId("sacTable").setEnabled(true);
 }
     });
   }
