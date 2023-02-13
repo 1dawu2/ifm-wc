@@ -430,6 +430,11 @@ var getScriptPromisify = (src) => {
             oTable.setModel(oModel);
             oTable.bindRows("/modelData");
             oTable.sort(oTable.getColumns()[0]);
+
+            let div2 = document.createElement('div');
+            div2.innerHTML = '<div id="sacTable"></div>';
+            _shadowRoot.appendChild(div2);
+            that_.appendChild(div);
             oTable.placeAt("sacTable");
 
             this_.runNext();
@@ -555,10 +560,10 @@ oView.placeAt(div);
 
 if (that_._designMode) {
   oView.byId("buttonId").setEnabled(false);
-  oView.byId("sacTable").setEnabled(false);
+  // oView.byId("sacTable").setEnabled(false);
 } else {
   oView.byId("buttonId").setEnabled(true);
-  oView.byId("sacTable").setEnabled(true);
+  // oView.byId("sacTable").setEnabled(true);
 }
     });
   }
