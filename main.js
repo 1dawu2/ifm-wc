@@ -432,9 +432,11 @@ var getScriptPromisify = (src) => {
               var oModel = new sap.ui.model.json.JSONModel();
               oModel.setData({ modelData: data });
               oTable.setModel(oModel);
-              oTable.bindRows("/modelData");
+              // oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
-              oTable.placeAt("__xmlview1--sacTable");
+              // oTable.placeAt("__xmlview1--sacTable");
+              oTable.getView().byId("sacTable");
+              oTable.bindRows("/modelData");
 
               this_.runNext();
 
