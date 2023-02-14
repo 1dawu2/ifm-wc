@@ -332,7 +332,7 @@ var getScriptPromisify = (src) => {
       console.log("--First Time --");
 
       let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region"><headerToolbar><OverflowToolbar><Title text="Header"/><ToolbarSpacer /><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></OverflowToolbar></headerToolbar><content id="sacTable"></content></Panel></mvc:View></script>';
+      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content><Table id="sacTable"></Table></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
@@ -430,11 +430,6 @@ var getScriptPromisify = (src) => {
             oTable.setModel(oModel);
             oTable.bindRows("/modelData");
             oTable.sort(oTable.getColumns()[0]);
-
-            let div2 = document.createElement('div');
-            div2.innerHTML = '<div id="sacTable"></div>';
-            _shadowRoot.appendChild(div2);
-            that_.appendChild(div);
             oTable.placeAt("sacTable");
 
             this_.runNext();
