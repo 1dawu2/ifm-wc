@@ -430,7 +430,7 @@ var getScriptPromisify = (src) => {
               }));
 
               var oModel = new sap.ui.model.json.JSONModel();
-              oModel.setData({ modelData: dataR });
+              oModel.setData({ modelData: data });
               oTable.setModel(oModel);
               oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
