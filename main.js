@@ -430,7 +430,7 @@ var getScriptPromisify = (src) => {
             oTable.setModel(oModel);
             oTable.bindRows("/modelData");
             oTable.sort(oTable.getColumns()[0]);
-            oTable.placeAt("sacTable");
+            oTable.placeAt("__xmlview1--sacTable");
 
             this_.runNext();
 
