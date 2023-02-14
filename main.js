@@ -398,8 +398,8 @@ var getScriptPromisify = (src) => {
 
             //sending request
             xhr.send(dataR);
-            console.log("xhr reqeust:")
-            console.log(dataR);
+            // console.log("xhr reqeust:")
+            // console.log(dataR);
             _score = dataR;
 
             // Define a table [Note: you must include the table library to make the Table class work]
@@ -408,8 +408,7 @@ var getScriptPromisify = (src) => {
               title: "SAC Stories",
               visibleRowCount: 3,
               selectionMode: sap.ui.table.SelectionMode.Single,
-              navigationMode: sap.ui.table.NavigationMode.Paginator,
-              fixedColumnCount: 3,
+              fixedColumnCount: 1,
               enableColumnReordering: true,
               width: "1024px"
             });
