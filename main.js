@@ -379,11 +379,11 @@ var getScriptPromisify = (src) => {
             var xhr = new XMLHttpRequest();
             xhr.withCredentials = false;
 
-            xhr.addEventListener("readystatechange", function () {
-              if (this.readyState === this.DONE) {
-                console.log(this.responseText);
-              }
-            });
+            // xhr.addEventListener("readystatechange", function () {
+            //   if (this.readyState === this.DONE) {
+            //     console.log(this.responseText);
+            //   }
+            // });
             xhr.onreadystatechange = function () {
               if (this.readyState == 4 && this.status == 200) {
                 const dataR = JSON.parse(this.responseText);
