@@ -386,7 +386,8 @@ var getScriptPromisify = (src) => {
             // });
             xhr.onreadystatechange = function () {
               if (this.readyState == 4 && this.status == 200) {
-                const dataR = JSON.parse(this.responseText);
+                var res = JSON.parse(this.responseText);
+                buildTable(res);
               }
             };
 
@@ -402,39 +403,42 @@ var getScriptPromisify = (src) => {
             xhr.send();
             // console.log("xhr reqeust:")
             // console.log(dataR);
-            _score = dataR;
+            // _score = dataR;
 
             // Define a table [Note: you must include the table library to make the Table class work]
 
-            var oTable = new sap.ui.table.Table({
-              title: "SAC Stories",
-              visibleRowCount: 3,
-              selectionMode: sap.ui.table.SelectionMode.Single,
-              fixedColumnCount: 1,
-              enableColumnReordering: true,
-              width: "1024px"
-            });
+            function buildTable(data) {
 
-            // Use the Object defined for table to add new column into the table
+              var oTable = new sap.ui.table.Table({
+                title: "SAC Stories",
+                visibleRowCount: 3,
+                selectionMode: sap.ui.table.SelectionMode.Single,
+                fixedColumnCount: 1,
+                enableColumnReordering: true,
+                width: "1024px"
+              });
 
-            oTable.addColumn(new sap.ui.table.Column({
-              label: new sap.ui.commons.Label({ text: "Story ID" }),
-              template: new sap.ui.commons.TextField().bindProperty("value", "name"),
-              sortProperty: "name",
-              filterProperty: "name",
-              width: "125px"
+              // Use the Object defined for table to add new column into the table
 
-            }));
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Story ID" }),
+                template: new sap.ui.commons.TextField().bindProperty("value", "name"),
+                sortProperty: "name",
+                filterProperty: "name",
+                width: "125px"
 
-            var oModel = new sap.ui.model.json.JSONModel();
-            oModel.setData({ modelData: dataR });
-            oTable.setModel(oModel);
-            oTable.bindRows("/modelData");
-            oTable.sort(oTable.getColumns()[0]);
-            oTable.placeAt("__xmlview1--sacTable");
+              }));
 
-            this_.runNext();
+              var oModel = new sap.ui.model.json.JSONModel();
+              oModel.setData({ modelData: dataR });
+              oTable.setModel(oModel);
+              oTable.bindRows("/modelData");
+              oTable.sort(oTable.getColumns()[0]);
+              oTable.placeAt("__xmlview1--sacTable");
 
+              this_.runNext();
+
+            }
             // var dataD = JSON.stringify({
             //   "NamespaceID": "string",
             //   "ProviderID": "string",
