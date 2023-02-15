@@ -19,11 +19,7 @@ var getScriptPromisify = (src) => {
   let widgetName;
 
   let tmpl = document.createElement("template");
-  tmpl.innerHTML = `
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <style></style>
-    <div id="sacTable" style="width: 100%; height: 100%;"></div>
-    `;
+  tmpl.innerHTML = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">`;
 
   //https://apis.google.com/js/api.js
   const googlesheetsjs = "http://localhost/SAC/sacgooglesheetstock/box/api.js";
