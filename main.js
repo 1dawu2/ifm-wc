@@ -435,7 +435,7 @@ var getScriptPromisify = (src) => {
               // oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
               // oTable.placeAt("__xmlview1--sacTable");
-              oTable.getView().byId("sacTable");
+              oTable = this.getView().byId("sacTable");     //Get Hold of Table that has been created in view
               oTable.bindRows("/modelData");
 
               this_.runNext();
