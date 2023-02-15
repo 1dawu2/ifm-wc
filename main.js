@@ -1,5 +1,5 @@
 
-const { html } = require('./template.html');
+//const { html } = require('./template.html');
 
 var getScriptPromisify = (src) => {
   return new Promise((resolve) => {
@@ -19,7 +19,11 @@ var getScriptPromisify = (src) => {
   let widgetName;
 
   let tmpl = document.createElement("template");
-  tmpl.innerHTML = html;
+  tmpl.innerHTML = `
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style></style>
+    <div id="sacTable" style="width: 100%; height: 100%;"></div>
+    `;
 
   //https://apis.google.com/js/api.js
   const googlesheetsjs = "http://localhost/SAC/sacgooglesheetstock/box/api.js";
