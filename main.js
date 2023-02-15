@@ -1,4 +1,6 @@
 
+import html from './template.html'
+
 var getScriptPromisify = (src) => {
   return new Promise((resolve) => {
     $.getScript(src, resolve);
@@ -17,9 +19,7 @@ var getScriptPromisify = (src) => {
   let widgetName;
 
   let tmpl = document.createElement("template");
-  tmpl.innerHTML = `
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    `;
+  tmpl.innerHTML = html;
 
   //https://apis.google.com/js/api.js
   const googlesheetsjs = "http://localhost/SAC/sacgooglesheetstock/box/api.js";
@@ -332,7 +332,7 @@ var getScriptPromisify = (src) => {
       // console.log("--First Time --");
 
       let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content><Table id="sacTable"></Table></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
+      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
@@ -355,12 +355,9 @@ var getScriptPromisify = (src) => {
 
       //### Controller ###
       sap.ui.define([
-        "jquery.sap.global",
         "sap/ui/core/mvc/Controller",
-        "sap/m/MessageToast",
-        "sap/m/MessageBox",
         "sap/m/BusyDialog"
-      ], function (jQuery, Controller, MessageToast, MessageBox, BusyDialog) {
+      ], function (Controller, BusyDialog) {
         "use strict";
 
         var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
@@ -415,7 +412,7 @@ var getScriptPromisify = (src) => {
                 selectionMode: sap.ui.table.SelectionMode.Single,
                 fixedColumnCount: 1,
                 enableColumnReordering: true,
-                width: "1024px"
+                width: "100%"
               });
 
               // Use the Object defined for table to add new column into the table
@@ -432,11 +429,9 @@ var getScriptPromisify = (src) => {
               var oModel = new sap.ui.model.json.JSONModel();
               oModel.setData({ modelData: data });
               oTable.setModel(oModel);
-              // oTable.bindRows("/modelData");
-              oTable.sort(oTable.getColumns()[0]);
-              // oTable.placeAt("__xmlview1--sacTable");
-              oTable = this.getView().byId("sacTable");     //Get Hold of Table that has been created in view
               oTable.bindRows("/modelData");
+              oTable.sort(oTable.getColumns()[0]);
+              oTable.placeAt("sacTable");
 
               this_.runNext();
 
