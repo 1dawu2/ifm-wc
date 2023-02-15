@@ -1,5 +1,5 @@
 
-import html from './template.html'
+const { html } = require('./template.html');
 
 var getScriptPromisify = (src) => {
   return new Promise((resolve) => {
