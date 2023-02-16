@@ -21,8 +21,6 @@ var getScriptPromisify = (src) => {
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css">
-    <script type="module">
     <div id="sacGrid"></div>
   `;
 
