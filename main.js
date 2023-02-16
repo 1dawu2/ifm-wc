@@ -23,11 +23,6 @@ var getScriptPromisify = (src) => {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css">
     <script type="module">
-    import {
-        Grid,
-        html
-    } from "https://unpkg.com/gridjs?module";
-    </script>
     <div id="sacGrid"></div>
   `;
 
@@ -356,7 +351,7 @@ var getScriptPromisify = (src) => {
       // console.log("--First Time --");
 
       let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /><Table id="sacTable"></Table></l:VerticalLayout></mvc:View></script>';
+      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
@@ -457,8 +452,8 @@ var getScriptPromisify = (src) => {
               oTable.sort(oTable.getColumns()[0]);
               console.log(oTable);
               // oTable.placeAt("sacTable");
-              this_.getView().byId("sacTable");
-              oTable.placeAt("div")
+              // this_.getView().byId("sacTable");
+              // oTable.placeAt("div")
 
               this_.runNext();
 
