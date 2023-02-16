@@ -151,7 +151,7 @@ var getScriptPromisify = (src) => {
         };
       });
 
-      const grid = new Grid({
+      const grid = new window.gridjs.Grid({
         columns: ["Name", "Email", "Phone Number"],
         data: [
           ["John", "john@example.com", "(353) 01 222 3333"],
