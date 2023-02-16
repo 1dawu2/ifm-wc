@@ -155,7 +155,7 @@ var getScriptPromisify = (src) => {
           ["Sarah", "sarahcdd@gmail.com", "+322 876 1233"],
           ["Afshin", "afshin@mail.com", "(353) 22 87 8356"]
         ]
-      }).render(document.getElementById("sacGrid"));
+      }).render(this.shadowRoot.document.getElementById("sacGrid"));
 
     }
 
