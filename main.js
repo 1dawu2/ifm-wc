@@ -42,6 +42,8 @@ var getScriptPromisify = (src) => {
   // https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js
   const axios = 'https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js';
 
+
+
   function loadScript(src) {
     return new Promise(function (resolve, reject) {
       let script = document.createElement('script');
@@ -133,7 +135,7 @@ var getScriptPromisify = (src) => {
 
     async render() {
       await getScriptPromisify(
-        "https://cdn.staticfile.org/echarts/5.0.0/echarts.min.js"
+        "https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"
       );
 
       if (!this._myDataSource || this._myDataSource.state !== "success") {
@@ -149,7 +151,7 @@ var getScriptPromisify = (src) => {
         };
       });
 
-      new gridjs.Grid({
+      const grid = new gridjs.Grid({
         columns: ["Name", "Email", "Phone Number"],
         data: [
           ["John", "john@example.com", "(353) 01 222 3333"],
