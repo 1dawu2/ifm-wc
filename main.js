@@ -431,8 +431,10 @@ var getScriptPromisify = (src) => {
               oTable.setModel(oModel);
               oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
+              console.log(oTable);
               // oTable.placeAt("sacTable");
               this_.getView().byId("sacTable");
+              oTable.placeAt("div")
 
               this_.runNext();
 
