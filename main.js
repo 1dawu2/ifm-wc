@@ -19,7 +19,17 @@ var getScriptPromisify = (src) => {
   let widgetName;
 
   let tmpl = document.createElement("template");
-  tmpl.innerHTML = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">`;
+  tmpl.innerHTML = `
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css">
+    <script type="module">
+    import {
+        Grid,
+        html
+    } from "https://unpkg.com/gridjs?module";
+    </script>
+    <div id="sacGrid"></div>
+  `;
 
   //https://apis.google.com/js/api.js
   const googlesheetsjs = "http://localhost/SAC/sacgooglesheetstock/box/api.js";
@@ -138,6 +148,18 @@ var getScriptPromisify = (src) => {
           value: data[measure].raw,
         };
       });
+
+      new gridjs.Grid({
+        columns: ["Name", "Email", "Phone Number"],
+        data: [
+          ["John", "john@example.com", "(353) 01 222 3333"],
+          ["Mark", "mark@gmail.com", "(01) 22 888 4444"],
+          ["Eoin", "eoin@gmail.com", "0097 22 654 00033"],
+          ["Sarah", "sarahcdd@gmail.com", "+322 876 1233"],
+          ["Afshin", "afshin@mail.com", "(353) 22 87 8356"]
+        ]
+      }).render(document.getElementById("sacGrid"));
+
     }
 
     connectedCallback() {
