@@ -11,6 +11,9 @@ const stylesHandler = isProduction
   : "style-loader";
 
 const config = {
+  stats: {
+    children: true
+  },
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
