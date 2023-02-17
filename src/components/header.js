@@ -19,7 +19,7 @@ export default class AppHeader extends HTMLElement {
         shadowRoot.appendChild(cssContent)
         shadowRoot.appendChild(htmlContent)
 
-        shadowRoot.querySelector('.title').innerHTML = 'Marvelius 1.0';
+        // shadowRoot.querySelector('.title').innerHTML = 'Marvelius 1.0';
         var vData = [{
             assID: "EM123456",
             name: "Bharath S",
