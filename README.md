@@ -1,19 +1,15 @@
-# IFM Health Analysis Conversion Kit
+# 🚀 Welcome to your new awesome project!
 
-This custom widget allows admins to retrieve an overview about all migration artifacts.
+This project has been created using **webpack-cli**, you can now run
 
+```
+npm run build
+```
 
-# Installation
+or
 
-In order to make use of the custom widget, the JSON file needs to be uploaded to your SAC tenant.
+```
+yarn build
+```
 
-Afterwards the widget is available for analytical applications.
-
-
-## Configuration
-
-The widget needs the following parameters:
-
-- tenant URL
-- Client ID
-- Client Secret
+to bundle your application

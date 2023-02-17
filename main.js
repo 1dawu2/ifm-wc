@@ -450,7 +450,7 @@ var getScriptPromisify = (src) => {
               oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
               console.log(oTable);
-              oTable.shadowRoot.getElementById("sacGrid");
+              // oTable.shadowRoot.getElementById("sacGrid");
               // this_.getView().byId("sacTable");
               oTable.placeAt("sacGrid")
 
