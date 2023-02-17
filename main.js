@@ -22,6 +22,7 @@ var getScriptPromisify = (src) => {
   tmpl.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <div id="sacGrid"></div>
+    <button class="button is-rounded">Rounded</button>
   `;
 
   //https://apis.google.com/js/api.js
