@@ -452,7 +452,7 @@ var getScriptPromisify = (src) => {
               console.log(oTable);
               // oTable.shadowRoot.getElementById("sacGrid");
               // this_.getView().byId("sacTable");
-              oTable.placeAt("sacGrid")
+              oTable.placeAt("sacTable")
 
               this_.runNext();
 
