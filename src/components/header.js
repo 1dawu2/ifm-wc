@@ -34,7 +34,7 @@ export default class AppHeader extends HTMLElement {
             title: "Employee Details",                                   // Displayed as the heading of the table
             visibleRowCount: 3,                                           // How much rows you want to display in the table
             selectionMode: sap.ui.table.SelectionMode.Single, //Use Singe or Multi
-            navigationMode: sap.ui.table.NavigationMode.Paginator, //Paginator or Scrollbar
+            // navigationMode: sap.ui.table.NavigationMode.Paginator, //Paginator or Scrollbar
             fixedColumnCount: 3,                     // Freezes the number of column
             enableColumnReordering: true,       // Allows you to drag and drop the column and reorder the position of the column
             width: "1024px"                              // width of the table

@@ -1,8 +1,18 @@
+<?xml version="1.0"?>
 <script
-    src="resources/sap-ui-core.js"
-    id="sap-ui-bootstrap"
-    data-sap-ui-libs="sap.ui.commons,sap.ui.table"
-    data-sap-ui-theme="sap_goldreflection"
->
+    id="oView"
+    name="oView"
+    type="sapui5/xmlview">
+    <mvc:View
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:core="sap.ui.core"
+        xmlns:l="sap.ui.layout"
+        height="100%"
+    >
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <l:content id=”EmpTbl”></l:content>
+            <Button id="buttonIdTbl" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" />
+        </l:VerticalLayout>
+    </mvc:View>
 </script>
-<div id=”EmpTbl”> </div>
