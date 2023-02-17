@@ -1,2 +1,0 @@
-import{p as o,b as t}from"./p-f0c85290.js";export{s as setNonce}from"./p-f0c85290.js";const e=()=>{const s=import.meta.url;const t={};if(s!==""){t.resourcesUrl=new URL(".",s).href}return o(t)};e().then((o=>t([["p-511412c4",[[1,"ifm-stories",{first:[1],middle:[1],last:[1],pokemons:[32],pokemonCount:[32]}]]]],o)));
-//# sourceMappingURL=ifm-hack.esm.js.map
