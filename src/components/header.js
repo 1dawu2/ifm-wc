@@ -140,6 +140,7 @@ export default class AppHeader extends HTMLElement {
         oTable.bindRows("/modelData"); // binding all the rows into the model
         //Initially sort the table
         oTable.sort(oTable.getColumns()[0]);
+        oTable.placeAt("EmpTbl");
     }
 
 
