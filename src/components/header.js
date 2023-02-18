@@ -43,7 +43,7 @@ export default class AppHeader extends HTMLElement {
         chatbox.id = 'chatbox';
 
         // append chatbox to shadow DOM
-        shadow.appendChild(chatbox);
+        shadowRoot.appendChild(chatbox);
 
         // create input element
         const input = document.createElement('input');
@@ -60,7 +60,7 @@ export default class AppHeader extends HTMLElement {
         });
 
         // append input to shadow DOM
-        shadow.appendChild(input);
+        shadowRoot.appendChild(input);
 
         // create table element
         const table = new sap.ui.table.Table({
@@ -80,7 +80,7 @@ export default class AppHeader extends HTMLElement {
         // append table to shadow DOM
         const tableContainer = document.createElement('div');
         tableContainer.id = 'table-container';
-        shadow.appendChild(tableContainer);
+        shadowRoot.appendChild(tableContainer);
         table.placeAt(tableContainer);
 
         // sap.ui.define([
