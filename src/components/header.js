@@ -232,8 +232,8 @@ export default class AppHeader extends HTMLElement {
     }
 
     async sendMessage(message) {
-        const apiKey = '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';
-        const url = `https://api.chatgpt.com/v1/${apiKey}/chat`;
+        const apiKey = "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";
+        const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
         const body = {
             message: message,
             context: this.context
@@ -243,9 +243,16 @@ export default class AppHeader extends HTMLElement {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${apiKey}`,
                 },
-                body: JSON.stringify(body)
+                body: JSON.stringify({
+                    prompt: prompt,
+                    max_tokens: 60,
+                    n: 1,
+                    stop: "\n",
+                })
+                // body: JSON.stringify(body)
             });
 
             const data = await response.json();
