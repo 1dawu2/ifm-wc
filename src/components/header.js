@@ -4,7 +4,14 @@ export default class AppHeader extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+        var t = sap.ui.getCore().getConfiguration().getLanguage();
+        console.log(t);
         this.render();
+
+        this.addEventListener("click", event => {
+            console.log('click');
+        });
+
     }
 
     connectedCallback() {
