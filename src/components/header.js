@@ -4,8 +4,21 @@ export default class AppHeader extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        var t = sap.ui.getCore().getConfiguration().getLanguage();
+        var n = sap.ui.getCore().getConfiguration().getLanguage();
+        this.oComposeComp = sap.ui.getCore().createComponent({
+            name: "sap.epm.story",
+            settings: {
+                editMode: this.getEditMode(),
+                queryService: this.getQueryService(),
+                userLocale: n
+            }
+        });
+        console.log(this.oComposeComp);
+        var t = this.getUnsupportedBlockingFeatures();
         console.log(t);
+        var o = this.getUnsupportedFeatures();
+        console.log(o);
+
         this.render();
 
         this.addEventListener("click", event => {
