@@ -4,6 +4,7 @@ export default class AppHeader extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+        this.render();
     }
 
     connectedCallback() {
