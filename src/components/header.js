@@ -36,6 +36,7 @@ export default class AppHeader extends HTMLElement {
 
                     var oModel = new sap.ui.model.json.JSONModel(oData);
                     this.getView().setModel(oModel);
+                    console.table(oModel);
                 }
             });
         });
