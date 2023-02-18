@@ -19,129 +19,151 @@ export default class AppHeader extends HTMLElement {
         shadowRoot.appendChild(cssContent)
         shadowRoot.appendChild(htmlContent)
 
-        // shadowRoot.querySelector('.title').innerHTML = 'Marvelius 1.0';
-        var vData = [{
-            assID: "EM123456",
-            name: "Bharath S",
-            linkText: "Cognizant Technology Solutions",
-            href: "http://www.cognizant.com",
-            gender: "Male",
-            mobile: "9934307162", rating: 5
-        },];
+        sap.ui.define([
+            "sap/ui/core/mvc/Controller"
+          ], function(Controller) {
+            "use strict";
+          
+            return Controller.extend("myapp.controller.View1", {
+              onInit: function() {
+                var oData = {
+                  products: [
+                    {ProductName: "Product A", Price: 10},
+                    {ProductName: "Product B", Price: 20},
+                    {ProductName: "Product C", Price: 30},
+                  ]
+                };
+          
+                var oModel = new sap.ui.model.json.JSONModel(oData);
+                this.getView().setModel(oModel);
+              }
+            });
+          });
+          
 
-        // Define a table [Note: you must include the table library to make the Table class work]
-        var oTable = new sap.ui.table.Table({
-            title: "Employee Details",                                   // Displayed as the heading of the table
-            visibleRowCount: 3,                                           // How much rows you want to display in the table
-            selectionMode: sap.ui.table.SelectionMode.Single, //Use Singe or Multi
-            // navigationMode: sap.ui.table.NavigationMode.Paginator, //Paginator or Scrollbar
-            fixedColumnCount: 3,                     // Freezes the number of column
-            enableColumnReordering: true,       // Allows you to drag and drop the column and reorder the position of the column
-            width: "1024px"                              // width of the table
+        // // shadowRoot.querySelector('.title').innerHTML = 'Marvelius 1.0';
+        // var vData = [{
+        //     assID: "EM123456",
+        //     name: "Bharath S",
+        //     linkText: "Cognizant Technology Solutions",
+        //     href: "http://www.cognizant.com",
+        //     gender: "Male",
+        //     mobile: "9934307162", rating: 5
+        // },];
 
-        });
+        // // Define a table [Note: you must include the table library to make the Table class work]
+        // var oTable = new sap.ui.table.Table({
+        //     title: "Employee Details",                                   // Displayed as the heading of the table
+        //     visibleRowCount: 3,                                           // How much rows you want to display in the table
+        //     selectionMode: sap.ui.table.SelectionMode.Single, //Use Singe or Multi
+        //     // navigationMode: sap.ui.table.NavigationMode.Paginator, //Paginator or Scrollbar
+        //     fixedColumnCount: 3,                     // Freezes the number of column
+        //     enableColumnReordering: true,       // Allows you to drag and drop the column and reorder the position of the column
+        //     width: "1024px"                              // width of the table
 
-        // Use the Object defined for table to add new column into the table
+        // });
 
-        oTable.addColumn(new sap.ui.table.Column({
+        // // Use the Object defined for table to add new column into the table
 
-            label: new sap.ui.commons.Label({ text: "Associate ID" }),             // Creates an Header with value defined for the text attribute
+        // oTable.addColumn(new sap.ui.table.Column({
 
-            template: new sap.ui.commons.TextField().bindProperty("value", "assID"), // binds the value into the text field defined using JSON
+        //     label: new sap.ui.commons.Label({ text: "Associate ID" }),             // Creates an Header with value defined for the text attribute
 
-            sortProperty: "assID",        // enables sorting on the column
+        //     template: new sap.ui.commons.TextField().bindProperty("value", "assID"), // binds the value into the text field defined using JSON
 
-            filterProperty: "assID",       // enables set filter on the column
+        //     sortProperty: "assID",        // enables sorting on the column
 
-            width: "125px"                  // width of the column
+        //     filterProperty: "assID",       // enables set filter on the column
 
-        }));
+        //     width: "125px"                  // width of the column
 
-        oTable.addColumn(new sap.ui.table.Column({
+        // }));
 
-            label: new sap.ui.commons.Label({ text: "Associate Name" }),
+        // oTable.addColumn(new sap.ui.table.Column({
 
-            template: new sap.ui.commons.TextField().bindProperty("value", "name"),
+        //     label: new sap.ui.commons.Label({ text: "Associate Name" }),
 
-            sortProperty: "name",
+        //     template: new sap.ui.commons.TextField().bindProperty("value", "name"),
 
-            filterProperty: "name",
+        //     sortProperty: "name",
 
-            width: "125px"
+        //     filterProperty: "name",
 
-        }));
+        //     width: "125px"
 
-        oTable.addColumn(new sap.ui.table.Column({
+        // }));
 
-            label: new sap.ui.commons.Label({ text: "Company" }),
+        // oTable.addColumn(new sap.ui.table.Column({
 
-            template: new sap.ui.commons.Link().bindProperty("text", "linkText").bindProperty("href", "href"),
+        //     label: new sap.ui.commons.Label({ text: "Company" }),
 
-            sortProperty: "linkText",
+        //     template: new sap.ui.commons.Link().bindProperty("text", "linkText").bindProperty("href", "href"),
 
-            filterProperty: "linkText",
+        //     sortProperty: "linkText",
 
-            width: "200px"
+        //     filterProperty: "linkText",
 
-        }));
+        //     width: "200px"
 
-        oTable.addColumn(new sap.ui.table.Column({
+        // }));
 
-            label: new sap.ui.commons.Label({ text: "Gender" }),
+        // oTable.addColumn(new sap.ui.table.Column({
 
-            template: new sap.ui.commons.ComboBox(
+        //     label: new sap.ui.commons.Label({ text: "Gender" }),
 
-                {
-                    items: [new sap.ui.core.ListItem({ text: "Female" }),
+        //     template: new sap.ui.commons.ComboBox(
 
-                    new sap.ui.core.ListItem({ text: "Male" })]
-                }).bindProperty("value", "gender"),
+        //         {
+        //             items: [new sap.ui.core.ListItem({ text: "Female" }),
 
-            sortProperty: "gender",
+        //             new sap.ui.core.ListItem({ text: "Male" })]
+        //         }).bindProperty("value", "gender"),
 
-            filterProperty: "gender",
+        //     sortProperty: "gender",
 
-            width: "75px"
+        //     filterProperty: "gender",
 
-        }));
+        //     width: "75px"
 
-        oTable.addColumn(new sap.ui.table.Column({
+        // }));
 
-            label: new sap.ui.commons.Label({ text: "Contact Number" }),
+        // oTable.addColumn(new sap.ui.table.Column({
 
-            template: new sap.ui.commons.TextField().bindProperty("value", "mobile"),
+        //     label: new sap.ui.commons.Label({ text: "Contact Number" }),
 
-            sortProperty: "mobile",
+        //     template: new sap.ui.commons.TextField().bindProperty("value", "mobile"),
 
-            filterProperty: "mobile",
+        //     sortProperty: "mobile",
 
-            width: "75px"
+        //     filterProperty: "mobile",
 
-        }));
+        //     width: "75px"
 
-        oTable.addColumn(new sap.ui.table.Column({
+        // }));
 
-            label: new sap.ui.commons.Label({ text: "Rating" }),
+        // oTable.addColumn(new sap.ui.table.Column({
 
-            template: new sap.ui.commons.RatingIndicator().bindProperty("value", "rating"),
+        //     label: new sap.ui.commons.Label({ text: "Rating" }),
 
-            sortProperty: "rating",
+        //     template: new sap.ui.commons.RatingIndicator().bindProperty("value", "rating"),
 
-            filterProperty: "rating",
+        //     sortProperty: "rating",
 
-            width: "100px"
+        //     filterProperty: "rating",
 
-        }));
+        //     width: "100px"
 
-        //Create a model and bind the table rows to this model
-        var oModel = new sap.ui.model.json.JSONModel();        // created a JSON model      
-        oModel.setData({ modelData: vData });                              // Set the data to the model using the JSON object defined already
-        oTable.setModel(oModel);
-        oTable.bindRows("/modelData"); // binding all the rows into the model
-        //Initially sort the table
-        oTable.sort(oTable.getColumns()[0]);
-        oTable.getView();
-        oTable.placeAt("EmpTbl");
+        // }));
+
+        // //Create a model and bind the table rows to this model
+        // var oModel = new sap.ui.model.json.JSONModel();        // created a JSON model      
+        // oModel.setData({ modelData: vData });                              // Set the data to the model using the JSON object defined already
+        // oTable.setModel(oModel);
+        // oTable.bindRows("/modelData"); // binding all the rows into the model
+        // //Initially sort the table
+        // oTable.sort(oTable.getColumns()[0]);
+        // oTable.getView();
+        // oTable.placeAt("EmpTbl");
     }
 
 
