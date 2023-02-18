@@ -4,6 +4,7 @@ export default class AppHeader extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+        this.render();
         var n = sap.ui.getCore().getConfiguration().getLanguage();
         // this.oComposeComp = sap.ui.getCore().createComponent({
         //     name: "sap.epm.story",
@@ -14,25 +15,20 @@ export default class AppHeader extends HTMLElement {
         //     }
         // });
         // console.log(this.oComposeComp);
-        var t = this.getUnsupportedBlockingFeatures();
-        console.log(t);
-        var n = this.getContext().get("sap.fpa.bi.documentService").getStoryModel()
-        console.log(n);
-        var o = this.getUnsupportedFeatures();
-        console.log(o);
+        // var t = this.getUnsupportedBlockingFeatures();
+        // console.log(t);
+        // var n = this.getContext().get("sap.fpa.bi.documentService").getStoryModel()
+        // console.log(n);
+        // var o = this.getUnsupportedFeatures();
+        // console.log(o);
 
-        this.render();
+
 
         this.addEventListener("click", event => {
             console.log('click');
         });
 
     }
-
-    connectedCallback() {
-        this.render();
-    }
-
 
     render() {
         const { shadowRoot } = this;
@@ -42,27 +38,72 @@ export default class AppHeader extends HTMLElement {
         shadowRoot.appendChild(cssContent)
         shadowRoot.appendChild(htmlContent)
 
-        sap.ui.define([
-            "sap/ui/core/mvc/Controller"
-        ], function (Controller) {
-            "use strict";
+        // create chatbox element
+        const chatbox = document.createElement('div');
+        chatbox.id = 'chatbox';
 
-            return Controller.extend("myapp.controller.View1", {
-                onInit: function () {
-                    var oData = {
-                        products: [
-                            { ProductName: "Product A", Price: 10 },
-                            { ProductName: "Product B", Price: 20 },
-                            { ProductName: "Product C", Price: 30 },
-                        ]
-                    };
+        // append chatbox to shadow DOM
+        shadow.appendChild(chatbox);
 
-                    var oModel = new sap.ui.model.json.JSONModel(oData);
-                    this.getView().setModel(oModel);
-                    console.table(oModel);
-                }
-            });
+        // create input element
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.id = 'chat-input';
+
+        // add event listener to input element
+        input.addEventListener('keydown', (event) => {
+            if (event.keyCode === 13) {
+                const message = event.target.value;
+                this.sendMessage(message);
+                event.target.value = '';
+            }
         });
+
+        // append input to shadow DOM
+        shadow.appendChild(input);
+
+        // create table element
+        const table = new sap.ui.table.Table({
+            id: 'chat-table',
+            columns: [
+                new sap.ui.table.Column({
+                    label: new sap.m.Label({ text: 'You' }),
+                    template: new sap.m.Text({ text: "{You}" }),
+                }),
+                new sap.ui.table.Column({
+                    label: new sap.m.Label({ text: 'Chatbot' }),
+                    template: new sap.m.Text({ text: "{Chatbot}" }),
+                })
+            ]
+        });
+
+        // append table to shadow DOM
+        const tableContainer = document.createElement('div');
+        tableContainer.id = 'table-container';
+        shadow.appendChild(tableContainer);
+        table.placeAt(tableContainer);
+
+        // sap.ui.define([
+        //     "sap/ui/core/mvc/Controller"
+        // ], function (Controller) {
+        //     "use strict";
+
+        //     return Controller.extend("myapp.controller.View1", {
+        //         onInit: function () {
+        //             var oData = {
+        //                 products: [
+        //                     { ProductName: "Product A", Price: 10 },
+        //                     { ProductName: "Product B", Price: 20 },
+        //                     { ProductName: "Product C", Price: 30 },
+        //                 ]
+        //             };
+
+        //             var oModel = new sap.ui.model.json.JSONModel(oData);
+        //             this.getView().setModel(oModel);
+        //             console.table(oModel);
+        //         }
+        //     });
+        // });
 
 
         // // shadowRoot.querySelector('.title').innerHTML = 'Marvelius 1.0';
@@ -190,6 +231,40 @@ export default class AppHeader extends HTMLElement {
         // oTable.placeAt("EmpTbl");
     }
 
+    async sendMessage(message) {
+        const apiKey = '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';
+        const url = `https://api.chatgpt.com/v1/${apiKey}/chat`;
+        const body = {
+            message: message,
+            context: this.context
+        };
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+
+            const data = await response.json();
+            this.context = data.context;
+
+            // add message to table
+            const model = new sap.ui.model.json.JSONModel();
+            model.setData({ You: message, Chatbot: data.message });
+            const table = sap.ui.getCore().byId('chat-table');
+            table.setModel(model);
+            table.bindRows('/');
+
+            // add message to chatbox
+            const chatbox = this.shadowRoot.querySelector('#chatbox');
+            chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${data.message}</p>`;
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     htmlToElement(html) {
         var template = document.createElement('template');
