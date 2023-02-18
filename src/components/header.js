@@ -5,17 +5,19 @@ export default class AppHeader extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         var n = sap.ui.getCore().getConfiguration().getLanguage();
-        this.oComposeComp = sap.ui.getCore().createComponent({
-            name: "sap.epm.story",
-            settings: {
-                editMode: this.getEditMode(),
-                queryService: this.getQueryService(),
-                userLocale: n
-            }
-        });
-        console.log(this.oComposeComp);
+        // this.oComposeComp = sap.ui.getCore().createComponent({
+        //     name: "sap.epm.story",
+        //     settings: {
+        //         editMode: this.getEditMode(),
+        //         queryService: this.getQueryService(),
+        //         userLocale: n
+        //     }
+        // });
+        // console.log(this.oComposeComp);
         var t = this.getUnsupportedBlockingFeatures();
         console.log(t);
+        var n = this.getContext().get("sap.fpa.bi.documentService").getStoryModel()
+        console.log(n);
         var o = this.getUnsupportedFeatures();
         console.log(o);
 
