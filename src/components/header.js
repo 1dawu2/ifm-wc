@@ -21,25 +21,25 @@ export default class AppHeader extends HTMLElement {
 
         sap.ui.define([
             "sap/ui/core/mvc/Controller"
-          ], function(Controller) {
+        ], function (Controller) {
             "use strict";
-          
+
             return Controller.extend("myapp.controller.View1", {
-              onInit: function() {
-                var oData = {
-                  products: [
-                    {ProductName: "Product A", Price: 10},
-                    {ProductName: "Product B", Price: 20},
-                    {ProductName: "Product C", Price: 30},
-                  ]
-                };
-          
-                var oModel = new sap.ui.model.json.JSONModel(oData);
-                this.getView().setModel(oModel);
-              }
+                onInit: function () {
+                    var oData = {
+                        products: [
+                            { ProductName: "Product A", Price: 10 },
+                            { ProductName: "Product B", Price: 20 },
+                            { ProductName: "Product C", Price: 30 },
+                        ]
+                    };
+
+                    var oModel = new sap.ui.model.json.JSONModel(oData);
+                    this.getView().setModel(oModel);
+                }
             });
-          });
-          
+        });
+
 
         // // shadowRoot.querySelector('.title').innerHTML = 'Marvelius 1.0';
         // var vData = [{
