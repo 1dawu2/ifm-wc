@@ -8,7 +8,7 @@ export default class AppHeader extends HTMLElement {
 
         this._export_settings = {};
         this._export_settings.apiSecret = "";
-        console.log(this._export_settings.apiSecret)
+        console.log(this._export_settings.apiSecret);
 
         var n = sap.ui.getCore().getConfiguration().getLanguage();
         // this.oComposeComp = sap.ui.getCore().createComponent({
@@ -264,7 +264,7 @@ export default class AppHeader extends HTMLElement {
     }
 
     async sendMessage(message) {
-        const apiKey = apiSecret;
+        const apiKey = this._export_settings.apiSecret;
         const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
         const body = {
             message: message,
