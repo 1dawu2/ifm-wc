@@ -1,4 +1,6 @@
 // import html from './chatGPT.html'
+const { Configuration, OpenAIApi } = require("openai");
+
 export default class ChatGPT extends HTMLElement {
     constructor() {
         super();
@@ -256,45 +258,61 @@ export default class ChatGPT extends HTMLElement {
 
     async sendChatGPTMessage(message) {
         // add message to chatbox
-        const apiKey = this._export_settings.apiSecret;
-        const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
-        console.log(apiKey);
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${apiKey}`,
-                },
-                body: JSON.stringify({
-                    "prompt": message,
-                    "max_tokens": 5,
-                    "temperature": 1,
-                    "top_p": 1,
-                    "n": 1,
-                    "stream": false,
-                    "logprobs": null,
-                    "stop": "\n"
-                }),
-                redirect: "follow"
-                // body: JSON.stringify(body)
-            });
-            const data = await response.json();
-            console.log(JSON.stringify(data));
-            this.context = data.context;
+        const configuration = new Configuration({
+            apiKey: this._export_settings.apiSecret,
+        });
+        const openai = new OpenAIApi(configuration);
 
-            // add message to table
-            // const model = new sap.ui.model.json.JSONModel();
-            // model.setData({ You: message, Chatbot: data.message });
-            // const table = sap.ui.getCore().byId('chat-gpt-table');
-            // table.setModel(model);
-            // table.bindRows('/');
+        const response = await openai.createCompletion("text-davinci-002", {
+            prompt: message,
+            temperature: 0.7,
+            max_tokens: 256,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+        });
 
-            // add message to chatbox
-            const chatbox = this.shadowRoot.querySelector('#chatbox');
-            chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${data.message}</p>`;
-        } catch (error) {
-            console.error(error);
-        }
+        console.log(response.choices[0].text);
+
+        // const apiKey = this._export_settings.apiSecret;
+        // const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
+        // console.log(apiKey);
+        // try {
+        //     const response = await fetch(url, {
+        //         method: 'POST',
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Authorization": `Bearer ${apiKey}`,
+        //         },
+        //         body: JSON.stringify({
+        //             "prompt": message,
+        //             "max_tokens": 5,
+        //             "temperature": 1,
+        //             "top_p": 1,
+        //             "n": 1,
+        //             "stream": false,
+        //             "logprobs": null,
+        //             "stop": "\n"
+        //         }),
+        //         redirect: "follow"
+        //         // body: JSON.stringify(body)
+        //     });
+        //     const data = await response.json();
+        //     console.log(JSON.stringify(data));
+        //     this.context = data.context;
+
+        // add message to table
+        // const model = new sap.ui.model.json.JSONModel();
+        // model.setData({ You: message, Chatbot: data.message });
+        // const table = sap.ui.getCore().byId('chat-gpt-table');
+        // table.setModel(model);
+        // table.bindRows('/');
+
+        // add message to chatbox
+        const chatbox = this.shadowRoot.querySelector('#chatbox');
+        chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${response.choices[0].text}</p>`;
+        // } catch(error) {
+        //     console.error(error);
+        // }
     }
 }
