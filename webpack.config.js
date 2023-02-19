@@ -21,7 +21,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/components/header.html",
+      template: "./src/components/chatGPT.html",
     }),
 
     // Add your plugins here

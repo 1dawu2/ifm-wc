@@ -1,2 +1,2 @@
-import AppHeader from './components/header';
-customElements.define('app-header', AppHeader);
+import ChatGPT from './components/chatGPT';
+customElements.define('chat-gpt', ChatGPT);

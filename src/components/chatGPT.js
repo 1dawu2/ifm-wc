@@ -1,6 +1,6 @@
-import html from './header.html'
+import html from './chatGPT.html'
 
-export default class AppHeader extends HTMLElement {
+export default class ChatGPT extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
