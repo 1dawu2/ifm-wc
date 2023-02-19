@@ -264,7 +264,7 @@ export default class ChatGPT extends HTMLElement {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${apiKey}`,
+                    "Authorization": `Bearer ${apiKey}`,
                 },
                 body: JSON.stringify({
                     "prompt": message,
@@ -275,7 +275,8 @@ export default class ChatGPT extends HTMLElement {
                     "stream": false,
                     "logprobs": null,
                     "stop": "\n"
-                })
+                }),
+                redirect: "follow"
                 // body: JSON.stringify(body)
             });
             const data = await response.json();
