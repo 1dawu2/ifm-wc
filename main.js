@@ -344,7 +344,7 @@ var getScriptPromisify = (src) => {
     let context2 = sap.fpa.ui.infra.common.getContext("59A395046F3F8A41401B0B1C28FD787D");
     console.log(context2);
     console.log(context);
-    let app = sap.fpa.ui.infra.common.getContext().getInternalAppArguments();
+    let app = sap.fpa.ui.infra.common.getContext().getInternalAppArguments("59A395046F3F8A41401B0B1C28FD787D");
     console.log(app);
     let findAggregatedObjects = fn => sap.fpa.ui.story.Utils.getShellContainer().getCurrentPage().getComponentInstance().findAggregatedObjects(true, fn);
     console.log(findAggregatedObjects);
