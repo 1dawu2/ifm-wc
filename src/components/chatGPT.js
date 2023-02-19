@@ -1,6 +1,4 @@
 // import html from './chatGPT.html'
-import { ChatGPTAPI, getOpenAIAuth } from "chatgpt";
-
 export default class ChatGPT extends HTMLElement {
     constructor() {
         super();
@@ -257,51 +255,48 @@ export default class ChatGPT extends HTMLElement {
     }
 
     async sendChatGPTMessage(message) {
-        const api = new ChatGPTAPI({ apiKey: this._export_settings.apiSecret });
-        const res = await api.sendMessage(message);
-        console.log(res);
         // add message to chatbox
         const chatbox = this.shadowRoot.querySelector('#chatbox');
         chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${res}</p>`;
-        // const apiKey = this._export_settings.apiSecret;
-        // const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
-        // console.log(apiKey);
-        // try {
-        //     const response = await fetch(url, {
-        //         method: 'POST',
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Authorization": `Bearer ${apiKey}`,
-        //         },
-        //         body: JSON.stringify({
-        //             "prompt": message,
-        //             "max_tokens": 5,
-        //             "temperature": 1,
-        //             "top_p": 1,
-        //             "n": 1,
-        //             "stream": false,
-        //             "logprobs": null,
-        //             "stop": "\n"
-        //         }),
-        //         redirect: "follow"
-        //         // body: JSON.stringify(body)
-        //     });
-        //     const data = await response.json();
-        //     console.log(data);
-        //     this.context = data.context;
+        const apiKey = this._export_settings.apiSecret;
+        const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
+        console.log(apiKey);
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`,
+                },
+                body: JSON.stringify({
+                    "prompt": message,
+                    "max_tokens": 5,
+                    "temperature": 1,
+                    "top_p": 1,
+                    "n": 1,
+                    "stream": false,
+                    "logprobs": null,
+                    "stop": "\n"
+                }),
+                redirect: "follow"
+                // body: JSON.stringify(body)
+            });
+            const data = await response.json();
+            console.log(JSON.stringify(data));
+            this.context = data.context;
 
-        //     // add message to table
-        //     // const model = new sap.ui.model.json.JSONModel();
-        //     // model.setData({ You: message, Chatbot: data.message });
-        //     // const table = sap.ui.getCore().byId('chat-gpt-table');
-        //     // table.setModel(model);
-        //     // table.bindRows('/');
+            // add message to table
+            // const model = new sap.ui.model.json.JSONModel();
+            // model.setData({ You: message, Chatbot: data.message });
+            // const table = sap.ui.getCore().byId('chat-gpt-table');
+            // table.setModel(model);
+            // table.bindRows('/');
 
-        //     // add message to chatbox
-        //     const chatbox = this.shadowRoot.querySelector('#chatbox');
-        //     chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${data.message}</p>`;
-        // } catch (error) {
-        //     console.error(error);
-        // }
+            // add message to chatbox
+            const chatbox = this.shadowRoot.querySelector('#chatbox');
+            chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${data.message}</p>`;
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
