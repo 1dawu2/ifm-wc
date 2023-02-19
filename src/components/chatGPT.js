@@ -256,8 +256,6 @@ export default class ChatGPT extends HTMLElement {
 
     async sendChatGPTMessage(message) {
         // add message to chatbox
-        const chatbox = this.shadowRoot.querySelector('#chatbox');
-        chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${res}</p>`;
         const apiKey = this._export_settings.apiSecret;
         const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
         console.log(apiKey);
