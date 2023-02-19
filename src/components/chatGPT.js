@@ -87,25 +87,25 @@ export default class ChatGPT extends HTMLElement {
         shadowRoot.appendChild(input);
 
         // create table element
-        const table = new sap.ui.table.Table({
-            id: 'chat-gpt-table-main',
-            columns: [
-                new sap.ui.table.Column({
-                    label: new sap.m.Label({ text: 'You' }),
-                    template: new sap.m.Text({ text: "{You}" }),
-                }),
-                new sap.ui.table.Column({
-                    label: new sap.m.Label({ text: 'Chatbot' }),
-                    template: new sap.m.Text({ text: "{Chatbot}" }),
-                })
-            ]
-        });
+        // const table = new sap.ui.table.Table({
+        //     id: 'chat-gpt-table-main',
+        //     columns: [
+        //         new sap.ui.table.Column({
+        //             label: new sap.m.Label({ text: 'You' }),
+        //             template: new sap.m.Text({ text: "{You}" }),
+        //         }),
+        //         new sap.ui.table.Column({
+        //             label: new sap.m.Label({ text: 'Chatbot' }),
+        //             template: new sap.m.Text({ text: "{Chatbot}" }),
+        //         })
+        //     ]
+        // });
 
-        // append table to shadow DOM
-        const tableContainer = document.createElement('div');
-        tableContainer.id = 'table-container';
-        shadowRoot.appendChild(tableContainer);
-        table.placeAt(tableContainer);
+        // // append table to shadow DOM
+        // const tableContainer = document.createElement('div');
+        // tableContainer.id = 'table-container';
+        // shadowRoot.appendChild(tableContainer);
+        // table.placeAt(tableContainer);
 
         // sap.ui.define([
         //     "sap/ui/core/mvc/Controller"
@@ -259,11 +259,6 @@ export default class ChatGPT extends HTMLElement {
         const apiKey = this._export_settings.apiSecret;
         const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
         console.log(apiKey);
-        const body = {
-            message: message,
-            context: this.context
-        };
-
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -271,19 +266,28 @@ export default class ChatGPT extends HTMLElement {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${apiKey}`,
                 },
-                body: JSON.stringify(body)
+                body: JSON.stringify({
+                    "prompt": message,
+                    "max_tokens": 5,
+                    "temperature": 1,
+                    "top_p": 1,
+                    "n": 1,
+                    "stream": false,
+                    "logprobs": null,
+                    "stop": "\n"
+                })
                 // body: JSON.stringify(body)
             });
-
             const data = await response.json();
+            console.log(data);
             this.context = data.context;
 
             // add message to table
-            const model = new sap.ui.model.json.JSONModel();
-            model.setData({ You: message, Chatbot: data.message });
-            const table = sap.ui.getCore().byId('chat-gpt-table');
-            table.setModel(model);
-            table.bindRows('/');
+            // const model = new sap.ui.model.json.JSONModel();
+            // model.setData({ You: message, Chatbot: data.message });
+            // const table = sap.ui.getCore().byId('chat-gpt-table');
+            // table.setModel(model);
+            // table.bindRows('/');
 
             // add message to chatbox
             const chatbox = this.shadowRoot.querySelector('#chatbox');
