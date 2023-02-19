@@ -88,7 +88,7 @@ export default class ChatGPT extends HTMLElement {
 
         // create table element
         const table = new sap.ui.table.Table({
-            id: 'chat-gpt-table',
+            id: 'chat-gpt-table-main',
             columns: [
                 new sap.ui.table.Column({
                     label: new sap.m.Label({ text: 'You' }),
@@ -271,12 +271,7 @@ export default class ChatGPT extends HTMLElement {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${apiKey}`,
                 },
-                body: JSON.stringify({
-                    prompt: prompt,
-                    max_tokens: 60,
-                    n: 1,
-                    stop: "\n",
-                })
+                body: JSON.stringify(body)
                 // body: JSON.stringify(body)
             });
 
