@@ -64,7 +64,7 @@ var getScriptPromisify = (src) => {
 
       this._props = {};
 
-      this.getStoryMetaData();
+      getStoryMetaData();
 
       this.render();
 
