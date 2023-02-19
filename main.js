@@ -340,9 +340,23 @@ var getScriptPromisify = (src) => {
 
   // UTILS
   function getStoryMetaData() {
-
+    // DASHBOARD_OBJECT_TYPE: "STORY",
+    // DASHBOARD_OBJECT_APPLICATION_TYPE: "APPLICATION",
+    // OBJECT_MANAGER_SERVICE: "EPM/ObjectMgr",
+    // CONTENT_LIB_SERVICE: "EPM/Contentlib",
+    // STORY_SERVICE: "fpa.StoryService",
+    let shellCont = sap.fpa.ui.story.Utils.getShellContainer();
+    console.log(shellCont);
     console.log(window.sap);
     console.log(sap.fpa);
+    console.log(sap.fpa.ui.story.Story.getMetadata("59A395046F3F8A41401B0B1C28FD787D"));
+    console.log(sap.fpa.ui.story.Utils.getStoryNameList());
+    let contentLib = sap.fpa.ui.infra.service.ServiceManager.getService(this.CONTENT_LIB_SERVICE);
+    console.log(contenLib);
+    let storyService = sap.fpa.ui.infra.service.ServiceManager.getService(this.STORY_SERVICE);
+    console.log(storyService);
+    let isOptimizeA = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
+    console.log(isOptimizeA);
     let context = sap.fpa.ui.infra.common.getContext();
     let context2 = sap.fpa.ui.infra.common.getContext("59A395046F3F8A41401B0B1C28FD787D");
     console.log(context2);
