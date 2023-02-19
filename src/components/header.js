@@ -5,6 +5,10 @@ export default class AppHeader extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.render();
+
+        this._export_settings = {};
+        this._export_settings.apiSecret = "";
+
         var n = sap.ui.getCore().getConfiguration().getLanguage();
         // this.oComposeComp = sap.ui.getCore().createComponent({
         //     name: "sap.epm.story",
@@ -28,6 +32,26 @@ export default class AppHeader extends HTMLElement {
             console.log('click');
         });
 
+    }
+
+    // SETTINGS
+    get apiSecret() {
+        return this._export_settings.apiSecret;
+    }
+    set apiSecret(value) {
+        this._export_settings.apiSecret = value;
+    }
+
+    static get observedAttributes() {
+        return [
+            "apiSecret",
+        ];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue != newValue) {
+            this[name] = newValue;
+        }
     }
 
     render() {
@@ -232,7 +256,7 @@ export default class AppHeader extends HTMLElement {
     }
 
     async sendMessage(message) {
-        const apiKey = "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";
+        const apiKey = apiSecret;
         const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
         const body = {
             message: message,
