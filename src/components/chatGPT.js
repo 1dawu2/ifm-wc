@@ -265,7 +265,7 @@ export default class ChatGPT extends HTMLElement {
 
         const response = await openai.createCompletion("text-davinci-002", {
             prompt: message,
-            temperature: 0.7,
+            temperature: 0,
             max_tokens: 256,
             top_p: 1,
             frequency_penalty: 0,
