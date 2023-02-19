@@ -269,7 +269,7 @@ export default class ChatGPT extends HTMLElement {
             max_tokens: 7,
         });
 
-        console.log(response.choices[0].text);
+        console.log(response.data.choices[0].text);
 
         // const apiKey = this._export_settings.apiSecret;
         // const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
@@ -307,7 +307,7 @@ export default class ChatGPT extends HTMLElement {
 
         // add message to chatbox
         const chatbox = this.shadowRoot.querySelector('#chatbox');
-        chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${response.choices[0].text}</p>`;
+        chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p><p><strong>Chatbot:</strong> ${response.data.choices[0].text}</p>`;
         // } catch(error) {
         //     console.error(error);
         // }
