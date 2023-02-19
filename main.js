@@ -344,6 +344,10 @@ var getScriptPromisify = (src) => {
     console.log(context);
     let app = sap.fpa.ui.infra.common.getContext().getInternalAppArguments();
     console.log(app);
+    let findAggregatedObjects = fn => sap.fpa.ui.story.Utils.getShellContainer().getCurrentPage().getComponentInstance().findAggregatedObjects(true, fn);
+    console.log(findAggregatedObjects);
+    let documentContext = findAggregatedObjects(e => e.getMetadata().hasProperty("resourceType") && e.getProperty("resourceType") == "STORY")[0].getDocumentContext();
+    console.log(documentContext);
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
     console.log(storyModel);
   }
