@@ -349,11 +349,11 @@ var getScriptPromisify = (src) => {
     console.log(shellCont);
     console.log(window.sap);
     console.log(sap.fpa);
-    console.log(sap.fpa.ui.story.Story.getMetadata("59A395046F3F8A41401B0B1C28FD787D"));
+    console.log(sap.fpa.ui.story.Story.getMetadata("59A395046F3F8A41401B0B1C28FD787D").getId());
     console.log(sap.fpa.ui.story.Utils.getStoryNameList());
-    let contentLib = sap.fpa.ui.infra.service.ServiceManager.getService(this.CONTENT_LIB_SERVICE);
+    let contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
     console.log(contenLib);
-    let storyService = sap.fpa.ui.infra.service.ServiceManager.getService(this.STORY_SERVICE);
+    let storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
     console.log(storyService);
     let isOptimizeA = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
     console.log(isOptimizeA);
