@@ -8,6 +8,7 @@ export default class AppHeader extends HTMLElement {
 
         this._export_settings = {};
         this._export_settings.apiSecret = "";
+        console.log(this._export_settings.apiSecret)
 
         var n = sap.ui.getCore().getConfiguration().getLanguage();
         // this.oComposeComp = sap.ui.getCore().createComponent({
@@ -32,6 +33,13 @@ export default class AppHeader extends HTMLElement {
             console.log('click');
         });
 
+    }
+
+    // Data Source
+    set myDataSource(dataBinding) {
+        this._myDataSource = dataBinding;
+        // console.log(this._myDataSource);
+        this.render();
     }
 
     // SETTINGS
