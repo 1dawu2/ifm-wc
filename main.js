@@ -354,6 +354,9 @@ var getScriptPromisify = (src) => {
     console.log(storyModel);
     let isOptimized = documentContext.get("sap.fpa.story.optimized.model.validator");
     console.log(isOptimized);
+    let docuStore = documentContext.get("sap.fpa.story.documentStore");
+    console.log(docuStore);
+
   }
 
   function UI5(changedProperties, that) {
