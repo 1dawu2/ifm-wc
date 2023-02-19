@@ -1,4 +1,4 @@
-import html from './chatGPT.html'
+// import html from './chatGPT.html'
 
 export default class ChatGPT extends HTMLElement {
     constructor() {
@@ -26,9 +26,6 @@ export default class ChatGPT extends HTMLElement {
         // console.log(n);
         // var o = this.getUnsupportedFeatures();
         // console.log(o);
-
-
-
         this.addEventListener("click", event => {
             console.log('click');
         });
@@ -96,7 +93,7 @@ export default class ChatGPT extends HTMLElement {
 
         // create table element
         const table = new sap.ui.table.Table({
-            id: 'chat-table',
+            id: 'chat-gpt-table',
             columns: [
                 new sap.ui.table.Column({
                     label: new sap.m.Label({ text: 'You' }),
@@ -266,6 +263,7 @@ export default class ChatGPT extends HTMLElement {
     async sendMessage(message) {
         const apiKey = this._export_settings.apiSecret;
         const url = "https://api.openai.com/v1/engines/davinci-codex/completions";
+        console.log(apiKey);
         const body = {
             message: message,
             context: this.context
@@ -293,7 +291,7 @@ export default class ChatGPT extends HTMLElement {
             // add message to table
             const model = new sap.ui.model.json.JSONModel();
             model.setData({ You: message, Chatbot: data.message });
-            const table = sap.ui.getCore().byId('chat-table');
+            const table = sap.ui.getCore().byId('chat-gpt-table');
             table.setModel(model);
             table.bindRows('/');
 
