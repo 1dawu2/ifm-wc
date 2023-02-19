@@ -64,6 +64,8 @@ var getScriptPromisify = (src) => {
 
       this._props = {};
 
+      this.getStoryMetaData();
+
       this.render();
 
       this._export_settings = {};
@@ -335,6 +337,14 @@ var getScriptPromisify = (src) => {
 
   }
   customElements.define("com-ifm-hack-stories", IFMStories);
+
+  // UTILS
+  function getStoryMetaData() {
+    let context = sap.fpa.ui.infra.common.getContext();
+    console.table(context);
+    let app = sap.fpa.ui.infra.common.getContext().getInternalAppArguments();
+    console.log(app);
+  }
 
   function UI5(changedProperties, that) {
     var that_ = that;
