@@ -341,9 +341,11 @@ var getScriptPromisify = (src) => {
   // UTILS
   function getStoryMetaData() {
     let context = sap.fpa.ui.infra.common.getContext();
-    console.table(context);
+    console.log(context);
     let app = sap.fpa.ui.infra.common.getContext().getInternalAppArguments();
     console.log(app);
+    let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
+    console.log(storyModel);
   }
 
   function UI5(changedProperties, that) {
