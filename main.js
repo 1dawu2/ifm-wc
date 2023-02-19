@@ -340,6 +340,9 @@ var getScriptPromisify = (src) => {
 
   // UTILS
   function getStoryMetaData() {
+
+    console.log(window.sap);
+    console.log(sap.fpa);
     let context = sap.fpa.ui.infra.common.getContext();
     let context2 = sap.fpa.ui.infra.common.getContext("59A395046F3F8A41401B0B1C28FD787D");
     console.log(context2);
