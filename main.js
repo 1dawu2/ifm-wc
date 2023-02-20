@@ -17,8 +17,45 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-    <div id="ifmHACK"></div>
-  `;
+  <mvc:View
+      xmlns="sap.m"
+      xmlns:mvc="sap.ui.core.mvc"
+      xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+      xmlns:smartTable="sap.ui.comp.smarttable"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      controllerName="ifm.hack.Template"
+      height="100%">
+
+        <!-- use this to make the table occupy the available screen height -->
+        <VBox fitContainer="true">
+          <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="LineItemsSet" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Bukrs" enableBasicSearch="true" >
+            <smartFilterBar:controlConfiguration>
+              <smartFilterBar:ControlConfiguration key="Bukrs">
+              <smartFilterBar:defaultFilterValues>
+                  <smartFilterBar:SelectOption low="0001">
+                  </smartFilterBar:SelectOption>
+                </smartFilterBar:defaultFilterValues>
+              </smartFilterBar:ControlConfiguration>
+              <smartFilterBar:ControlConfiguration key="Gjahr">
+                <smartFilterBar:defaultFilterValues>
+                    <smartFilterBar:SelectOption low="2014">
+                    </smartFilterBar:SelectOption>
+                  </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+            </smartFilterBar:controlConfiguration>
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartFilterBar:layoutData>
+              <FlexItemData shrinkFactor="0"/>
+            </smartFilterBar:layoutData>
+          </smartFilterBar:SmartFilterBar>
+          <smartTable:SmartTable id="LineItemsSmartTable" entitySet="LineItemsSet" smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" editTogglable="true" app:useSmartToggle="true">
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartTable:layoutData>
+              <FlexItemData growFactor="1" baseSize="0%"/>
+            </smartTable:layoutData>
+          </smartTable:SmartTable>
+        </VBox>
+  </mvc:View>`;
 
   class IFMStories extends HTMLElement {
     constructor() {
@@ -60,7 +97,7 @@ var getScriptPromisify = (src) => {
       });
     }
 
-    onCustomWidgetResize(width, height) {      
+    onCustomWidgetResize(width, height) {
     }
 
     set myDataSource(dataBinding) {
@@ -337,30 +374,77 @@ var getScriptPromisify = (src) => {
   function UI5(changedProperties, that) {
     var that_ = that;
 
-    div = document.createElement('div');
-    widgetName = that._export_settings.name;
-    div.slot = "content_" + widgetName;
+    // div = document.createElement('div');
+    // widgetName = that._export_settings.name;
+    // div.slot = "content_" + widgetName;
 
-    if (that._firstConnectionUI5 === 0) {
-      console.log("--First Time --");
+    // if (that._firstConnectionUI5 === 0) {
+    //   console.log("--First Time --");
 
-      let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
-      _shadowRoot.appendChild(div0);
+    //   let div0 = document.createElement('div');
+    //   div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
+    //   _shadowRoot.appendChild(div0);
 
-      let div1 = document.createElement('div');
-      div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
-      _shadowRoot.appendChild(div1);
+    //   let div1 = document.createElement('div');
+    //   div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
+    //   _shadowRoot.appendChild(div1);
 
-      that_.appendChild(div);
+    //   that_.appendChild(div);
 
-      var mapcanvas_divstr = _shadowRoot.getElementById('oView_' + widgetName);
+    //   var mapcanvas_divstr = _shadowRoot.getElementById('oView_' + widgetName);
 
-      Ar.push({
-        'id': widgetName,
-        'div': mapcanvas_divstr
+    //   Ar.push({
+    //     'id': widgetName,
+    //     'div': mapcanvas_divstr
+    //   });
+    // }
+
+    sap.ui.define([
+      'sap/ui/core/mvc/Controller',
+      'sap/ui/model/odata/v2/ODataModel',
+      'sap/ui/core/util/MockServer'
+    ], function (Controller, ODataModel, MockServer) {
+      "use strict";
+
+      return Controller.extend("sap.ui.comp.sample.smarttable.SmartTable", {
+        onInit: function () {
+          var oModel, oView, sServiceUrl;
+
+          /* Export requires an absolute path */
+          sServiceUrl = "https://fake.host.com/localService/";
+
+          var oMockServer = new MockServer({
+            rootUri: sServiceUrl
+          });
+
+          this._oMockServer = oMockServer;
+          oMockServer.simulate("test-resources/sap/ui/comp/demokit/sample/smarttable/mockserver/metadata.xml", "test-resources/sap/ui/comp/demokit/sample/smarttable/mockserver/");
+          oMockServer.start();
+
+          oModel = new ODataModel(sServiceUrl, {
+            defaultCountMode: "Inline"
+          });
+
+          oView = this.getView();
+          oView.setModel(oModel);
+        },
+        onBeforeExport: function (oEvt) {
+          var mExcelSettings = oEvt.getParameter("exportSettings");
+          // GW export
+          if (mExcelSettings.url) {
+            return;
+          }
+          // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
+
+          // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
+          mExcelSettings.worker = false;
+        },
+        onExit: function () {
+          this._oMockServer.stop();
+        }
       });
-    }
+    });
+
 
     sap.ui.getCore().attachInit(function () {
       "use strict";
@@ -374,9 +458,10 @@ var getScriptPromisify = (src) => {
 
         var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-        return Controller.extend("myView.Template", {
+        return Controller.extend("ifm.hack.Template", {
 
-          onButtonPress: function (oEvent) {
+          onInit: function () {
+
             var this_ = this;
 
             this_.wasteTime();
@@ -428,17 +513,90 @@ var getScriptPromisify = (src) => {
 
               }));
 
+              var oView = this_.getView();
               var oModel = new sap.ui.model.json.JSONModel();
-              oModel.setData({ modelData: data });
-              oTable.setModel(oModel);
-              oTable.bindRows("/modelData");
-              oTable.sort(oTable.getColumns()[0]);
-              oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
+              oView.setModel(oModel);
 
               this_.runNext();
 
             }
           },
+
+          onBeforeExport: function (oEvt) {
+            var mExcelSettings = oEvt.getParameter("exportSettings");
+            // GW export
+            if (mExcelSettings.url) {
+              return;
+            }
+            // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
+
+            // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
+            mExcelSettings.worker = false;
+          },
+
+          // onButtonPress: function (oEvent) {
+          //   var this_ = this;
+
+          //   this_.wasteTime();
+
+          //   var CLIENT_ID_str = _clientID;
+          //   var API_SECRET_str = _apiSecret;
+          //   var API_URL_str = _oAuthURL;
+          //   var restAPIURL = that._export_settings.restapiurl;
+
+          //   var xhr = new XMLHttpRequest();
+          //   xhr.withCredentials = false;
+
+          //   xhr.onreadystatechange = function () {
+          //     if (this.readyState == 4 && this.status == 200) {
+          //       var res = JSON.parse(this.responseText);
+          //       buildTable(res);
+          //     }
+          //   };
+
+          //   //setting request method
+          //   //API endpoint for API sandbox 
+          //   xhr.open("GET", restAPIURL);
+
+          //   //adding request headers
+          //   xhr.setRequestHeader("DataServiceVersion", "2.0");
+          //   xhr.setRequestHeader("Accept", "application/json");
+
+          //   //sending request
+          //   xhr.send();
+
+          //   // Define a table [Note: you must include the table library to make the Table class work]
+          //   function buildTable(data) {
+
+          //     var oTable = new sap.ui.table.Table({
+          //       title: "SAC Stories",
+          //       selectionMode: sap.ui.table.SelectionMode.Single,
+          //       fixedColumnCount: 1,
+          //       enableColumnReordering: true,
+          //       width: "800px"
+          //     });
+
+          //     // Use the Object defined for table to add new column into the table
+          //     oTable.addColumn(new sap.ui.table.Column({
+          //       label: new sap.ui.commons.Label({ text: "Story ID" }),
+          //       template: new sap.ui.commons.TextField().bindProperty("value", "name"),
+          //       sortProperty: "name",
+          //       filterProperty: "name",
+          //       width: "125px"
+
+          //     }));
+
+          //     var oModel = new sap.ui.model.json.JSONModel();
+          //     oModel.setData({ modelData: data });
+          //     oTable.setModel(oModel);
+          //     oTable.bindRows("/modelData");
+          //     oTable.sort(oTable.getColumns()[0]);
+          //     oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
+
+          //     this_.runNext();
+
+          //   }
+          // },
 
           wasteTime: function () {
             busyDialog.open();
