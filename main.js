@@ -393,8 +393,6 @@ var getScriptPromisify = (src) => {
             xhr.onreadystatechange = function () {
               if (this.readyState == 4 && this.status == 200) {
                 var res = JSON.parse(this.responseText);
-                console.log("response for table");
-                console.log(res);
                 buildTable(res);
               }
             };
@@ -415,11 +413,10 @@ var getScriptPromisify = (src) => {
 
               var oTable = new sap.ui.table.Table({
                 title: "SAC Stories",
-                visibleRowCount: 3,
                 selectionMode: sap.ui.table.SelectionMode.Single,
                 fixedColumnCount: 1,
                 enableColumnReordering: true,
-                width: "100%"
+                width: "800px"
               });
 
               // Use the Object defined for table to add new column into the table
@@ -437,9 +434,7 @@ var getScriptPromisify = (src) => {
               oTable.setModel(oModel);
               oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
-              console.log(oTable);
               oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
-              console.log(_shadowRoot.getElementById('oView_' + widgetName));
 
               this_.runNext();
 
@@ -456,7 +451,6 @@ var getScriptPromisify = (src) => {
         });
       });
 
-      console.log("widgetName:" + widgetName);
       var foundIndex = Ar.findIndex(x => x.id == widgetName);
       var divfinal = Ar[foundIndex].div;
 
