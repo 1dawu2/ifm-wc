@@ -399,53 +399,6 @@ var getScriptPromisify = (src) => {
     //   });
     // }
 
-    sap.ui.define([
-      'sap/ui/core/mvc/Controller',
-      'sap/ui/model/odata/v2/ODataModel',
-      'sap/ui/core/util/MockServer'
-    ], function (Controller, ODataModel, MockServer) {
-      "use strict";
-
-      return Controller.extend("sap.ui.comp.sample.smarttable.SmartTable", {
-        onInit: function () {
-          var oModel, oView, sServiceUrl;
-
-          /* Export requires an absolute path */
-          sServiceUrl = "https://fake.host.com/localService/";
-
-          var oMockServer = new MockServer({
-            rootUri: sServiceUrl
-          });
-
-          this._oMockServer = oMockServer;
-          oMockServer.simulate("test-resources/sap/ui/comp/demokit/sample/smarttable/mockserver/metadata.xml", "test-resources/sap/ui/comp/demokit/sample/smarttable/mockserver/");
-          oMockServer.start();
-
-          oModel = new ODataModel(sServiceUrl, {
-            defaultCountMode: "Inline"
-          });
-
-          oView = this.getView();
-          oView.setModel(oModel);
-        },
-        onBeforeExport: function (oEvt) {
-          var mExcelSettings = oEvt.getParameter("exportSettings");
-          // GW export
-          if (mExcelSettings.url) {
-            return;
-          }
-          // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
-
-          // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
-          mExcelSettings.worker = false;
-        },
-        onExit: function () {
-          this._oMockServer.stop();
-        }
-      });
-    });
-
-
     sap.ui.getCore().attachInit(function () {
       "use strict";
 
@@ -495,26 +448,10 @@ var getScriptPromisify = (src) => {
             // Define a table [Note: you must include the table library to make the Table class work]
             function buildTable(data) {
 
-              var oTable = new sap.ui.table.Table({
-                title: "SAC Stories",
-                selectionMode: sap.ui.table.SelectionMode.Single,
-                fixedColumnCount: 1,
-                enableColumnReordering: true,
-                width: "800px"
-              });
-
-              // Use the Object defined for table to add new column into the table
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Story ID" }),
-                template: new sap.ui.commons.TextField().bindProperty("value", "name"),
-                sortProperty: "name",
-                filterProperty: "name",
-                width: "125px"
-
-              }));
 
               var oView = this_.getView();
               var oModel = new sap.ui.model.json.JSONModel();
+              oModel.setData(data);
               oView.setModel(oModel);
 
               this_.runNext();
