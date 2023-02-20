@@ -17,6 +17,7 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
+  <script id="oView" name="oView" type="sapui5/xmlview">
   <mvc:View
       xmlns="sap.m"
       xmlns:mvc="sap.ui.core.mvc"
@@ -55,7 +56,8 @@ var getScriptPromisify = (src) => {
             </smartTable:layoutData>
           </smartTable:SmartTable>
         </VBox>
-  </mvc:View>`;
+  </mvc:View>
+  </script>`;
 
   class IFMStories extends HTMLElement {
     constructor() {
@@ -417,7 +419,7 @@ var getScriptPromisify = (src) => {
 
             var this_ = this;
 
-            sap.ui.getCore().applyTheme("sap_belize"); 
+            sap.ui.getCore().applyTheme("sap_belize");
 
             this_.wasteTime();
 
@@ -451,7 +453,13 @@ var getScriptPromisify = (src) => {
             function buildTable(data) {
 
 
-              var oView = this_.getView();
+              // var oView = this_.getView();
+              //### THE APP: place the XMLView somewhere into DOM ###
+              var oView = sap.ui.xmlview({
+                viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+              });
+              // oView.placeAt(content);
+
               var oModel = new sap.ui.model.json.JSONModel();
               oModel.setData(data);
               oView.setModel(oModel);
