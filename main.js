@@ -309,7 +309,6 @@ var getScriptPromisify = (src) => {
     let isOptimizeA = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
     console.log(isOptimizeA);
     let context = sap.fpa.ui.infra.common.getContext();
-    let storyInstance = context.getDocumentContext().get("sap.fpa.story.instanceId")
     console.log(storyInstance);
     let context2 = sap.fpa.ui.infra.common.getContext("59A395046F3F8A41401B0B1C28FD787D");
     console.log(context2);
@@ -319,7 +318,8 @@ var getScriptPromisify = (src) => {
     let findAggregatedObjects = fn => sap.fpa.ui.story.Utils.getShellContainer().getCurrentPage().getComponentInstance().findAggregatedObjects(true, fn);
     console.log(findAggregatedObjects);
     let documentContext = findAggregatedObjects(e => e.getMetadata().hasProperty("resourceType") && e.getProperty("resourceType") == "STORY")[0].getDocumentContext();
-    let testProperty = findAggregatedObjects(e => e.getProperty("/analytic/optimizedDesignEnabled"))
+    let testProperty = findAggregatedObjects(e => e.getProperty("/analytic/optimizedDesignEnabled"));
+    let storyInstance = documentContext.get("sap.fpa.story.instanceId");
     console.log(testProperty);
     console.log(documentContext);
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
