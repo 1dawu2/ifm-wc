@@ -1,6 +1,3 @@
-
-//const { html } = require('./template.html');
-
 var getScriptPromisify = (src) => {
   return new Promise((resolve) => {
     $.getScript(src, resolve);
@@ -20,35 +17,8 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <div id="sacGrid"></div>
-    <button class="button is-rounded">Rounded</button>
+    <div id="ifmHACK"></div>
   `;
-
-  //https://apis.google.com/js/api.js
-  const googlesheetsjs = "http://localhost/SAC/sacgooglesheetstock/box/api.js";
-  //https://www.amcharts.com/lib/4/core.js
-  const amchartscorejs = "http://localhost/SAC/sacgooglesheetstock/box/core.js";
-  //https://www.amcharts.com/lib/4/charts.js
-  const amchartschartsjs = "http://localhost/SAC/sacgooglesheetstock/box/charts.js";
-  //https://www.amcharts.com/lib/4/themes/animated.js
-  const amchartsanimatedjs = "http://localhost/SAC/sacgooglesheetstock/box/animated.js";
-  // https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js
-  const axios = 'https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js';
-
-
-
-  function loadScript(src) {
-    return new Promise(function (resolve, reject) {
-      let script = document.createElement('script');
-      script.src = src;
-
-      script.onload = () => { console.log("Load: " + src); resolve(script); }
-      script.onerror = () => reject(new Error(`Script load error for ${src}`));
-
-      shadowRoot.appendChild(script)
-    });
-  }
 
   class IFMStories extends HTMLElement {
     constructor() {
@@ -60,13 +30,7 @@ var getScriptPromisify = (src) => {
 
       _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-      //this._root = this._shadowRoot.getElementById("root");
-
-      this._props = {};
-
       getStoryMetaData();
-
-      this.render();
 
       this._export_settings = {};
       this._export_settings.restapiurl = "";
@@ -76,64 +40,12 @@ var getScriptPromisify = (src) => {
       this._export_settings.apiSecret = "";
       this._export_settings.oAuthURL = "";
 
-      this.addEventListener("click", event => {
-        console.log('click');
-      });
-
       this._firstConnection = 0;
       this._firstConnectionUI5 = 0;
 
     }
 
-    // onCustomWidgetResize(width, height) {
-    //   this.render();
-    // }
-
-    set myDataSource(dataBinding) {
-      this._myDataSource = dataBinding;
-      // console.log(this._myDataSource);
-      this.render();
-    }
-
-    // async LoadLibs() {
-    //   try {
-    //     await loadScript(axios);
-    //     // await loadScript(amchartscorejs);				
-    //     // await loadScript(amchartschartsjs);				
-    //     // await loadScript(amchartsanimatedjs);
-    //   } catch (e) {
-    //     alert(e);
-    //   } finally {
-    //     Draw(Ar, that._firstConnection);
-    //     that._firstConnection = 1;
-    //   }
-    // }
-    // LoadLibs();
-    // async generateText() {
-    //   const API_KEY = await axios.getApiKey();
-    //   const API_ENDPOINT = "https://api.openai.com/v1/engines/text-davinci-002/jobs";
-
-    //   const prompt = "What is the capital of France?";
-    //   try {
-    //     const response = await axios.post(API_ENDPOINT, {
-    //       prompt: prompt,
-    //       max_tokens: 100,
-    //       temperature: 0.5,
-    //       api_key: API_KEY
-    //     });
-
-    //     const generatedText = response.data.choices[0].text;
-    //     console.log(generatedText);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
     async render() {
-      await getScriptPromisify(
-        "https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"
-      );
-
       if (!this._myDataSource || this._myDataSource.state !== "success") {
         return;
       }
@@ -146,18 +58,14 @@ var getScriptPromisify = (src) => {
           value: data[measure].raw,
         };
       });
+    }
 
-      // const grid = new window.gridjs.Grid({
-      //   columns: ["Name", "Email", "Phone Number"],
-      //   data: [
-      //     ["John", "john@example.com", "(353) 01 222 3333"],
-      //     ["Mark", "mark@gmail.com", "(01) 22 888 4444"],
-      //     ["Eoin", "eoin@gmail.com", "0097 22 654 00033"],
-      //     ["Sarah", "sarahcdd@gmail.com", "+322 876 1233"],
-      //     ["Afshin", "afshin@mail.com", "(353) 22 87 8356"]
-      //   ]
-      // }).render(this.shadowRoot.getElementById("sacGrid"));
+    onCustomWidgetResize(width, height) {      
+    }
 
+    set myDataSource(dataBinding) {
+      this._myDataSource = dataBinding;
+      this.render();
     }
 
     connectedCallback() {
@@ -170,6 +78,8 @@ var getScriptPromisify = (src) => {
               let components = {};
 
               let globalState = state.globalState;
+              console.log("global state:")
+              console.log(globalState);
               let instances = globalState.instances;
               let app = instances.app["[{\"app\":\"MAIN_APPLICATION\"}]"];
               let names = app.names;
@@ -198,6 +108,8 @@ var getScriptPromisify = (src) => {
 
               if (metadata != this.metadata) {
                 this.metadata = metadata;
+                console.log("meta data:");
+                console.log(metadata);
 
                 this.dispatchEvent(new CustomEvent("propertiesChanged", {
                   detail: {
@@ -256,8 +168,6 @@ var getScriptPromisify = (src) => {
 
     _renderExportButton() {
       let components = this.metadata ? JSON.parse(this.metadata)["components"] : {};
-      console.log("_renderExportButton-components");
-      // console.log(components);
     }
 
     _firePropertiesChanged() {
@@ -339,6 +249,46 @@ var getScriptPromisify = (src) => {
   customElements.define("com-ifm-hack-stories", IFMStories);
 
   // UTILS
+  function requestResource() {
+
+    // X-CSRF-Token = FPA_CSRF_TOKEN "6587FFC74BC9E440AE845312E4B240A8"
+    // Content-Type = "application/json;charset=utf-8"
+    // "{"action":"startEdit","data":{"resourceId":"DDA04A05753124D2130C61D4D6C0AABC"}}"
+    // "POST"
+    // "/sap/fpa/services/rest/epm/contentlib?tenant=K"
+
+    // isOptimizedDesignEnabled: function() {
+    //   if (R.isActive("UQM_INTEGRATION_DESIGN_MODE")) {
+    //       var e = this.getStoryModel();
+    //       return !(!e.isOptimizedDesignEnabled || !e.isOptimizedDesignEnabled())
+    //   }
+    //   return !1
+
+    //   _fnConvertOptimizedDesignMode
+
+    //   _fnConvertStory2
+
+    //   UnsupportedFeatures
+
+    //   getCoreConverters: function() {
+    //     return Object.assign({}, {
+    //         unifiedTransformation: i(13186),
+    //         filters: i(4082),
+    //         pageGroups: i(18896),
+    //         chart: i(13187),
+    //         table: i(13188),
+    //         geo: i(12896),
+    //         datasetLinks: i(18899),
+    //         calculations: i(13189),
+    //         rss: i(12897),
+    //         pictogram: i(13190),
+    //         tableKPIs: i(12630),
+    //         fieldSelection: i(19241).B,
+    //         threshold: i(1510).g,
+    //         storyQuerySettings: i(1504)
+
+  }
+
   function getStoryMetaData() {
     // DASHBOARD_OBJECT_TYPE: "STORY",
     // DASHBOARD_OBJECT_APPLICATION_TYPE: "APPLICATION",
@@ -346,6 +296,7 @@ var getScriptPromisify = (src) => {
     // CONTENT_LIB_SERVICE: "EPM/Contentlib",
     // STORY_SERVICE: "fpa.StoryService",
     let shellCont = sap.fpa.ui.story.Utils.getShellContainer();
+
     console.log(shellCont);
     console.log(window.sap);
     console.log(sap.fpa);
@@ -358,6 +309,8 @@ var getScriptPromisify = (src) => {
     let isOptimizeA = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
     console.log(isOptimizeA);
     let context = sap.fpa.ui.infra.common.getContext();
+    let storyInstance = context.getDocumentContext().get("sap.fpa.story.instanceId")
+    console.log(storyInstance);
     let context2 = sap.fpa.ui.infra.common.getContext("59A395046F3F8A41401B0B1C28FD787D");
     console.log(context2);
     console.log(context);
@@ -366,6 +319,8 @@ var getScriptPromisify = (src) => {
     let findAggregatedObjects = fn => sap.fpa.ui.story.Utils.getShellContainer().getCurrentPage().getComponentInstance().findAggregatedObjects(true, fn);
     console.log(findAggregatedObjects);
     let documentContext = findAggregatedObjects(e => e.getMetadata().hasProperty("resourceType") && e.getProperty("resourceType") == "STORY")[0].getDocumentContext();
+    let testProperty = findAggregatedObjects(e => e.getProperty("/analytic/optimizedDesignEnabled"))
+    console.log(testProperty);
     console.log(documentContext);
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
     console.log(storyModel);
@@ -386,14 +341,11 @@ var getScriptPromisify = (src) => {
     widgetName = that._export_settings.name;
     div.slot = "content_" + widgetName;
 
-    var restAPIURL = that._export_settings.restapiurl;
-    // console.log("restAPIURL: " + restAPIURL);
-
     if (that._firstConnectionUI5 === 0) {
-      // console.log("--First Time --");
+      console.log("--First Time --");
 
       let div0 = document.createElement('div');
-      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /><Table id="sacTable"></Table></l:VerticalLayout></mvc:View></script>';
+      div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
       _shadowRoot.appendChild(div0);
 
       let div1 = document.createElement('div');
@@ -408,7 +360,6 @@ var getScriptPromisify = (src) => {
         'id': widgetName,
         'div': mapcanvas_divstr
       });
-      // console.log(Ar);
     }
 
     sap.ui.getCore().attachInit(function () {
@@ -433,15 +384,11 @@ var getScriptPromisify = (src) => {
             var CLIENT_ID_str = _clientID;
             var API_SECRET_str = _apiSecret;
             var API_URL_str = _oAuthURL;
+            var restAPIURL = that._export_settings.restapiurl;
 
             var xhr = new XMLHttpRequest();
             xhr.withCredentials = false;
 
-            // xhr.addEventListener("readystatechange", function () {
-            //   if (this.readyState === this.DONE) {
-            //     console.log(this.responseText);
-            //   }
-            // });
             xhr.onreadystatechange = function () {
               if (this.readyState == 4 && this.status == 200) {
                 var res = JSON.parse(this.responseText);
@@ -459,12 +406,8 @@ var getScriptPromisify = (src) => {
 
             //sending request
             xhr.send();
-            // console.log("xhr reqeust:")
-            // console.log(dataR);
-            // _score = dataR;
 
             // Define a table [Note: you must include the table library to make the Table class work]
-
             function buildTable(data) {
 
               var oTable = new sap.ui.table.Table({
@@ -477,7 +420,6 @@ var getScriptPromisify = (src) => {
               });
 
               // Use the Object defined for table to add new column into the table
-
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Story ID" }),
                 template: new sap.ui.commons.TextField().bindProperty("value", "name"),
@@ -493,109 +435,12 @@ var getScriptPromisify = (src) => {
               oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
               console.log(oTable);
-              // oTable.shadowRoot.getElementById("sacGrid");
-              // this_.getView().byId("sacTable");
-              oTable.placeAt("sacTable")
+              oTable.placeAt(_shadowRoot.getElementById('content_' + widgetName));
+              console.log(_shadowRoot.getElementById('oView_' + widgetName));
 
               this_.runNext();
 
             }
-            // var dataD = JSON.stringify({
-            //   "NamespaceID": "string",
-            //   "ProviderID": "string",
-            //   "EntitySetName": "string",
-            //   "ExternalID": "string",
-            //   "Description": "string"
-            // });
-
-            // var xhr = new XMLHttpRequest();
-            // xhr.withCredentials = false;
-
-            // xhr.addEventListener("readystatechange", function () {
-            //   if (this.readyState === this.DONE) {
-            //     console.log(this.responseText);
-            //   }
-            // });
-
-            // //setting request method
-            // //API endpoint for API sandbox 
-            // xhr.open("POST", "https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/dataexport/administration/Subscriptions");
-
-
-            // //adding request headers
-            // xhr.setRequestHeader("x-csrf-token", "Mandatory x-csrf-token that can be obtained by sending a GET request to <tenant-url>/api/v1/csrf with the header parameter x-csrf-token:fetch.");
-            // xhr.setRequestHeader("DataServiceVersion", "2.0");
-            // xhr.setRequestHeader("Accept", "application/json");
-            // xhr.setRequestHeader("Content-Type", "application/json");
-
-
-            // //sending request
-            // xhr.send(dataD);
-
-            // $.ajax({
-            //   type: 'POST',
-            //   url: API_URL_str,
-            //   contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-            //   crossDomain: false,
-            //   cache: true,
-            //   dataType: 'json',
-            //   data: {
-            //     client_id: CLIENT_ID_str,
-            //     client_secret: API_SECRET_str,
-            //     grant_type: 'client_credentials',
-            //   },
-
-            //   success: function (data) {
-            //     console.log("get token:")
-            //     console.log(data);
-
-            //     var access_token = data.access_token;
-            //     console.log(access_token);
-
-            //     $.ajax({
-            //       url: restAPIURL,
-            //       type: 'POST',
-            //       headers: {
-            //         "Authorization": "Bearer " + access_token,
-            //         "Content-Type": "application/x-www-form-urlencoded"
-            //       },
-            //       data: $.param({
-            //         // "partnernumber": partnernumber
-            //       }),
-            //       async: true,
-            //       timeout: 0,
-            //       contentType: 'application/x-www-form-urlencoded',
-            //       success: function (data) {
-            //         this_.runNext();
-            //         _score = data;
-            //         console.log("REST API Data:")
-            //         console.log(data);
-
-            //         that._firePropertiesChanged();
-            //         this.settings = {};
-            //         this.settings.score = "";
-
-            //         that.dispatchEvent(new CustomEvent("onStart", {
-            //           detail: {
-            //             settings: this.settings
-            //           }
-            //         }));
-
-            //       },
-            //       error: function (e) {
-            //         this_.runNext();
-            //         console.log("error: " + e);
-            //         console.log(e);
-            //       }
-            //     });
-
-            //   },
-            //   error: function (e) {
-            //     this_.runNext();
-            //     console.log(e.responseText);
-            //   }
-            // });
-
           },
 
           wasteTime: function () {
@@ -621,10 +466,9 @@ var getScriptPromisify = (src) => {
 
       if (that_._designMode) {
         oView.byId("buttonId").setEnabled(false);
-        // oView.byId("sacTable").setEnabled(false);
+
       } else {
         oView.byId("buttonId").setEnabled(true);
-        // oView.byId("sacTable").setEnabled(true);
       }
     });
   }
