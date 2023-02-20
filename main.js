@@ -51,6 +51,7 @@ var getScriptPromisify = (src) => {
       var oModel = new sap.ui.model.json.JSONModel();
       oModel.setData(naughtyList);
       // instantiate the table
+      sap.ui.getCore().applyTheme("sap_belize");
       var oTable = new sap.ui.table.Table({
         selectionMode: sap.ui.table.SelectionMode.Single,
         selectionBehavior: sap.ui.table.SelectionBehavior.Row
