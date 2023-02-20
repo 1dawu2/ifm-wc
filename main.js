@@ -14,48 +14,7 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-      <script id="oView" name="oView" type="sapui5/xmlview">
-      <mvc:View
-          controllerName="ifm.hack.controller"
-          xmlns="sap.ui.table"
-          xmlns:mvc="sap.ui.core.mvc"
-          xmlns:u="sap.ui.unified"
-          xmlns:c="sap.ui.core"
-          xmlns:m="sap.m"
-      height="100%">
-          <m:Page
-            showHeader="false"
-            enableScrolling="false"
-            class="sapUiContentPadding">
-            <m:content>
-              <Table
-                selectionMode="MultiToggle"
-                visibleRowCount="7"
-                ariaLabelledBy="title">
-                <extension>
-                  <m:OverflowToolbar style="Clear">
-                    <m:Title id="title" text="Products"/>
-                  </m:OverflowToolbar>
-                </extension>
-                <columns>
-                  <Column width="11rem">
-                    <m:Label text="Product Name" />
-                    <template>
-                      <m:Text text="test1" wrapping="false" />
-                    </template>
-                  </Column>
-                  <Column width="11rem">
-                    <m:Label text="Product Id" />
-                    <template>
-                      <m:Input value="test2"/>
-                    </template>
-                  </Column>
-                </columns>
-              </Table>
-            </m:content>
-          </m:Page>
-      </mvc:View>
-      </script>        
+    <div id="content"></div>      
   `;
   class IFMStories extends HTMLElement {
     constructor() {
@@ -67,6 +26,8 @@ var getScriptPromisify = (src) => {
 
       _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
+      this.buildTable();
+
       // getStoryMetaData();
 
       this._export_settings = {};
@@ -76,6 +37,44 @@ var getScriptPromisify = (src) => {
       this._export_settings.clientID = "";
       this._export_settings.apiSecret = "";
       this._export_settings.oAuthURL = "";
+
+    }
+
+    buildTable() {
+
+      var naughtyList = [
+        { lastName: "Dente", name: "Al", stillNaughty: true },
+        { lastName: "Friese", name: "Andy", stillNaughty: true },
+        { lastName: "Mann", name: "Anita", stillNaughty: false }
+      ];
+
+      var oModel = new sap.ui.model.json.JSONModel();
+      oModel.setData(naughtyList);
+      // instantiate the table
+      var oTable = new sap.ui.table.Table({
+        selectionMode: sap.ui.table.SelectionMode.Single,
+        selectionBehavior: sap.ui.table.SelectionBehavior.Row
+      });
+
+      // define the Table columns and the binding values
+      oTable.addColumn(new sap.ui.table.Column({
+        label: new sap.ui.commons.Label({ text: "Last Name" }),
+        template: new sap.ui.commons.TextView({ text: "{lastName}" })
+      }));
+
+      oTable.addColumn(new sap.ui.table.Column({
+        label: new sap.ui.commons.Label({ text: "First Name" }),
+        template: new sap.ui.commons.TextField({ value: "{name}" })
+      }));
+
+      oTable.addColumn(new sap.ui.table.Column({
+        label: new sap.ui.commons.Label({ text: "Still Naughty" }),
+        template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
+      }));
+
+      oTable.setModel(oModel);
+      oTable.bindRows("/");
+      oTable.placeAt("content");
 
     }
 
@@ -182,5 +181,5 @@ var getScriptPromisify = (src) => {
   customElements.define("com-ifm-hack-stories", IFMStories);
 
   // UTILS
-  
+
 })();
