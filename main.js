@@ -301,7 +301,7 @@ var getScriptPromisify = (src) => {
     console.log(window.sap);
     console.log(sap.fpa);
     console.log(sap.fpa.ui.story.Story.getMetadata("59A395046F3F8A41401B0B1C28FD787D"));
-    console.log(sap.fpa.ui.story.Utils.getStoryNameList());
+    // console.log(sap.fpa.ui.story.Utils.getStoryNameList());
     let contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
     console.log(contentLib);
     let storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
