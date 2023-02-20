@@ -65,7 +65,6 @@ var getScriptPromisify = (src) => {
 
     set myDataSource(dataBinding) {
       this._myDataSource = dataBinding;
-      this.render();
     }
 
     connectedCallback() {
