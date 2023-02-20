@@ -17,47 +17,73 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-  <script id="oView" name="oView" type="sapui5/xmlview">
-  <mvc:View
-      xmlns="sap.m"
+      <style>
+      </style>
+      <div id="ui5_content" name="ui5_content">
+       <slot name="content"></slot>
+      </div>
+      <script id="oView" name="oView" type="sapui5/xmlview">
+          <mvc:View
+        controllerName="myView.Template"
+      xmlns:l="sap.ui.layout"
       xmlns:mvc="sap.ui.core.mvc"
-      xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-      xmlns:smartTable="sap.ui.comp.smarttable"
-      xmlns:html="http://www.w3.org/1999/xhtml"
-      controllerName="ifm.hack.Template"
-      height="100%">
+      xmlns="sap.m">
+      <l:VerticalLayout
+        class="sapUiContentPadding"
+        width="100%">
+        <l:content>
+          <Input
+            id="passwordInput"
+            type="Password"
+            placeholder="Enter password ..." liveChange="onButtonPress"/>
+        </l:content>
+      </l:VerticalLayout>
+    </mvc:View>
+      </script>        
+  `;
+  // let tmpl = document.createElement("template");
+  // tmpl.innerHTML = `
+  // <script id="oView" name="oView" type="sapui5/xmlview">
+  // <mvc:View
+  //     xmlns="sap.m"
+  //     xmlns:mvc="sap.ui.core.mvc"
+  //     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+  //     xmlns:smartTable="sap.ui.comp.smarttable"
+  //     xmlns:html="http://www.w3.org/1999/xhtml"
+  //     controllerName="ifm.hack.Template"
+  //     height="100%">
 
-        <!-- use this to make the table occupy the available screen height -->
-        <VBox fitContainer="true">
-          <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="LineItemsSet" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Bukrs" enableBasicSearch="true" >
-            <smartFilterBar:controlConfiguration>
-              <smartFilterBar:ControlConfiguration key="Bukrs">
-              <smartFilterBar:defaultFilterValues>
-                  <smartFilterBar:SelectOption low="0001">
-                  </smartFilterBar:SelectOption>
-                </smartFilterBar:defaultFilterValues>
-              </smartFilterBar:ControlConfiguration>
-              <smartFilterBar:ControlConfiguration key="Gjahr">
-                <smartFilterBar:defaultFilterValues>
-                    <smartFilterBar:SelectOption low="2014">
-                    </smartFilterBar:SelectOption>
-                  </smartFilterBar:defaultFilterValues>
-                </smartFilterBar:ControlConfiguration>
-            </smartFilterBar:controlConfiguration>
-            <!-- layout data used to make the table growing but the filter bar fixed -->
-            <smartFilterBar:layoutData>
-              <FlexItemData shrinkFactor="0"/>
-            </smartFilterBar:layoutData>
-          </smartFilterBar:SmartFilterBar>
-          <smartTable:SmartTable id="LineItemsSmartTable" entitySet="LineItemsSet" smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" editTogglable="true" app:useSmartToggle="true">
-            <!-- layout data used to make the table growing but the filter bar fixed -->
-            <smartTable:layoutData>
-              <FlexItemData growFactor="1" baseSize="0%"/>
-            </smartTable:layoutData>
-          </smartTable:SmartTable>
-        </VBox>
-  </mvc:View>
-  </script>`;
+  //       <!-- use this to make the table occupy the available screen height -->
+  //       <VBox fitContainer="true">
+  //         <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="LineItemsSet" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Bukrs" enableBasicSearch="true" >
+  //           <smartFilterBar:controlConfiguration>
+  //             <smartFilterBar:ControlConfiguration key="Bukrs">
+  //             <smartFilterBar:defaultFilterValues>
+  //                 <smartFilterBar:SelectOption low="0001">
+  //                 </smartFilterBar:SelectOption>
+  //               </smartFilterBar:defaultFilterValues>
+  //             </smartFilterBar:ControlConfiguration>
+  //             <smartFilterBar:ControlConfiguration key="Gjahr">
+  //               <smartFilterBar:defaultFilterValues>
+  //                   <smartFilterBar:SelectOption low="2014">
+  //                   </smartFilterBar:SelectOption>
+  //                 </smartFilterBar:defaultFilterValues>
+  //               </smartFilterBar:ControlConfiguration>
+  //           </smartFilterBar:controlConfiguration>
+  //           <!-- layout data used to make the table growing but the filter bar fixed -->
+  //           <smartFilterBar:layoutData>
+  //             <FlexItemData shrinkFactor="0"/>
+  //           </smartFilterBar:layoutData>
+  //         </smartFilterBar:SmartFilterBar>
+  //         <smartTable:SmartTable id="LineItemsSmartTable" entitySet="LineItemsSet" smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Line Items" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" editTogglable="true" app:useSmartToggle="true">
+  //           <!-- layout data used to make the table growing but the filter bar fixed -->
+  //           <smartTable:layoutData>
+  //             <FlexItemData growFactor="1" baseSize="0%"/>
+  //           </smartTable:layoutData>
+  //         </smartTable:SmartTable>
+  //       </VBox>
+  // </mvc:View>
+  // </script>`;
 
   class IFMStories extends HTMLElement {
     constructor() {
@@ -67,9 +93,9 @@ var getScriptPromisify = (src) => {
         mode: "open"
       });
 
-      // _shadowRoot.appendChild(tmpl.content.cloneNode(true));
+      _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-      getStoryMetaData();
+      // getStoryMetaData();
 
       this._export_settings = {};
       this._export_settings.restapiurl = "";
@@ -376,222 +402,262 @@ var getScriptPromisify = (src) => {
   function UI5(changedProperties, that) {
     var that_ = that;
 
-    // let content = document.createElement('div');
-    // content.slot = "content";
-    // that_.appendChild(content);
+    let content = document.createElement('div');
+    content.slot = "content";
+    that_.appendChild(content);
+
+    sap.ui.getCore().attachInit(function () {
+      "use strict";
+
+      //### Controller ###
+      sap.ui.define([
+        "jquery.sap.global",
+        "sap/ui/core/mvc/Controller"
+      ], function (jQuery, Controller) {
+        "use strict";
+
+        return Controller.extend("myView.Template", {
+          onButtonPress: function (oEvent) {
+            _password = oView.byId("passwordInput").getValue();
+            that._firePropertiesChanged();
+            console.log(_password);
+
+            this.settings = {};
+            this.settings.password = "";
+
+            that.dispatchEvent(new CustomEvent("onStart", {
+              detail: {
+                settings: this.settings
+              }
+            }));
+          }
+        });
+      });
+
+      //### THE APP: place the XMLView somewhere into DOM ###
+      var oView = sap.ui.xmlview({
+        viewContent: jQuery(_shadowRoot.getElementById(_id + "_oView")).html(),
+      });
+      oView.placeAt(content);
+
+
+      if (that_._designMode) {
+        oView.byId("passwordInput").setEnabled(false);
+      }
+    });
 
     // div = document.createElement('div');
     // widgetName = that._export_settings.name;
     // div.slot = "content_" + widgetName;
 
-    if (that._firstConnectionUI5 === 0) {
-      //   console.log("--First Time --");
+    // if (that._firstConnectionUI5 === 0) {
+    //   //   console.log("--First Time --");
 
-      // let div0 = document.createElement('div');
-      // div0.innerHTML = tmpl.content.cloneNode(true)
-      _shadowRoot.appendChild(tmpl.content.cloneNode(true));
-      //   div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
-      //   _shadowRoot.appendChild(div0);
+    //   // let div0 = document.createElement('div');
+    //   // div0.innerHTML = tmpl.content.cloneNode(true)
+    //   // _shadowRoot.appendChild(tmpl.content.cloneNode(true));
+    //   //   div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
+    //   //   _shadowRoot.appendChild(div0);
 
-      //   let div1 = document.createElement('div');
-      //   div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
-      //   _shadowRoot.appendChild(div1);
+    //   //   let div1 = document.createElement('div');
+    //   //   div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
+    //   //   _shadowRoot.appendChild(div1);
 
-      //   that_.appendChild(div);
+    //   //   that_.appendChild(div);
 
-      //   var mapcanvas_divstr = _shadowRoot.getElementById('oView_' + widgetName);
+    //   //   var mapcanvas_divstr = _shadowRoot.getElementById('oView_' + widgetName);
 
-      //   Ar.push({
-      //     'id': widgetName,
-      //     'div': mapcanvas_divstr
-      //   });
-
-
-      sap.ui.getCore().attachInit(function () {
-        "use strict";
-
-        //### Controller ###
-        sap.ui.define([
-          "jquery.sap.global",
-          "sap/ui/core/mvc/Controller",
-          "sap/ui/model/json/JSONModel",
-          "sap/m/MessageToast",
-          "sap/ui/core/library",
-          "sap/ui/core/Core",
-          'sap/ui/model/Filter',
-          'sap/m/library',
-          'sap/m/MessageBox',
-          'sap/ui/unified/DateRange',
-          'sap/ui/core/format/DateFormat',
-          'sap/ui/model/BindingMode',
-          'sap/ui/core/Fragment',
-          'sap/m/Token',
-          'sap/ui/model/FilterOperator',
-          'sap/ui/model/odata/ODataModel',
-          'sap/m/BusyDialog'
-        ], function (jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
-          "use strict";
-
-          var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
-
-          return Controller.extend("ifm.hack.Template", {
-
-            onInit: function () {
-
-              var this_ = this;
-
-              sap.ui.getCore().applyTheme("sap_belize");
-
-              this_.wasteTime();
-
-              var CLIENT_ID_str = _clientID;
-              var API_SECRET_str = _apiSecret;
-              var API_URL_str = _oAuthURL;
-              var restAPIURL = that._export_settings.restapiurl;
-
-              var xhr = new XMLHttpRequest();
-              xhr.withCredentials = false;
-
-              xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                  var res = JSON.parse(this.responseText);
-                  buildTable(res);
-                }
-              };
-
-              //setting request method
-              //API endpoint for API sandbox 
-              xhr.open("GET", restAPIURL);
-
-              //adding request headers
-              xhr.setRequestHeader("DataServiceVersion", "2.0");
-              xhr.setRequestHeader("Accept", "application/json");
-
-              //sending request
-              xhr.send();
-
-              // Define a table [Note: you must include the table library to make the Table class work]
-              function buildTable(data) {
+    //   //   Ar.push({
+    //   //     'id': widgetName,
+    //   //     'div': mapcanvas_divstr
+    //   //   });
 
 
-                // var oView = this_.getView();
-                //### THE APP: place the XMLView somewhere into DOM ###
-                var oView = sap.ui.xmlview({
-                  viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-                });
-                // oView.placeAt(content);
+    //   sap.ui.getCore().attachInit(function () {
+    //     "use strict";
 
-                var oModel = new sap.ui.model.json.JSONModel();
-                oModel.setData(data);
-                oView.setModel(oModel);
-                oView.placeAt(div0);
+    //     //### Controller ###
+    //     sap.ui.define([
+    //       "jquery.sap.global",
+    //       "sap/ui/core/mvc/Controller",
+    //       "sap/ui/model/json/JSONModel",
+    //       "sap/m/MessageToast",
+    //       "sap/ui/core/library",
+    //       "sap/ui/core/Core",
+    //       'sap/ui/model/Filter',
+    //       'sap/m/library',
+    //       'sap/m/MessageBox',
+    //       'sap/ui/unified/DateRange',
+    //       'sap/ui/core/format/DateFormat',
+    //       'sap/ui/model/BindingMode',
+    //       'sap/ui/core/Fragment',
+    //       'sap/m/Token',
+    //       'sap/ui/model/FilterOperator',
+    //       'sap/ui/model/odata/ODataModel',
+    //       'sap/m/BusyDialog'
+    //     ], function (jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
+    //       "use strict";
 
-                this_.runNext();
+    //       var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-              }
-            },
+    //       return Controller.extend("ifm.hack.Template", {
 
-            onBeforeExport: function (oEvt) {
-              var mExcelSettings = oEvt.getParameter("exportSettings");
-              // GW export
-              if (mExcelSettings.url) {
-                return;
-              }
-              // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
+    //         onInit: function () {
 
-              // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
-              mExcelSettings.worker = false;
-            },
+    //           var this_ = this;
 
-            // onButtonPress: function (oEvent) {
-            //   var this_ = this;
+    //           sap.ui.getCore().applyTheme("sap_belize");
 
-            //   this_.wasteTime();
+    //           this_.wasteTime();
 
-            //   var CLIENT_ID_str = _clientID;
-            //   var API_SECRET_str = _apiSecret;
-            //   var API_URL_str = _oAuthURL;
-            //   var restAPIURL = that._export_settings.restapiurl;
+    //           var CLIENT_ID_str = _clientID;
+    //           var API_SECRET_str = _apiSecret;
+    //           var API_URL_str = _oAuthURL;
+    //           var restAPIURL = that._export_settings.restapiurl;
 
-            //   var xhr = new XMLHttpRequest();
-            //   xhr.withCredentials = false;
+    //           var xhr = new XMLHttpRequest();
+    //           xhr.withCredentials = false;
 
-            //   xhr.onreadystatechange = function () {
-            //     if (this.readyState == 4 && this.status == 200) {
-            //       var res = JSON.parse(this.responseText);
-            //       buildTable(res);
-            //     }
-            //   };
+    //           xhr.onreadystatechange = function () {
+    //             if (this.readyState == 4 && this.status == 200) {
+    //               var res = JSON.parse(this.responseText);
+    //               buildTable(res);
+    //             }
+    //           };
 
-            //   //setting request method
-            //   //API endpoint for API sandbox 
-            //   xhr.open("GET", restAPIURL);
+    //           //setting request method
+    //           //API endpoint for API sandbox 
+    //           xhr.open("GET", restAPIURL);
 
-            //   //adding request headers
-            //   xhr.setRequestHeader("DataServiceVersion", "2.0");
-            //   xhr.setRequestHeader("Accept", "application/json");
+    //           //adding request headers
+    //           xhr.setRequestHeader("DataServiceVersion", "2.0");
+    //           xhr.setRequestHeader("Accept", "application/json");
 
-            //   //sending request
-            //   xhr.send();
+    //           //sending request
+    //           xhr.send();
 
-            //   // Define a table [Note: you must include the table library to make the Table class work]
-            //   function buildTable(data) {
+    //           // Define a table [Note: you must include the table library to make the Table class work]
+    //           function buildTable(data) {
 
-            //     var oTable = new sap.ui.table.Table({
-            //       title: "SAC Stories",
-            //       selectionMode: sap.ui.table.SelectionMode.Single,
-            //       fixedColumnCount: 1,
-            //       enableColumnReordering: true,
-            //       width: "800px"
-            //     });
 
-            //     // Use the Object defined for table to add new column into the table
-            //     oTable.addColumn(new sap.ui.table.Column({
-            //       label: new sap.ui.commons.Label({ text: "Story ID" }),
-            //       template: new sap.ui.commons.TextField().bindProperty("value", "name"),
-            //       sortProperty: "name",
-            //       filterProperty: "name",
-            //       width: "125px"
+    //             // var oView = this_.getView();
+    //             //### THE APP: place the XMLView somewhere into DOM ###
+    //             var oView = sap.ui.xmlview({
+    //               viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+    //             });
+    //             // oView.placeAt(content);
 
-            //     }));
+    //             var oModel = new sap.ui.model.json.JSONModel();
+    //             oModel.setData(data);
+    //             oView.setModel(oModel);
+    //             oView.placeAt(div0);
 
-            //     var oModel = new sap.ui.model.json.JSONModel();
-            //     oModel.setData({ modelData: data });
-            //     oTable.setModel(oModel);
-            //     oTable.bindRows("/modelData");
-            //     oTable.sort(oTable.getColumns()[0]);
-            //     oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
+    //             this_.runNext();
 
-            //     this_.runNext();
+    //           }
+    //         },
 
-            //   }
-            // },
+    //         onBeforeExport: function (oEvt) {
+    //           var mExcelSettings = oEvt.getParameter("exportSettings");
+    //           // GW export
+    //           if (mExcelSettings.url) {
+    //             return;
+    //           }
+    //           // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
 
-            wasteTime: function () {
-              busyDialog.open();
-            },
+    //           // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
+    //           mExcelSettings.worker = false;
+    //         },
 
-            runNext: function () {
-              busyDialog.close();
-            },
-          });
-        });
+    //         // onButtonPress: function (oEvent) {
+    //         //   var this_ = this;
 
-        // var foundIndex = Ar.findIndex(x => x.id == widgetName);
-        // var divfinal = Ar[foundIndex].div;
+    //         //   this_.wasteTime();
 
-        //### THE APP: place the XMLView somewhere into DOM ###
-        // var oView = sap.ui.xmlview({
-        //   viewContent: jQuery(divfinal).html(),
-        // });
+    //         //   var CLIENT_ID_str = _clientID;
+    //         //   var API_SECRET_str = _apiSecret;
+    //         //   var API_URL_str = _oAuthURL;
+    //         //   var restAPIURL = that._export_settings.restapiurl;
 
-        if (that_._designMode) {
-          // oView.byId("buttonId").setEnabled(false);
+    //         //   var xhr = new XMLHttpRequest();
+    //         //   xhr.withCredentials = false;
 
-        } else {
-          // oView.byId("buttonId").setEnabled(true);
-        }
-      });
-    }
+    //         //   xhr.onreadystatechange = function () {
+    //         //     if (this.readyState == 4 && this.status == 200) {
+    //         //       var res = JSON.parse(this.responseText);
+    //         //       buildTable(res);
+    //         //     }
+    //         //   };
+
+    //         //   //setting request method
+    //         //   //API endpoint for API sandbox 
+    //         //   xhr.open("GET", restAPIURL);
+
+    //         //   //adding request headers
+    //         //   xhr.setRequestHeader("DataServiceVersion", "2.0");
+    //         //   xhr.setRequestHeader("Accept", "application/json");
+
+    //         //   //sending request
+    //         //   xhr.send();
+
+    //         //   // Define a table [Note: you must include the table library to make the Table class work]
+    //         //   function buildTable(data) {
+
+    //         //     var oTable = new sap.ui.table.Table({
+    //         //       title: "SAC Stories",
+    //         //       selectionMode: sap.ui.table.SelectionMode.Single,
+    //         //       fixedColumnCount: 1,
+    //         //       enableColumnReordering: true,
+    //         //       width: "800px"
+    //         //     });
+
+    //         //     // Use the Object defined for table to add new column into the table
+    //         //     oTable.addColumn(new sap.ui.table.Column({
+    //         //       label: new sap.ui.commons.Label({ text: "Story ID" }),
+    //         //       template: new sap.ui.commons.TextField().bindProperty("value", "name"),
+    //         //       sortProperty: "name",
+    //         //       filterProperty: "name",
+    //         //       width: "125px"
+
+    //         //     }));
+
+    //         //     var oModel = new sap.ui.model.json.JSONModel();
+    //         //     oModel.setData({ modelData: data });
+    //         //     oTable.setModel(oModel);
+    //         //     oTable.bindRows("/modelData");
+    //         //     oTable.sort(oTable.getColumns()[0]);
+    //         //     oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
+
+    //         //     this_.runNext();
+
+    //         //   }
+    //         // },
+
+    //         wasteTime: function () {
+    //           busyDialog.open();
+    //         },
+
+    //         runNext: function () {
+    //           busyDialog.close();
+    //         },
+    //       });
+    //     });
+
+    //     // var foundIndex = Ar.findIndex(x => x.id == widgetName);
+    //     // var divfinal = Ar[foundIndex].div;
+
+    //     //### THE APP: place the XMLView somewhere into DOM ###
+    //     // var oView = sap.ui.xmlview({
+    //     //   viewContent: jQuery(divfinal).html(),
+    //     // });
+
+    //     if (that_._designMode) {
+    //       // oView.byId("buttonId").setEnabled(false);
+
+    //     } else {
+    //       // oView.byId("buttonId").setEnabled(true);
+    //     }
+    //   });
+    // }
   }
 })();
