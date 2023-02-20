@@ -387,9 +387,9 @@ var getScriptPromisify = (src) => {
     if (that._firstConnectionUI5 === 0) {
       //   console.log("--First Time --");
 
-      let div0 = document.createElement('div');
-      div0.innerHTML = tmpl
-      _shadowRoot.appendChild(div0);
+      // let div0 = document.createElement('div');
+      // div0.innerHTML = tmpl.content.cloneNode(true)
+      _shadowRoot.appendChild(tmpl);
       //   div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
       //   _shadowRoot.appendChild(div0);
 
@@ -405,192 +405,193 @@ var getScriptPromisify = (src) => {
       //     'id': widgetName,
       //     'div': mapcanvas_divstr
       //   });
-    }
 
-    sap.ui.getCore().attachInit(function () {
-      "use strict";
 
-      //### Controller ###
-      sap.ui.define([
-        "jquery.sap.global",
-        "sap/ui/core/mvc/Controller",
-        "sap/ui/model/json/JSONModel",
-        "sap/m/MessageToast",
-        "sap/ui/core/library",
-        "sap/ui/core/Core",
-        'sap/ui/model/Filter',
-        'sap/m/library',
-        'sap/m/MessageBox',
-        'sap/ui/unified/DateRange',
-        'sap/ui/core/format/DateFormat',
-        'sap/ui/model/BindingMode',
-        'sap/ui/core/Fragment',
-        'sap/m/Token',
-        'sap/ui/model/FilterOperator',
-        'sap/ui/model/odata/ODataModel',
-        'sap/m/BusyDialog'
-      ], function (jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
+      sap.ui.getCore().attachInit(function () {
         "use strict";
 
-        var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
+        //### Controller ###
+        sap.ui.define([
+          "jquery.sap.global",
+          "sap/ui/core/mvc/Controller",
+          "sap/ui/model/json/JSONModel",
+          "sap/m/MessageToast",
+          "sap/ui/core/library",
+          "sap/ui/core/Core",
+          'sap/ui/model/Filter',
+          'sap/m/library',
+          'sap/m/MessageBox',
+          'sap/ui/unified/DateRange',
+          'sap/ui/core/format/DateFormat',
+          'sap/ui/model/BindingMode',
+          'sap/ui/core/Fragment',
+          'sap/m/Token',
+          'sap/ui/model/FilterOperator',
+          'sap/ui/model/odata/ODataModel',
+          'sap/m/BusyDialog'
+        ], function (jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
+          "use strict";
 
-        return Controller.extend("ifm.hack.Template", {
+          var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
 
-          onInit: function () {
+          return Controller.extend("ifm.hack.Template", {
 
-            var this_ = this;
+            onInit: function () {
 
-            sap.ui.getCore().applyTheme("sap_belize");
+              var this_ = this;
 
-            this_.wasteTime();
+              sap.ui.getCore().applyTheme("sap_belize");
 
-            var CLIENT_ID_str = _clientID;
-            var API_SECRET_str = _apiSecret;
-            var API_URL_str = _oAuthURL;
-            var restAPIURL = that._export_settings.restapiurl;
+              this_.wasteTime();
 
-            var xhr = new XMLHttpRequest();
-            xhr.withCredentials = false;
+              var CLIENT_ID_str = _clientID;
+              var API_SECRET_str = _apiSecret;
+              var API_URL_str = _oAuthURL;
+              var restAPIURL = that._export_settings.restapiurl;
 
-            xhr.onreadystatechange = function () {
-              if (this.readyState == 4 && this.status == 200) {
-                var res = JSON.parse(this.responseText);
-                buildTable(res);
+              var xhr = new XMLHttpRequest();
+              xhr.withCredentials = false;
+
+              xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                  var res = JSON.parse(this.responseText);
+                  buildTable(res);
+                }
+              };
+
+              //setting request method
+              //API endpoint for API sandbox 
+              xhr.open("GET", restAPIURL);
+
+              //adding request headers
+              xhr.setRequestHeader("DataServiceVersion", "2.0");
+              xhr.setRequestHeader("Accept", "application/json");
+
+              //sending request
+              xhr.send();
+
+              // Define a table [Note: you must include the table library to make the Table class work]
+              function buildTable(data) {
+
+
+                // var oView = this_.getView();
+                //### THE APP: place the XMLView somewhere into DOM ###
+                var oView = sap.ui.xmlview({
+                  viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+                });
+                // oView.placeAt(content);
+
+                var oModel = new sap.ui.model.json.JSONModel();
+                oModel.setData(data);
+                oView.setModel(oModel);
+                oView.placeAt(div0);
+
+                this_.runNext();
+
               }
-            };
+            },
 
-            //setting request method
-            //API endpoint for API sandbox 
-            xhr.open("GET", restAPIURL);
+            onBeforeExport: function (oEvt) {
+              var mExcelSettings = oEvt.getParameter("exportSettings");
+              // GW export
+              if (mExcelSettings.url) {
+                return;
+              }
+              // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
 
-            //adding request headers
-            xhr.setRequestHeader("DataServiceVersion", "2.0");
-            xhr.setRequestHeader("Accept", "application/json");
+              // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
+              mExcelSettings.worker = false;
+            },
 
-            //sending request
-            xhr.send();
+            // onButtonPress: function (oEvent) {
+            //   var this_ = this;
 
-            // Define a table [Note: you must include the table library to make the Table class work]
-            function buildTable(data) {
+            //   this_.wasteTime();
 
+            //   var CLIENT_ID_str = _clientID;
+            //   var API_SECRET_str = _apiSecret;
+            //   var API_URL_str = _oAuthURL;
+            //   var restAPIURL = that._export_settings.restapiurl;
 
-              // var oView = this_.getView();
-              //### THE APP: place the XMLView somewhere into DOM ###
-              var oView = sap.ui.xmlview({
-                viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-              });
-              // oView.placeAt(content);
+            //   var xhr = new XMLHttpRequest();
+            //   xhr.withCredentials = false;
 
-              var oModel = new sap.ui.model.json.JSONModel();
-              oModel.setData(data);
-              oView.setModel(oModel);
-              oView.placeAt(div0);
+            //   xhr.onreadystatechange = function () {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //       var res = JSON.parse(this.responseText);
+            //       buildTable(res);
+            //     }
+            //   };
 
-              this_.runNext();
+            //   //setting request method
+            //   //API endpoint for API sandbox 
+            //   xhr.open("GET", restAPIURL);
 
-            }
-          },
+            //   //adding request headers
+            //   xhr.setRequestHeader("DataServiceVersion", "2.0");
+            //   xhr.setRequestHeader("Accept", "application/json");
 
-          onBeforeExport: function (oEvt) {
-            var mExcelSettings = oEvt.getParameter("exportSettings");
-            // GW export
-            if (mExcelSettings.url) {
-              return;
-            }
-            // For UI5 Client Export --> The settings contains sap.ui.export.SpreadSheet relevant settings that be used to modify the output of excel
+            //   //sending request
+            //   xhr.send();
 
-            // Disable Worker as Mockserver is used in Demokit sample --> Do not use this for real applications!
-            mExcelSettings.worker = false;
-          },
+            //   // Define a table [Note: you must include the table library to make the Table class work]
+            //   function buildTable(data) {
 
-          // onButtonPress: function (oEvent) {
-          //   var this_ = this;
+            //     var oTable = new sap.ui.table.Table({
+            //       title: "SAC Stories",
+            //       selectionMode: sap.ui.table.SelectionMode.Single,
+            //       fixedColumnCount: 1,
+            //       enableColumnReordering: true,
+            //       width: "800px"
+            //     });
 
-          //   this_.wasteTime();
+            //     // Use the Object defined for table to add new column into the table
+            //     oTable.addColumn(new sap.ui.table.Column({
+            //       label: new sap.ui.commons.Label({ text: "Story ID" }),
+            //       template: new sap.ui.commons.TextField().bindProperty("value", "name"),
+            //       sortProperty: "name",
+            //       filterProperty: "name",
+            //       width: "125px"
 
-          //   var CLIENT_ID_str = _clientID;
-          //   var API_SECRET_str = _apiSecret;
-          //   var API_URL_str = _oAuthURL;
-          //   var restAPIURL = that._export_settings.restapiurl;
+            //     }));
 
-          //   var xhr = new XMLHttpRequest();
-          //   xhr.withCredentials = false;
+            //     var oModel = new sap.ui.model.json.JSONModel();
+            //     oModel.setData({ modelData: data });
+            //     oTable.setModel(oModel);
+            //     oTable.bindRows("/modelData");
+            //     oTable.sort(oTable.getColumns()[0]);
+            //     oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
 
-          //   xhr.onreadystatechange = function () {
-          //     if (this.readyState == 4 && this.status == 200) {
-          //       var res = JSON.parse(this.responseText);
-          //       buildTable(res);
-          //     }
-          //   };
+            //     this_.runNext();
 
-          //   //setting request method
-          //   //API endpoint for API sandbox 
-          //   xhr.open("GET", restAPIURL);
+            //   }
+            // },
 
-          //   //adding request headers
-          //   xhr.setRequestHeader("DataServiceVersion", "2.0");
-          //   xhr.setRequestHeader("Accept", "application/json");
+            wasteTime: function () {
+              busyDialog.open();
+            },
 
-          //   //sending request
-          //   xhr.send();
-
-          //   // Define a table [Note: you must include the table library to make the Table class work]
-          //   function buildTable(data) {
-
-          //     var oTable = new sap.ui.table.Table({
-          //       title: "SAC Stories",
-          //       selectionMode: sap.ui.table.SelectionMode.Single,
-          //       fixedColumnCount: 1,
-          //       enableColumnReordering: true,
-          //       width: "800px"
-          //     });
-
-          //     // Use the Object defined for table to add new column into the table
-          //     oTable.addColumn(new sap.ui.table.Column({
-          //       label: new sap.ui.commons.Label({ text: "Story ID" }),
-          //       template: new sap.ui.commons.TextField().bindProperty("value", "name"),
-          //       sortProperty: "name",
-          //       filterProperty: "name",
-          //       width: "125px"
-
-          //     }));
-
-          //     var oModel = new sap.ui.model.json.JSONModel();
-          //     oModel.setData({ modelData: data });
-          //     oTable.setModel(oModel);
-          //     oTable.bindRows("/modelData");
-          //     oTable.sort(oTable.getColumns()[0]);
-          //     oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
-
-          //     this_.runNext();
-
-          //   }
-          // },
-
-          wasteTime: function () {
-            busyDialog.open();
-          },
-
-          runNext: function () {
-            busyDialog.close();
-          },
+            runNext: function () {
+              busyDialog.close();
+            },
+          });
         });
+
+        // var foundIndex = Ar.findIndex(x => x.id == widgetName);
+        // var divfinal = Ar[foundIndex].div;
+
+        //### THE APP: place the XMLView somewhere into DOM ###
+        // var oView = sap.ui.xmlview({
+        //   viewContent: jQuery(divfinal).html(),
+        // });
+
+        if (that_._designMode) {
+          // oView.byId("buttonId").setEnabled(false);
+
+        } else {
+          // oView.byId("buttonId").setEnabled(true);
+        }
       });
-
-      // var foundIndex = Ar.findIndex(x => x.id == widgetName);
-      // var divfinal = Ar[foundIndex].div;
-
-      //### THE APP: place the XMLView somewhere into DOM ###
-      // var oView = sap.ui.xmlview({
-      //   viewContent: jQuery(divfinal).html(),
-      // });
-
-      if (that_._designMode) {
-        // oView.byId("buttonId").setEnabled(false);
-
-      } else {
-        // oView.byId("buttonId").setEnabled(true);
-      }
-    });
+    }
   }
 })();
