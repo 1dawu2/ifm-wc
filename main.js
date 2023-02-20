@@ -376,9 +376,9 @@ var getScriptPromisify = (src) => {
   function UI5(changedProperties, that) {
     var that_ = that;
 
-    let content = document.createElement('div');
-    content.slot = "content";
-    that_.appendChild(content);
+    // let content = document.createElement('div');
+    // content.slot = "content";
+    // that_.appendChild(content);
 
     // div = document.createElement('div');
     // widgetName = that._export_settings.name;
@@ -484,7 +484,7 @@ var getScriptPromisify = (src) => {
               var oModel = new sap.ui.model.json.JSONModel();
               oModel.setData(data);
               oView.setModel(oModel);
-              oView.placeAt(conent);
+              oView.placeAt(div0);
 
               this_.runNext();
 
