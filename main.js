@@ -67,7 +67,7 @@ var getScriptPromisify = (src) => {
         mode: "open"
       });
 
-      _shadowRoot.appendChild(tmpl.content.cloneNode(true));
+      // _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
       getStoryMetaData();
 
@@ -384,26 +384,28 @@ var getScriptPromisify = (src) => {
     // widgetName = that._export_settings.name;
     // div.slot = "content_" + widgetName;
 
-    // if (that._firstConnectionUI5 === 0) {
-    //   console.log("--First Time --");
+    if (that._firstConnectionUI5 === 0) {
+      //   console.log("--First Time --");
 
-    //   let div0 = document.createElement('div');
-    //   div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
-    //   _shadowRoot.appendChild(div0);
+      let div0 = document.createElement('div');
+      div0.innerHTML = tmpl
+      _shadowRoot.appendChild(div0);
+      //   div0.innerHTML = '<?xml version="1.0"?><script id="oView_' + widgetName + '" name="oView_' + widgetName + '" type="sapui5/xmlview"><mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" controllerName="myView.Template"><l:VerticalLayout class="sapUiContentPadding" width="100%"><l:content></l:content><Button id="buttonId" class="sapUiSmallMarginBottom" text="Get Stories" width="150px" press=".onButtonPress" /></l:VerticalLayout></mvc:View></script>';
+      //   _shadowRoot.appendChild(div0);
 
-    //   let div1 = document.createElement('div');
-    //   div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
-    //   _shadowRoot.appendChild(div1);
+      //   let div1 = document.createElement('div');
+      //   div1.innerHTML = '<div id="ui5_content_' + widgetName + '" name="ui5_content_' + widgetName + '"><slot name="content_' + widgetName + '"></slot></div></div>';
+      //   _shadowRoot.appendChild(div1);
 
-    //   that_.appendChild(div);
+      //   that_.appendChild(div);
 
-    //   var mapcanvas_divstr = _shadowRoot.getElementById('oView_' + widgetName);
+      //   var mapcanvas_divstr = _shadowRoot.getElementById('oView_' + widgetName);
 
-    //   Ar.push({
-    //     'id': widgetName,
-    //     'div': mapcanvas_divstr
-    //   });
-    // }
+      //   Ar.push({
+      //     'id': widgetName,
+      //     'div': mapcanvas_divstr
+      //   });
+    }
 
     sap.ui.getCore().attachInit(function () {
       "use strict";
