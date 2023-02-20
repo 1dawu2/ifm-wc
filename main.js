@@ -376,6 +376,10 @@ var getScriptPromisify = (src) => {
   function UI5(changedProperties, that) {
     var that_ = that;
 
+    let content = document.createElement('div');
+    content.slot = "content";
+    that_.appendChild(content);
+
     // div = document.createElement('div');
     // widgetName = that._export_settings.name;
     // div.slot = "content_" + widgetName;
@@ -406,9 +410,24 @@ var getScriptPromisify = (src) => {
 
       //### Controller ###
       sap.ui.define([
+        "jquery.sap.global",
         "sap/ui/core/mvc/Controller",
-        "sap/m/BusyDialog"
-      ], function (Controller, BusyDialog) {
+        "sap/ui/model/json/JSONModel",
+        "sap/m/MessageToast",
+        "sap/ui/core/library",
+        "sap/ui/core/Core",
+        'sap/ui/model/Filter',
+        'sap/m/library',
+        'sap/m/MessageBox',
+        'sap/ui/unified/DateRange',
+        'sap/ui/core/format/DateFormat',
+        'sap/ui/model/BindingMode',
+        'sap/ui/core/Fragment',
+        'sap/m/Token',
+        'sap/ui/model/FilterOperator',
+        'sap/ui/model/odata/ODataModel',
+        'sap/m/BusyDialog'
+      ], function (jQuery, Controller, JSONModel, MessageToast, coreLibrary, Core, Filter, mobileLibrary, MessageBox, DateRange, DateFormat, BindingMode, Fragment, Token, FilterOperator, ODataModel, BusyDialog) {
         "use strict";
 
         var busyDialog = (busyDialog) ? busyDialog : new BusyDialog({});
@@ -563,7 +582,7 @@ var getScriptPromisify = (src) => {
       //   viewContent: jQuery(divfinal).html(),
       // });
 
-      // oView.placeAt(div);
+      oView.placeAt(conent);
 
       if (that_._designMode) {
         // oView.byId("buttonId").setEnabled(false);
