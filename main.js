@@ -545,15 +545,15 @@ var getScriptPromisify = (src) => {
         });
       });
 
-      var foundIndex = Ar.findIndex(x => x.id == widgetName);
-      var divfinal = Ar[foundIndex].div;
+      // var foundIndex = Ar.findIndex(x => x.id == widgetName);
+      // var divfinal = Ar[foundIndex].div;
 
       //### THE APP: place the XMLView somewhere into DOM ###
-      var oView = sap.ui.xmlview({
-        viewContent: jQuery(divfinal).html(),
-      });
+      // var oView = sap.ui.xmlview({
+      //   viewContent: jQuery(divfinal).html(),
+      // });
 
-      oView.placeAt(div);
+      // oView.placeAt(div);
 
       if (that_._designMode) {
         oView.byId("buttonId").setEnabled(false);
