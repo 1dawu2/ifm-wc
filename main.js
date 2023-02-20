@@ -393,6 +393,8 @@ var getScriptPromisify = (src) => {
             xhr.onreadystatechange = function () {
               if (this.readyState == 4 && this.status == 200) {
                 var res = JSON.parse(this.responseText);
+                console.log("response for table");
+                console.log(res);
                 buildTable(res);
               }
             };
