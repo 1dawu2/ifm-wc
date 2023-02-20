@@ -417,6 +417,8 @@ var getScriptPromisify = (src) => {
 
             var this_ = this;
 
+            sap.ui.getCore().applyTheme("sap_belize"); 
+
             this_.wasteTime();
 
             var CLIENT_ID_str = _clientID;
@@ -556,10 +558,10 @@ var getScriptPromisify = (src) => {
       // oView.placeAt(div);
 
       if (that_._designMode) {
-        oView.byId("buttonId").setEnabled(false);
+        // oView.byId("buttonId").setEnabled(false);
 
       } else {
-        oView.byId("buttonId").setEnabled(true);
+        // oView.byId("buttonId").setEnabled(true);
       }
     });
   }
