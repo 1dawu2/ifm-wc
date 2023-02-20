@@ -438,7 +438,7 @@ var getScriptPromisify = (src) => {
               oTable.bindRows("/modelData");
               oTable.sort(oTable.getColumns()[0]);
               console.log(oTable);
-              oTable.placeAt(_shadowRoot.getElementById('content_' + widgetName));
+              oTable.placeAt(_shadowRoot.getElementById('ui5_content_' + widgetName));
               console.log(_shadowRoot.getElementById('oView_' + widgetName));
 
               this_.runNext();
