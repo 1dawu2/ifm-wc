@@ -484,6 +484,7 @@ var getScriptPromisify = (src) => {
               var oModel = new sap.ui.model.json.JSONModel();
               oModel.setData(data);
               oView.setModel(oModel);
+              oView.placeAt(conent);
 
               this_.runNext();
 
@@ -583,8 +584,6 @@ var getScriptPromisify = (src) => {
       // var oView = sap.ui.xmlview({
       //   viewContent: jQuery(divfinal).html(),
       // });
-
-      oView.placeAt(conent);
 
       if (that_._designMode) {
         // oView.byId("buttonId").setEnabled(false);
