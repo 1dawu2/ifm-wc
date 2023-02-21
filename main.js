@@ -10,7 +10,7 @@ var getScriptPromisify = (src) => {
   let _oAuthURL;
   let _clientID;
   let _apiSecret;
-  let ifmLogo = "https://github.com/1dawu2/ifm-wc/blob/main/assets/logo.svg";
+
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
@@ -22,32 +22,13 @@ var getScriptPromisify = (src) => {
     <script id="oView" name="oView" type="sapui5/xmlview">
       <mvc:View 
         controllerName="ifm.hack.initial"
-        xmlns="sap.ui.layout"
+        xmlns:l="sap.ui.layout"
         xmlns="sap.ui.table"
         xmlns:mvc="sap.ui.core.mvc"
-        xmlns="sap.m"
+        xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
-        <Panel>
-          <headerToolbar>
-            <OverflowToolbar>
-              <VBox alignItems="Center">
-                <Avatar
-                  src="${ifmLogo}"
-                  displaySize="XL"
-                  displayShape="Square"
-                  showBorder="true"
-                  press="onPress"
-                />
-                <Text
-                  text="IFM Health Analysis Conversion Kit"
-                  class="sapUiSmallMarginTop"
-                />
-              </VBox>
-            </OverflowToolbar>
-          </headerToolbar>
-        </Panel>
-        <Panel id="oPanel"/>
+        <m:Panel id="oPanel"/>
       </mvc:View>
     </script>
     <div id="content"></div>
@@ -98,13 +79,7 @@ var getScriptPromisify = (src) => {
           }];
 
           var oModel = new sap.ui.model.json.JSONModel();
-          var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
           oModel.setData({ DLList: data });
-          var oModelTest = new sap.ui.model.json.JSONModel();
-          oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
-          console.log("JSON Model");
-          console.log(oModelTest);
-
 
           var oTable = new sap.ui.table.Table({
             title: "Table binding",
@@ -134,6 +109,41 @@ var getScriptPromisify = (src) => {
         viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
       oView.placeAt(content);
+
+      // var naughtyList = [
+      //   { lastName: "Dente", name: "Al", stillNaughty: true },
+      //   { lastName: "Friese", name: "Andy", stillNaughty: true },
+      //   { lastName: "Mann", name: "Anita", stillNaughty: false }
+      // ];
+
+      // var oModel = new sap.ui.model.json.JSONModel();
+      // oModel.setData(naughtyList);
+      // // instantiate the table
+      // sap.ui.getCore().applyTheme("sap_belize");
+      // var oTable = new sap.ui.table.Table({
+      //   selectionMode: sap.ui.table.SelectionMode.Single,
+      //   selectionBehavior: sap.ui.table.SelectionBehavior.Row
+      // });
+
+      // // define the Table columns and the binding values
+      // oTable.addColumn(new sap.ui.table.Column({
+      //   label: new sap.ui.commons.Label({ text: "Last Name" }),
+      //   template: new sap.ui.commons.TextView({ text: "{lastName}" })
+      // }));
+
+      // oTable.addColumn(new sap.ui.table.Column({
+      //   label: new sap.ui.commons.Label({ text: "First Name" }),
+      //   template: new sap.ui.commons.TextField({ value: "{name}" })
+      // }));
+
+      // oTable.addColumn(new sap.ui.table.Column({
+      //   label: new sap.ui.commons.Label({ text: "Still Naughty" }),
+      //   template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
+      // }));
+
+      // oTable.setModel(oModel);
+      // oTable.bindRows("/");
+      // oTable.placeAt("content");
 
     }
 
