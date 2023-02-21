@@ -23,12 +23,12 @@
         xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
-        <Button
+        <m:Button
           text="Toggle Collapse/Expand"
           icon="sap-icon://menu2"
           press=".onCollapseExpandPress"
         />
-        <Button
+        <m:Button
           text="Show/Hide Sub Item 3"
           icon="sap-icon://menu2"
           press=".onHideShowSubItemPress"
@@ -99,7 +99,7 @@
 
     }
 
-    buildTable(that) {
+    buildUI(that) {
 
       var that_ = that;
 
@@ -107,57 +107,81 @@
       content.slot = "content";
       that_.appendChild(content);
 
-      sap.ui.controller("ifm.hack.initial", {
-        onInit: function (oEvent) {
-          this.oPanel = this.byId("oPanel");
+      sap.ui.define([
+        "sap/ui/core/mvc/Controller"
+      ], function (Controller) {
+        "use strict";
 
-          this.bindTable();
-        },
-        bindTable: function () {
-          var data = [{
-            "fname": "Akhilesh",
-            "lname": "Upadhyay"
-          }, {
-            "fname": "Aakanksha",
-            "lname": "Gupta"
-          }];
+        return Controller.extend("ifm.hack.initial", {
 
-          var oModel = new sap.ui.model.json.JSONModel();
-          oModel.setData({ DLList: data });
+          onCollapseExpandPress: function () {
+            var oSideNavigation = this.byId("sideNavigation");
+            var bExpanded = oSideNavigation.getExpanded();
 
-          var oModelTest = new sap.ui.model.json.JSONModel();
-          var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-          oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
-          oModelTest.attachRequestCompleted(function (oEvent) {
-            var oData = oEvent.getSource().oData;
-            console.log(oData);
-          });
+            oSideNavigation.setExpanded(!bExpanded);
+          },
 
-          var oTable = new sap.ui.table.Table({
-            title: "SAC Story/Application Overview:",
-            showNoData: true,
-            visibleRowCount: 10
-          });
+          onHideShowSubItemPress: function () {
+            var oNavListItem = this.byId("subItem3");
+            oNavListItem.setVisible(!oNavListItem.getVisible());
+          },
 
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "First Name" }),
-            template: new sap.ui.commons.TextView({ text: "{model1>fname}" })
-          }));
+          onInit: function (oEvent) {
+            this.oPanel = this.byId("oPanel");
+            this.bindTable();
+          },
+          bindTable: function () {
+            var data = [{
+              "fname": "Akhilesh",
+              "lname": "Upadhyay"
+            }, {
+              "fname": "Aakanksha",
+              "lname": "Gupta"
+            }];
 
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Last Name" }),
-            template: new sap.ui.commons.TextView({ text: "{model1>lname}" })
-          }));
+            var oModel = new sap.ui.model.json.JSONModel();
+            oModel.setData({ DLList: data });
 
-          oTable.setModel(oModel, "model1");
-          oTable.bindRows("model1>/DLList");
+            var oModelTest = new sap.ui.model.json.JSONModel();
+            var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+            var resURL = that_._export_settings.restapiurl.replace('stories?include=models','Resources');
+            oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
+            oModelTest.attachRequestCompleted(function (oEvent) {
+              var oData = oEvent.getSource().oData;
+              console.log(oData);
+            });
 
-          this.oPanel.addContent(oTable);
-        }
+            var oTable = new sap.ui.table.Table({
+              title: "SAC Story/Application Overview:",
+              showNoData: true,
+              visibleRowCount: 10
+            });
+
+            oTable.addColumn(new sap.ui.table.Column({
+              label: new sap.ui.commons.Label({ text: "First Name" }),
+              template: new sap.ui.commons.TextView({ text: "{model1>fname}" })
+            }));
+
+            oTable.addColumn(new sap.ui.table.Column({
+              label: new sap.ui.commons.Label({ text: "Last Name" }),
+              template: new sap.ui.commons.TextView({ text: "{model1>lname}" })
+            }));
+
+            oTable.setModel(oModel, "model1");
+            oTable.bindRows("model1>/DLList");
+
+            this.oPanel.addContent(oTable);
+          }
+
+        });
       });
 
+      // sap.ui.controller("ifm.hack.initial", {
+
+      // });
+
       //### THE APP: place the XMLView somewhere into DOM ###
-      var oView = sap.ui.xmlview({
+      var oView = sap.ui.core.mvc.XMLView({
         viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
       oView.placeAt(content);
