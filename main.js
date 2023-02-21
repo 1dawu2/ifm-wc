@@ -16,12 +16,36 @@
     <script id="oView" name="oView" type="sapui5/xmlview">
       <mvc:View 
         controllerName="ifm.hack.initial"
+        xmlns="sap.ui.webc.main"
+        xmlns:fiori="sap.ui.webc.fiori"
         xmlns:l="sap.ui.layout"
         xmlns="sap.ui.table"
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
+        <fiori:SideNavigation id="sideNavigation">
+          <fiori:header text="Work" />
+          <fiori:SideNavigationItem icon="home" text="Home" />
+          <fiori:SideNavigationItem icon="employee" text="People">
+            <fiori:items>
+              <fiori:SideNavigationSubItem text="From My Team" />
+              <fiori:SideNavigationSubItem text="From Other Teams" />
+            </fiori:items>
+          </fiori:SideNavigationItem>
+          <fiori:SideNavigationItem icon="locate-me" text="Locations" />
+          <fiori:SideNavigationItem icon="calendar" text="Events">
+            <fiori:items>
+              <fiori:SideNavigationSubItem text="Local" />
+              <fiori:SideNavigationSubItem text="Other" />
+            </fiori:items>
+          </fiori:SideNavigationItem>
+          <fiori:fixedItems>
+            <fiori:SideNavigationItem icon="chain-link" text="Useful Links" />
+            <fiori:SideNavigationItem icon="history" text="History" />
+          </fiori:fixedItems>
+        </fiori:SideNavigation>
+        <m:Button text="Collapse" click=".handleClick" />
         <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
           <m:VBox alignItems="Center">
             <m:Avatar
