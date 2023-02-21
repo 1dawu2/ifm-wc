@@ -119,7 +119,7 @@
       content.slot = "content";
       that_.appendChild(content);
 
-      sap.ui.require([
+      sap.ui.define([
         "sap/ui/core/mvc/Controller"
       ], function (Controller) {
         "use strict";
