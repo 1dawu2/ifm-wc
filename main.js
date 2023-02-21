@@ -14,23 +14,21 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-    <script id="sap-ui-bootstrap"
-      data-sap-ui-theme="sap_bluecrystal"
-      data-sap-ui-xx-bindingSyntax="complex"
-      data-sap-ui-libs="sap.m, sap.ui.commons, sap.ui.table">
-    </script>
-
-    <script id="view1" type="ui5/xmlview">
+    <style>
+    </style>
+    <div id="ui5_content" name="ui5_content">
+    <slot name="content"></slot>
+    </div>
+    <script id="oView" name="oView" type="sapui5/xmlview">
       <mvc:View 
-        controllerName="view1.initial"
+        controllerName="ifm.hack.initial"
+        xmlns:l="sap.ui.layout"
         xmlns="sap.ui.table"
-          xmlns:mvc="sap.ui.core.mvc"
-          xmlns:m="sap.m"
-          xmlns:u="sap.ui.unified"
-          xmlns:core="sap.ui.core" >
-      
-      <m:Panel id="oPanel"/>
-      
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:m="sap.m"
+        xmlns:core="sap.ui.core"
+      >
+        <m:Panel id="oPanel"/>
       </mvc:View>
     </script>
     <div id="content"></div>
@@ -61,7 +59,7 @@ var getScriptPromisify = (src) => {
 
     buildTable() {
 
-      sap.ui.controller("view1.initial", {
+      sap.ui.controller("ifm.hack.initial", {
         onInit: function (oEvent) {
           this.oPanel = this.byId("oPanel");
 
@@ -103,7 +101,7 @@ var getScriptPromisify = (src) => {
       });
 
       var oView = sap.ui.xmlview({
-        viewContent: jQuery("#view1").html()
+        viewContent: jQuery("#oView").html()
       });
 
       oView.placeAt("content");
