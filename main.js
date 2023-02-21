@@ -9,6 +9,20 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
+      :host(.side-navigation-demo) {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+      
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      
+        max-width: 15rem;
+      }
     </style>
     <div id="ui5_content" name="ui5_content">
     <slot name="content"></slot>
@@ -65,7 +79,6 @@
             />
             <m:Image
               src="${backImg}"
-              mode="ImageMode.Background"
               height="100%"
               width="100%"
               backgroundSize="contain"
@@ -107,7 +120,7 @@
       content.slot = "content";
       that_.appendChild(content);
 
-      sap.ui.define([
+      sap.ui.require([
         "sap/ui/core/mvc/Controller"
       ], function (Controller) {
         "use strict";
