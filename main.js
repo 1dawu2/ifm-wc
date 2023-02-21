@@ -16,36 +16,46 @@
     <script id="oView" name="oView" type="sapui5/xmlview">
       <mvc:View 
         controllerName="ifm.hack.initial"
-        xmlns:webc="sap.ui.webc.main"
-        xmlns:fiori="sap.ui.webc.fiori"
+        xmlns:tnt="sap.tnt"
         xmlns:l="sap.ui.layout"
         xmlns="sap.ui.table"
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
-        <fiori:SideNavigation id="sideNavigation">
-          <fiori:header text="Work" />
-          <fiori:SideNavigationItem icon="home" text="Home" />
-          <fiori:SideNavigationItem icon="employee" text="People">
-            <fiori:items>
-              <fiori:SideNavigationSubItem text="From My Team" />
-              <fiori:SideNavigationSubItem text="From Other Teams" />
-            </fiori:items>
-          </fiori:SideNavigationItem>
-          <fiori:SideNavigationItem icon="locate-me" text="Locations" />
-          <fiori:SideNavigationItem icon="calendar" text="Events">
-            <fiori:items>
-              <fiori:SideNavigationSubItem text="Local" />
-              <fiori:SideNavigationSubItem text="Other" />
-            </fiori:items>
-          </fiori:SideNavigationItem>
-          <fiori:fixedItems>
-            <fiori:SideNavigationItem icon="chain-link" text="Useful Links" />
-            <fiori:SideNavigationItem icon="history" text="History" />
-          </fiori:fixedItems>
-        </fiori:SideNavigation>
-        <m:Button text="Collapse" click=".handleClick" />
+        <Button
+          text="Toggle Collapse/Expand"
+          icon="sap-icon://menu2"
+          press=".onCollapseExpandPress"
+        />
+        <Button
+          text="Show/Hide Sub Item 3"
+          icon="sap-icon://menu2"
+          press=".onHideShowSubItemPress"
+        />
+        <tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+          <tnt:NavigationList>
+            <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee">
+              <tnt:NavigationListItem text="Sub Item 1" />
+              <tnt:NavigationListItem text="Sub Item 2" />
+              <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+              <tnt:NavigationListItem text="Sub Item 4" />
+            </tnt:NavigationListItem>
+            <tnt:NavigationListItem text="Item 2" icon="sap-icon://building">
+              <tnt:NavigationListItem text="Sub Item 1" />
+              <tnt:NavigationListItem text="Sub Item 2" />
+              <tnt:NavigationListItem text="Sub Item 3" />
+              <tnt:NavigationListItem text="Sub Item 4" />
+            </tnt:NavigationListItem>
+          </tnt:NavigationList>
+          <tnt:fixedItem>
+            <tnt:NavigationList>
+              <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
+              <tnt:NavigationListItem text="Item 2" icon="sap-icon://building" />
+              <tnt:NavigationListItem text="Item 3" icon="sap-icon://card" />
+            </tnt:NavigationList>
+          </tnt:fixedItem>
+        </tnt:SideNavigation>
         <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
           <m:VBox alignItems="Center">
             <m:Avatar
