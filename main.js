@@ -22,10 +22,10 @@ var getScriptPromisify = (src) => {
     <script id="oView" name="oView" type="sapui5/xmlview">
       <mvc:View 
         controllerName="ifm.hack.initial"
-        xmlns:l="sap.ui.layout"
+        xmlns="sap.ui.layout"
         xmlns="sap.ui.table"
         xmlns:mvc="sap.ui.core.mvc"
-        xmlns:m="sap.m"
+        xmlns="sap.m"
         xmlns:core="sap.ui.core"
       >
         <Panel>
