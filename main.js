@@ -46,9 +46,8 @@ var getScriptPromisify = (src) => {
               </VBox>
             </OverflowToolbar>
           </headerToolbar>
-          <content id="oPanel">
-          </content>
         </Panel>
+        <Panel id="oPanel"/>
       </mvc:View>
     </script>
     <div id="content"></div>
@@ -129,41 +128,6 @@ var getScriptPromisify = (src) => {
         viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
       oView.placeAt(content);
-
-      // var naughtyList = [
-      //   { lastName: "Dente", name: "Al", stillNaughty: true },
-      //   { lastName: "Friese", name: "Andy", stillNaughty: true },
-      //   { lastName: "Mann", name: "Anita", stillNaughty: false }
-      // ];
-
-      // var oModel = new sap.ui.model.json.JSONModel();
-      // oModel.setData(naughtyList);
-      // // instantiate the table
-      // sap.ui.getCore().applyTheme("sap_belize");
-      // var oTable = new sap.ui.table.Table({
-      //   selectionMode: sap.ui.table.SelectionMode.Single,
-      //   selectionBehavior: sap.ui.table.SelectionBehavior.Row
-      // });
-
-      // // define the Table columns and the binding values
-      // oTable.addColumn(new sap.ui.table.Column({
-      //   label: new sap.ui.commons.Label({ text: "Last Name" }),
-      //   template: new sap.ui.commons.TextView({ text: "{lastName}" })
-      // }));
-
-      // oTable.addColumn(new sap.ui.table.Column({
-      //   label: new sap.ui.commons.Label({ text: "First Name" }),
-      //   template: new sap.ui.commons.TextField({ value: "{name}" })
-      // }));
-
-      // oTable.addColumn(new sap.ui.table.Column({
-      //   label: new sap.ui.commons.Label({ text: "Still Naughty" }),
-      //   template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
-      // }));
-
-      // oTable.setModel(oModel);
-      // oTable.bindRows("/");
-      // oTable.placeAt("content");
 
     }
 
