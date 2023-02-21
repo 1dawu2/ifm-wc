@@ -2,6 +2,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 import "@ui5/webcomponents/dist/Button.js";
 import "@ui5/webcomponents-fiori/dist/SideNavigation";
+import "@ui5/webcomponents-fiori/dist/ShellBar";
 export default class ChatGPT extends HTMLElement {
     constructor() {
         super();
@@ -87,6 +88,13 @@ export default class ChatGPT extends HTMLElement {
 
         var uiMenuWC = document.createElement('div');
         uiMenuWC.innerHTML = `
+        <ui5-shellbar
+            primary-title="UI5 Web Components"
+            secondary-title="The Best Run SAP"
+            show-co-pilot
+        >
+            <ui5-button icon="menu" slot="startButton" id="startButton"></ui5-button>
+        </ui5-shellbar>
         <ui5-side-navigation>
             <ui5-side-navigation-item text="Home" icon="home"></ui5-side-navigation-item>
             <ui5-side-navigation-item text="People" expanded icon="group">
