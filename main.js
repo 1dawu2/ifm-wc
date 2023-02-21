@@ -32,8 +32,8 @@
             <m:Image
               src="${backImg}"
               mode="ImageMode.Background"
-              height="100px"
-              width="300px"
+              height="100%"
+              width="100%"
               backgroundSize="contain"
               backgroundPosition="center center"
             />
