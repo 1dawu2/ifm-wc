@@ -14,7 +14,26 @@ var getScriptPromisify = (src) => {
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
-    <div id="content"></div>      
+    <script id="sap-ui-bootstrap"
+      data-sap-ui-theme="sap_bluecrystal"
+      data-sap-ui-xx-bindingSyntax="complex"
+      data-sap-ui-libs="sap.m, sap.ui.commons, sap.ui.table">
+    </script>
+
+    <script id="view1" type="ui5/xmlview">
+      <mvc:View 
+        controllerName="view1.initial"
+        xmlns="sap.ui.table"
+          xmlns:mvc="sap.ui.core.mvc"
+          xmlns:m="sap.m"
+          xmlns:u="sap.ui.unified"
+          xmlns:core="sap.ui.core" >
+      
+      <m:Panel id="oPanel"/>
+      
+      </mvc:View>
+    </script>
+    <div id="content"></div>
   `;
   class IFMStories extends HTMLElement {
     constructor() {
@@ -42,38 +61,87 @@ var getScriptPromisify = (src) => {
 
     buildTable() {
 
-      var naughtyList = [
-        { lastName: "Dente", name: "Al", stillNaughty: true },
-        { lastName: "Friese", name: "Andy", stillNaughty: true },
-        { lastName: "Mann", name: "Anita", stillNaughty: false }
-      ];
+      sap.ui.controller("view1.initial", {
+        onInit: function (oEvent) {
+          this.oPanel = this.byId("oPanel");
 
-      var oModel = new sap.ui.model.json.JSONModel();
-      oModel.setData(naughtyList);
-      // instantiate the table
-      sap.ui.getCore().applyTheme("sap_belize");
-      var oTable = new sap.ui.table.AnalyticalTable.Table({
+          this.bindTable();
+        },
+        bindTable: function () {
+          var data = [{
+            "fname": "Akhilesh",
+            "lname": "Upadhyay"
+          }, {
+            "fname": "Aakanksha",
+            "lname": "Gupta"
+          }];
+
+          var oModel = new sap.ui.model.json.JSONModel();
+          oModel.setData({ DLList: data });
+
+          var oTable = new sap.ui.table.Table({
+            title: "Table binding",
+            showNoData: true,
+            visibleRowCount: 5
+          });
+
+          oTable.addColumn(new sap.ui.table.Column({
+            label: new sap.ui.commons.Label({ text: "First Name" }),
+            template: new sap.ui.commons.TextView({ text: "{model1>fname}" })
+          }));
+
+          oTable.addColumn(new sap.ui.table.Column({
+            label: new sap.ui.commons.Label({ text: "Last Name" }),
+            template: new sap.ui.commons.TextView({ text: "{model1>lname}" })
+          }));
+
+          oTable.setModel(oModel, "model1");
+          oTable.bindRows("model1>/DLList");
+
+          this.oPanel.addContent(oTable);
+        }
       });
 
-      // define the Table columns and the binding values
-      oTable.addColumn(new sap.ui.table.AnalyticalTable.Column({
-        label: new sap.ui.commons.Label({ text: "Last Name" }),
-        template: new sap.ui.commons.TextView({ text: "{lastName}" })
-      }));
+      var oView = sap.ui.xmlview({
+        viewContent: jQuery("#view1").html()
+      });
 
-      oTable.addColumn(new sap.ui.table.AnalyticalTable.Column({
-        label: new sap.ui.commons.Label({ text: "First Name" }),
-        template: new sap.ui.commons.TextField({ value: "{name}" })
-      }));
+      oView.placeAt("content");
 
-      oTable.addColumn(new sap.ui.table.AnalyticalTable.Column({
-        label: new sap.ui.commons.Label({ text: "Still Naughty" }),
-        template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
-      }));
+      // var naughtyList = [
+      //   { lastName: "Dente", name: "Al", stillNaughty: true },
+      //   { lastName: "Friese", name: "Andy", stillNaughty: true },
+      //   { lastName: "Mann", name: "Anita", stillNaughty: false }
+      // ];
 
-      oTable.setModel(oModel);
-      oTable.bindRows("/");
-      oTable.placeAt("content");
+      // var oModel = new sap.ui.model.json.JSONModel();
+      // oModel.setData(naughtyList);
+      // // instantiate the table
+      // sap.ui.getCore().applyTheme("sap_belize");
+      // var oTable = new sap.ui.table.Table({
+      //   selectionMode: sap.ui.table.SelectionMode.Single,
+      //   selectionBehavior: sap.ui.table.SelectionBehavior.Row
+      // });
+
+      // // define the Table columns and the binding values
+      // oTable.addColumn(new sap.ui.table.Column({
+      //   label: new sap.ui.commons.Label({ text: "Last Name" }),
+      //   template: new sap.ui.commons.TextView({ text: "{lastName}" })
+      // }));
+
+      // oTable.addColumn(new sap.ui.table.Column({
+      //   label: new sap.ui.commons.Label({ text: "First Name" }),
+      //   template: new sap.ui.commons.TextField({ value: "{name}" })
+      // }));
+
+      // oTable.addColumn(new sap.ui.table.Column({
+      //   label: new sap.ui.commons.Label({ text: "Still Naughty" }),
+      //   template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
+      // }));
+
+      // oTable.setModel(oModel);
+      // oTable.bindRows("/");
+      // oTable.placeAt("content");
 
     }
 
