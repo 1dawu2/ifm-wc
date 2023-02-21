@@ -28,7 +28,7 @@ var getScriptPromisify = (src) => {
         xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
-        <Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
+        <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
           <headerToolbar>
             <OverflowToolbar>
               <VBox alignItems="Center">
@@ -46,8 +46,8 @@ var getScriptPromisify = (src) => {
               </VBox>
             </OverflowToolbar>
           </headerToolbar>
-        </Panel>
-        <Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+        </m:Panel>
+        <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
         />
       </mvc:View>
     </script>
