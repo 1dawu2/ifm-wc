@@ -89,6 +89,15 @@ var getScriptPromisify = (src) => {
           var oModel = new sap.ui.model.json.JSONModel();
           oModel.setData({ DLList: data });
 
+          var oModelTest = new sap.ui.model.json.JSONModel();
+          var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
+          oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
+          console.log(oModelTest);
+          oModelTest.attachRequestCompleted(function(oEvent){
+            var oData = oEvent.getSource().oData;
+            console.log(oData);
+        });
+
           var oTable = new sap.ui.table.Table({
             title: "SAC Story/Application Overview:",
             showNoData: true,
