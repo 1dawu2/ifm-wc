@@ -25,7 +25,7 @@ var getScriptPromisify = (src) => {
         xmlns:l="sap.ui.layout"
         xmlns="sap.ui.table"
         xmlns:mvc="sap.ui.core.mvc"
-        xmlns="sap.m"
+        xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
         <Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
