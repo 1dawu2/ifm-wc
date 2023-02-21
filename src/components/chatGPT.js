@@ -1,6 +1,7 @@
 //import html from './chatGPT.html'
 const { Configuration, OpenAIApi } = require("openai");
 import "@ui5/webcomponents/dist/Button.js";
+import "@ui5/webcomponents-fiori/dist/SideNavigation";
 export default class ChatGPT extends HTMLElement {
     constructor() {
         super();
@@ -80,9 +81,32 @@ export default class ChatGPT extends HTMLElement {
         // append input to shadow DOM
         shadowRoot.appendChild(input);
 
-        var uiWC = document.createElement('div');
-        uiWC.innerHTML = `<ui5-button>Hello UI5 Web Components</ui5-button>`;
-        shadowRoot.append(uiWC);
+        var uiBtnWC = document.createElement('div');
+        uiBtnWC.innerHTML = `<ui5-button>Hello UI5 Web Components</ui5-button>`;
+        shadowRoot.append(uiBtnWC);
+
+        var uiMenuWC = document.createElement('div');
+        uiMenuWC.innerHTML = `
+        <ui5-side-navigation>
+            <ui5-side-navigation-item text="Home" icon="home"></ui5-side-navigation-item>
+            <ui5-side-navigation-item text="People" expanded icon="group">
+                <ui5-side-navigation-sub-item text="From My Team"></ui5-side-navigation-sub-item>
+                <ui5-side-navigation-sub-item text="From Other Teams"></ui5-side-navigation-sub-item>
+            </ui5-side-navigation-item>
+            <ui5-side-navigation-item text="Locations" icon="locate-me" selected></ui5-side-navigation-item>
+            <ui5-side-navigation-item text="Events" icon="calendar">
+                <ui5-side-navigation-sub-item text="Local"></ui5-side-navigation-sub-item>
+                <ui5-side-navigation-sub-item text="Others"></ui5-side-navigation-sub-item>
+            </ui5-side-navigation-item>
+
+            <ui5-side-navigation-item slot="fixedItems" text="Useful Links" icon="chain-link"></ui5-side-navigation-item>
+            <ui5-side-navigation-item slot="fixedItems" text="History" icon="history"></ui5-side-navigation-item>
+        </ui5-side-navigation>
+         <script>
+            const sideNavigation = document.querySelector("ui5-side-navigation");
+            document.querySelector("#startButton").addEventListener("click", event => sideNavigation.collapsed = !sideNavigation.collapsed);
+        </script>`;
+        shadowRoot.append(uiMenuWC);
 
     }
 
