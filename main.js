@@ -154,7 +154,8 @@
             var oTable = new sap.ui.table.Table({
               title: "SAC Story/Application Overview:",
               showNoData: true,
-              visibleRowCount: 10
+              visibleRowCount: 10,
+              backgroundDesign: "Translucent "
             });
 
             oTable.addColumn(new sap.ui.table.Column({
