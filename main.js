@@ -52,23 +52,23 @@ var getScriptPromisify = (src) => {
       oModel.setData(naughtyList);
       // instantiate the table
       sap.ui.getCore().applyTheme("sap_belize");
-      var oTable = new sap.ui.table.Table({
-        selectionMode: sap.ui.table.SelectionMode.Single,
-        selectionBehavior: sap.ui.table.SelectionBehavior.Row
+      var oTable = new sap.ui.table.AnalyticalTable.Table({
+        selectionMode: sap.ui.table.AnalyticalTable.SelectionMode.Single,
+        selectionBehavior: sap.ui.table.AnalyticalTable.SelectionBehavior.Row
       });
 
       // define the Table columns and the binding values
-      oTable.addColumn(new sap.ui.table.Column({
+      oTable.addColumn(new sap.ui.table.AnalyticalTable.Column({
         label: new sap.ui.commons.Label({ text: "Last Name" }),
         template: new sap.ui.commons.TextView({ text: "{lastName}" })
       }));
 
-      oTable.addColumn(new sap.ui.table.Column({
+      oTable.addColumn(new sap.ui.table.AnalyticalTable.Column({
         label: new sap.ui.commons.Label({ text: "First Name" }),
         template: new sap.ui.commons.TextField({ value: "{name}" })
       }));
 
-      oTable.addColumn(new sap.ui.table.Column({
+      oTable.addColumn(new sap.ui.table.AnalyticalTable.Column({
         label: new sap.ui.commons.Label({ text: "Still Naughty" }),
         template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
       }));

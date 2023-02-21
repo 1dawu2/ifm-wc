@@ -20,9 +20,9 @@ const config = {
     filename: 'main_bundle.js'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/components/chatGPT.html",
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/components/templates/",
+    // }),
 
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/

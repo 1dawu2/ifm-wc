@@ -1,4 +1,4 @@
-// import html from './chatGPT.html'
+//import html from './chatGPT.html'
 const { Configuration, OpenAIApi } = require("openai");
 
 export default class ChatGPT extends HTMLElement {
