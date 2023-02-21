@@ -29,23 +29,11 @@ var getScriptPromisify = (src) => {
         xmlns:core="sap.ui.core"
       >
         <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
-          <headerToolbar>
-            <OverflowToolbar>
-              <VBox alignItems="Center">
-                <Avatar
-                  src="${ifmLogo}"
-                  displaySize="XL"
-                  displayShape="Square"
-                  showBorder="true"
-                  press="onPress"
-                />
-                <Text
-                  text="IFM Health Analysis Conversion Kit"
-                  class="sapUiSmallMarginTop"
-                />
-              </VBox>
-            </OverflowToolbar>
-          </headerToolbar>
+          <m:Avatar
+              src="${ifmLogo}"
+              displaySize="XL"
+              showBorder="false"
+          />
         </m:Panel>
         <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
         />
@@ -102,7 +90,7 @@ var getScriptPromisify = (src) => {
           oModel.setData({ DLList: data });
 
           var oTable = new sap.ui.table.Table({
-            title: "Table binding",
+            title: "SAC Story/Application Overview:",
             showNoData: true,
             visibleRowCount: 5
           });
