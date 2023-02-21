@@ -4,6 +4,7 @@
   let _clientID;
   let _apiSecret;
   let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.svg";
+  let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.jpg";
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
@@ -22,11 +23,22 @@
         xmlns:core="sap.ui.core"
       >
         <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
-          <m:Avatar
+          <m:VBox alignItems="Center">
+            <m:Avatar
               src="${ifmLogo}"
               displaySize="XL"
               showBorder="false"
-          />
+            />
+            <m:Image
+              src="${backImg}"
+              mode="ImageMode.Background"
+              height="100px"
+              width="300px"
+              backgroundSize="contain"
+              backgroundPosition="center center"
+            />
+            <m:Text text="IFM Health Analysis Conversion Kit" class="sapUiSmallMarginTop"/>
+          </m:VBox>
         </m:Panel>
         <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
         />
