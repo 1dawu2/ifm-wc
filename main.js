@@ -1,12 +1,5 @@
-var getScriptPromisify = (src) => {
-  return new Promise((resolve) => {
-    $.getScript(src, resolve);
-  });
-};
-
 (function () {
   let _shadowRoot;
-  let _score;
   let _oAuthURL;
   let _clientID;
   let _apiSecret;
@@ -51,11 +44,8 @@ var getScriptPromisify = (src) => {
 
       _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-      // getStoryMetaData();
-
       this._export_settings = {};
       this._export_settings.restapiurl = "";
-      this._export_settings.score = "";
       this._export_settings.name = "";
       this._export_settings.clientID = "";
       this._export_settings.apiSecret = "";
@@ -90,18 +80,17 @@ var getScriptPromisify = (src) => {
           oModel.setData({ DLList: data });
 
           var oModelTest = new sap.ui.model.json.JSONModel();
-          var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
+          var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
           oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
-          console.log(oModelTest);
-          oModelTest.attachRequestCompleted(function(oEvent){
+          oModelTest.attachRequestCompleted(function (oEvent) {
             var oData = oEvent.getSource().oData;
             console.log(oData);
-        });
+          });
 
           var oTable = new sap.ui.table.Table({
             title: "SAC Story/Application Overview:",
             showNoData: true,
-            visibleRowCount: 5
+            visibleRowCount: 10
           });
 
           oTable.addColumn(new sap.ui.table.Column({
@@ -127,56 +116,6 @@ var getScriptPromisify = (src) => {
       });
       oView.placeAt(content);
 
-      // var naughtyList = [
-      //   { lastName: "Dente", name: "Al", stillNaughty: true },
-      //   { lastName: "Friese", name: "Andy", stillNaughty: true },
-      //   { lastName: "Mann", name: "Anita", stillNaughty: false }
-      // ];
-
-      // var oModel = new sap.ui.model.json.JSONModel();
-      // oModel.setData(naughtyList);
-      // // instantiate the table
-      // sap.ui.getCore().applyTheme("sap_belize");
-      // var oTable = new sap.ui.table.Table({
-      //   selectionMode: sap.ui.table.SelectionMode.Single,
-      //   selectionBehavior: sap.ui.table.SelectionBehavior.Row
-      // });
-
-      // // define the Table columns and the binding values
-      // oTable.addColumn(new sap.ui.table.Column({
-      //   label: new sap.ui.commons.Label({ text: "Last Name" }),
-      //   template: new sap.ui.commons.TextView({ text: "{lastName}" })
-      // }));
-
-      // oTable.addColumn(new sap.ui.table.Column({
-      //   label: new sap.ui.commons.Label({ text: "First Name" }),
-      //   template: new sap.ui.commons.TextField({ value: "{name}" })
-      // }));
-
-      // oTable.addColumn(new sap.ui.table.Column({
-      //   label: new sap.ui.commons.Label({ text: "Still Naughty" }),
-      //   template: new sap.ui.commons.CheckBox({ checked: '{stillNaughty}' })
-      // }));
-
-      // oTable.setModel(oModel);
-      // oTable.bindRows("/");
-      // oTable.placeAt("content");
-
-    }
-
-    async render() {
-      if (!this._myDataSource || this._myDataSource.state !== "success") {
-        return;
-      }
-
-      const dimension = this._myDataSource.metadata.feeds.dimensions.values[0];
-      const measure = this._myDataSource.metadata.feeds.measures.values[0];
-      const data = this._myDataSource.data.map((data) => {
-        return {
-          name: data[dimension].label,
-          value: data[measure].raw,
-        };
-      });
     }
 
     onCustomWidgetResize(width, height) {
@@ -195,11 +134,6 @@ var getScriptPromisify = (src) => {
     onCustomWidgetAfterUpdate(changedProperties) {
     }
 
-    // Data Binding
-    set myDataSource(dataBinding) {
-      this._myDataSource = dataBinding;
-    }
-
     // SETTINGS
     get restapiurl() {
       return this._export_settings.restapiurl;
@@ -213,14 +147,6 @@ var getScriptPromisify = (src) => {
     }
     set name(value) {
       this._export_settings.name = value;
-    }
-
-    get score() {
-      return this._export_settings.score;
-    }
-    set score(value) {
-      value = _score;
-      this._export_settings.score = value;
     }
 
     get clientID() {
@@ -251,7 +177,6 @@ var getScriptPromisify = (src) => {
       return [
         "restapiurl",
         "name",
-        "score",
         "clientID",
         "apiSecret",
         "oAuthURL"
