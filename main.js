@@ -10,7 +10,7 @@ var getScriptPromisify = (src) => {
   let _oAuthURL;
   let _clientID;
   let _apiSecret;
-
+  let ifmLogo = "https://github.com/1dawu2/ifm-wc/blob/main/assets/logo.svg";
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
@@ -28,7 +28,25 @@ var getScriptPromisify = (src) => {
         xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
       >
-        <m:Panel id="oPanel"/>
+        <Panel id="oPanel">
+          <headerToolbar>
+            <OverflowToolbar>
+              <VBox alignItems="Center">
+                <Avatar
+                  src="${ifmLogo}"
+                  displaySize="XL"
+                  displayShape="Square"
+                  showBorder="true"
+                  press="onPress"
+                />
+                <Text
+                  text="IFM Health Analysis Conversion Kit"
+                  class="sapUiSmallMarginTop"
+                />
+              </VBox>
+            </OverflowToolbar>
+          </headerToolbar>
+        </Panel>
       </mvc:View>
     </script>
     <div id="content"></div>
