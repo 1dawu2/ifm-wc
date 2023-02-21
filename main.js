@@ -47,7 +47,8 @@ var getScriptPromisify = (src) => {
             </OverflowToolbar>
           </headerToolbar>
         </Panel>
-        <Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"><Panel/>
+        <Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+        />
       </mvc:View>
     </script>
     <div id="content"></div>
