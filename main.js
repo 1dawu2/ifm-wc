@@ -98,7 +98,13 @@ var getScriptPromisify = (src) => {
           }];
 
           var oModel = new sap.ui.model.json.JSONModel();
+          var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
           oModel.setData({ DLList: data });
+          var oModelTest = new sap.ui.model.json.JSONModel();
+          oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
+          console.log("JSON Model");
+          console.log(oModelTest);
+
 
           var oTable = new sap.ui.table.Table({
             title: "Table binding",
