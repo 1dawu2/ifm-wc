@@ -109,7 +109,7 @@ var getScriptPromisify = (src) => {
         viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
       oView.placeAt(content);
-      
+
       // var naughtyList = [
       //   { lastName: "Dente", name: "Al", stillNaughty: true },
       //   { lastName: "Friese", name: "Andy", stillNaughty: true },
@@ -172,7 +172,7 @@ var getScriptPromisify = (src) => {
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
-      this.buildTable(thuis);
+      this.buildTable(this);
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
