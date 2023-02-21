@@ -43,8 +43,6 @@ var getScriptPromisify = (src) => {
 
       _shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-      this.buildTable();
-
       // getStoryMetaData();
 
       this._export_settings = {};
@@ -57,7 +55,13 @@ var getScriptPromisify = (src) => {
 
     }
 
-    buildTable() {
+    buildTable(that) {
+
+      var that_ = that;
+
+      let content = document.createElement('div');
+      content.slot = "content";
+      that_.appendChild(content);
 
       sap.ui.controller("ifm.hack.initial", {
         onInit: function (oEvent) {
@@ -100,12 +104,12 @@ var getScriptPromisify = (src) => {
         }
       });
 
+      //### THE APP: place the XMLView somewhere into DOM ###
       var oView = sap.ui.xmlview({
-        viewContent: jQuery("#oView").html()
+        viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
-
-      oView.placeAt("content");
-
+      oView.placeAt(content);
+      
       // var naughtyList = [
       //   { lastName: "Dente", name: "Al", stillNaughty: true },
       //   { lastName: "Friese", name: "Andy", stillNaughty: true },
@@ -168,6 +172,7 @@ var getScriptPromisify = (src) => {
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
+      this.buildTable(thuis);
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
