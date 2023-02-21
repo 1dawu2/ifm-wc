@@ -198,7 +198,7 @@
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
-      this.buildTable(this);
+      this.buildUI(this);
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
