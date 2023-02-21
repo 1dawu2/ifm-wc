@@ -53,8 +53,6 @@ var getScriptPromisify = (src) => {
       // instantiate the table
       sap.ui.getCore().applyTheme("sap_belize");
       var oTable = new sap.ui.table.AnalyticalTable.Table({
-        selectionMode: sap.ui.table.AnalyticalTable.SelectionMode.Single,
-        selectionBehavior: sap.ui.table.AnalyticalTable.SelectionBehavior.Row
       });
 
       // define the Table columns and the binding values
