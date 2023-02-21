@@ -4,7 +4,7 @@
   let _clientID;
   let _apiSecret;
   let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.svg";
-  let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.jpg";
+  let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.png";
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
@@ -79,8 +79,7 @@
             />
             <m:Image
               src="${backImg}"
-              height="100%"
-              width="100%"
+              height="30%"
               backgroundSize="contain"
               backgroundPosition="center center"
             />
