@@ -20,13 +20,11 @@
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-      
         -webkit-box-direction: normal;
         -webkit-box-orient: vertical;
         -webkit-flex-direction: column;
         -ms-flex-direction: column;
         flex-direction: column;
-      
         max-width: 15rem;
       }
     </style>
@@ -327,19 +325,18 @@
 
       if (sap.fpa.ui.infra.common) {
 
-        let context = sap.fpa.ui.infra.common.getContext();
-        let appid = getAppId(context);
+        var context = sap.fpa.ui.infra.common.getContext();
+        var appid = getAppId(context);
         console.log("AppID:");
         console.log(appid);
 
         if (context.getTenantUrl) {
 
-          let tenant_URL = context.getTenantUrl(false);
+          var tenant_URL = context.getTenantUrl(false);
           console.log("Tenant URL:");
           console.log(tenant_URL);
+          var urlPattern = `"${tenant_URL}/app.html#/story&/s/<STORY_ID>/?mode=view"`;
         }
-
-        let urlPattern = `"${tenant_URL}/app.html#/story&/s/<STORY_ID>/?mode=view"`;
       }
     }
   }
