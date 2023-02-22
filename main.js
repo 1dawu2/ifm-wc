@@ -157,7 +157,8 @@
 
             var oModelTest = new sap.ui.model.json.JSONModel();
             var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-            var resURL = that_._export_settings.restapiurl.replace('stories?include=models', 'Resources');
+            var resURL = that_._export_settings.restapiurl;
+            console.log(resURL.replace('stories?include=models', 'Resources'));
             oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
             oModelTest.attachRequestCompleted(function (oEvent) {
               var oData = oEvent.getSource().oData;
