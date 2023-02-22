@@ -330,7 +330,7 @@
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
     console.log("Story Model:");
     console.log(storyModel);
-    let storyService = documentContext.get("sap.fpa.ui.story.StoryService");
+    let storyService =  sap.fpa.ui.story.StoryService.getInstance();
     console.log("Story Service");
     console.log(storyService);
     let entityService = documentContext.get("sap.fpa.bi.entityService");
