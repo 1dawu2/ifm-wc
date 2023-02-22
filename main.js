@@ -96,8 +96,6 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
-                var oData = oEvent.getSource().oData;
-                console.log(oData);
                 oBusy.close();
               });
               console.log("JSON Model:");
@@ -107,26 +105,25 @@
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
                 visibleRowCount: 100,
-                firstVisibleRow: 10,
-                navigationMode: sap.ui.table.NavigationMode.Scrollbar
+                firstVisibleRow: 10
               });
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Name" }),
-                template: new sap.ui.commons.TextView({ text: "{resources>name}" }),
+                template: new sap.ui.commons.TextView({ text: "{artefact>name}" }),
                 sortProperty: "Name",
                 filterProperty: "Name",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
-                template: new sap.ui.commons.TextView({ text: "{resources>description}" }),
+                template: new sap.ui.commons.TextView({ text: "{artefact>description}" }),
                 sortProperty: "Descriptione",
                 filterProperty: "Descriptione",
               }));
 
               oTable.setModel(oModel, "artefact");
-              // oTable.bindRows("model1>/DLList");
+              oTable.bindRows("artefact>/");
 
               this.oPanel.addContent(oTable);
             }
