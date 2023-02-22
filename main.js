@@ -110,20 +110,48 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Name" }),
-                template: new sap.ui.commons.TextView({ text: "{artefact>name}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
                 sortProperty: "Name",
                 filterProperty: "Name",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
-                template: new sap.ui.commons.TextView({ text: "{artefact>description}" }),
-                sortProperty: "Descriptione",
-                filterProperty: "Descriptione",
+                template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
+                sortProperty: "Description",
+                filterProperty: "Description",
               }));
 
-              oTable.setModel(oModel, "artefact");
-              oTable.bindRows("artefact>/");
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "URL" }),
+                template: new sap.m.Link({ text: "{artifact>Name", href: "{artifact>openURL}" }),
+                sortProperty: "URL",
+                filterProperty: "URL",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Models" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>models}" }),
+                sortProperty: "Models",
+                filterProperty: "Models",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Created by" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>createdBy}" }),
+                sortProperty: "Created by",
+                filterProperty: "Created by",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Created" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>created}" }),
+                sortProperty: "Created",
+                filterProperty: "Created",
+              }));
+              
+              oTable.setModel(oModel, "artifact");
+              oTable.bindRows("artifact>/");
 
               this.oPanel.addContent(oTable);
             }
