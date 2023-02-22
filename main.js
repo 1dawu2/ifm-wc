@@ -42,6 +42,7 @@
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:m="sap.m"
         xmlns:core="sap.ui.core"
+        class="side-navigation-demo"
       >
         <m:Button
           text="Toggle Collapse/Expand"
