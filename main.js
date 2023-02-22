@@ -80,7 +80,7 @@
         <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
           <m:VBox alignItems="Center">
             <m:Image
-              src="${ifmLogo}"
+              src="${backImg}"
               height="100%"
               backgroundPosition="center center"
             />
