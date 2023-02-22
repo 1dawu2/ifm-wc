@@ -44,11 +44,54 @@
             </m:Button>
           </tnt:ToolHeader>
         </tnt:header>
+        <tnt:sideContent>
+          <tnt:SideNavigation
+            selectedKey="subItem3"
+            itemSelect=".onItemSelect">
+            <tnt:NavigationList">
+              <tnt:NavigationListItem text="Item 1" icon="sap-icon://electrocardiogram" key="root">
+                <tnt:NavigationListItem text="Sub Item 1" />
+                <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+              </tnt:NavigationListItem>
+            </tnt:NavigationList>
+            <tnt:fixedItem>
+              <tnt:NavigationList>
+                <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
+              </tnt:NavigationList>
+            </tnt:fixedItem>
+          </tnt:SideNavigation>
+        </tnt:sideContent>
         <tnt:mainContents>
-          <m:NavContainer id="pageContainer">
+          <m:NavContainer id="pageContainer" initialPage="root">
             <core:pages>
-            <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-            />
+              <m:ScrollContainer
+                id="root"
+                horizontal="false"
+                vertical="true"
+                height="100%">
+                <m:headerToolbar>
+                  <m:OverflowToolbar>
+                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:ToolbarSpacer/>
+                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m: Button icon="sap-icon://action-settings" press="onSettingsPressed" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m:Avatar
+                      src="${ifmLogo}"
+                      displaySize="S"
+                    />
+                  </m:OverflowToolbar>
+                </m:headerToolbar>				
+                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+                />
+              </m:ScrollContainer>
             </core:pages>
           </m:NavContainer>
         </tnt:mainContents>
@@ -303,18 +346,27 @@
 
   function convertSACArtifact() {
 
-    var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
-    for (var i = 0; i < aUnsupportedFeatures.length; i++) {
-      console.log(aUnsupportedFeatures[i]);
+    if (sap.fpa.story) {
+      console.log(sap.fpa.story);
     }
 
-    var oStoryConverter = sap.fpa.ui.story.api.StoryConverter.getInstance();
-    console.log("Story Converter");
-    console.log(oStoryConverter);
-    var oConversionSettings = {
-      storyId: "59A395046F3F8A41401B0B1C28FD787D",
-      designType: sap.fpa.ui.story.api.DesignType.OPTIMIZED
-    };
+    if (sap.fpa.ui.story) {
+      console.log(sap.fpa.ui.story);
+    }
+
+    // var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
+    // for (var i = 0; i < aUnsupportedFeatures.length; i++) {
+    //   console.log(aUnsupportedFeatures[i]);
+    // }
+
+    // // this._context.get("sap.fpa.story.optimized.model.validator")
+    // var oStoryConverter = sap.fpa.ui.story.api.StoryConverter.getInstance();
+    // console.log("Story Converter");
+    // console.log(oStoryConverter);
+    // var oConversionSettings = {
+    //   storyId: "59A395046F3F8A41401B0B1C28FD787D",
+    //   designType: sap.fpa.ui.story.api.DesignType.OPTIMIZED
+    // };
 
     // oStoryConverter.convert(oConversionSettings, function (bSuccess) {
     //   if (bSuccess) {
