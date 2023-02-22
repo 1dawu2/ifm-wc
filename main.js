@@ -124,7 +124,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "URL" }),
-                template: new sap.m.Link({ text: "{artifact>Name}", href: "{artifact>openURL}" }),
+                template: new sap.m.Link({ text: "{artifact>Name}", href: "{artifact>openURL}", target: "_blank" }),
                 sortProperty: "URL",
                 filterProperty: "URL",
               }));
