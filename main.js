@@ -44,6 +44,27 @@
             </m:Button>
           </tnt:ToolHeader>
         </tnt:header>
+        <tnt:sideContent>
+          <tnt:SideNavigation
+            selectedKey="subItem3"
+            itemSelect=".onItemSelect">
+            <tnt:NavigationList">
+              <tnt:NavigationListItem text="Item 1" icon="sap-icon://electrocardiogram" key="root">
+                <tnt:NavigationListItem text="Sub Item 1" />
+                <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+              </tnt:NavigationListItem>
+            </tnt:NavigationList>
+            <tnt:fixedItem>
+              <tnt:NavigationList>
+                <tnt:NavigationListItem text="Item 1" icon="${ifmLogo}" />
+              </tnt:NavigationList>
+            </tnt:fixedItem>
+          </tnt:SideNavigation>
+        </tnt:sideContent>
+        <tnt:mainContents>
+          <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+          />
+        </tnt:mainContents>
       </tnt:ToolPage>
     </mvc:View>
     </script>
