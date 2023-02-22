@@ -62,8 +62,38 @@
           </tnt:SideNavigation>
         </tnt:sideContent>
         <tnt:mainContents>
-          <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-          />
+          <m:NavContainer id="pageContainer" initialPage="root">
+            <core:pages>
+              <m:ScrollContainer
+                id="root"
+                horizontal="false"
+                vertical="true"
+                height="100%">
+                <m:headerToolbar>
+                  <m:OverflowToolbar>
+                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:ToolbarSpacer/>
+                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m: Button icon="sap-icon://action-settings" press="onSettingsPressed" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m:Avatar
+                      src="${ifmLogo}"
+                      displaySize="S"
+                    />
+                  </m:OverflowToolbar>
+                </m:headerToolbar>				
+                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+                />
+              </m:ScrollContainer>
+            </core:pages>
+          </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
     </mvc:View>
