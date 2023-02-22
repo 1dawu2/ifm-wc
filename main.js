@@ -330,8 +330,14 @@
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
     console.log("Story Model:");
     console.log(storyModel);
-    let storyService = sap.fpa.ui.infra.common.getContext();
-    console.log("Story Service");
+    // try detect runtime settings
+    if (window.sap && sap.fpa && sap.fpa.ui && sap.fpa.ui.infra) {
+      if (sap.fpa.ui.infra.common) {
+        let context = sap.fpa.ui.infra.common.getContext();
+        console.log("Context:");
+        console.log(context);
+      }
+    }
     console.log(storyService);
     let entityService = documentContext.get("sap.fpa.bi.entityService");
     console.log("Entity Service:");
