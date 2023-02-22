@@ -46,8 +46,7 @@
         </tnt:header>
         <tnt:sideContent>
           <tnt:SideNavigation
-            expanded="true"
-            selectedKey="{/selectedKey}"
+            selectedKey="subItem3"
             itemSelect=".onItemSelect">
             <tnt:NavigationList">
               <tnt:NavigationListItem text="Item 1" icon="sap-icon://action-settings" key="root">
@@ -84,6 +83,10 @@
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                       </m:layoutData>
                     </Button>
+                    <m:Avatar
+                      src="${ifmLogo}"
+                      displaySize="S"
+                    />
                   </m:OverflowToolbar>
                 </m:headerToolbar>				
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
