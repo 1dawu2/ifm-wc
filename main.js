@@ -157,7 +157,7 @@
 
             var oModelTest = new sap.ui.model.json.JSONModel();
             var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
-            oModelTest.loadData("https:///infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/Resources", null, true, "GET", null, false, sHeaders);
+            oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
             oModelTest.attachRequestCompleted(function (oEvent) {
               var oData = oEvent.getSource().oData;
               console.log(oData);
@@ -171,14 +171,14 @@
 
             oTable.addColumn(new sap.ui.table.Column({
               label: new sap.ui.commons.Label({ text: "First Name" }),
-              template: new sap.ui.commons.TextView().bindProperty({ text: "{model1>fname}" }),
+              template: new sap.ui.commons.TextView({ text: "{model1>fname}" }),
               sortProperty: "First Name",
               filterProperty: "First Name",
             }));
 
             oTable.addColumn(new sap.ui.table.Column({
               label: new sap.ui.commons.Label({ text: "Last Name" }),
-              template: new sap.ui.commons.TextView().bindProperty({ text: "{model1>lname}" }),
+              template: new sap.ui.commons.TextView({ text: "{model1>lname}" }),
               sortProperty: "Last Name",
               filterProperty: "Last Name",
             }));
