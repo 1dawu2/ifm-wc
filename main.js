@@ -15,81 +15,96 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
-      :host(.side-navigation-demo) {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-direction: normal;
-        -webkit-box-orient: vertical;
-        -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        max-width: 15rem;
-      }
     </style>
     <div id="ui5_content" name="ui5_content">
     <slot name="content"></slot>
     </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
-      <mvc:View 
-        controllerName="ifm.hack.initial"
-        xmlns:tnt="sap.tnt"
-        xmlns:l="sap.ui.layout"
-        xmlns="sap.ui.table"
-        xmlns:mvc="sap.ui.core.mvc"
-        xmlns:m="sap.m"
-        xmlns:core="sap.ui.core"
-        class="side-navigation-demo"
-      >
-        <m:Button
-          text="Toggle Collapse/Expand"
-          icon="sap-icon://menu2"
-          press=".onCollapseExpandPress"
-        />
-        <m:Button
-          text="Show/Hide Sub Item 3"
-          icon="sap-icon://menu2"
-          press=".onHideShowSubItemPress"
-        />
-        <tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
-          <tnt:NavigationList>
-            <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee">
-              <tnt:NavigationListItem text="Sub Item 1" />
-              <tnt:NavigationListItem text="Sub Item 2" />
-              <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
-              <tnt:NavigationListItem text="Sub Item 4" />
-            </tnt:NavigationListItem>
-            <tnt:NavigationListItem text="Item 2" icon="sap-icon://building">
-              <tnt:NavigationListItem text="Sub Item 1" />
-              <tnt:NavigationListItem text="Sub Item 2" />
-              <tnt:NavigationListItem text="Sub Item 3" />
-              <tnt:NavigationListItem text="Sub Item 4" />
-            </tnt:NavigationListItem>
-          </tnt:NavigationList>
-          <tnt:fixedItem>
-            <tnt:NavigationList>
-              <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
-              <tnt:NavigationListItem text="Item 2" icon="sap-icon://building" />
-              <tnt:NavigationListItem text="Item 3" icon="sap-icon://card" />
+    <mvc:View
+      controllerName="ifm.hack.initial"
+      xmlns="sap.ui.table"
+      xmlns:m="sap.m"
+      xmlns:mvc="sap.ui.core.mvc"
+      xmlns:core="sap.ui.core"
+      xmlns:tnt="sap.tnt"
+      height="100%"
+      class="side-navigation-demo"
+    >
+      <tnt:ToolPage id="toolPage">
+        <tnt:header>
+          <tnt:ToolHeader>
+            <m:Button
+              id="sideNavigationToggleButton"
+              icon="sap-icon://menu2"
+              type="Transparent"
+              press=".onSideNavButtonPress">
+              <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+              </layoutData>
+            </m:Button>
+            <m:ToolbarSpacer width="20px" />
+            <m:Button text="File" type="Transparent">
+              <layoutData>
+                <OverflowToolbarLayoutData priority="Low" />
+              </layoutData>
+            </m:Button>
+          </tnt:ToolHeader>
+        </tnt:header>
+        <tnt:sideContent>
+          <tnt:SideNavigation
+            expanded="true"
+            selectedKey="{/selectedKey}"
+            itemSelect=".onItemSelect">
+            <tnt:NavigationList">
+              <tnt:NavigationListItem text="Item 1" icon="sap-icon://action-settings" key="root">
+                <tnt:NavigationListItem text="Sub Item 1" />
+                <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+              </tnt:NavigationListItem>
             </tnt:NavigationList>
-          </tnt:fixedItem>
-        </tnt:SideNavigation>
-        <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
-          <m:VBox alignItems="Center">
-            <m:Image
-              src="${backImg}"
-              height="100%"
-              backgroundPosition="center center"
-            />
-            <m:Text text="IFM Health Analysis Conversion Kit" class="sapUiSmallMarginTop"/>
-          </m:VBox>
-        </m:Panel>
-        <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-        />
-      </mvc:View>
+            <tnt:fixedItem>
+              <tnt:NavigationList>
+                <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
+              </tnt:NavigationList>
+            </tnt:fixedItem>
+          </tnt:SideNavigation>
+        </tnt:sideContent>
+        <tnt:mainContents>
+          <m:NavContainer id="pageContainer" initialPage="root">
+            <core:pages>
+              <m:ScrollContainer
+                id="root"
+                horizontal="false"
+                vertical="true"
+                height="100%">
+                <m:headerToolbar>
+                  <m:OverflowToolbar>
+                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:ToolbarSpacer/>
+                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m: Button icon="sap-icon://action-settings" press="onSettingsPressed" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </Button>
+                    <m:Avatar
+                      src="${ifmLogo}"
+                      displaySize="S"
+                    />
+                  </m:OverflowToolbar>
+                </m:headerToolbar>				
+                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+                />
+              </m:ScrollContainer>
+            </core:pages>
+          </m:NavContainer>
+        </tnt:mainContents>
+      </tnt:ToolPage>
+    </mvc:View>
     </script>
-    <div id="content"></div>
   `;
   class IFMStories extends HTMLElement {
     constructor() {
@@ -108,6 +123,11 @@
       this._export_settings.apiSecret = "";
       this._export_settings.oAuthURL = "";
 
+    }
+
+    drawMenu() {
+
+    
     }
 
     buildUI(changedProperties, that) {
@@ -149,16 +169,6 @@
               this.bindTable();
             },
             bindTable: function () {
-              // var data = [{
-              //   "fname": "Akhilesh",
-              //   "lname": "Upadhyay"
-              // }, {
-              //   "fname": "Aakanksha",
-              //   "lname": "Gupta"
-              // }];
-
-              // var oModel = new sap.ui.model.json.JSONModel();
-              // oModel.setData({ DLList: data });
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
               oModel.attachRequestSent(function () {
@@ -222,6 +232,7 @@
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
+      this.drawMenu();
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
@@ -336,6 +347,8 @@
           console.log("Tenant URL:");
           console.log(tenant_URL);
           var urlPattern = `"${tenant_URL}/app.html#/story&/s/<STORY_ID>/?mode=view"`;
+          // example:
+          //https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/tenants/65182/app.html#/story&/s/59A395046F3F8A41401B0B1C28FD787D/?mode=view
         }
       }
     }
