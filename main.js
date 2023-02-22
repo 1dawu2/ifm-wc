@@ -24,8 +24,29 @@
       height="100%"
       class="side-navigation-demo"
     >
-      <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-      />
+      <tnt:ToolPage id="toolPage">
+        <tnt:header>
+          <tnt:ToolHeader>
+            <m:Button
+              id="sideNavigationToggleButton"
+              icon="sap-icon://menu2"
+              type="Transparent"
+              press=".onSideNavButtonPress">
+              <m:layoutData>
+                <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+              </m:layoutData>
+            </m:Button>
+            <m:ToolbarSpacer width="20px" />
+            <m:Button text="File" type="Transparent">
+              <m:layoutData>
+                <m:OverflowToolbarLayoutData priority="Low" />
+              </m:layoutData>
+            </m:Button>
+          </tnt:ToolHeader>
+        </tnt:header>
+        <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+        />
+      </tnt:ToolPage>
     </mvc:View>
     </script>
   `;
@@ -124,7 +145,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "URL" }),
-                template: new sap.m.Link({ text: "{artifact>Name}", href: "{artifact>openURL}", target: "_blank" }),
+                template: new sap.m.Link({ text: "{artifact>name}", href: "{artifact>openURL}", target: "_blank" }),
                 sortProperty: "URL",
                 filterProperty: "URL",
               }));
