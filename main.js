@@ -181,7 +181,7 @@
                 showNoData: true,
                 visibleRowCount: 100,
                 firstVisibleRow: 10,
-                navigationMode: sap.ui.table.NavigationMode.Paginator
+                navigationMode: sap.ui.table.NavigationMode.Scrollbar
               });
 
               oTable.addColumn(new sap.ui.table.Column({
