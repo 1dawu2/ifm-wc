@@ -24,78 +24,8 @@
       height="100%"
       class="side-navigation-demo"
     >
-      <tnt:ToolPage id="toolPage">
-        <tnt:header>
-          <tnt:ToolHeader>
-            <m:Button
-              id="sideNavigationToggleButton"
-              icon="sap-icon://menu2"
-              type="Transparent"
-              press=".onSideNavButtonPress">
-              <m:layoutData>
-                <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-              </m:layoutData>
-            </m:Button>
-            <m:ToolbarSpacer width="20px" />
-            <m:Button text="File" type="Transparent">
-              <m:layoutData>
-                <m:OverflowToolbarLayoutData priority="Low" />
-              </m:layoutData>
-            </m:Button>
-          </tnt:ToolHeader>
-        </tnt:header>
-        <tnt:sideContent>
-          <tnt:SideNavigation
-            selectedKey="subItem3"
-            itemSelect=".onItemSelect">
-            <tnt:NavigationList">
-              <tnt:NavigationListItem text="Item 1" icon="sap-icon://electrocardiogram" key="root">
-                <tnt:NavigationListItem text="Sub Item 1" />
-                <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
-              </tnt:NavigationListItem>
-            </tnt:NavigationList>
-            <tnt:fixedItem>
-              <tnt:NavigationList>
-                <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
-              </tnt:NavigationList>
-            </tnt:fixedItem>
-          </tnt:SideNavigation>
-        </tnt:sideContent>
-        <tnt:mainContents>
-          <m:NavContainer id="pageContainer" initialPage="root">
-            <core:pages>
-              <m:ScrollContainer
-                id="root"
-                horizontal="false"
-                vertical="true"
-                height="100%">
-                <m:headerToolbar>
-                  <m:OverflowToolbar>
-                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
-                    <m:ToolbarSpacer/>
-                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                    <m: Button icon="sap-icon://action-settings" press="onSettingsPressed" >
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                    <m:Avatar
-                      src="${ifmLogo}"
-                      displaySize="S"
-                    />
-                  </m:OverflowToolbar>
-                </m:headerToolbar>				
-                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-                />
-              </m:ScrollContainer>
-            </core:pages>
-          </m:NavContainer>
-        </tnt:mainContents>
-      </tnt:ToolPage>
+      <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
+      />
     </mvc:View>
     </script>
   `;
