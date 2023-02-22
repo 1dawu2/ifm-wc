@@ -114,6 +114,10 @@
 
     buildUI(changedProperties, that) {
 
+      // testing
+      getSACMetadata();
+      prepareJSON2OModel();
+
       var that_ = that;
 
       let content = document.createElement('div');
@@ -123,77 +127,81 @@
       sap.ui.define(
         ["sap/ui/core/mvc/Controller"],
         function (Controller) {
-        "use strict";
+          "use strict";
 
-        return Controller.extend("ifm.hack.initial", {
+          return Controller.extend("ifm.hack.initial", {
 
-          onCollapseExpandPress: function () {
-            var oSideNavigation = this.byId("sideNavigation");
-            var bExpanded = oSideNavigation.getExpanded();
+            onCollapseExpandPress: function () {
+              var oSideNavigation = this.byId("sideNavigation");
+              var bExpanded = oSideNavigation.getExpanded();
 
-            oSideNavigation.setExpanded(!bExpanded);
-          },
+              oSideNavigation.setExpanded(!bExpanded);
+            },
 
-          onHideShowSubItemPress: function () {
-            var oNavListItem = this.byId("subItem3");
-            oNavListItem.setVisible(!oNavListItem.getVisible());
-          },
+            onHideShowSubItemPress: function () {
+              var oNavListItem = this.byId("subItem3");
+              oNavListItem.setVisible(!oNavListItem.getVisible());
+            },
 
-          onInit: function (oEvent) {
-            this.oPanel = this.byId("oPanel");
-            this.bindTable();
-          },
-          bindTable: function () {
-            var data = [{
-              "fname": "Akhilesh",
-              "lname": "Upadhyay"
-            }, {
-              "fname": "Aakanksha",
-              "lname": "Gupta"
-            }];
+            onInit: function (oEvent) {
+              this.oPanel = this.byId("oPanel");
+              this.bindTable();
+            },
+            bindTable: function () {
+              // var data = [{
+              //   "fname": "Akhilesh",
+              //   "lname": "Upadhyay"
+              // }, {
+              //   "fname": "Aakanksha",
+              //   "lname": "Gupta"
+              // }];
 
-            var oModel = new sap.ui.model.json.JSONModel();
-            oModel.setData({ DLList: data });
+              // var oModel = new sap.ui.model.json.JSONModel();
+              // oModel.setData({ DLList: data });
+              var oBusy = new sap.m.BusyDialog();
+              var oModel = new sap.ui.model.json.JSONModel();
+              oModel.attachRequestSent(function () {
+                oBusy.open();
+              });
+              var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+              oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
+              oModel.attachRequestCompleted(function (oEvent) {
+                var oData = oEvent.getSource().oData;
+                console.log(oData);
+                oBusy.close();
+              });
 
-            var oModelTest = new sap.ui.model.json.JSONModel();
-            var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
-            oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
-            oModelTest.attachRequestCompleted(function (oEvent) {
-              var oData = oEvent.getSource().oData;
-              console.log(oData);
-            });
+              var oTable = new sap.ui.table.Table({
+                title: "SAC Story/Application Overview:",
+                showNoData: true,
+                visibleRowCount: 100,
+                firstVisibleRow: 10,
+                navigationMode: sap.ui.table.NavigationMode.Paginator
+              });
 
-            var oTable = new sap.ui.table.Table({
-              title: "SAC Story/Application Overview:",
-              showNoData: true,
-              visibleRowCount: 100,
-              firstVisibleRow: 10,
-              navigationMode: sap.ui.table.NavigationMode.Paginator
-            });
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Name" }),
+                template: new sap.ui.commons.TextView({ text: "{resources>name}" }),
+                sortProperty: "Name",
+                filterProperty: "Name",
+              }));
 
-            oTable.addColumn(new sap.ui.table.Column({
-              label: new sap.ui.commons.Label({ text: "First Name" }),
-              template: new sap.ui.commons.TextView({ text: "{model1>fname}" }),
-              sortProperty: "First Name",
-              filterProperty: "First Name",
-            }));
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Description" }),
+                template: new sap.ui.commons.TextView({ text: "{resources>description}" }),
+                sortProperty: "Descriptione",
+                filterProperty: "Descriptione",
+              }));
 
-            oTable.addColumn(new sap.ui.table.Column({
-              label: new sap.ui.commons.Label({ text: "Last Name" }),
-              template: new sap.ui.commons.TextView({ text: "{model1>lname}" }),
-              sortProperty: "Last Name",
-              filterProperty: "Last Name",
-            }));
+              oTable.setModel(oModel, "artefact");
+              // oTable.bindRows("model1>/DLList");
 
-            oTable.setModel(oModel, "model1");
-            oTable.bindRows("model1>/DLList");
+              this.oPanel.addContent(oTable);
+            }
 
-            this.oPanel.addContent(oTable);
-          }
+          });
 
         });
-
-      });
 
       //### THE APP: place the XMLView somewhere into DOM ###
       var oView = new sap.ui.core.mvc.XMLView({
@@ -278,5 +286,52 @@
   customElements.define("com-ifm-hack-stories", IFMStories);
 
   // UTILS
+  function getSACMetadata() {
+    // prepare meta data
+    let findAggregatedObjects;
+
+    let shell = commonApp.getShell();
+    if (shell) { // old SAC
+      findAggregatedObjects = fn => shell.findElements(true, fn);
+    }
+    if (!findAggregatedObjects) { // new SAC
+      findAggregatedObjects = fn => sap.fpa.ui.story.Utils.getShellContainer().getCurrentPage().getComponentInstance().findAggregatedObjects(true, fn);
+      console.log("Aggregated Objects:");
+      console.log(findAggregatedObjects);
+    }
+
+    let documentContext = findAggregatedObjects(e => e.getMetadata().hasProperty("resourceType") && e.getProperty("resourceType") == "STORY")[0].getDocumentContext();
+    let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
+    console.log("Story Model:");
+    console.log(storyModel);
+    let entityService = documentContext.get("sap.fpa.bi.entityService");
+    console.log("Entity Service:");
+    console.log(entityService);
+    let widgetControls = documentContext.get("sap.fpa.story.document.widgetControls");
+    console.log("Widget Controls");
+    console.log(widgetControls);
+
+  }
+
+  function prepareJSON2OModel() {
+    // enhance SAC/App URL
+    if (window.sap && sap.fpa && sap.fpa.ui && sap.fpa.ui.infra) {
+
+      if (sap.fpa.ui.infra.common) {
+
+        let context = sap.fpa.ui.infra.common.getContext();
+        let appid = getAppId(context);
+
+        if (context.getTenantUrl) {
+
+          let tenant_URL = context.getTenantUrl(false);
+          console.log("Tenant URL:");
+          console.log(tenant_URL);
+        }
+
+        let urlPattern = `"${tenant_URL}/app.html#/story&/s/<STORY_ID>/?mode=view"`;
+      }
+    }
+  }
 
 })();
