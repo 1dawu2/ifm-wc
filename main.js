@@ -32,15 +32,15 @@
               icon="sap-icon://menu2"
               type="Transparent"
               press=".onSideNavButtonPress">
-              <layoutData>
-                <OverflowToolbarLayoutData priority="NeverOverflow" />
-              </layoutData>
+              <m:layoutData>
+                <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+              </m:layoutData>
             </m:Button>
             <m:ToolbarSpacer width="20px" />
             <m:Button text="File" type="Transparent">
-              <layoutData>
-                <OverflowToolbarLayoutData priority="Low" />
-              </layoutData>
+              <m:layoutData>
+                <m:OverflowToolbarLayoutData priority="Low" />
+              </m:layoutData>
             </m:Button>
           </tnt:ToolHeader>
         </tnt:header>
@@ -75,16 +75,12 @@
 
     }
 
-    drawMenu() {
-
-    
-    }
-
     buildUI(changedProperties, that) {
 
       // testing
       getSACMetadata();
       prepareJSON2OModel();
+      convertSACArtifact();
 
       var that_ = that;
 
@@ -184,7 +180,6 @@
     }
 
     onCustomWidgetBeforeUpdate(changedProperties) {
-      this.drawMenu();
     }
 
     onCustomWidgetAfterUpdate(changedProperties) {
@@ -304,6 +299,58 @@
         }
       }
     }
+  }
+
+  function convertSACArtifact() {
+    var oStoryConverter = sap.fpa.ui.story.api.StoryConverter.getInstance();
+    console.log("Story Converter");
+    console.log(oStoryConverter);
+    var oConversionSettings = {
+      storyId: "59A395046F3F8A41401B0B1C28FD787D",
+      designType: sap.fpa.ui.story.api.DesignType.OPTIMIZED
+    };
+
+    // oStoryConverter.convert(oConversionSettings, function (bSuccess) {
+    //   if (bSuccess) {
+    //     // Story was successfully converted
+    //     console.log("Story convert successful")
+
+    //     var oSuccessDialog = new Dialog({
+    //       type: DialogType.Message,
+    //       title: "Conversion Status",
+    //       content: new Text({ text: "Conversion has been completed successfully." }),
+    //       beginButton: new Button({
+    //         type: ButtonType.Emphasized,
+    //         text: "OK",
+    //         press: function () {
+    //           oSuccessDialog.close();
+    //         }.bind(this)
+    //       })
+    //     });
+
+    //     oSuccessDialog.open();
+
+    //   } else {
+    //     // Conversion failed
+    //     console.log("Story convert failed");
+
+    //     var oErrorDialog = new Dialog({
+    //       type: DialogType.Message,
+    //       title: "Conversion Status",
+    //       content: new Text({ text: "Conversion has failed." }),
+    //       beginButton: new Button({
+    //         type: ButtonType.Emphasized,
+    //         text: "OK",
+    //         press: function () {
+    //           oErrorDialog.close();
+    //         }.bind(this)
+    //       })
+    //     });
+
+    //     oErrorDialog.open();
+    //   }
+    // });
+
   }
 
 })();
