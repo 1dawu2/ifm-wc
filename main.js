@@ -48,7 +48,7 @@
           <tnt:SideNavigation
             selectedKey="subItem3"
             itemSelect=".onItemSelect">
-            <tnt:NavigationList">
+            <tnt:NavigationList>
               <tnt:NavigationListItem text="Item 1" icon="sap-icon://electrocardiogram" key="root">
                 <tnt:NavigationListItem text="Sub Item 1" />
                 <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
