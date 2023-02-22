@@ -157,7 +157,7 @@
 
             var oModelTest = new sap.ui.model.json.JSONModel();
             var sHeaders = {"DataServiceVersion":"2.0","Accept":"application/json"};
-            oModelTest.loadData("https:///infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/stories", null, true, "GET", null, false, sHeaders);
+            oModelTest.loadData("https:///infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/Resources", null, true, "GET", null, false, sHeaders);
             oModelTest.attachRequestCompleted(function (oEvent) {
               var oData = oEvent.getSource().oData;
               console.log(oData);
