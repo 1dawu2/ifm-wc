@@ -174,6 +174,8 @@
                 console.log(oData);
                 oBusy.close();
               });
+              console.log("JSON Model:");
+              console.log(oModel);
 
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
