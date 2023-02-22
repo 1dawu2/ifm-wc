@@ -44,8 +44,6 @@
             </m:Button>
           </tnt:ToolHeader>
         </tnt:header>
-        <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-        />
       </tnt:ToolPage>
     </mvc:View>
     </script>
@@ -186,6 +184,22 @@
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
+              oTable.bindItems("artifact>/", new sap.m.ColumnListItem({
+                cells: [
+                  new sap.m.Text({
+                    text: "{models/description}"
+                  }),
+                  new sap.m.Text({
+                    text: "{models/externalId}"
+                  }),
+                  new sap.m.Text({
+                    text: "{models/id}",
+                  }),
+                  new sap.m.Text({
+                    text: "{models/isPlanning}",
+                  }),
+                ]
+              }));
 
               this.oPanel.addContent(oTable);
             }
