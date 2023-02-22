@@ -151,38 +151,22 @@
               }));
 
               // create the paginator
-              var oPaginator = new sap.ui.commons.Paginator({
-                numberOfPages: 1, // set the number of pages to 1 initially
-                currentPage: 1, // set the current page to 1 initially
-                visible: false, // hide the paginator initially
-                page: function (oEvent) {
-                  // update the table data when the page changes
-                  var iPage = oEvent.getParameter("page");
-                  oModel.setData(getDataForPage(iPage));
-                  oTable.setFirstVisibleRow(0);
-                }
-              });
+              // var oPaginator = new sap.ui.commons.Paginator({
+              //   numberOfPages: 1, // set the number of pages to 1 initially
+              //   currentPage: 1, // set the current page to 1 initially
+              //   visible: false, // hide the paginator initially
+              //   page: function (oEvent) {
+              //     // update the table data when the page changes
+              //     var iPage = oEvent.getParameter("page");
+              //     oModel.setData(getDataForPage(iPage));
+              //     oTable.setFirstVisibleRow(0);
+              //   }
+              // });
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
-              oPaginator.bindAggregation("content", "/", function (sId, oContext) {
-                // create a new button for each page of data
-                var iIndex = oContext.getProperty();
-                return new sap.ui.commons.Button({
-                  text: iIndex + 1,
-                  press: function () {
-                    oPaginator.setCurrentPage(iIndex + 1);
-                  }
-                });
-              });
 
-              // add the table and paginator to the page
-              var oPage = new sap.m.Page({
-                title: "My Page",
-                content: [oTable, oPaginator]
-              });
-
-              this.oPanel.addContent(oPage);
+              this.oPanel.addContent(oTable);
             }
 
           });
@@ -290,9 +274,6 @@
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
     console.log("Story Model:");
     console.log(storyModel);
-    let story = documentContext.get("sap.fpa.story.getStoryById");
-    console.log("Story");
-    console.log(story);
     let storyService = documentContext.get("sap.fpa.ui.story.StoryService");
     console.log("Story Service");
     console.log(storyService);
@@ -341,6 +322,10 @@
     //   var story = sap.fpa.story.getStoryById("59A395046F3F8A41401B0B1C28FD787D");
     //   console.log("Story details:");
     //   console.log(story);
+    // }
+
+    // if (sap.fpa.ui.story) {
+    //   console.log(sap.fpa.ui.story);
     // }
 
     // var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
