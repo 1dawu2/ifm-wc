@@ -293,6 +293,9 @@
     let story = documentContext.get("sap.fpa.story.getStoryById");
     console.log("Story");
     console.log(story);
+    let storyService = documentContext.get("sap.fpa.ui.story.StoryService");
+    console.log("Story Service");
+    console.log(storyService);
     let entityService = documentContext.get("sap.fpa.bi.entityService");
     console.log("Entity Service:");
     console.log(entityService);
