@@ -229,22 +229,22 @@
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
-              oTable.bindItems("artifact>/", new sap.m.ColumnListItem({
-                cells: [
-                  new sap.m.Text({
-                    text: "{models/description}"
-                  }),
-                  new sap.m.Text({
-                    text: "{models/externalId}"
-                  }),
-                  new sap.m.Text({
-                    text: "{models/id}",
-                  }),
-                  new sap.m.Text({
-                    text: "{models/isPlanning}",
-                  }),
-                ]
-              }));
+              // oTable.bindItems("artifact>/", new sap.m.ColumnListItem({
+              //   cells: [
+              //     new sap.m.Text({
+              //       text: "{models/description}"
+              //     }),
+              //     new sap.m.Text({
+              //       text: "{models/externalId}"
+              //     }),
+              //     new sap.m.Text({
+              //       text: "{models/id}",
+              //     }),
+              //     new sap.m.Text({
+              //       text: "{models/isPlanning}",
+              //     }),
+              //   ]
+              // }));
 
               this.oPanel.addContent(oTable);
             }
