@@ -16,7 +16,7 @@
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
       controllerName="ifm.hack.initial"
-      xmlns="sap.ui.table"
+      xmlns:t="sap.ui.table"
       xmlns:m="sap.m"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:core="sap.ui.core"
