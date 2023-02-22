@@ -67,7 +67,6 @@
                 horizontal="false"
                 vertical="true"
                 height="100%">
-                <m:headerToolbar>
                   <m:OverflowToolbar>
                     <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
                     <m:ToolbarSpacer/>
@@ -84,8 +83,7 @@
                     <m:Avatar
                       src="${ifmLogo}"
                     />
-                  </m:OverflowToolbar>
-                </m:headerToolbar>				
+                  </m:OverflowToolbar>	
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
                 />
               </m:ScrollContainer>
