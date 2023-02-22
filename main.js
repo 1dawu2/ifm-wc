@@ -338,7 +338,6 @@
         console.log(context);
       }
     }
-    console.log(storyService);
     let entityService = documentContext.get("sap.fpa.bi.entityService");
     console.log("Entity Service:");
     console.log(entityService);
