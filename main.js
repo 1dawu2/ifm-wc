@@ -273,7 +273,7 @@
 
   function convertSACArtifact() {
 
-    if (sap.fpa.story) {
+    if (sap.fpa) {
       console.log(sap.fpa.story);
       var story = sap.fpa.story.getStoryById("59A395046F3F8A41401B0B1C28FD787D");
       console.log("Story details:");
