@@ -302,6 +302,12 @@
   }
 
   function convertSACArtifact() {
+
+    var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
+    for (var i = 0; i < aUnsupportedFeatures.length; i++) {
+      console.log(aUnsupportedFeatures[i]);
+    }
+
     var oStoryConverter = sap.fpa.ui.story.api.StoryConverter.getInstance();
     console.log("Story Converter");
     console.log(oStoryConverter);
