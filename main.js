@@ -171,14 +171,14 @@
 
             oTable.addColumn(new sap.ui.table.Column({
               label: new sap.ui.commons.Label({ text: "First Name" }),
-              template: new sap.ui.commons.TextView.bindProperty({ text: "{model1>fname}" }),
+              template: new sap.ui.commons.TextView().bindProperty({ text: "{model1>fname}" }),
               sortProperty: "First Name",
               filterProperty: "First Name",
             }));
 
             oTable.addColumn(new sap.ui.table.Column({
               label: new sap.ui.commons.Label({ text: "Last Name" }),
-              template: new sap.ui.commons.TextView.bindProperty({ text: "{model1>lname}" }),
+              template: new sap.ui.commons.TextView().bindProperty({ text: "{model1>lname}" }),
               sortProperty: "Last Name",
               filterProperty: "Last Name",
             }));
