@@ -78,14 +78,13 @@
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                       </m:layoutData>
                     </m:Button>
-                    <m: Button icon="sap-icon://action-settings" press="onSettingsPressed" >
+                    <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
                       <m:layoutData>
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                       </m:layoutData>
                     </m:Button>
                     <m:Avatar
                       src="${ifmLogo}"
-                      displaySize="S"
                     />
                   </m:OverflowToolbar>
                 </m:headerToolbar>				
