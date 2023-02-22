@@ -6,12 +6,6 @@
   let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.svg";
   let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.png";
 
-  //   <m:Avatar
-  //   src="${ifmLogo}"
-  //   displaySize="XL"
-  //   showBorder="false"
-  // />
-
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
