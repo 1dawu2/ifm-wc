@@ -125,7 +125,10 @@
       that_.appendChild(content);
 
       sap.ui.define(
-        ["sap/ui/core/mvc/Controller"],
+        [
+          "sap/ui/core/mvc/Controller",
+          "sap/ui/core/format/DateFormat",
+        ],
         function (Controller) {
           "use strict";
 
@@ -313,6 +316,11 @@
 
   }
 
+  function getAppId(context) {
+    let app = (context || sap.fpa.ui.infra.common.getContext()).getInternalAppArguments(); // sap.fpa.ui.story.Utils.getInternalAppArguments()
+    return app && (app.appId /* application */ || app.resource_id /* story */);
+  }
+
   function prepareJSON2OModel() {
     // enhance SAC/App URL
     if (window.sap && sap.fpa && sap.fpa.ui && sap.fpa.ui.infra) {
@@ -321,6 +329,8 @@
 
         let context = sap.fpa.ui.infra.common.getContext();
         let appid = getAppId(context);
+        console.log("AppID:");
+        console.log(appid);
 
         if (context.getTenantUrl) {
 
