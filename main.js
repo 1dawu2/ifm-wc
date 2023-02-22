@@ -6,6 +6,12 @@
   let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.svg";
   let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.png";
 
+  //   <m:Avatar
+  //   src="${ifmLogo}"
+  //   displaySize="XL"
+  //   showBorder="false"
+  // />
+
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
@@ -72,15 +78,9 @@
         </tnt:SideNavigation>
         <m:Panel id="oHeader" width="auto" class="sapUiResponsiveMargin">
           <m:VBox alignItems="Center">
-            <m:Avatar
-              src="${ifmLogo}"
-              displaySize="XL"
-              showBorder="false"
-            />
             <m:Image
               src="${backImg}"
-              height="30%"
-              backgroundSize="contain"
+              height="96px"
               backgroundPosition="center center"
             />
             <m:Text text="IFM Health Analysis Conversion Kit" class="sapUiSmallMarginTop"/>
@@ -156,7 +156,7 @@
 
             var oModelTest = new sap.ui.model.json.JSONModel();
             var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-            var resURL = that_._export_settings.restapiurl.replace('stories?include=models','Resources');
+            var resURL = that_._export_settings.restapiurl.replace('stories?include=models', 'Resources');
             oModelTest.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
             oModelTest.attachRequestCompleted(function (oEvent) {
               var oData = oEvent.getSource().oData;
@@ -167,7 +167,6 @@
               title: "SAC Story/Application Overview:",
               showNoData: true,
               visibleRowCount: 10,
-              backgroundDesign: "Translucent "
             });
 
             oTable.addColumn(new sap.ui.table.Column({
