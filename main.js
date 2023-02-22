@@ -84,10 +84,6 @@
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                       </m:layoutData>
                     </Button>
-                    <m:Avatar
-                      src="${ifmLogo}"
-                      displaySize="S"
-                    />
                   </m:OverflowToolbar>
                 </m:headerToolbar>				
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
