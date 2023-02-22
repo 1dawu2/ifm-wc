@@ -19,7 +19,6 @@
       xmlns:t="sap.ui.table"
       xmlns:m="sap.m"
       xmlns:mvc="sap.ui.core.mvc"
-      xmlns:core="sap.ui.core"
       xmlns:tnt="sap.tnt"
       height="100%"
       class="side-navigation-demo"
@@ -62,8 +61,7 @@
           </tnt:SideNavigation>
         </tnt:sideContent>
         <tnt:mainContents>
-          <m:NavContainer id="pageContainer" initialPage="root">
-            <core:pages>
+          <m:NavContainer id="pageContainer">
               <m:ScrollContainer
                 id="root"
                 horizontal="false"
@@ -91,7 +89,6 @@
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
                 />
               </m:ScrollContainer>
-            </core:pages>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
