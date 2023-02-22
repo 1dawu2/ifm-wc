@@ -124,14 +124,14 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "URL" }),
-                template: new sap.m.Link({ text: "{artifact>Name", href: "{artifact>openURL}" }),
+                template: new sap.m.Link({ text: "{artifact>Name}", href: "{artifact>openURL}" }),
                 sortProperty: "URL",
                 filterProperty: "URL",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>models}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>models/}" }),
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
