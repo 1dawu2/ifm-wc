@@ -38,7 +38,7 @@
             <m:ToolbarSpacer width="20px" />
             <m:Avatar
               src="${ifmLogo}"
-              displaySize="XL"
+              displaySize="S"
             />           
           </tnt:ToolHeader>
         </tnt:header>
@@ -48,7 +48,7 @@
             itemSelect=".onItemSelect">
             <tnt:NavigationList id="navigationList">
               <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" key="root">
-                <tnt:NavigationListItem text="Overview Unsupported Features" />
+                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" />
                 <tnt:NavigationListItem text="Sub Item 3" icon="sap-icon://electrocardiogram" id="subItem3" key="subItem3" />
               </tnt:NavigationListItem>
             </tnt:NavigationList>
@@ -61,7 +61,7 @@
         </tnt:sideContent>
         <tnt:mainContents>
           <m:NavContainer id="pageContainer">
-              <m:ScrollContainer
+              <m:Page
                 id="root"
                 horizontal="false"
                 vertical="true"
@@ -83,7 +83,7 @@
                   </m:OverflowToolbar>	
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
                 />
-              </m:ScrollContainer>
+              </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
