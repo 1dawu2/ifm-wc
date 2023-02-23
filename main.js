@@ -90,11 +90,11 @@
               </m:ScrollContainer>
           </m:NavContainer>
         </tnt:mainContents>
-        <m:footer>
+        <tnt:footer>
           <m:OverflowToolbar id="otbFooter">
             <m:OverflowToolbarButton tooltip="Call an expert" text="Call an expert" icon="sap-icon://headset"/>
           </m:OverflowToolbar>
-		    </m:footer>
+		    </tnt:footer>
       </tnt:ToolPage>
     </mvc:View>
     </script>
@@ -163,6 +163,15 @@
             onHideShowSubItemPress: function () {
               var oNavListItem = this.byId("subItem3");
               oNavListItem.setVisible(!oNavListItem.getVisible());
+            },
+
+            onSideNavButtonPress: function () {
+              var oToolPage = this.byId("toolPage");
+              var bSideExpanded = oToolPage.getSideExpanded();
+
+              this._setToggleButtonTooltip(bSideExpanded);
+
+              oToolPage.setSideExpanded(!oToolPage.getSideExpanded());
             },
 
             onSettingsPressed: function () {
