@@ -39,6 +39,7 @@
             <m:Avatar
               src="${ifmLogo}"
               displaySize="S"
+              backgroundColor="Transparent"
               displayShape="Square"
               showBorder="false"
             />           
@@ -538,6 +539,29 @@
         // var storyService = new sap.fpa.ui.story.StoryService.getInstance();
         // console.log("Story Service:");
         // console.log(storyService);
+
+        // var n = sap.fpa.ui.story.Utils.getContentLibService();
+        // setSelectedStory: function(e) {
+        //   if (null != e)
+        //     if ("string" == typeof e || "number" == typeof e)
+        //       this.getModel().setCurrentStoryId(e);
+        //     else if ("object" === u(e))
+        //       if (e.id)
+        //         this.getModel().setCurrentStoryId(e);
+        //       else if (e.originatorId) {
+        //         var t = this.getModel().getStoryByOriginatorId(e.originatorId);
+        //         null !== t && this.getModel().setCurrentStoryId(t.id)
+        //       }
+        // },
+        // getSelectedStory: function() {
+        //   var e = this.getModel().getCurrentStory()
+        //     , t = null;
+        //   return null !== e && (t = {
+        //     id: e.id
+        //   },
+        //     e.originatorId && (t.originatorId = e.originatorId)),
+        //     t
+        // },
       }
     }
     let entityService = documentContext.get("sap.fpa.bi.entityService");
