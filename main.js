@@ -39,6 +39,8 @@
             <m:Avatar
               src="${ifmLogo}"
               displaySize="S"
+              displayShape="Square"
+              showBorder="false"
             />           
           </tnt:ToolHeader>
         </tnt:header>
