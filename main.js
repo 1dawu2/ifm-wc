@@ -60,7 +60,9 @@
           </tnt:SideNavigation>
         </tnt:sideContent>
         <tnt:mainContents>
-          <m:NavContainer id="pageContainer">
+          <m:NavContainer
+            id="pageContainer"
+            height="16em">
               <m:Page
                 id="root"
                 horizontal="false"
@@ -84,6 +86,7 @@
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
                 />
               </m:Page>
+              <m:footer><m:Toolbar><Button text="Action 1" /></m:Toolbar></m:footer>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -151,20 +154,6 @@
               oSideNavigation.setExpanded(!bExpanded);
             },
 
-            onHideShowSubItemPress: function () {
-              var oNavListItem = this.byId("subItem3");
-              oNavListItem.setVisible(!oNavListItem.getVisible());
-            },
-
-            onSideNavButtonPress: function () {
-              var oToolPage = this.byId("toolPage");
-              var bSideExpanded = oToolPage.getSideExpanded();
-
-              this._setToggleButtonTooltip(bSideExpanded);
-
-              oToolPage.setSideExpanded(!oToolPage.getSideExpanded());
-            },
-
             onSettingsPressed: function () {
 
             },
@@ -207,7 +196,6 @@
 
               this.byId("idProductsTable").getBinding("items").filter(aFilters).sort(aSorters);
             },
-
 
             bindTable: function () {
               var oBusy = new sap.m.BusyDialog();
@@ -276,17 +264,89 @@
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
                   new sap.ui.commons.Button({
-                    icon: "sap-icon://download",
+                    icon: "sap-icon://excel-attachment",
                     press: function (oEvent) {
-                      jQuery.sap.require("sap.ui.core.util.Export");
-                      jQuery.sap.require("sap.ui.core.util.ExportTypeCSV");
-                      oTable.exportData({
-                        exportType: new sap.ui.core.util.ExportTypeCSV()
-                      })
-                        .saveFile()
-                        .always(function () {
-                          this.destroy();
-                        });
+                      // jQuery.sap.require("sap.ui.core.util.Export");
+                      // jQuery.sap.require("sap.ui.core.util.ExportTypeCSV");
+                      // oTable.exportData({
+                      //   exportType: new sap.ui.core.util.ExportTypeCSV()
+                      // })
+                      //   .saveFile()
+                      //   .always(function () {
+                      //     this.destroy();
+                      //   });
+                      var oRowBinding, oSettings, oSheet, oTable;
+
+                      if (!this._oTable) {
+                        this._oTable = this.byId('exportTable');
+                      }
+
+                      oTable = this._oTable;
+                      oRowBinding = oTable.getBinding('items');
+                      var aCols = [];
+
+                      aCols.push({
+                        label: 'Name',
+                        property: ['name', 'Firstname'],
+                        type: EdmType.String,
+                        template: '{0}, {1}'
+                      });
+
+                      aCols.push({
+                        label: 'ID',
+                        type: EdmType.Number,
+                        property: 'UserID',
+                        scale: 0
+                      });
+
+                      aCols.push({
+                        property: 'Firstname',
+                        type: EdmType.String
+                      });
+
+                      aCols.push({
+                        property: 'Lastname',
+                        type: EdmType.String
+                      });
+
+                      aCols.push({
+                        property: 'Birthdate',
+                        type: EdmType.Date
+                      });
+
+                      aCols.push({
+                        property: 'Salary',
+                        type: EdmType.Number,
+                        scale: 2,
+                        delimiter: true
+                      });
+
+                      aCols.push({
+                        property: 'Currency',
+                        type: EdmType.String
+                      });
+
+                      aCols.push({
+                        property: 'Active',
+                        type: EdmType.Boolean,
+                        trueValue: 'YES',
+                        falseValue: 'NO'
+                      });
+
+                      oSettings = {
+                        workbook: {
+                          columns: aCols,
+                          hierarchyLevel: 'Level'
+                        },
+                        dataSource: oRowBinding,
+                        fileName: 'Table export sample.xlsx',
+                        worker: false // We need to disable worker because we are using a MockServer as OData Service
+                      };
+
+                      oSheet = new Spreadsheet(oSettings);
+                      oSheet.build().finally(function () {
+                        oSheet.destroy();
+                      });
                     }
                   })
                 ]
@@ -294,8 +354,8 @@
 
               // create table footer:
               oTable.setFooter(new sap.ui.commons.Button({
-                text: "Footer of the Table",
-                icon: ""
+                text: "Migration Steps",
+                icon: "sap-icon://process"
               }));
 
               // add table filter:
@@ -470,7 +530,7 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
-        jQuery.sap.declare("sap.fpa.ui.story.StoryService");
+        console.log(jQuery.sap.declare("sap.fpa.ui.story.StoryService"));
         // var storyService = new sap.fpa.ui.story.StoryService.getInstance();
         // console.log("Story Service:");
         // console.log(storyService);
