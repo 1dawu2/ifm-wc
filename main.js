@@ -93,7 +93,13 @@
     </mvc:View>
     </script>
   `;
+
   class IFMStories extends HTMLElement {
+
+    /**
+     * The constructor function is called when the element is created. It's a good place to set up initial
+     * values for the element's properties and to set up event listeners.
+     */
     constructor() {
       super();
 
@@ -112,6 +118,12 @@
 
     }
 
+    /**
+     * I'm trying to create a table that displays the data from the JSON model
+     * @param changedProperties - A map of changed properties with old values.
+     * @param that - the custom element itself
+     * @returns The return value is the JSON object that is returned from the SAC API.
+     */
     buildUI(changedProperties, that) {
 
       // testing
@@ -147,10 +159,19 @@
               oNavListItem.setVisible(!oNavListItem.getVisible());
             },
 
+            onSettingsPressed: function () {
+
+            },
+
+            onTableRefresh: function () {
+
+            },
+
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
               this.bindTable();
             },
+
             bindTable: function () {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
@@ -214,6 +235,8 @@
                 filterProperty: "Created",
               }));
 
+              // create table footer:
+              oTable.setFooter("Footer of the Table");
               // create the paginator
               // var oPaginator = new sap.ui.commons.Paginator({
               //   numberOfPages: 1, // set the number of pages to 1 initially
@@ -261,18 +284,36 @@
 
     }
 
+    /**
+     * The onCustomWidgetResize function is called when the widget is resized
+     * @param width - The width of the widget.
+     * @param height - The height of the widget.
+     */
     onCustomWidgetResize(width, height) {
     }
 
+    /**
+     * The connectedCallback() function is called when the element is inserted into the DOM.
+     */
     connectedCallback() {
     }
 
+    /* The above code is a JavaScript code that is used to define the behavior of the custom widget. */
     disconnectedCallback() {
     }
 
+    /**
+     * This function is called before the widget is updated.
+     * @param changedProperties - An object containing the changed properties.
+     */
     onCustomWidgetBeforeUpdate(changedProperties) {
     }
 
+    /**
+     * This function is called after the widget is updated. It is called with an object containing the
+     * changed properties.
+     * @param changedProperties - An object containing the changed properties.
+     */
     onCustomWidgetAfterUpdate(changedProperties) {
       this.buildUI(changedProperties, this);
     }
