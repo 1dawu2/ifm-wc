@@ -177,12 +177,12 @@
               }
             }
 
-            onCollapseExpandPress: function () {
-              var oSideNavigation = this.byId("sideNavigation");
-              var bExpanded = oSideNavigation.getExpanded();
+            // onCollapseExpandPress: function () {
+            //   var oSideNavigation = this.byId("sideNavigation");
+            //   var bExpanded = oSideNavigation.getExpanded();
 
-              oSideNavigation.setExpanded(!bExpanded);
-            },
+            //   oSideNavigation.setExpanded(!bExpanded);
+            // },
 
             onSettingsPressed: function () {
 
