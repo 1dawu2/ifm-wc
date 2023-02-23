@@ -70,6 +70,7 @@
                   <m:OverflowToolbar>
                     <m:Avatar
                       src="${ifmLogo}"
+                      displaySize="XL"
                     />
                     <m:ToolbarSpacer/>
                     <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
