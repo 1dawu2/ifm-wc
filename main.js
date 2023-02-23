@@ -30,24 +30,23 @@
               id="sideNavigationToggleButton"
               icon="sap-icon://menu2"
               type="Transparent"
-              press=".onSideNavButtonPress">
+              press=".onCollapseExpandPress">
               <m:layoutData>
                 <m:OverflowToolbarLayoutData priority="NeverOverflow" />
               </m:layoutData>
             </m:Button>
             <m:ToolbarSpacer width="20px" />
-            <m:Button text="File" type="Transparent">
-              <m:layoutData>
-                <m:OverflowToolbarLayoutData priority="Low" />
-              </m:layoutData>
-            </m:Button>
+            <m:Avatar
+              src="${ifmLogo}"
+              displaySize="XL"
+            />           
           </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent>
           <tnt:SideNavigation
             selectedKey="subItem3"
             itemSelect=".onItemSelect">
-            <tnt:NavigationList>
+            <tnt:NavigationList id="navigationList">
               <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" key="root">
                 <tnt:NavigationListItem text="Overview Unsupported Features" />
                 <tnt:NavigationListItem text="Sub Item 3" icon="sap-icon://electrocardiogram" id="subItem3" key="subItem3" />
@@ -68,10 +67,6 @@
                 vertical="true"
                 height="100%">
                   <m:OverflowToolbar>
-                    <m:Avatar
-                      src="${ifmLogo}"
-                      displaySize="XL"
-                    />
                     <m:ToolbarSpacer/>
                     <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
                     <m:ToolbarSpacer/>
@@ -183,6 +178,37 @@
               this.bindTable();
             },
 
+            onGroup: function (oEvent) {
+              this.bGrouped = !this.bGrouped;
+              this.fnApplyFiltersAndOrdering();
+            },
+
+            onCollapseExpandPress: function () {
+              var oNavigationList = this.byId("navigationList");
+              var bExpanded = oNavigationList.getExpanded();
+
+              oNavigationList.setExpanded(!bExpanded);
+            },
+
+            fnApplyFiltersAndOrdering: function (oEvent) {
+              var aFilters = [],
+                aSorters = [];
+
+              if (this.bGrouped) {
+                aSorters.push(new Sorter("SupplierName", this.bDescending, this._fnGroup));
+              } else {
+                aSorters.push(new Sorter("Name", this.bDescending));
+              }
+
+              if (this.sSearchQuery) {
+                var oFilter = new Filter("Name", FilterOperator.Contains, this.sSearchQuery);
+                aFilters.push(oFilter);
+              }
+
+              this.byId("idProductsTable").getBinding("items").filter(aFilters).sort(aSorters);
+            },
+
+
             bindTable: function () {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
@@ -246,20 +272,10 @@
                 filterProperty: "Created",
               }));
 
-              // create table footer:
-              oTable.setFooter("Footer of the Table");
-
               // add table toolbar:
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
                   new sap.ui.commons.Button({
-                    text: "Modify Table Properties...",
-                    press: function (oEvent) {
-                      oDialog.open();
-                    }
-                  }),
-                  new sap.ui.commons.Button({
-                    text: "Export Table Data",
                     icon: "sap-icon://download",
                     press: function (oEvent) {
                       jQuery.sap.require("sap.ui.core.util.Export");
@@ -274,6 +290,12 @@
                     }
                   })
                 ]
+              }));
+
+              // create table footer:
+              oTable.setFooter(new sap.ui.commons.Button({
+                text: "Footer of the Table",
+                icon: ""
               }));
 
               // add table filter:
