@@ -21,7 +21,8 @@
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
       height="100%"
-      class="side-navigation-demo"
+      class="ifm-hack"
+      height="100%"
     >
       <tnt:ToolPage id="toolPage">
         <tnt:header>
