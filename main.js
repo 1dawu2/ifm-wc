@@ -175,7 +175,7 @@
               } else {
                 navCon.back();
               }
-            }
+            },
 
             // onCollapseExpandPress: function () {
             //   var oSideNavigation = this.byId("sideNavigation");
