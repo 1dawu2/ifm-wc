@@ -68,6 +68,10 @@
                 vertical="true"
                 height="100%">
                   <m:OverflowToolbar>
+                    <m:Avatar
+                      src="${ifmLogo}"
+                    />
+                    <m:ToolbarSpacer/>
                     <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
                     <m:ToolbarSpacer/>
                     <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
@@ -80,15 +84,17 @@
                         <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                       </m:layoutData>
                     </m:Button>
-                    <m:Avatar
-                      src="${ifmLogo}"
-                    />
                   </m:OverflowToolbar>	
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
                 />
               </m:ScrollContainer>
           </m:NavContainer>
         </tnt:mainContents>
+        <m:footer>
+          <m:OverflowToolbar id="otbFooter">
+            <m:OverflowToolbarButton tooltip="Call an expert" text="Call an expert" icon="sap-icon://headset"/>
+          </m:OverflowToolbar>
+		    </m:footer>
       </tnt:ToolPage>
     </mvc:View>
     </script>
