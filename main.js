@@ -436,10 +436,10 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
-        jQuery.sap.require("sap.fpa.ui.story.StoryService");
-        var storyService = new sap.fpa.ui.story.StoryService.getInstance();
-        console.log("Story Service:");
-        console.log(storyService);
+        jQuery.sap.declare("sap.fpa.ui.story.StoryService");
+        // var storyService = new sap.fpa.ui.story.StoryService.getInstance();
+        // console.log("Story Service:");
+        // console.log(storyService);
       }
     }
     let entityService = documentContext.get("sap.fpa.bi.entityService");
