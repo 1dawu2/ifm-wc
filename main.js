@@ -72,7 +72,7 @@
                   <m:ToolbarSpacer/>
                   <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
                   <m:ToolbarSpacer/>
-                  <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                  <m:Button icon="sap-icon://refresh" press="onTableRefresh">
                     <m:layoutData>
                       <m:OverflowToolbarLayoutData priority="NeverOverflow" />
                     </m:layoutData>
@@ -84,7 +84,7 @@
                   </m:Button>
                 </m:OverflowToolbar>	
                 <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
-                <m:footer><m:Toolbar><Button text="Action 1" /></m:Toolbar></m:footer>
+                <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
               </m:Page>
               <m:Page
                 id="p1"
@@ -104,7 +104,7 @@
                     </m:layoutData>
                   </m:Button>
                 </m:OverflowToolbar>
-                <m:footer><m:Toolbar><Button text="Action 1" /></m:Toolbar></m:footer>
+                <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
               </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
@@ -520,6 +520,9 @@
         console.log("Context:");
         console.log(context);
         console.log(jQuery.sap.declare("sap.fpa.ui.story.StoryService"));
+        jQuery.sap.require("sap.fpa.ui.story.StoryService");
+        storyService = new sap.fpa.ui.story.StoryService;
+        console.log(storyService);
         // var storyService = new sap.fpa.ui.story.StoryService.getInstance();
         // console.log("Story Service:");
         // console.log(storyService);
