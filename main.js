@@ -48,8 +48,8 @@
             selectedKey="subItem3"
             itemSelect=".onItemSelect">
             <tnt:NavigationList>
-              <tnt:NavigationListItem text="Item 1" icon="sap-icon://electrocardiogram" key="root">
-                <tnt:NavigationListItem text="Sub Item 1" />
+              <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" key="root">
+                <tnt:NavigationListItem text="Overview Unsupported Features" />
                 <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
               </tnt:NavigationListItem>
             </tnt:NavigationList>
@@ -263,6 +263,15 @@
                   })
                 ]
               }));
+
+              // add table filter:
+              oTable.attachFilter(function (oEvent) {
+                var oMessage = new sap.ui.commons.Message({
+                  type: sap.ui.commons.MessageType.Success,
+                  text: "Filter column: " + oEvent.getParameter("column").getId() + " - " + oEvent.getParameter("value")
+                });
+                oMsgBar.addMessages([oMessage]);
+              });
               // create the paginator
               // var oPaginator = new sap.ui.commons.Paginator({
               //   numberOfPages: 1, // set the number of pages to 1 initially
