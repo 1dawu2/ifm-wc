@@ -519,15 +519,13 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
-        sap.ui.require(["sap/fpa/story/optimizedModeFeaturesValidator"], function (oOptimizedModeFeaturesValidator) {
-          // oOptimizedModeFeaturesValidator module is loaded
-          var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
-          for (var i = 0; i < aUnsupportedFeatures.length; i++) {
-            console.log(aUnsupportedFeatures[i]);
-          }
-
-
-        });
+        // sap.ui.require(["sap/fpa/story/optimizedModeFeaturesValidator"], function (oOptimizedModeFeaturesValidator) {
+        //   // oOptimizedModeFeaturesValidator module is loaded
+        //   var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
+        //   for (var i = 0; i < aUnsupportedFeatures.length; i++) {
+        //     console.log(aUnsupportedFeatures[i]);
+        //   }
+        // });
 
         if (sap.fpa.story) {
           console.log(sap.fpa.story);
