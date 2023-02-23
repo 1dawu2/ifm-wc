@@ -521,6 +521,7 @@
         console.log(context);
         console.log(jQuery.sap.declare("sap.fpa.ui.story.StoryService"));
         jQuery.sap.require("sap.fpa.ui.story.StoryService");
+        console.log("Story Service");
         storyService = new sap.fpa.ui.story.StoryService;
         console.log(storyService);
         // var storyService = new sap.fpa.ui.story.StoryService.getInstance();
