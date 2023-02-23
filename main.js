@@ -47,9 +47,9 @@
             selectedKey="subItem3"
             itemSelect=".onItemSelect">
             <tnt:NavigationList id="navigationList">
-              <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" key="root">
-                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" />
-                <tnt:NavigationListItem text="Sub Item 3" icon="sap-icon://electrocardiogram" id="subItem3" key="subItem3" />
+              <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" id="item1" key="item1">
+                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="item2" key="item2" press="handleNav"/>
+                <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="item2" id="item3" key="item3" press="handleNav"/>
               </tnt:NavigationListItem>
             </tnt:NavigationList>
             <tnt:fixedItem>
@@ -65,28 +65,45 @@
             height="16em">
               <m:Page
                 id="root"
-                horizontal="false"
-                vertical="true"
-                height="100%">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
-                    <m:ToolbarSpacer/>
-                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                    <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                  </m:OverflowToolbar>	
-                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"
-                />
+                title="Root">
+                <m:OverflowToolbar>
+                  <m:ToolbarSpacer/>
+                  <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                  <m:ToolbarSpacer/>
+                  <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                    <m:layoutData>
+                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </m:layoutData>
+                  </m:Button>
+                  <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
+                    <m:layoutData>
+                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </m:layoutData>
+                  </m:Button>
+                </m:OverflowToolbar>	
+                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
+                <m:footer><m:Toolbar><Button text="Action 1" /></m:Toolbar></m:footer>
               </m:Page>
-              <m:footer><m:Toolbar><Button text="Action 1" /></m:Toolbar></m:footer>
+              <m:Page
+                id="p1"
+                title="Page 1">
+                <m:OverflowToolbar>
+                  <m:ToolbarSpacer/>
+                  <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                  <m:ToolbarSpacer/>
+                  <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                    <m:layoutData>
+                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </m:layoutData>
+                  </m:Button>
+                  <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
+                    <m:layoutData>
+                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </m:layoutData>
+                  </m:Button>
+                </m:OverflowToolbar>
+                <m:footer><m:Toolbar><Button text="Action 1" /></m:Toolbar></m:footer>
+              </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -146,6 +163,17 @@
           "use strict";
 
           return Controller.extend("ifm.hack.initial", {
+
+            handleNav: function (evt) {
+              var navCon = this.byId("navCon");
+              var target = evt.getSource().data("target");
+              if (target) {
+                var animation = this.byId("animationSelect").getSelectedKey();
+                navCon.to(this.byId(target), animation);
+              } else {
+                navCon.back();
+              }
+            }
 
             onCollapseExpandPress: function () {
               var oSideNavigation = this.byId("sideNavigation");
@@ -260,6 +288,25 @@
                 filterProperty: "Created",
               }));
 
+              oTable.setModel(oModel, "artifact");
+              oTable.bindRows("artifact>/");
+              // oTable.bindItems("artifact>/", new sap.m.ColumnListItem({
+              //   cells: [
+              //     new sap.m.Text({
+              //       text: "{models/description}"
+              //     }),
+              //     new sap.m.Text({
+              //       text: "{models/externalId}"
+              //     }),
+              //     new sap.m.Text({
+              //       text: "{models/id}",
+              //     }),
+              //     new sap.m.Text({
+              //       text: "{models/isPlanning}",
+              //     }),
+              //   ]
+              // }));
+
               // add table toolbar:
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
@@ -287,50 +334,8 @@
 
                       aCols.push({
                         label: 'Name',
-                        property: ['name', 'Firstname'],
                         type: EdmType.String,
-                        template: '{0}, {1}'
-                      });
-
-                      aCols.push({
-                        label: 'ID',
-                        type: EdmType.Number,
-                        property: 'UserID',
-                        scale: 0
-                      });
-
-                      aCols.push({
-                        property: 'Firstname',
-                        type: EdmType.String
-                      });
-
-                      aCols.push({
-                        property: 'Lastname',
-                        type: EdmType.String
-                      });
-
-                      aCols.push({
-                        property: 'Birthdate',
-                        type: EdmType.Date
-                      });
-
-                      aCols.push({
-                        property: 'Salary',
-                        type: EdmType.Number,
-                        scale: 2,
-                        delimiter: true
-                      });
-
-                      aCols.push({
-                        property: 'Currency',
-                        type: EdmType.String
-                      });
-
-                      aCols.push({
-                        property: 'Active',
-                        type: EdmType.Boolean,
-                        trueValue: 'YES',
-                        falseValue: 'NO'
+                        property: 'name',
                       });
 
                       oSettings = {
@@ -338,9 +343,10 @@
                           columns: aCols,
                           hierarchyLevel: 'Level'
                         },
+
                         dataSource: oRowBinding,
-                        fileName: 'Table export sample.xlsx',
-                        worker: false // We need to disable worker because we are using a MockServer as OData Service
+                        fileName: 'Export.xlsx',
+                        worker: false
                       };
 
                       oSheet = new Spreadsheet(oSettings);
@@ -378,25 +384,6 @@
               //     oTable.setFirstVisibleRow(0);
               //   }
               // });
-
-              oTable.setModel(oModel, "artifact");
-              oTable.bindRows("artifact>/");
-              // oTable.bindItems("artifact>/", new sap.m.ColumnListItem({
-              //   cells: [
-              //     new sap.m.Text({
-              //       text: "{models/description}"
-              //     }),
-              //     new sap.m.Text({
-              //       text: "{models/externalId}"
-              //     }),
-              //     new sap.m.Text({
-              //       text: "{models/id}",
-              //     }),
-              //     new sap.m.Text({
-              //       text: "{models/isPlanning}",
-              //     }),
-              //   ]
-              // }));
 
               this.oPanel.addContent(oTable);
             }
