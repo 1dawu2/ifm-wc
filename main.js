@@ -50,8 +50,8 @@
             itemSelect=".onItemSelect">
             <tnt:NavigationList id="navigationList">
               <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" id="item1" key="item1">
-                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="item2" key="item2" press="handleNav"/>
-                <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="item3" key="item3" press="handleNav"/>
+                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="item2" key="item2"/>
+                <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="item3" key="item3"/>
               </tnt:NavigationListItem>
             </tnt:NavigationList>
             <tnt:fixedItem>
