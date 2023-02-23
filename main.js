@@ -50,7 +50,7 @@
             <tnt:NavigationList>
               <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" key="root">
                 <tnt:NavigationListItem text="Overview Unsupported Features" />
-                <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+                <tnt:NavigationListItem text="Sub Item 3" icon="sap-icon://electrocardiogram" id="subItem3" key="subItem3" />
               </tnt:NavigationListItem>
             </tnt:NavigationList>
             <tnt:fixedItem>
@@ -255,6 +255,7 @@
                   }),
                   new sap.ui.commons.Button({
                     text: "Export Table Data",
+                    icon: "sap-icon://download",
                     press: function (oEvent) {
                       jQuery.sap.require("sap.ui.core.util.Export");
                       jQuery.sap.require("sap.ui.core.util.ExportTypeCSV");
