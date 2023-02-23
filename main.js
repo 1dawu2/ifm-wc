@@ -90,11 +90,6 @@
               </m:ScrollContainer>
           </m:NavContainer>
         </tnt:mainContents>
-        <tnt:footer>
-          <m:OverflowToolbar id="otbFooter">
-            <m:OverflowToolbarButton tooltip="Call an expert" text="Call an expert" icon="sap-icon://headset"/>
-          </m:OverflowToolbar>
-		    </tnt:footer>
       </tnt:ToolPage>
     </mvc:View>
     </script>
