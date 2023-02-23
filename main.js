@@ -55,7 +55,7 @@
             </tnt:NavigationList>
             <tnt:fixedItem>
               <tnt:NavigationList>
-                <tnt:NavigationListItem text="Item 1" icon="${ifmLogo}" />
+                <tnt:NavigationListItem text="INFOMOTION GmbH" icon="sap-icon://globe" href="http://www.infomotion.de" target="_blank"/>
               </tnt:NavigationList>
             </tnt:fixedItem>
           </tnt:SideNavigation>
@@ -237,6 +237,32 @@
 
               // create table footer:
               oTable.setFooter("Footer of the Table");
+
+              // add table toolbar:
+              oTable.setToolbar(new sap.ui.commons.Toolbar({
+                items: [
+                  new sap.ui.commons.Button({
+                    text: "Modify Table Properties...",
+                    press: function (oEvent) {
+                      oDialog.open();
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    text: "Export Table Data",
+                    press: function (oEvent) {
+                      jQuery.sap.require("sap.ui.core.util.Export");
+                      jQuery.sap.require("sap.ui.core.util.ExportTypeCSV");
+                      oTable.exportData({
+                        exportType: new sap.ui.core.util.ExportTypeCSV()
+                      })
+                        .saveFile()
+                        .always(function () {
+                          this.destroy();
+                        });
+                    }
+                  })
+                ]
+              }));
               // create the paginator
               // var oPaginator = new sap.ui.commons.Paginator({
               //   numberOfPages: 1, // set the number of pages to 1 initially
@@ -401,6 +427,10 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
+        jQuery.sap.require("sap.fpa.ui.story.StoryService");
+        var storyService = new sap.fpa.ui.story.StoryService.getInstance();
+        console.log("Story Service:");
+        console.log(storyService);
       }
     }
     let entityService = documentContext.get("sap.fpa.bi.entityService");
