@@ -519,8 +519,11 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
-        console.log(jQuery.sap.declare("sap.fpa.ui.story.StoryService"));
-        jQuery.sap.require("sap.fpa.ui.story.StoryService");
+        if (sap.fpa.story) {
+          console.log(sap.fpa.story);
+        }
+        console.log(jQuery.sap.declare("sap.fpa.ui.story"));
+        jQuery.sap.require("sap.fpa.ui.story");
         console.log("Story Service");
         storyService = new sap.fpa.ui.story.StoryService;
         console.log(storyService);
