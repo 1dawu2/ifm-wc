@@ -151,7 +151,7 @@
       getSACMetadata();
       prepareJSON2OModel();
       convertSACArtifact();
-      initSAC();
+      // initSAC();
 
       var that_ = that;
 
