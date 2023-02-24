@@ -3,7 +3,7 @@
   let _oAuthURL;
   let _clientID;
   let _apiSecret;
-  let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.svg";
+  let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.png";
   let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.png";
 
   let tmpl = document.createElement("template");
