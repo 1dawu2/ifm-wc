@@ -917,7 +917,9 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
-        var s = context.get("sap.fpa.story.optimized.model.validator");
+        // var s = sap.fpa.ui.infra.common.getContext().get("sap.fpa.story.optimized.model.validator");
+        let t;
+        t = fn => sap.fpa.story.optimized.model.validator(true, fn);
         // sap.ui.require(["sap/fpa/story/optimizedModeFeaturesValidator"], function (oOptimizedModeFeaturesValidator) {
         //   // oOptimizedModeFeaturesValidator module is loaded
         //   var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
