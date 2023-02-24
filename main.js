@@ -47,6 +47,7 @@
         </tnt:header>
         <tnt:sideContent>
           <tnt:SideNavigation
+            id="sideNavigationList"
             selectedKey="subItem3"
             itemSelect=".onItemSelect">
             <tnt:NavigationList id="navigationList">
@@ -178,13 +179,6 @@
               }
             },
 
-            // onCollapseExpandPress: function () {
-            //   var oSideNavigation = this.byId("sideNavigation");
-            //   var bExpanded = oSideNavigation.getExpanded();
-
-            //   oSideNavigation.setExpanded(!bExpanded);
-            // },
-
             onSettingsPressed: function () {
 
             },
@@ -204,7 +198,7 @@
             },
 
             onCollapseExpandPress: function () {
-              var oNavigationList = this.byId("navigationList");
+              var oNavigationList = this.byId("sideNavigationList");
               var bExpanded = oNavigationList.getExpanded();
 
               oNavigationList.setExpanded(!bExpanded);
@@ -311,6 +305,7 @@
               // }));
 
               // add table toolbar:
+
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
                   new sap.ui.commons.Button({
@@ -328,11 +323,11 @@
                       var oRowBinding, oSettings, oSheet, oTable;
 
                       if (!this._oTable) {
-                        this._oTable = this.byId('exportTable');
+                        this._oTable = this.byId('oPanel');
                       }
 
                       oTable = this._oTable;
-                      oRowBinding = oTable.getBinding('items');
+                      oRowBinding = oTable.getBinding('artifact');
                       var aCols = [];
 
                       aCols.push({
@@ -921,6 +916,7 @@
         let context = sap.fpa.ui.infra.common.getContext();
         console.log("Context:");
         console.log(context);
+        var s = context.get("sap.fpa.story.optimized.model.validator");
         // sap.ui.require(["sap/fpa/story/optimizedModeFeaturesValidator"], function (oOptimizedModeFeaturesValidator) {
         //   // oOptimizedModeFeaturesValidator module is loaded
         //   var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
