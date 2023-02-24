@@ -152,6 +152,19 @@
       prepareJSON2OModel();
       convertSACArtifact();
       // initSAC();
+      // sap.fpa.story.optimized.model.validator > "getModelValidator"
+      // sap.fpa.story.optimizedModeFeaturesValidator > bound _getService
+      // sap.fpa.story.documentActions
+      // getStoryService
+      if (fpa.StoryService) {
+        console.log(fpa.StoryService);
+      }
+      sts = sap.fpa.ui.story.Utils.getStoryServie();
+      optm = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
+      console.log("ist optimized");
+      console.log(optm);
+      console.log("Story Service");
+      console.log(sts);
 
       var that_ = that;
 
@@ -323,11 +336,11 @@
                       //   });
                       var oRowBinding, oSettings, oSheet, oTable;
 
-                      if (!this._oTable) {
-                        this._oTable = this.byId('oPanel');
-                      }
+                      // if (!this._oTable) {
+                      //   this._oTable = this.byId('oPanel');
+                      // }
 
-                      oTable = this._oTable;
+                      // oTable = this._oTable;
                       oRowBinding = oTable.getBinding('artifact');
                       var aCols = [];
 
