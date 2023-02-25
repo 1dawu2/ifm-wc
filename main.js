@@ -37,11 +37,12 @@
             </m:Button>
             <m:ToolbarSpacer width="20px" />
             <m:Avatar
-              src="${ifmLogo}"
+              imageFitType="Cover"
               displaySize="S"
               backgroundColor="Transparent"
-              displayShape="Square"
-              showBorder="false"
+              displayShape="Circle"
+              showBorder="false"   
+              src="${ifmLogo}"           
             />           
           </tnt:ToolHeader>
         </tnt:header>
