@@ -156,9 +156,9 @@
       // sap.fpa.story.optimizedModeFeaturesValidator > bound _getService
       // sap.fpa.story.documentActions
       // getStoryService
-      if (fpa.StoryService) {
-        console.log(fpa.StoryService);
-      }
+      // if (fpa.StoryService) {
+      //   console.log(fpa.StoryService);
+      // }
       sts = sap.fpa.ui.story.Utils.getStoryServie();
       optm = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
       console.log("ist optimized");
