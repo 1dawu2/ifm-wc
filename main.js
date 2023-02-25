@@ -34,7 +34,7 @@
                 <m:OverflowToolbarLayoutData priority="NeverOverflow" />
               </m:layoutData>
             </m:Button>
-            <m:ToolbarSpacer width="20px" />
+            <m:ToolbarSpacer/>
             <m:Avatar
               imageFitType="Cover"
               displaySize="S"
