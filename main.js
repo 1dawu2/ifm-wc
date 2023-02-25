@@ -11,7 +11,7 @@
     <style>
     </style>
     <div id="ui5_content" name="ui5_content">
-    <slot name="content"></slot>
+      <slot name="content"></slot>
     </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
