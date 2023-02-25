@@ -159,8 +159,8 @@
       // if (fpa.StoryService) {
       //   console.log(fpa.StoryService);
       // }
-      sts = sap.fpa.ui.story.Utils.getStoryServie();
-      optm = sap.fpa.ui.story.Utils.isOptimizedDesignMode();
+      sts = sap.fpa.ui.story.Utils.get("getStoryServie");
+      optm = sap.fpa.ui.story.Utils.get("isOptimizedDesignMode");
       console.log("ist optimized");
       console.log(optm);
       console.log("Story Service");
