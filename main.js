@@ -160,12 +160,12 @@
       //   console.log(fpa.StoryService);
       // }
 
-      sts = sap.fpa.ui.infra.service.ServiceManager(e => e.getService());
-      optm = sap.fpa.ui.story.Utils.get("isOptimizedDesignMode");
-      console.log("ist optimized");
-      console.log(optm);
-      console.log("Story Service");
-      console.log(sts);
+      // sts = sap.fpa.ui.infra.service.ServiceManager(e => e.getService());
+      // optm = sap.fpa.ui.story.Utils.get("isOptimizedDesignMode");
+      // console.log("ist optimized");
+      // console.log(optm);
+      // console.log("Story Service");
+      // console.log(sts);
 
       var that_ = that;
 
