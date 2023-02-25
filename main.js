@@ -21,8 +21,7 @@
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
       height="100%"
-      class="ifm-hack"
-    >
+      class="ifm-hack">
       <tnt:ToolPage id="toolPage">
         <tnt:header>
           <tnt:ToolHeader>
@@ -68,47 +67,53 @@
           <m:NavContainer
             id="pageContainer"
             height="16em">
-              <m:Page
-                id="root"
-                title="Root">
-                <m:OverflowToolbar>
-                  <m:ToolbarSpacer/>
-                  <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
-                  <m:ToolbarSpacer/>
-                  <m:Button icon="sap-icon://refresh" press="onTableRefresh">
-                    <m:layoutData>
-                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                    </m:layoutData>
-                  </m:Button>
-                  <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
-                    <m:layoutData>
-                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                    </m:layoutData>
-                  </m:Button>
-                </m:OverflowToolbar>	
-                <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
-                <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
-              </m:Page>
-              <m:Page
-                id="p1"
-                title="Page 1">
-                <m:OverflowToolbar>
-                  <m:ToolbarSpacer/>
-                  <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
-                  <m:ToolbarSpacer/>
-                  <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
-                    <m:layoutData>
-                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                    </m:layoutData>
-                  </m:Button>
-                  <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
-                    <m:layoutData>
-                      <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                    </m:layoutData>
-                  </m:Button>
-                </m:OverflowToolbar>
-                <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
-              </m:Page>
+            	<m:ScrollContainer
+		            height="100%"
+                width="100%"
+                vertical="true"
+                focusable="true">
+                <m:Page
+                  id="root"
+                  title="Root">
+                  <m:OverflowToolbar>
+                    <m:ToolbarSpacer/>
+                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:ToolbarSpacer/>
+                    <m:Button icon="sap-icon://refresh" press="onTableRefresh">
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                  </m:OverflowToolbar>	
+                  <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
+                  <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
+                </m:Page>
+                <m:Page
+                  id="p1"
+                  title="Page 1">
+                  <m:OverflowToolbar>
+                    <m:ToolbarSpacer/>
+                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:ToolbarSpacer/>
+                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                    <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
+                      <m:layoutData>
+                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+                      </m:layoutData>
+                    </m:Button>
+                  </m:OverflowToolbar>
+                  <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
+                </m:Page>
+              </m:ScrollContainer>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
