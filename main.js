@@ -98,15 +98,9 @@
                     </m:Button>
                   </m:OverflowToolbar>	
                   <m:Panel id="oPanel" height="100%" width="auto" class="sapUiResponsiveMargin"/>
-                  <m:footer>
-                    <m:OverflowToolbar>
-                      <m:ToolbarSpacer/>
-                      <m:Button text="Accept" type="Accept" />
-                      <m:Button text="Reject" type="Reject" />
-                      <m:Button text="Edit" />
-                      <m:Button text="Delete" />
-                    </m:OverflowToolbar>
-                  </m:footer>
+                  <m:OverflowToolbar>
+                    <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
+                  </m:OverflowToolbar>
                 </m:ScrollContainer>
                 <m:ScrollContainer
                   id="p1"
@@ -129,15 +123,9 @@
                       </m:layoutData>
                     </m:Button>
                   </m:OverflowToolbar>
-                  <m:footer>
-                    <m:OverflowToolbar>
-                      <m:ToolbarSpacer/>
-                      <m:Button text="Accept" type="Accept" />
-                      <m:Button text="Reject" type="Reject" />
-                      <m:Button text="Edit" />
-                      <m:Button text="Delete" />
-                    </m:OverflowToolbar>
-                  </m:footer>
+                  <m:OverflowToolbar>
+                    <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
+                  </m:OverflowToolbar>
                 </m:ScrollContainer>
               </m:pages>
           </m:NavContainer>
