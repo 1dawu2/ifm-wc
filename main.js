@@ -58,9 +58,9 @@
             <tnt:NavigationList
               expanded="false"
               id="navigationList">
-              <tnt:NavigationListItem expanded="false" text="About IFM HACK" icon="sap-icon://electrocardiogram" id="root" key="root">
-                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="p1" key="p1"/>
-                <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="p2" key="p2"/>
+              <tnt:NavigationListItem expanded="false" text="About IFM HACK" icon="sap-icon://electrocardiogram" id="nl0" key="root">
+                <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="nl1" key="p1"/>
+                <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="nl2" key="p2"/>
               </tnt:NavigationListItem>
             </tnt:NavigationList>
             <tnt:fixedItem>
