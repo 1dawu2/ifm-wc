@@ -39,7 +39,7 @@
               imageFitType="Cover"
               displaySize="S"
               backgroundColor="Transparent"
-              displayShape="Circle"
+              displayShape="Square"
               showBorder="false"   
               src="${ifmLogo}"           
             />           
@@ -66,14 +66,14 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
+            initialPage="root"
             height="16em">
-            	<m:ScrollContainer
-		            height="100%"
-                width="100%"
-                vertical="true"
-                focusable="true">
-                <m:Page
+              <m:pages>
+                <m:ScrollContainer
                   id="root"
+                  horizontal="false"
+                  vertical="true"
+                  height="100%"
                   title="Root">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
@@ -92,9 +92,12 @@
                   </m:OverflowToolbar>	
                   <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
                   <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
-                </m:Page>
-                <m:Page
+                </m:ScrollContainer>
+                <m:ScrollContainer
                   id="p1"
+                  horizontal="false"
+                  vertical="true"
+                  height="100%"                  
                   title="Page 1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
@@ -112,8 +115,8 @@
                     </m:Button>
                   </m:OverflowToolbar>
                   <m:footer><m:Toolbar><m:Button text="Action 1" /></m:Toolbar></m:footer>
-                </m:Page>
-              </m:ScrollContainer>
+                </m:ScrollContainer>
+              </m:pages>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -198,6 +201,11 @@
               } else {
                 navCon.back();
               }
+            },
+
+            onItemSelect: function (oEvent) {
+              var oItem = oEvent.getParameter("item");
+              this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
             },
 
             onSettingsPressed: function () {
