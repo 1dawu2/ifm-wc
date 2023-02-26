@@ -204,6 +204,12 @@
             // TODO: add dialog with settings
             onSettingsPressed: function () {
 
+              var ButtonType = mobileLibrary.ButtonType;
+
+              // shortcut for sap.m.DialogType
+              var DialogType = mobileLibrary.DialogType;
+
+
               if (!this.oDefaultDialog) {
                 this.oDefaultDialog = new sap.m.Dialog({
                   title: "Available Products",
@@ -216,14 +222,14 @@
                   //     })
                   //   }
                   // }),
-                  beginButton: new sap.ui.commons.Button({
+                  beginButton: new sap.m.Button({
                     type: ButtonType.Emphasized,
                     text: "OK",
                     press: function () {
                       this.oDefaultDialog.close();
                     }.bind(this)
                   }),
-                  endButton: new sap.ui.commons.Button({
+                  endButton: new sap.m.Button({
                     text: "Close",
                     press: function () {
                       this.oDefaultDialog.close();
@@ -384,7 +390,7 @@
                       // }
 
                       // oTable = this._oTable;
-                      oRowBinding = oTable.getBinding('artifact');
+                      oRowBinding = oTable.getBinding('artifact>/');
                       var aCols = [];
 
                       aCols.push({
