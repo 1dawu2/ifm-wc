@@ -79,10 +79,11 @@
                   id="root"
                   horizontal="false"
                   vertical="true"
+                  width="100%"
                   height="100%">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
-                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:Title text="Root" level="H2"/>
                     <m:ToolbarSpacer/>
                     <m:Button icon="sap-icon://refresh" press="onTableRefresh">
                       <m:layoutData>
@@ -95,16 +96,17 @@
                       </m:layoutData>
                     </m:Button>
                   </m:OverflowToolbar>	
-                  <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
+                  <m:Panel id="oPanel" height="100%" width="auto" class="sapUiResponsiveMargin"/>
                 </m:ScrollContainer>
                 <m:ScrollContainer
                   id="p1"
                   horizontal="false"
                   vertical="true"
+                  width="100%"
                   height="100%">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
-                    <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
+                    <m:Title text="Page 2"/>
                     <m:ToolbarSpacer/>
                     <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
                       <m:layoutData>
