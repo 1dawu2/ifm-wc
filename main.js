@@ -197,6 +197,7 @@
         [
           "sap/ui/core/mvc/Controller",
           "sap/ui/core/format/DateFormat",
+          "'sap/ui/export/Spreadsheet",
         ],
         function (Controller) {
           "use strict";
@@ -380,7 +381,7 @@
                         worker: false
                       };
 
-                      oSheet = new Spreadsheet(oSettings);
+                      oSheet = new sap.ui.export.Spreadsheet(oSettings);
                       oSheet.build().finally(function () {
                         oSheet.destroy();
                       });
