@@ -347,7 +347,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
                 template: new sap.ui.commons.TextView().bindProperty("text", {
-                  path: "{artifact>created}",
+                  path: "artifact>created",
                   type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy" })
                 }),
                 sortProperty: "created",
