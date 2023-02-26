@@ -81,22 +81,7 @@
                   horizontal="false"
                   vertical="true"
                   width="100%"
-                  height="100%">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="Root" level="H2"/>
-                    <m:ToolbarSpacer/>
-                    <m:Button icon="sap-icon://refresh" press="onTableRefresh">
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                    <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                  </m:OverflowToolbar>	
+                  height="100%">	
                   <m:Panel id="oPanel" height="auto" width="100%"/>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
@@ -251,16 +236,8 @@
             },
 
             onInit: function (oEvent) {
-              var oNavigationList = this.byId("sideNavigationList");
-              var bExpanded = false;
-              oNavigationList.setExpanded(bExpanded);
               this.oPanel = this.byId("oPanel");
               this.bindTable();
-            },
-
-            onGroup: function (oEvent) {
-              this.bGrouped = !this.bGrouped;
-              this.fnApplyFiltersAndOrdering();
             },
 
             onCollapseExpandPress: function () {
@@ -268,24 +245,6 @@
               var bExpanded = oNavigationList.getExpanded();
 
               oNavigationList.setExpanded(!bExpanded);
-            },
-
-            fnApplyFiltersAndOrdering: function (oEvent) {
-              var aFilters = [],
-                aSorters = [];
-
-              if (this.bGrouped) {
-                aSorters.push(new Sorter("SupplierName", this.bDescending, this._fnGroup));
-              } else {
-                aSorters.push(new Sorter("Name", this.bDescending));
-              }
-
-              if (this.sSearchQuery) {
-                var oFilter = new Filter("Name", FilterOperator.Contains, this.sSearchQuery);
-                aFilters.push(oFilter);
-              }
-
-              this.byId("idProductsTable").getBinding("items").filter(aFilters).sort(aSorters);
             },
 
             bindTable: function () {
@@ -326,8 +285,8 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "URL" }),
                 template: new sap.m.Link({ text: "{artifact>name}", href: "{artifact>openURL}", target: "_blank" }),
-                sortProperty: "openURL",
-                filterProperty: "openURL",
+                sortProperty: "name",
+                filterProperty: "name",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -366,6 +325,14 @@
                       console.log(hello);
                     }
 
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://action-settings",
+                    press: onSettingsPressed()
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://refresh",
+                    press: onTableRefresh()
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
