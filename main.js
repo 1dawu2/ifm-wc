@@ -97,9 +97,6 @@
                     </m:Button>
                   </m:OverflowToolbar>	
                   <m:Panel id="oPanel" width="auto" class="sapUiResponsiveMargin"/>
-                  <m:footer>
-                    <m:OverflowToolbar><m:Button text="Action 1" /></m:OverflowToolbar>
-                  </m:footer>
                 </m:ScrollContainer>
                 <m:ScrollContainer
                   id="p1"
@@ -122,11 +119,11 @@
                       </m:layoutData>
                     </m:Button>
                   </m:OverflowToolbar>
-                  <m:footer>
-                    <m:OverflowToolbar><m:Button text="Action 1" /></m:OverflowToolbar>
-                  </m:footer>
                 </m:ScrollContainer>
               </m:pages>
+              <m:footer>
+                <m:Toolbar><m:Button text="Action 1" /></m:Toolbar>
+              </m:footer>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -945,6 +942,10 @@
     if (sap.lumira.story.StoryModel) {
       console.log(sap.lumira.story.StoryModel);
 
+    }
+
+    if (sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase) {
+      console.log(sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase);
     }
 
 
