@@ -196,19 +196,8 @@
 
           return Controller.extend("ifm.hack.initial", {
 
-            handleNav: function (evt) {
-              var navCon = this.byId("navCon");
-              var target = evt.getSource().data("target");
-              if (target) {
-                var animation = this.byId("animationSelect").getSelectedKey();
-                navCon.to(this.byId(target), animation);
-              } else {
-                navCon.back();
-              }
-            },
-
-            onItemSelect: function (oEvent) {
-              var oItem = oEvent.getParameter("item");
+            onItemSelect: function (evt) {
+              var oItem = evt.getParameter("item");
               this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
             },
 
@@ -216,7 +205,7 @@
             onSettingsPressed: function () {
 
               if (!this.oDefaultDialog) {
-                this.oDefaultDialog = new Dialog({
+                this.oDefaultDialog = new sap.m.Dialog({
                   title: "Available Products",
                   // content: new List({
                   //   items: {
@@ -227,14 +216,14 @@
                   //     })
                   //   }
                   // }),
-                  beginButton: new Button({
+                  beginButton: new sap.ui.commons.Button({
                     type: ButtonType.Emphasized,
                     text: "OK",
                     press: function () {
                       this.oDefaultDialog.close();
                     }.bind(this)
                   }),
-                  endButton: new Button({
+                  endButton: new sap.ui.commons.Button({
                     text: "Close",
                     press: function () {
                       this.oDefaultDialog.close();
