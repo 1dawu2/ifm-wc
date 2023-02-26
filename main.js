@@ -38,6 +38,8 @@
               </m:layoutData>
             </m:Button>
             <m:ToolbarSpacer/>
+            <m:Title text="IFM Health Analysis Conversion Kit" level="H1"/>
+            <m:ToolbarSpacer/>
             <m:Avatar
               imageFitType="Cover"
               displaySize="S"
