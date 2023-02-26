@@ -9,6 +9,9 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
+      .sapTntSideNavigationSeparator {
+        background-color: #fff;
+      }
     </style>
     <div id="ui5_content" name="ui5_content">
       <slot name="content"></slot>
