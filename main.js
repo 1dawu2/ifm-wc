@@ -97,16 +97,6 @@
                     <m:ToolbarSpacer/>
                     <m:Title text="Page 2"/>
                     <m:ToolbarSpacer/>
-                    <m:Button icon="sap-icon://refresh" press="onTableRefresh" >
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
-                    <m:Button icon="sap-icon://action-settings" press="onSettingsPressed">
-                      <m:layoutData>
-                        <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-                      </m:layoutData>
-                    </m:Button>
                   </m:OverflowToolbar>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
