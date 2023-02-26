@@ -314,8 +314,8 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Name" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
-                sortProperty: "Name",
-                filterProperty: "Name",
+                sortProperty: "name",
+                filterProperty: "name",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -349,7 +349,10 @@
               const dt = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "yyyy-MM-ddTHH:mm:ss" })
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView({ text: `"${dt.format(dt.parse("{artifact>created}"))}"` }),
+                template: new sap.ui.commons.TextView().bindProperty("text", {
+                  path: "{artifact>created}",
+                  type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy" })
+                }),
                 sortProperty: "Created",
                 filterProperty: "Created",
               }));
@@ -406,7 +409,9 @@
                   type: sap.ui.commons.MessageType.Success,
                   text: "Filter column: " + oEvent.getParameter("column").getId() + " - " + oEvent.getParameter("value")
                 });
-                oMsgBar.addMessages([oMessage]);
+                console.log(oMessage);
+                var oSource = oEvent.getSource().getBinding();
+                console.log(oSource);
               });
               // create the paginator
               // var oPaginator = new sap.ui.commons.Paginator({
