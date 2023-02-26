@@ -121,9 +121,11 @@
                   </m:OverflowToolbar>
                 </m:ScrollContainer>
               </m:pages>
-              <m:footer>
-                <m:Toolbar><m:Button text="Action 1" /></m:Toolbar>
-              </m:footer>
+              <m:Page>
+                <m:footer>
+                  <m:Toolbar><m:Button text="Action 1" /></m:Toolbar>
+                </m:footer>
+              </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
