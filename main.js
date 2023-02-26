@@ -319,15 +319,15 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
-                sortProperty: "Description",
-                filterProperty: "Description",
+                sortProperty: "description",
+                filterProperty: "description",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "URL" }),
                 template: new sap.m.Link({ text: "{artifact>name}", href: "{artifact>openURL}", target: "_blank" }),
-                sortProperty: "URL",
-                filterProperty: "URL",
+                sortProperty: "openURL",
+                filterProperty: "openURL",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -340,19 +340,18 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created by" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>createdBy}" }),
-                sortProperty: "Created by",
-                filterProperty: "Created by",
+                sortProperty: "createdBy",
+                filterProperty: "createdBy",
               }));
 
-              const dt = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "yyyy-MM-ddTHH:mm:ss" })
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
                 template: new sap.ui.commons.TextView().bindProperty("text", {
                   path: "{artifact>created}",
                   type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy" })
                 }),
-                sortProperty: "Created",
-                filterProperty: "Created",
+                sortProperty: "created",
+                filterProperty: "created",
               }));
 
               oTable.setModel(oModel, "artifact");
@@ -373,6 +372,10 @@
                       aCols.push({
                         label: 'Name',
                         property: 'name',
+                      });
+                      aCols.push({
+                        label: 'Description',
+                        property: 'description',
                       });
 
                       oSettings = {
@@ -402,15 +405,15 @@
               }));
 
               // add table filter:
-              oTable.attachFilter(function (oEvent) {
-                var oMessage = new sap.ui.commons.Message({
-                  type: sap.ui.commons.MessageType.Success,
-                  text: "Filter column: " + oEvent.getParameter("column").getId() + " - " + oEvent.getParameter("value")
-                });
-                console.log(oMessage);
-                var oSource = oEvent.getSource().getBinding();
-                console.log(oSource);
-              });
+              // oTable.attachFilter(function (oEvent) {
+              //   var oMessage = new sap.ui.commons.Message({
+              //     type: sap.ui.commons.MessageType.Success,
+              //     text: "Filter column: " + oEvent.getParameter("column").getId() + " - " + oEvent.getParameter("value")
+              //   });
+              //   console.log(oMessage);
+              //   var oSource = oEvent.getSource().getBinding();
+              //   console.log(oSource);
+              // });
               // create the paginator
               // var oPaginator = new sap.ui.commons.Paginator({
               //   numberOfPages: 1, // set the number of pages to 1 initially
