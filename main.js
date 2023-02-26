@@ -247,7 +247,7 @@
 
             // TODO: reload table data
             onTableRefresh: function () {
-              this.getView().byId("oPanel").getModel().refresh(true);
+              this.getView().byId("oPanel").getModel().getBinding("rows").refresh();;
             },
 
             onInit: function (oEvent) {
