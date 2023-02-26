@@ -314,8 +314,8 @@
                         MessageToast.show(oEvent.getParameter("selectedItem").getKey());
                         return;
                       }
-
-                    }),
+                    }
+                  }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
