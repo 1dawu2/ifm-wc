@@ -984,8 +984,6 @@
         console.log("Context:");
         console.log(context);
         // var s = sap.fpa.ui.infra.common.getContext().get("sap.fpa.story.optimized.model.validator");
-        let t;
-        t = fn => sap.fpa.story.optimized.model.validator(true, fn);
         // sap.ui.require(["sap/fpa/story/optimizedModeFeaturesValidator"], function (oOptimizedModeFeaturesValidator) {
         //   // oOptimizedModeFeaturesValidator module is loaded
         //   var aUnsupportedFeatures = sap.fpa.story.optimizedModeFeaturesValidator.getUnsupportedFeatures();
@@ -1030,9 +1028,14 @@
         // },
       }
     }
+
+    let t;
+    t = fn => sap.fpa.story.optimized.model.validator(true, fn);
+
     let entityService = documentContext.get("sap.fpa.bi.entityService");
     console.log("Entity Service:");
     console.log(entityService);
+
     let widgetControls = documentContext.get("sap.fpa.story.document.widgetControls");
     console.log("Widget Controls");
     console.log(widgetControls);
