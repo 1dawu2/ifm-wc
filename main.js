@@ -211,8 +211,6 @@
 
             // TODO: add dialog with settings
             onSettingsPressed: function () {
-
-
               if (!this.oDefaultDialog) {
                 this.oDefaultDialog = new sap.m.Dialog({
                   title: "Available Stories",
@@ -255,7 +253,7 @@
             onInit: function (oEvent) {
               var oNavigationList = this.byId("sideNavigationList");
               var bExpanded = false;
-              oNavigationList.setExpanded(!bExpanded);
+              oNavigationList.setExpanded(bExpanded);
               this.oPanel = this.byId("oPanel");
               this.bindTable();
             },
