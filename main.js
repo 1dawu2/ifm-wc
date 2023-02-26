@@ -9,7 +9,7 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
-      :host(.sapTntSideNavigationSeparator) {
+      .sapTntSideNavigationSeparator {
         background-color: #fff;
       }
     </style>
