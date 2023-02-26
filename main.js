@@ -9,7 +9,7 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
-      host:(#ifmSeparator) {
+      .sapTntSideNavigationSepar {
         background-color: #fff;
       }
     </style>
@@ -54,15 +54,14 @@
           <tnt:SideNavigation
             id="sideNavigationList"
             expanded="false"
-            selectedKey="item1"
             itemSelect=".onItemSelect">
             <tnt:NavigationList id="navigationList">
-              <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" id="item1" key="item1">
+              <tnt:NavigationListItem expanded="false" text="About IFM HACK" icon="sap-icon://electrocardiogram" id="item1" key="item1">
                 <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="item2" key="item2"/>
                 <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="item3" key="item3"/>
               </tnt:NavigationListItem>
             </tnt:NavigationList>
-            <tnt:fixedItem id="ifmSeparator">
+            <tnt:fixedItem>
               <tnt:NavigationList>
                 <tnt:NavigationListItem text="INFOMOTION GmbH" icon="sap-icon://globe" href="http://www.infomotion.de" target="_blank"/>
               </tnt:NavigationList>
@@ -344,49 +343,19 @@
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
-              // oTable.bindItems("artifact>/", new sap.m.ColumnListItem({
-              //   cells: [
-              //     new sap.m.Text({
-              //       text: "{models/description}"
-              //     }),
-              //     new sap.m.Text({
-              //       text: "{models/externalId}"
-              //     }),
-              //     new sap.m.Text({
-              //       text: "{models/id}",
-              //     }),
-              //     new sap.m.Text({
-              //       text: "{models/isPlanning}",
-              //     }),
-              //   ]
-              // }));
 
               // add table toolbar:
-
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
                     press: function (oEvent) {
-                      // jQuery.sap.require("sap.ui.core.util.Export");
-                      // jQuery.sap.require("sap.ui.core.util.ExportTypeCSV");
-                      // oTable.exportData({
-                      //   exportType: new sap.ui.core.util.ExportTypeCSV()
-                      // })
-                      //   .saveFile()
-                      //   .always(function () {
-                      //     this.destroy();
-                      //   });
+
                       var oRowBinding, oSettings, oSheet, oTable;
 
-                      // if (!this._oTable) {
-                      //   this._oTable = this.byId('oPanel');
-                      // }
+                      oRowBinding = oModel.getData();
 
-                      // oTable = this._oTable;
-                      oRowBinding = oTable.getBinding();
                       var aCols = [];
-
                       aCols.push({
                         label: 'Name',
                         type: EdmType.String,
