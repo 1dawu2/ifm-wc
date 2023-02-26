@@ -349,7 +349,7 @@
               const dt = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "yyyy-MM-ddTHH:mm:ss" })
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView({ text: "dt.format(dt.parse({artifact>created}))" }),
+                template: new sap.ui.commons.TextView({ text: `"${dt.format(dt.parse("{artifact>created}"))}"` }),
                 sortProperty: "Created",
                 filterProperty: "Created",
               }));
