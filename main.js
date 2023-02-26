@@ -361,6 +361,16 @@
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
                   new sap.ui.commons.Button({
+                    icon: "sap-icon://begin",
+                    press: function (oEvent) {
+                      // TODO: call conversion for selected table entries
+                      var context = oEvent.getParameter("rowContext");
+                      var hello = this.getView().getModel().getProperty("name", context);
+                      console.log(hello);
+                    }
+
+                  }),
+                  new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
                     press: function (oEvent) {
 
