@@ -48,7 +48,8 @@
         <tnt:sideContent>
           <tnt:SideNavigation
             id="sideNavigationList"
-            selectedKey="subItem3"
+            expanded="false"
+            selectedKey="item1"
             itemSelect=".onItemSelect">
             <tnt:NavigationList id="navigationList">
               <tnt:NavigationListItem text="About IFM HACK" icon="sap-icon://electrocardiogram" id="item1" key="item1">
