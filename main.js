@@ -9,7 +9,7 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
-      .sapTntSideNavigationSeparator {
+      host:(#ifmSeparator) {
         background-color: #fff;
       }
     </style>
@@ -62,7 +62,7 @@
                 <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="item3" key="item3"/>
               </tnt:NavigationListItem>
             </tnt:NavigationList>
-            <tnt:fixedItem>
+            <tnt:fixedItem id="ifmSeparator">
               <tnt:NavigationList>
                 <tnt:NavigationListItem text="INFOMOTION GmbH" icon="sap-icon://globe" href="http://www.infomotion.de" target="_blank"/>
               </tnt:NavigationList>
@@ -204,15 +204,10 @@
             // TODO: add dialog with settings
             onSettingsPressed: function () {
 
-              var ButtonType = mobileLibrary.ButtonType;
-
-              // shortcut for sap.m.DialogType
-              var DialogType = mobileLibrary.DialogType;
-
 
               if (!this.oDefaultDialog) {
                 this.oDefaultDialog = new sap.m.Dialog({
-                  title: "Available Products",
+                  title: "Available Stories",
                   // content: new List({
                   //   items: {
                   //     path: "/ProductCollection",
@@ -223,7 +218,6 @@
                   //   }
                   // }),
                   beginButton: new sap.m.Button({
-                    type: ButtonType.Emphasized,
                     text: "OK",
                     press: function () {
                       this.oDefaultDialog.close();
@@ -390,7 +384,7 @@
                       // }
 
                       // oTable = this._oTable;
-                      oRowBinding = oTable.getBinding('artifact>/');
+                      oRowBinding = oTable.getBinding();
                       var aCols = [];
 
                       aCols.push({
