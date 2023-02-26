@@ -197,7 +197,7 @@
         [
           "sap/ui/core/mvc/Controller",
           "sap/ui/core/format/DateFormat",
-          "'sap/ui/export/Spreadsheet",
+          "sap/ui/export/Spreadsheet",
         ],
         function (Controller) {
           "use strict";
