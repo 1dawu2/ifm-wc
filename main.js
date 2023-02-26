@@ -25,7 +25,7 @@
       xmlns:tnt="sap.tnt"
       height="100%"
       class="ifm-hack">
-      <tnt:ToolPage id="toolPage">
+      <tnt:ToolPage id="toolPage" sideExpanded="false">
         <tnt:header>
           <tnt:ToolHeader>
             <m:Button
