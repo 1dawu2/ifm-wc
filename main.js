@@ -318,11 +318,15 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
-                    press: onSettingsPressed()
+                    press: function (oEvent) {
+                      console.log(oEvent);
+                    }
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://refresh",
-                    press: onTableRefresh()
+                    press: function (oEvent) {
+                      console.log(oEvent);
+                    }
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
