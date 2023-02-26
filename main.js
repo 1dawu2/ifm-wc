@@ -376,7 +376,6 @@
                       var aCols = [];
                       aCols.push({
                         label: 'Name',
-                        type: EdmType.String,
                         property: 'name',
                       });
 
