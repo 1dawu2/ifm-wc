@@ -97,7 +97,7 @@
                       </m:layoutData>
                     </m:Button>
                   </m:OverflowToolbar>	
-                  <m:Panel id="oPanel"height="auto" width="100%"/>
+                  <m:Panel id="oPanel" height="auto" width="100%"/>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
                   </m:OverflowToolbar>
