@@ -310,12 +310,12 @@
                     icon: "sap-icon://begin",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
-                      var context = oEvent.getParameter("rowContext");
-                      var hello = this.getView().getModel().getProperty("name", context);
-                      console.log(hello);
-                    }
+                      if (oEvent.getParameter("selectedItem").getKey() === "All") {
+                        MessageToast.show(oEvent.getParameter("selectedItem").getKey());
+                        return;
+                      }
 
-                  }),
+                    }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
