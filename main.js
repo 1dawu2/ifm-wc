@@ -378,29 +378,6 @@
                 icon: "sap-icon://process"
               }));
 
-              // add table filter:
-              // oTable.attachFilter(function (oEvent) {
-              //   var oMessage = new sap.ui.commons.Message({
-              //     type: sap.ui.commons.MessageType.Success,
-              //     text: "Filter column: " + oEvent.getParameter("column").getId() + " - " + oEvent.getParameter("value")
-              //   });
-              //   console.log(oMessage);
-              //   var oSource = oEvent.getSource().getBinding();
-              //   console.log(oSource);
-              // });
-              // create the paginator
-              // var oPaginator = new sap.ui.commons.Paginator({
-              //   numberOfPages: 1, // set the number of pages to 1 initially
-              //   currentPage: 1, // set the current page to 1 initially
-              //   visible: false, // hide the paginator initially
-              //   page: function (oEvent) {
-              //     // update the table data when the page changes
-              //     var iPage = oEvent.getParameter("page");
-              //     oModel.setData(getDataForPage(iPage));
-              //     oTable.setFirstVisibleRow(0);
-              //   }
-              // });
-
               this.oPanel.addContent(oTable);
             }
 
