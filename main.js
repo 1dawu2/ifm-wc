@@ -253,6 +253,9 @@
             },
 
             onInit: function (oEvent) {
+              var oNavigationList = this.byId("sideNavigationList");
+              var bExpanded = false;
+              oNavigationList.setExpanded(!bExpanded);
               this.oPanel = this.byId("oPanel");
               this.bindTable();
             },
