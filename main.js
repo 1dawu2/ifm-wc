@@ -249,7 +249,7 @@
 
             // TODO: reload table data
             onTableRefresh: function () {
-
+              this.getView().byId("oView").getModel().refresh(true);
             },
 
             onInit: function (oEvent) {
