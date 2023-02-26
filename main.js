@@ -123,6 +123,15 @@
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
+      <footer>
+        <OverflowToolbar>
+          <ToolbarSpacer/>
+          <Button text="Accept" type="Accept" />
+          <Button text="Reject" type="Reject" />
+          <Button text="Edit" />
+          <Button text="Delete" />
+        </OverflowToolbar>
+      </footer>
     </mvc:View>
     </script>
   `;
