@@ -44,7 +44,7 @@
               imageFitType="Cover"
               displaySize="S"
               backgroundColor="Transparent"
-              displayShape="Square"
+              displayShape="Circle"
               showBorder="false"   
               src="${ifmLogo}"           
             />           
@@ -79,8 +79,7 @@
                   id="root"
                   horizontal="false"
                   vertical="true"
-                  height="100%"
-                  title="Root">
+                  height="100%">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
@@ -102,8 +101,7 @@
                   id="p1"
                   horizontal="false"
                   vertical="true"
-                  height="100%"                  
-                  title="Page 1">
+                  height="100%">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="IFM Health Analysis Conversion Kit" level="H2"/>
@@ -121,11 +119,6 @@
                   </m:OverflowToolbar>
                 </m:ScrollContainer>
               </m:pages>
-              <m:Page>
-                <m:footer>
-                  <m:Toolbar><m:Button text="Action 1" /></m:Toolbar>
-                </m:footer>
-              </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -217,10 +210,45 @@
               this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
             },
 
+            // TODO: add dialog with settings
             onSettingsPressed: function () {
+
+              if (!this.oDefaultDialog) {
+                this.oDefaultDialog = new Dialog({
+                  title: "Available Products",
+                  // content: new List({
+                  //   items: {
+                  //     path: "/ProductCollection",
+                  //     template: new StandardListItem({
+                  //       title: "{Name}",
+                  //       counter: "{Quantity}"
+                  //     })
+                  //   }
+                  // }),
+                  beginButton: new Button({
+                    type: ButtonType.Emphasized,
+                    text: "OK",
+                    press: function () {
+                      this.oDefaultDialog.close();
+                    }.bind(this)
+                  }),
+                  endButton: new Button({
+                    text: "Close",
+                    press: function () {
+                      this.oDefaultDialog.close();
+                    }.bind(this)
+                  })
+                });
+
+                // to get access to the controller's model
+                this.getView().addDependent(this.oDefaultDialog);
+              }
+
+              this.oDefaultDialog.open();
 
             },
 
+            // TODO: reload table data
             onTableRefresh: function () {
 
             },
