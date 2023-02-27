@@ -73,9 +73,7 @@
             id="pageContainer"
             initialPage="root">
               <m:pages>
-                <m:content id="root" height="100">
-                  <m:Panel id="oPanel" height="auto%"></m:Panel>
-                </m:content>
+                <m:Panel id="oPanel" height="auto%"></m:Panel>
                 <m:ScrollContainer
                   id="p1"
                   horizontal="false"
