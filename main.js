@@ -60,7 +60,7 @@
               id="navigationList">
               <tnt:NavigationListItem expanded="false" text="About IFM HACK" icon="sap-icon://electrocardiogram" id="nl0" key="root">
                 <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="nl1" key="p1"/>
-                <tnt:NavigationListItem text="Page 13" icon="sap-icon://electrocardiogram" id="nl2" key="p2"/>
+                <tnt:NavigationListItem text="About" icon="sap-icon://hint" id="nl2" key="p2"/>
               </tnt:NavigationListItem>
             </tnt:NavigationList>
             <tnt:fixedItem>
@@ -73,16 +73,14 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
-            initialPage="root"
-            height="16em">
+            initialPage="root">
               <m:pages>
                 <m:ScrollContainer
                   id="root"
                   horizontal="false"
                   vertical="true"
-                  width="100%"
                   height="100%">
-                  <m:content>
+                  <m:content height="100">
                     <m:Panel id="oPanel" height="100%"></m:Panel>
                   </m:content>
                   <m:OverflowToolbar>
@@ -93,11 +91,24 @@
                   id="p1"
                   horizontal="false"
                   vertical="true"
-                  width="100%"
                   height="100%">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
-                    <m:Title text="Page 2"/>
+                    <m:Title text="Unsupported Features"/>
+                    <m:ToolbarSpacer/>
+                  </m:OverflowToolbar>
+                  <m:OverflowToolbar>
+                    <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
+                  </m:OverflowToolbar>
+                </m:ScrollContainer>
+                <m:ScrollContainer
+                  id="p2"
+                  horizontal="false"
+                  vertical="true"
+                  height="100%">
+                  <m:OverflowToolbar>
+                    <m:ToolbarSpacer/>
+                    <m:Title text="About"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
                   <m:OverflowToolbar>
