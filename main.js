@@ -73,7 +73,7 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">
-                <m:Page id="root" height="100%">
+                <m:Page id="root" height="100">
                   <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
@@ -110,8 +110,7 @@
                         header="About"
                         title="INFOMOTION GmbH"
                         titleUrl="http://www.infomotion.de"
-                        description="About IFM HACK"
-                        groups="">
+                        description="About IFM HACK">
                         <m:Avatar
                           displaySize="XS"
                           backgroundColor="Transparent"
@@ -119,7 +118,7 @@
                           showBorder="false"
                           src="${ifmLogo}"       
                         />
-                        <m:QuickViewGroup heading="" elements="">
+                        <m:QuickViewGroup heading="Heading" elements="">
                           <m:QuickViewGroupElement
                             label="Label"
                             value="Value"
