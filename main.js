@@ -82,7 +82,9 @@
                   vertical="true"
                   width="100%"
                   height="100%">
-                  <core:HTML id="oPanel"/>
+                  <m:content>
+                    <m:html:div id="oPanel"></m:html:div>
+                  </m:content>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
                   </m:OverflowToolbar>
