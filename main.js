@@ -58,7 +58,7 @@
               expanded="false"
               id="navigationList">
               <tnt:NavigationListItem expanded="false" text="IFM HACK" icon="sap-icon://electrocardiogram" id="nl0" key="root"/>
-              <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://warning" id="nl1" key="p1"/>
+              <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://activities" id="nl1" key="p1"/>
               <tnt:NavigationListItem text="About" icon="sap-icon://hint" id="nl2" key="p2"/>
             </tnt:NavigationList>
             <tnt:fixedItem>
@@ -928,7 +928,6 @@
     // isConvertingToOptimizedDesignMode
     // migrateStoryForOptimizedFormat
     // migrateForUQM 
-    // e.exports.
     if (sap.lumira.story.StoryModel) {
       console.log(sap.lumira.story.StoryModel);
 
