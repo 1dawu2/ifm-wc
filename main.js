@@ -409,10 +409,10 @@
               }));
 
               // create table footer:
-              oTable.setFooter(new sap.ui.commons.Button({
-                text: "Migration Steps",
-                icon: "sap-icon://process"
-              }));
+              // oTable.setFooter(new sap.ui.commons.Button({
+              //   text: "Migration Steps",
+              //   icon: "sap-icon://process"
+              // }));
 
               this.oPanel.addContent(oTable);
             }
