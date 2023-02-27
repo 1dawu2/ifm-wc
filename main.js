@@ -117,9 +117,6 @@
                   </m:Panel>
                 </m:Page>
           </m:NavContainer>
-          <m:OverflowToolbar>
-            <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-          </m:OverflowToolbar>
         </tnt:mainContents>
       </tnt:ToolPage>
     </mvc:View>
@@ -180,10 +177,6 @@
 
       var that_ = that;
 
-      // let content = document.createElement('div');
-      // content.slot = "content";
-      // that_.appendChild(content);
-
       sap.ui.define(
         [
           "sap/ui/core/mvc/Controller",
@@ -232,7 +225,7 @@
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
-                height: "100%",
+                height: "100",
               });
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -296,17 +289,17 @@
                 items: [
                   new sap.ui.commons.Button({
                     icon: "sap-icon://begin",
-                    accessibleName: "Convert",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
                       var iIndex = oTable.getSelectedIndex();
                       var sMsg;
                       if (iIndex < 0) {
-                        sMsg = "no item selected";
+                        oContext = "no item selected";
                       } else {
-                        sMsg = oTable.getContextByIndex(iIndex);
+                        oContext = oTable.getContextByIndex(iIndex);
+                        oObject = oContext.getObject();
+                        console.log(oObject);
                       }
-                      console.log(sMsg);
                     }
                   }),
                   new sap.ui.commons.Button({
