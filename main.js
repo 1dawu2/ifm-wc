@@ -221,6 +221,8 @@
 
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
+              console.log("--- Panel Init ---")
+              console.log(this.oPanel);
               this.bindTable();
             },
 
@@ -304,7 +306,7 @@
                     accessibleName: "Convert",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
-                      var oTable = this.byId("oPanel");
+                      var oTable = that_.byId("oPanel");
                       var iIndex = oTable.getSelectedIndex();
                       var sMsg;
                       if (iIndex < 0) {
@@ -320,7 +322,7 @@
                     accessibleName: "interactive mode",
                     press: function (oEvent) {
                       console.log(oEvent);
-                      var oTable = this.byId("oPanel");
+                      var oTable = that_.byId("oPanel");
                       oTable.setVisibleRowCountMode("Interactive");
                     }
                   }),
@@ -328,7 +330,7 @@
                     icon: "sap-icon://synchronize",
                     accessibleName: "Refresh",
                     press: function (oEvent) {
-                      this.getView().byId("oPanel").getModel().getBinding("rows").refresh();
+                      that_.getView().byId("oPanel").getModel().getBinding("rows").refresh();
                     }
                   }),
                   new sap.ui.commons.Button({
@@ -390,8 +392,8 @@
                       });
 
                       aCols.push({
-                        label: 'URL',
-                        property: 'URL',
+                        label: 'Created by',
+                        property: 'createdBy',
                       });
 
                       oSettings = {
