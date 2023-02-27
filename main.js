@@ -274,7 +274,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "/models/description" }),
+                template: new sap.ui.commons.TextView({ text: "{/models/description}" }),
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -288,11 +288,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView().bindProperty("text", {
-                  path: "{artifact>created}",
-                  type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
-                }),
-                // template: new sap.ui.commons.TextView({ text: "{artifact>created}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>created}", type: "sap.ui.model.odata.type.Date" }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
