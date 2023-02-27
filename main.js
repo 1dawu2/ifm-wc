@@ -223,8 +223,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
-                visibleRowCount: 100,
-                firstVisibleRow: 10
+                visibleRowCount: "Auto"
               });
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -294,6 +293,8 @@
                     icon: "sap-icon://resize-vertical",
                     press: function (oEvent) {
                       console.log(oEvent);
+                      var oTable = this.byId("oPanel");
+                      oTable.setVisibleRowCountMode("Interactive");
                     }
                   }),
                   new sap.ui.commons.Button({
