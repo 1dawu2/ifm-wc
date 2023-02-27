@@ -281,134 +281,131 @@
               oTable.bindRows("artifact>/");
 
               // add table toolbar:
-              /*               oTable.setToolbar(new sap.ui.commons.Toolbar({
-                              items: [
-                                new sap.ui.commons.Button({
-                                  icon: "sap-icon://begin",
-                                  accessibleName: "Convert",
-                                  press: function (oEvent) {
-                                    // TODO: call conversion for selected table entries
-                                    var oTable = oEvent.byId("oPanel");
-                                    var iIndex = oTable.getSelectedIndex();
-                                    var sMsg;
-                                    if (iIndex < 0) {
-                                      sMsg = "no item selected";
-                                    } else {
-                                      sMsg = oTable.getContextByIndex(iIndex);
-                                    }
-                                    console.log(sMsg);
-                                  }
-                                }),
-                                new sap.ui.commons.Button({
-                                  icon: "sap-icon://resize-vertical",
-                                  accessibleName: "interactive mode",
-                                  press: function (oEvent) {
-                                    console.log(oEvent);
-                                    var oTable = oEven.byId("oPanel");
-                                    oTable.setVisibleRowCountMode("Interactive");
-                                  }
-                                }),
-                                new sap.ui.commons.Button({
-                                  icon: "sap-icon://synchronize",
-                                  accessibleName: "Refresh",
-                                  press: function (oEvent) {
-                                    that_.getView().byId("oPanel").getModel().getBinding("rows").refresh();
-                                  }
-                                }),
-                                new sap.ui.commons.Button({
-                                  icon: "sap-icon://action-settings",
-                                  accessibleName: "Settings",
-                                  press: function (oEvent) {
-                                    if (!this.oDefaultDialog) {
-                                      this.oDefaultDialog = new sap.m.Dialog({
-                                        title: "Advanced Settings",
-                                        // content: new List({
-                                        //   items: {
-                                        //     path: "/ProductCollection",
-                                        //     template: new StandardListItem({
-                                        //       title: "{Name}",
-                                        //       counter: "{Quantity}"
-                                        //     })
-                                        //   }
-                                        // }),
-                                        beginButton: new sap.m.Button({
-                                          text: "OK",
-                                          press: function () {
-                                            this.oDefaultDialog.close();
-                                          }.bind(this)
-                                        }),
-                                        endButton: new sap.m.Button({
-                                          text: "Close",
-                                          press: function () {
-                                            this.oDefaultDialog.close();
-                                          }.bind(this)
-                                        })
-                                      });
-              
-                                      // to get access to the controller's model
-                                      this.getView().addDependent(this.oDefaultDialog);
-                                    }
-              
-                                    this.oDefaultDialog.open();
-                                  }
-                                }),
-                                new sap.ui.commons.Button({
-                                  icon: "sap-icon://excel-attachment",
-                                  accessibleName: "Export XLSX",
-                                  press: function (oEvent) {
-              
-                                    var oRowBinding, oSettings, oSheet, oTable;
-              
-                                    oRowBinding = oModel.getData();
-              
-                                    var aCols = [];
-              
-                                    aCols.push({
-                                      label: 'Name',
-                                      property: 'name',
-                                    });
-              
-                                    aCols.push({
-                                      label: 'Description',
-                                      property: 'description',
-                                    });
-              
-                                    aCols.push({
-                                      label: 'Created by',
-                                      property: 'createdBy',
-                                    });
-              
-                                    aCols.push({
-                                      label: 'Created',
-                                      property: 'created',
-                                    });
-              
-                                    oSettings = {
-                                      workbook: {
-                                        columns: aCols,
-                                        hierarchyLevel: 'Level'
-                                      },
-              
-                                      dataSource: oRowBinding,
-                                      fileName: 'Export.xlsx',
-                                      worker: false
-                                    };
-              
-                                    oSheet = new sap.ui.export.Spreadsheet(oSettings);
-                                    oSheet.build().finally(function () {
-                                      oSheet.destroy();
-                                    });
-                                  }
-                                })
-                              ]
-                            })); */
+              oTable.setToolbar(new sap.ui.commons.Toolbar({
+                items: [
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://begin",
+                    accessibleName: "Convert",
+                    press: function (oEvent) {
+                      // TODO: call conversion for selected table entries
+                      var iIndex = oTable.getSelectedIndex();
+                      var sMsg;
+                      if (iIndex < 0) {
+                        sMsg = "no item selected";
+                      } else {
+                        sMsg = oTable.getContextByIndex(iIndex);
+                      }
+                      console.log(sMsg);
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://resize-vertical",
+                    accessibleName: "interactive mode",
+                    press: function (oEvent) {
+                      oTable.setVisibleRowCountMode("Interactive");
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://synchronize",
+                    accessibleName: "Refresh",
+                    press: function (oEvent) {
+                      oTable.getModel().getBinding("artifact").refresh();
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://action-settings",
+                    accessibleName: "Settings",
+                    press: function (oEvent) {
+                      if (!this.oDefaultDialog) {
+                        this.oDefaultDialog = new sap.m.Dialog({
+                          title: "Advanced Settings",
+                          // content: new List({
+                          //   items: {
+                          //     path: "/ProductCollection",
+                          //     template: new StandardListItem({
+                          //       title: "{Name}",
+                          //       counter: "{Quantity}"
+                          //     })
+                          //   }
+                          // }),
+                          beginButton: new sap.m.Button({
+                            text: "OK",
+                            press: function () {
+                              this.oDefaultDialog.close();
+                            }.bind(this)
+                          }),
+                          endButton: new sap.m.Button({
+                            text: "Close",
+                            press: function () {
+                              this.oDefaultDialog.close();
+                            }.bind(this)
+                          })
+                        });
+
+                        // to get access to the controller's model
+                        this.getView().addDependent(this.oDefaultDialog);
+                      }
+
+                      this.oDefaultDialog.open();
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://excel-attachment",
+                    accessibleName: "Export XLSX",
+                    press: function (oEvent) {
+
+                      var oRowBinding, oSettings, oSheet, oTable;
+
+                      oRowBinding = oModel.getData();
+
+                      var aCols = [];
+
+                      aCols.push({
+                        label: 'Name',
+                        property: 'name',
+                      });
+
+                      aCols.push({
+                        label: 'Description',
+                        property: 'description',
+                      });
+
+                      aCols.push({
+                        label: 'Created by',
+                        property: 'createdBy',
+                      });
+
+                      aCols.push({
+                        label: 'Created',
+                        property: 'created',
+                      });
+
+                      oSettings = {
+                        workbook: {
+                          columns: aCols,
+                          hierarchyLevel: 'Level'
+                        },
+
+                        dataSource: oRowBinding,
+                        fileName: 'Export.xlsx',
+                        worker: false
+                      };
+
+                      oSheet = new sap.ui.export.Spreadsheet(oSettings);
+                      oSheet.build().finally(function () {
+                        oSheet.destroy();
+                      });
+                    }
+                  })
+                ]
+              }));
 
               // create table footer:
-              /*               oTable.setFooter(new sap.ui.commons.Button({
-                              text: "Migration Steps",
-                              icon: "sap-icon://process"
-                            }));
-               */
+              oTable.setFooter(new sap.ui.commons.Button({
+                text: "Migration Steps",
+                icon: "sap-icon://process"
+              }));
+
               this.oPanel.addContent(oTable);
             }
 
