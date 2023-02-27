@@ -73,15 +73,9 @@
             id="pageContainer"
             initialPage="root">
               <m:pages>
-                <m:ScrollContainer
-                  id="root"
-                  horizontal="false"
-                  vertical="true"
-                  height="100%">
-                  <m:content height="100">
-                    <m:Panel id="oPanel" height="100%"></m:Panel>
-                  </m:content>
-                </m:ScrollContainer>
+                <m:content id="root" height="100">
+                  <m:Panel id="oPanel" height="auto%"></m:Panel>
+                </m:content>
                 <m:ScrollContainer
                   id="p1"
                   horizontal="false"
@@ -245,7 +239,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
-                visibleRowCount: "Auto"
+                visibleRowCount: "auto"
               });
 
               oTable.addColumn(new sap.ui.table.Column({
