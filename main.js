@@ -82,7 +82,7 @@
                   vertical="true"
                   width="100%"
                   height="100%">	
-                  <m:Panel id="oPanel" height="auto" width="100%"/>
+                  <m:content id="oPanel" height="auto" width="100%"></m:content>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
                   </m:OverflowToolbar>
@@ -317,7 +317,7 @@
                     }
                   }),
                   new sap.ui.commons.Button({
-                    icon: "sap-icon://action-settings",
+                    icon: "sap-icon://resize-vertical",
                     press: function (oEvent) {
                       console.log(oEvent);
                     }
