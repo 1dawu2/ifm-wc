@@ -73,7 +73,7 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">
-                <m:Page id="root">
+                <m:Page id="root" height="100%">
                   <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="Auto"></m:Panel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
@@ -117,11 +117,11 @@
                       </m:GenericTile>
 		                </m:SlideTile>
                   </m:content>
-                  <m:OverflowToolbar>
-                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                  </m:OverflowToolbar>
                 </m:Page>
           </m:NavContainer>
+          <m:OverflowToolbar>
+            <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
+          </m:OverflowToolbar>
         </tnt:mainContents>
       </tnt:ToolPage>
     </mvc:View>
