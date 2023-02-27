@@ -85,6 +85,7 @@
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
+
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
@@ -95,28 +96,42 @@
                     <m:Title text="About"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
-                  <m:content height="100">
-                  	<m:SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop">
-                      <m:GenericTile
-                        backgroundImage="test-resources/sap/m/demokit/sample/SlideTile/images/NewsImage2.png"
-                        frameType="TwoByOne" press="pressOnTileOne">
-                        <m:TileContent footer="August 21, 2016">
-                          <m:NewsContent
-                            contentText="SAP Unveils Powerful New Player Comparision Tool Exclusively on NFL.com"
-                            subheader="Today, SAP News" />
-                        </m:TileContent>
-                      </m:GenericTile>
-                      <m:GenericTile
-                        backgroundImage="test-resources/sap/m/demokit/sample/SlideTile/images/NewsImage1.png"
-                        frameType="TwoByOne" press="pressOnTileTwo">
-                        <m:TileContent footer="August 21, 2016">
-                          <m:NewsContent
-                            contentText="Wind Map: Monitoring Real-Time and Forecasted Wind Conditions across the Globe"
-                            subheader="Today, SAP News" />
-                        </m:TileContent>
-                      </m:GenericTile>
-		                </m:SlideTile>
-                  </m:content>
+                  <m:Panel
+                    id="quickViewCardContainer"
+                    width="auto"
+                    height="650px">
+                    <m:QuickViewCard
+                      id="quickViewCard"
+                      pages="{ path : '/pages', templateShareable : true }"
+                      navigate=".onNavigate"
+                      afterNavigate=".onAfterNavigate">
+                      <m:QuickViewPage
+                        pageId="p2"
+                        header="About"
+                        title="INFOMOTION GmbH"
+                        titleUrl="http://www.infomotion.de"
+                        description="About IFM HACK"
+                        groups="">
+                        <m:Avatar
+                          displaySize="XS"
+                          backgroundColor="Transparent"
+                          displayShape="Circle"
+                          showBorder="false"
+                          src="${ifmLogo}"       
+                        />
+                        <m:QuickViewGroup heading="" elements="">
+                          <m:QuickViewGroupElement
+                            label="Label"
+                            value="Value"
+                            url="url"
+                            type="type"
+                            pageLinkId="link"
+                            emailSubject="mail"
+                            target="target" />
+                        </m:QuickViewGroup>
+                      </m:QuickViewPage>
+                    </m:QuickViewCard>
+                  </m:Panel>
                 </m:Page>
           </m:NavContainer>
           <m:OverflowToolbar>
@@ -233,7 +248,8 @@
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
-                visibleRowCount: "100%"
+                visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
+                height: "100%",
               });
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -313,13 +329,17 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://resize-vertical",
                     press: function (oEvent) {
-                      oTable.setVisibleRowCountMode("Interactive");
+                      if (oTable.getVisibleRowCountMode("Interactive")) {
+                        oTable.setVisibleRowCountMode("Auto");
+                      } else {
+                        oTable.setVisibleRowCountMode("Interactive");
+                      }
                     }
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
-                      oTable.getBinding("artifact").refresh();
+                      oTable.getModel().refresh(true);
                     }
                   }),
                   new sap.ui.commons.Button({
