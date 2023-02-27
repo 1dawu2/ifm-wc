@@ -74,7 +74,7 @@
             id="pageContainer"
             initialPage="root">
                 <m:Page id="root" height="100%">
-                  <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="Auto"></m:Panel>
+                  <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
@@ -233,7 +233,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
-                visibleRowCount: "Auto"
+                visibleRowCount: "100%"
               });
 
               oTable.addColumn(new sap.ui.table.Column({
