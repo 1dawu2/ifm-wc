@@ -182,58 +182,16 @@
           return Controller.extend("ifm.hack.initial", {
 
             onItemSelect: function (evt) {
-              // var oItem = evt.getParameter("item");
-              // this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
-              var oTable = this.byId("oPanel");
-              var iIndex = oTable.getSelectedIndex();
-              var sMsg;
-              if (iIndex < 0) {
-                sMsg = "no item selected";
-              } else {
-                sMsg = oTable.getContextByIndex(iIndex);
-              }
-              console.log(sMsg);
+              var oItem = evt.getParameter("item");
+              this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
             },
 
             // TODO: add dialog with settings
             onSettingsPressed: function () {
-              if (!this.oDefaultDialog) {
-                this.oDefaultDialog = new sap.m.Dialog({
-                  title: "Available Stories",
-                  // content: new List({
-                  //   items: {
-                  //     path: "/ProductCollection",
-                  //     template: new StandardListItem({
-                  //       title: "{Name}",
-                  //       counter: "{Quantity}"
-                  //     })
-                  //   }
-                  // }),
-                  beginButton: new sap.m.Button({
-                    text: "OK",
-                    press: function () {
-                      this.oDefaultDialog.close();
-                    }.bind(this)
-                  }),
-                  endButton: new sap.m.Button({
-                    text: "Close",
-                    press: function () {
-                      this.oDefaultDialog.close();
-                    }.bind(this)
-                  })
-                });
-
-                // to get access to the controller's model
-                this.getView().addDependent(this.oDefaultDialog);
-              }
-
-              this.oDefaultDialog.open();
-
             },
 
             // TODO: reload table data
             onTableRefresh: function () {
-              this.getView().byId("oPanel").getModel().getBinding("rows").refresh();;
             },
 
             onInit: function (oEvent) {
@@ -321,10 +279,15 @@
                     icon: "sap-icon://begin",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
-                      if (oEvent.getParameter("selectedItem").getKey() === "All") {
-                        MessageToast.show(oEvent.getParameter("selectedItem").getKey());
-                        return;
+                      var oTable = this.byId("oPanel");
+                      var iIndex = oTable.getSelectedIndex();
+                      var sMsg;
+                      if (iIndex < 0) {
+                        sMsg = "no item selected";
+                      } else {
+                        sMsg = oTable.getContextByIndex(iIndex);
                       }
+                      console.log(sMsg);
                     }
                   }),
                   new sap.ui.commons.Button({
@@ -334,9 +297,45 @@
                     }
                   }),
                   new sap.ui.commons.Button({
+                    icon: "sap-icon://synchronize",
+                    press: function (oEvent) {
+                      this.getView().byId("oPanel").getModel().getBinding("rows").refresh();
+                    }
+                  }),
+                  new sap.ui.commons.Button({
                     icon: "sap-icon://refresh",
                     press: function (oEvent) {
-                      console.log(oEvent);
+                      if (!this.oDefaultDialog) {
+                        this.oDefaultDialog = new sap.m.Dialog({
+                          title: "Available Stories",
+                          // content: new List({
+                          //   items: {
+                          //     path: "/ProductCollection",
+                          //     template: new StandardListItem({
+                          //       title: "{Name}",
+                          //       counter: "{Quantity}"
+                          //     })
+                          //   }
+                          // }),
+                          beginButton: new sap.m.Button({
+                            text: "OK",
+                            press: function () {
+                              this.oDefaultDialog.close();
+                            }.bind(this)
+                          }),
+                          endButton: new sap.m.Button({
+                            text: "Close",
+                            press: function () {
+                              this.oDefaultDialog.close();
+                            }.bind(this)
+                          })
+                        });
+
+                        // to get access to the controller's model
+                        this.getView().addDependent(this.oDefaultDialog);
+                      }
+
+                      this.oDefaultDialog.open();
                     }
                   }),
                   new sap.ui.commons.Button({
@@ -348,13 +347,20 @@
                       oRowBinding = oModel.getData();
 
                       var aCols = [];
+
                       aCols.push({
                         label: 'Name',
                         property: 'name',
                       });
+
                       aCols.push({
                         label: 'Description',
                         property: 'description',
+                      });
+
+                      aCols.push({
+                        label: 'URL',
+                        property: 'URL',
                       });
 
                       oSettings = {
