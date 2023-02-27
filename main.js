@@ -51,8 +51,7 @@
               displayShape="Circle"
               showBorder="false"   
               src="${ifmLogo}"           
-            />          
-            <m:ToolbarSpacer/>
+            />
           </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent>
