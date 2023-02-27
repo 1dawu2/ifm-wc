@@ -181,17 +181,9 @@
 
           return Controller.extend("ifm.hack.initial", {
 
-            onItemSelect: function (evt) {
-              var oItem = evt.getParameter("item");
+            onItemSelect: function (oEvent) {
+              var oItem = oEvent.getParameter("item");
               this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
-            },
-
-            // TODO: add dialog with settings
-            onSettingsPressed: function () {
-            },
-
-            // TODO: reload table data
-            onTableRefresh: function () {
             },
 
             onInit: function (oEvent) {
@@ -276,6 +268,7 @@
                 items: [
                   new sap.ui.commons.Button({
                     icon: "sap-icon://begin",
+                    accessibleName: "Convert",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
                       var oTable = this.byId("oPanel");
@@ -291,6 +284,7 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://resize-vertical",
+                    accessibleName: "interactive mode",
                     press: function (oEvent) {
                       console.log(oEvent);
                       var oTable = this.byId("oPanel");
@@ -299,16 +293,18 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
+                    accessibleName: "Refresh",
                     press: function (oEvent) {
                       this.getView().byId("oPanel").getModel().getBinding("rows").refresh();
                     }
                   }),
                   new sap.ui.commons.Button({
-                    icon: "sap-icon://refresh",
+                    icon: "sap-icon://action-settings",
+                    accessibleName: "Settings",
                     press: function (oEvent) {
                       if (!this.oDefaultDialog) {
                         this.oDefaultDialog = new sap.m.Dialog({
-                          title: "Available Stories",
+                          title: "Advanced Settings",
                           // content: new List({
                           //   items: {
                           //     path: "/ProductCollection",
@@ -341,6 +337,7 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
+                    accessibleName: "Export XLSX",
                     press: function (oEvent) {
 
                       var oRowBinding, oSettings, oSheet, oTable;
