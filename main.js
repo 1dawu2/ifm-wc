@@ -229,7 +229,7 @@
               console.log("JSON Model:");
               console.log(oModel);
 
-              var oTable = new sap.ui.table.AnalyticalTable({
+              var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
                 visibleRowCount: "auto"
