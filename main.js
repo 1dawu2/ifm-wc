@@ -312,10 +312,12 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://resize-vertical",
                     press: function (oEvent) {
-                      if (oTable.getVisibleRowCountMode("Interactive")) {
+                      if (oTable.getVisibleRowCountMode() === "Interactive") {
                         oTable.setVisibleRowCountMode("Auto");
+                        console.log("resize auto");
                       } else {
                         oTable.setVisibleRowCountMode("Interactive");
+                        console.log("resize interactive");
                       }
                     }
                   }),
