@@ -180,8 +180,17 @@
           return Controller.extend("ifm.hack.initial", {
 
             onItemSelect: function (evt) {
-              var oItem = evt.getParameter("item");
-              this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
+              // var oItem = evt.getParameter("item");
+              // this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
+              var oTable = this.byId("oPanel");
+              var iIndex = oTable.getSelectedIndex();
+              var sMsg;
+              if (iIndex < 0) {
+                sMsg = "no item selected";
+              } else {
+                sMsg = oTable.getContextByIndex(iIndex);
+              }
+              console.log(sMsg);
             },
 
             // TODO: add dialog with settings
