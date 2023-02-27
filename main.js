@@ -5,6 +5,11 @@
   let _apiSecret;
   let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.png";
   let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.png";
+  let imgCompany = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering.gif";
+  let imgProblem = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering_Problem.png";
+  let imgSolution = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering_HACK.png";
+
+
 
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
@@ -111,7 +116,12 @@
                         title="INFOMOTION GmbH"
                         titleUrl="http://www.infomotion.de"
                         description="About IFM HACK">
-
+                        <m:Carousel class="sapUiContentPadding" loop="true">
+                          <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                          <m:Image src="${imgCompany}" alt="Company" />
+                          <m:Image src="${imgProblem}" alt="Problem Statement" />
+                          <m:Image src="${imgSolution}" alt="Solution" />
+                        </m:Carousel>
                       </m:QuickViewPage>
                     </m:QuickViewCard>
                   </m:Panel>
@@ -323,8 +333,8 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
-                      if (!this.oDefaultDialog) {
-                        this.oDefaultDialog = new sap.m.Dialog({
+                      if (!oDefaultDialog) {
+                        oDefaultDialog = new sap.m.Dialog({
                           title: "Advanced Settings",
                           // content: new List({
                           //   items: {
@@ -338,22 +348,22 @@
                           beginButton: new sap.m.Button({
                             text: "OK",
                             press: function () {
-                              this.oDefaultDialog.close();
-                            }.bind(this)
+                              oDefaultDialog.close();
+                            }.bind(that_)
                           }),
                           endButton: new sap.m.Button({
                             text: "Close",
                             press: function () {
-                              this.oDefaultDialog.close();
-                            }.bind(this)
+                              oDefaultDialog.close();
+                            }.bind(that_)
                           })
                         });
 
                         // to get access to the controller's model
-                        this.getView().addDependent(this.oDefaultDialog);
+                        that_.getView().addDependent(oDefaultDialog);
                       }
 
-                      this.oDefaultDialog.open();
+                      oDefaultDialog.open();
                     }
                   }),
                   new sap.ui.commons.Button({
