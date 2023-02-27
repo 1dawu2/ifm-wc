@@ -41,7 +41,7 @@
             <m:Title text="IFM Health Analysis Conversion Kit" level="H1"/>
             <m:ToolbarSpacer/>
             <m:Avatar
-              displaySize="S"
+              displaySize="XS"
               backgroundColor="Transparent"
               displayShape="Circle"
               showBorder="false"   
@@ -58,7 +58,7 @@
               expanded="false"
               id="navigationList">
               <tnt:NavigationListItem expanded="false" text="IFM HACK" icon="sap-icon://electrocardiogram" id="nl0" key="root"/>
-              <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://quality-issue" id="nl1" key="p1"/>
+              <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://warning" id="nl1" key="p1"/>
               <tnt:NavigationListItem text="About" icon="sap-icon://hint" id="nl2" key="p2"/>
             </tnt:NavigationList>
             <tnt:fixedItem>
@@ -73,7 +73,7 @@
             id="pageContainer"
             initialPage="root">
               <m:pages>
-                <m:Panel id="oPanel" height="auto"></m:Panel>
+                <m:Panel expandable="true" headerText="Panel with a header text" id="oPanel" height="auto"></m:Panel>
                 <m:ScrollContainer
                   id="p1"
                   horizontal="false"
