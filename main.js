@@ -78,10 +78,29 @@
             id="pageContainer"
             initialPage="root">
                 <m:Page id="root" height="100">
-                  <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
-                  <m:OverflowToolbar>
-                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                  </m:OverflowToolbar>
+                	<m:IconTabBar
+                    id="idIconTabBar"
+                    select=".onFilterSelect"
+                    class="sapUiResponsiveContentPadding">
+                    <m:items>
+                      <m:IconTabFilter
+                        showAll="true"
+                        count="1"
+                        text="Products"
+                        key="All" />
+                      <m:IconTabSeparator />
+                      <m:IconTabFilter
+                        icon="sap-icon://begin"
+                        iconColor="Positive"
+                        count="2"
+                        text="Ok"
+                        key="Ok" />
+                    </m:items>
+                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                    <m:OverflowToolbar>
+                      <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
+                    </m:OverflowToolbar>
+                  </m:IconTabBar>
                 </m:Page>
                 <m:Page id="p1">
                   <m:OverflowToolbar>
@@ -89,7 +108,12 @@
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
-
+                    <m:Carousel class="sapUiContentPadding" loop="true">
+                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                      <m:Image src="${imgCompany}" alt="Company" />
+                      <m:Image src="${imgProblem}" alt="Problem Statement" />
+                      <m:Image src="${imgSolution}" alt="Solution" />
+                    </m:Carousel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
@@ -106,21 +130,36 @@
                     height="650px">
                     <m:QuickViewCard
                       id="quickViewCard"
-                      pages="{ path : '/pages', templateShareable : true }"
-                      navigate=".onNavigate"
-                      afterNavigate=".onAfterNavigate">
                       <m:QuickViewPage
-                        pageId="p2"
                         header="About"
                         title="INFOMOTION GmbH"
                         titleUrl="http://www.infomotion.de"
-                        description="About IFM HACK">
-                        <m:Carousel class="sapUiContentPadding" loop="true">
-                          <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
-                          <m:Image src="${imgCompany}" alt="Company" />
-                          <m:Image src="${imgProblem}" alt="Problem Statement" />
-                          <m:Image src="${imgSolution}" alt="Solution" />
-                        </m:Carousel>
+                        description="IFM HACK">
+                        <m:Avatar
+                          displaySize="XS"
+                          backgroundColor="Transparent"
+                          displayShape="Circle"
+                          showBorder="false"
+                          src="${ifmLogo}"           
+                        />
+                        <m:QuickViewGroup heading="Kontakt">
+                          <m:QuickViewGroupElement
+                            label="Telefon"
+                            value="+49 69 56608-3000"
+                            url="http://www.infomotion.de"
+                            type="phone"
+                            emailSubject="IFM HACK"
+                            target="_blank" />
+                        </m:QuickViewGroup>
+                        <m:QuickViewGroup heading="Ansprechpartner">
+                          <m:QuickViewGroupElement
+                            label="Telefon"
+                            value="+49 69 56608 3231"
+                            url="http://www.infomotion.de"
+                            type="phone"
+                            emailSubject="IFM HACK"
+                            target="_blank" />
+                        </m:QuickViewGroup>
                       </m:QuickViewPage>
                     </m:QuickViewCard>
                   </m:Panel>
@@ -260,7 +299,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>models/description}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/description}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -301,7 +340,8 @@
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
                       var iIndex = oTable.getSelectedIndex();
-                      var sMsg;
+                      var oContext;
+                      var oObject;
                       if (iIndex < 0) {
                         oContext = "no item selected";
                       } else {
@@ -326,7 +366,7 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
-                      oTable.getModel().refresh(true);
+                      sap.ui.getCore().getModel("artifact").refresh(true);;
                     }
                   }),
                   new sap.ui.commons.Button({
