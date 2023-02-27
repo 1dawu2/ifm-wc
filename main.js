@@ -319,7 +319,7 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
-                      oTable.getModel().getBinding("artifact").refresh();
+                      oTable.getBinding("artifact").refresh();
                     }
                   }),
                   new sap.ui.commons.Button({
