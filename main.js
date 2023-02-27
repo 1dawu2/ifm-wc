@@ -46,7 +46,8 @@
               displayShape="Circle"
               showBorder="false"   
               src="${ifmLogo}"           
-            />           
+            />          
+            <m:ToolbarSpacer/>
           </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent>
@@ -73,7 +74,7 @@
             id="pageContainer"
             initialPage="root">
                 <m:Page id="root">
-                  <m:Panel expandable="true" headerText="Panel with a header text" id="oPanel" height="auto"></m:Panel>
+                  <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="Auto"></m:Panel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
@@ -232,7 +233,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
-                visibleRowCount: "auto"
+                visibleRowCount: "Auto"
               });
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -272,7 +273,18 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>created}", type: "sap.ui.model.odata.type.DateTimeOffset" }),
+                template: new sap.m.ObjectAttribute({
+                  text: {
+                    path: "{artifact>created}",
+                    type: "sap.ui.model.odata.type.Date",
+                    formatOptions: {
+                      source: {
+                        pattern: "yyyy-MM-ddTHH:mm:ss"
+                      },
+                      pattern: "MMM dd,yyyy HH:mm:ss"
+                    }
+                  }
+                }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
@@ -300,21 +312,18 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://resize-vertical",
-                    accessibleName: "interactive mode",
                     press: function (oEvent) {
                       oTable.setVisibleRowCountMode("Interactive");
                     }
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
-                    accessibleName: "Refresh",
                     press: function (oEvent) {
                       oTable.getModel().getBinding("artifact").refresh();
                     }
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
-                    accessibleName: "Settings",
                     press: function (oEvent) {
                       if (!this.oDefaultDialog) {
                         this.oDefaultDialog = new sap.m.Dialog({
@@ -351,7 +360,6 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
-                    accessibleName: "Export XLSX",
                     press: function (oEvent) {
 
                       var oRowBinding, oSettings, oSheet, oTable;
