@@ -83,7 +83,7 @@
                   width="100%"
                   height="100%">
                   <m:content>
-                    <m:Table id="oPanel"></m:Table>
+                    <m:Panel id="oPanel"></m:Panel>
                   </m:content>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
