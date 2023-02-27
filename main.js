@@ -72,13 +72,13 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">
-              <m:pages>
-                <m:Panel expandable="true" headerText="Panel with a header text" id="oPanel" height="auto"></m:Panel>
-                <m:ScrollContainer
-                  id="p1"
-                  horizontal="false"
-                  vertical="true"
-                  height="100%">
+                <m:Page id="root">
+                  <m:Panel expandable="true" headerText="Panel with a header text" id="oPanel" height="auto"></m:Panel>
+                  <m:OverflowToolbar>
+                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
+                  </m:OverflowToolbar>
+                </m:Page>
+                <m:Page id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
@@ -87,12 +87,8 @@
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
-                </m:ScrollContainer>
-                <m:ScrollContainer
-                  id="p2"
-                  horizontal="false"
-                  vertical="true"
-                  height="100%">
+                </m:Page>
+                <m:Page id="p2">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
@@ -123,8 +119,7 @@
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
-                </m:ScrollContainer>
-              </m:pages>
+                </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
