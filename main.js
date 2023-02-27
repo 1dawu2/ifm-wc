@@ -81,9 +81,6 @@
                   <m:content height="100">
                     <m:Panel id="oPanel" height="100%"></m:Panel>
                   </m:content>
-                  <m:OverflowToolbar>
-                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                  </m:OverflowToolbar>
                 </m:ScrollContainer>
                 <m:ScrollContainer
                   id="p1"
