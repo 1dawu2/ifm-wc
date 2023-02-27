@@ -97,6 +97,28 @@
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
+                  <m:content height="100">
+                  	<m:SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop">
+                      <m:GenericTile
+                        backgroundImage="test-resources/sap/m/demokit/sample/SlideTile/images/NewsImage2.png"
+                        frameType="TwoByOne" press="pressOnTileOne">
+                        <m:TileContent footer="August 21, 2016">
+                          <m:NewsContent
+                            contentText="SAP Unveils Powerful New Player Comparision Tool Exclusively on NFL.com"
+                            subheader="Today, SAP News" />
+                        </m:TileContent>
+                      </m:GenericTile>
+                      <m:GenericTile
+                        backgroundImage="test-resources/sap/m/demokit/sample/SlideTile/images/NewsImage1.png"
+                        frameType="TwoByOne" press="pressOnTileTwo">
+                        <m:TileContent footer="August 21, 2016">
+                          <m:NewsContent
+                            contentText="Wind Map: Monitoring Real-Time and Forecasted Wind Conditions across the Globe"
+                            subheader="Today, SAP News" />
+                        </m:TileContent>
+                      </m:GenericTile>
+		                </m:SlideTile>
+                  </m:content>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
                   </m:OverflowToolbar>
@@ -252,7 +274,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>models/description}" }),
+                template: new sap.ui.commons.TextView({ text: "/models/description" }),
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
