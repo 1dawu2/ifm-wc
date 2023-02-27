@@ -241,7 +241,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>models/}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>models/description}" }),
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
