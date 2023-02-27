@@ -111,23 +111,7 @@
                         title="INFOMOTION GmbH"
                         titleUrl="http://www.infomotion.de"
                         description="About IFM HACK">
-                        <m:Avatar
-                          displaySize="XS"
-                          backgroundColor="Transparent"
-                          displayShape="Circle"
-                          showBorder="false"
-                          src="${ifmLogo}"       
-                        />
-                        <m:QuickViewGroup heading="Heading" elements="">
-                          <m:QuickViewGroupElement
-                            label="Label"
-                            value="Value"
-                            url="url"
-                            type="type"
-                            pageLinkId="link"
-                            emailSubject="mail"
-                            target="target" />
-                        </m:QuickViewGroup>
+
                       </m:QuickViewPage>
                     </m:QuickViewCard>
                   </m:Panel>
