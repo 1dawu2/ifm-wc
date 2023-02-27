@@ -97,6 +97,20 @@
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
+                  <m:OverflowToolbar>
+                    <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
+                  </m:OverflowToolbar>
+                </m:ScrollContainer>
+                <m:ScrollContainer
+                  id="p2"
+                  horizontal="false"
+                  vertical="true"
+                  height="100%">
+                  <m:OverflowToolbar>
+                    <m:ToolbarSpacer/>
+                    <m:Title text="About"/>
+                    <m:ToolbarSpacer/>
+                  </m:OverflowToolbar>
                   <m:content height="100">
                   	<m:SlideTile class="sapUiTinyMarginBegin sapUiTinyMarginTop">
                       <m:GenericTile
@@ -119,20 +133,6 @@
                       </m:GenericTile>
 		                </m:SlideTile>
                   </m:content>
-                  <m:OverflowToolbar>
-                    <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
-                  </m:OverflowToolbar>
-                </m:ScrollContainer>
-                <m:ScrollContainer
-                  id="p2"
-                  horizontal="false"
-                  vertical="true"
-                  height="100%">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="About"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Favorite" text="Favorite" icon="sap-icon://favorite"/>
                   </m:OverflowToolbar>
@@ -199,9 +199,9 @@
 
       var that_ = that;
 
-      let content = document.createElement('div');
-      content.slot = "content";
-      that_.appendChild(content);
+      // let content = document.createElement('div');
+      // content.slot = "content";
+      // that_.appendChild(content);
 
       sap.ui.define(
         [
@@ -276,7 +276,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{/models/description}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>models/description}" }),
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -290,7 +290,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>created}", type: "sap.ui.model.odata.type.Date" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>created}", type: "sap.ui.model.odata.type.DateTimeOffset" }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
@@ -306,7 +306,7 @@
                     accessibleName: "Convert",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
-                      var oTable = that_.byId("oPanel");
+                      var oTable = oEvent.byId("oPanel");
                       var iIndex = oTable.getSelectedIndex();
                       var sMsg;
                       if (iIndex < 0) {
@@ -322,7 +322,7 @@
                     accessibleName: "interactive mode",
                     press: function (oEvent) {
                       console.log(oEvent);
-                      var oTable = that_.byId("oPanel");
+                      var oTable = oEven.byId("oPanel");
                       oTable.setVisibleRowCountMode("Interactive");
                     }
                   }),
@@ -394,6 +394,11 @@
                       aCols.push({
                         label: 'Created by',
                         property: 'createdBy',
+                      });
+
+                      aCols.push({
+                        label: 'Created',
+                        property: 'created',
                       });
 
                       oSettings = {
