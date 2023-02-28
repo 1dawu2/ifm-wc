@@ -119,22 +119,7 @@
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                       <m:QuickViewCard
                       id="quickViewCard"
-                      <m:QuickViewPage
-                        header="About"
-                        title="INFOMOTION GmbH"
-                        titleUrl="http://www.infomotion.de"
-                        description="IFM HACK">
-                        <m:Avatar
-                          displaySize="XS"
-                          backgroundColor="Transparent"
-                          displayShape="Circle"
-                          showBorder="false"
-                          src="${ifmLogo}"           
-                        />
-                          <m:QuickViewGroup heading="Kontakt">
 
-                          </m:QuickViewGroup>
-                        </m:QuickViewPage>
                       </m:QuickViewCard>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
@@ -307,6 +292,10 @@
 
               var bindingPath = oTable._iBindingLength
               console.log(bindingPath);
+
+              oTable.setToolbar(new sap.m.Toolbar({
+                design: sap.m.ToolbarDesign.Info
+              }));
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
