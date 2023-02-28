@@ -75,7 +75,7 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">            
-                <m:Page id="root" height="100%">
+                <m:Page id="root">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="IFM HACK Assistant"/>
@@ -90,14 +90,16 @@
                         showAll="true"
                         count="1"
                         text="Stories"
-                        key="All">                        
-                      </m:IconTabFilter>                      
+                        key="All" />
+                      <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>                
                       <m:IconTabSeparator />
-                      
+                      <m:IconTabFilter
+                        icon="sap-icon://begin"
+                        iconColor="Positive"
+                        count="{/ProductCollectionStats/Counts/Weight/Ok}"
+                        text="Ok"
+                        key="Ok" />
                     </m:items>
-                    <m:content>
-                      <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
-                    </m:content>
                   </m:IconTabBar>
                 </m:Page>
                 <m:Page id="p1">
@@ -317,16 +319,17 @@
                       }
 
                       var selectedIndices = oTable.getSelectedIndices();
+                      console.log(selectedIndices);
 
-                      var selectedEntries = [];
-                      var tableData = oTable.getModel("artifact").getData();
-                      for (var index = 0; index < selectedIndices.length; index++) {
-                        var tableIndex = selectedIndices[index];
-                        console.log(tableIndex);
-                        var tableRow = tableData.modelData[tableIndex];
-                        selectedEntries.push(tableRow.uid);
-                      }
-                      console.log(selectedEntries);
+                      // var selectedEntries = [];
+                      // var tableData = oTable.getModel("artifact").getData();
+                      // for (var index = 0; index < selectedIndices.length; index++) {
+                      //   var tableIndex = selectedIndices[index];
+                      //   console.log(tableIndex);
+                      //   var tableRow = tableData.modelData[tableIndex];
+                      //   selectedEntries.push(tableRow.uid);
+                      // }
+                      // console.log(selectedEntries);
                     }
                   }),
                   new sap.ui.commons.Button({
@@ -344,9 +347,8 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
-                      console.log(oTable.getModel("artifact"));
                       var oModel = oTable.getModel("artifact");
-                      oModel.refresh();
+                      oModel.refresh(true);
                     }
                   }),
                   new sap.ui.commons.Button({
