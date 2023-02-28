@@ -330,7 +330,7 @@
                   {
                     value: {
                       path: "{artifact>created}",
-                      formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "dd.MM.yyyy" }),
+                      formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" }),
                     },
                   }),
                 sortProperty: "created",
