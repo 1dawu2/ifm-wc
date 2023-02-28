@@ -87,13 +87,6 @@
                         count="{counter>/rows}"
                         text="Stories"
                         key="All" />
-                      <m:IconTabSeparator />
-                      <m:IconTabFilter
-                        icon="sap-icon://begin"
-                        iconColor="Positive"
-                        count="1"
-                        text="Ok"
-                        key="Ok" />
                     </m:items>
                   </m:IconTabBar>
                   <m:content>
@@ -326,7 +319,21 @@
               this.getView().setModel(oRowCountModel, "counter");
 
               oTable.setToolbar(new sap.m.Toolbar({
-                design: sap.m.ToolbarDesign.Info
+                design: sap.m.ToolbarDesign.Info,
+                items: [
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://resize-vertical",
+                    press: function (oEvent) {
+                      if (oTable.getVisibleRowCountMode() === "Interactive") {
+                        oTable.setVisibleRowCountMode("Auto");
+                        console.log("resize auto");
+                      } else {
+                        oTable.setVisibleRowCountMode("Interactive");
+                        console.log("resize interactive");
+                      }
+                    }
+                  })
+                ]
               }));
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
