@@ -255,7 +255,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/description}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -290,13 +290,7 @@
 
               var bindingPath = oTable.getRows().length();
               console.log(bindingPath);
-              // var model = oTable.getModel();
-              // var data = model.getProperty(bindingPath);
-              // //get total rows number
-              // var rowCount = data.length;
-              // console.log(" >> ", rowCount);
 
-              // add table toolbar:
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
                   new sap.ui.commons.Button({
@@ -318,7 +312,7 @@
                       var selectedIndices = oTable.getSelectedIndices();
 
                       var selectedEntries = [];
-                      var tableData = oTable.getModel().getData();
+                      var tableData = oTable.getModel("artifact").getData();
                       for (var index = 0; index < selectedIndices.length; index++) {
                         var tableIndex = selectedIndices[index];
                         console.log(tableIndex);
@@ -365,19 +359,19 @@
                           text: "OK",
                           press: function () {
                             oDefaultDialog.close();
-                          }.bind(that_)
+                          }.bind(this)
                         }),
                         endButton: new sap.m.Button({
                           text: "Close",
                           press: function () {
                             oDefaultDialog.close();
-                          }.bind(that_)
+                          }.bind(this)
                         })
                       });
 
                       // to get access to the controller's model
-                      that_.getView().addDependent(oDefaultDialog);
-                      console.log(that_.getView());
+                      this.getView().addDependent(oDefaultDialog);
+                      console.log(this.getView());
 
                       oDefaultDialog.open();
                     }
