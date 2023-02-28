@@ -118,34 +118,6 @@
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
                 </m:Page>
-                <m:Page id="p2">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="About"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
-                  <m:Panel
-                    id="quickViewCardContainer"
-                    width="auto"
-                    height="650px">
-                    <m:QuickViewCard
-                      id="quickViewCard"
-                      <m:QuickViewPage
-                        header="About"
-                        title="INFOMOTION GmbH"
-                        titleUrl="http://www.infomotion.de"
-                        description="IFM HACK">
-                        <m:Avatar
-                          displaySize="XS"
-                          backgroundColor="Transparent"
-                          displayShape="Circle"
-                          showBorder="false"
-                          src="${ifmLogo}"           
-                        />
-                      </m:QuickViewPage>
-                    </m:QuickViewCard>
-                  </m:Panel>
-                </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
