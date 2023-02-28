@@ -76,11 +76,6 @@
             id="pageContainer"
             initialPage="root">            
                 <m:Page id="root">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="IFM HACK Assistant"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
                   <m:IconTabBar
                     select=".onFilterSelect"
                     class="sapUiResponsiveContentPadding">
@@ -90,8 +85,7 @@
                         showAll="true"
                         count="1"
                         text="Stories"
-                        key="All" />
-                      <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>                
+                        key="All" />                
                       <m:IconTabSeparator />
                       <m:IconTabFilter
                         icon="sap-icon://begin"
