@@ -80,13 +80,12 @@
                 <m:Page id="root">
                   <m:IconTabBar
                     expandable="false"
-                    select=".onFilterSelect"
                     class="sapUiResponsiveContentPadding">
                     <m:items>
                       <m:IconTabFilter
                         id="countInput"
                         icon="sap-icon://clinical-order"
-                        count="{/row/counter}"
+                        count="{counter}"
                         text="Stories"
                         key="All" />
                     </m:items>
@@ -279,12 +278,12 @@
                     var oInput = jQuery(_shadowRoot.getElementById("countInput"));
                     console.log("--- Input ---");
                     console.log(oInput);
-                    oInput.bindElement("/row");
-                    oInput.bindProperty("count", oLength);
+                    oInput.bindProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
                       });
+                      console.log(illustratedMsg);
                     }
                   });
                 }
