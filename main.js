@@ -9,8 +9,6 @@
   let imgProblem = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering_Problem.png";
   let imgSolution = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering_HACK.png";
 
-
-
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
@@ -97,7 +95,9 @@
                       <m:IconTabSeparator />
                       
                     </m:items>
-                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                    <m:content>
+                      <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                    </m:content>
                   </m:IconTabBar>
                 </m:Page>
                 <m:Page id="p1">
@@ -295,7 +295,7 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              var bindingPath = oTable.getRows();
+              var bindingPath = oTable._iBindingLength
               console.log(bindingPath);
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
