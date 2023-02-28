@@ -274,7 +274,7 @@
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
                     console.log(oLength);
-                    var oInput = this.byId("countInput");
+                    var oInput = jQuery(_shadowRoot.getElementById("countInput"));
                     oInput.bindElement("/row");
                     oInput.bindProperty("count", oLength);
                     if (oLength === 0) {
