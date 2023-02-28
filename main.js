@@ -106,6 +106,24 @@
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
                     <m:ToolbarSpacer/>
+                    	<m:Tree
+                        id="Tree"
+                        items="{path: 'tree/'}">
+                        <m:headerToolbar>
+                          <m:OverflowToolbar>
+                            <m:Title
+                              text="Tree" />
+                            <m:ToolbarSpacer />
+                            <m:ToggleButton
+                              icon="sap-icon://menu"
+                              tooltip="Enable / Disable Custom Context Menu"
+                              press="onToggleContextMenu" />
+                          </m:OverflowToolbar>
+                        </m:headerToolbar>
+                        <m:StandardTreeItem
+                          title="{text}"
+                          icon="{ref}"/>
+                    </m:Tree>
                   </m:OverflowToolbar>
                   <m:Panel
                     id="About"
@@ -220,6 +238,11 @@
               oNavigationList.setExpanded(!bExpanded);
             },
 
+            bindTree: function () {
+              var oModel = new JSONModel(sap.ui.require.toUrl(".https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
+              this.getView().setModel(oModel, "tree");
+            },
+
             bindTable: function () {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
@@ -249,8 +272,9 @@
                   oBinding.attachChange(function (oEvent) {
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
-                    // sap.ui.getCore().getModel().setProperty("/count", oLength);
                     console.log(oLength);
+                    var oRowCountModel = new sap.ui.model.json.JSONModel({ rows: oLength });
+                    this.getView().setModel(oRowCountModel, "counter");
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
@@ -311,15 +335,9 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              var bindingPath = oTable._iBindingLength
-              console.log("--- Table Rows: ---")
-              console.log(bindingPath);
-              var oRowCountModel = new sap.ui.model.json.JSONModel({ rows: bindingPath });
-              this.getView().setModel(oRowCountModel, "counter");
-
               oTable.setToolbar(new sap.m.Toolbar({
                 design: sap.m.ToolbarDesign.Info,
-                items: [
+                content: [
                   new sap.ui.commons.Button({
                     icon: "sap-icon://resize-vertical",
                     press: function (oEvent) {
@@ -331,7 +349,7 @@
                         console.log("resize interactive");
                       }
                     }
-                  })
+                  }),
                 ]
               }));
 
