@@ -377,7 +377,9 @@
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
                       var oModel = oTable.getModel("artifact");
+                      oBusy.open();
                       oModel.refresh(true);
+                      oBusy.close();
                     }
                   }),
                   new sap.ui.commons.Button({
