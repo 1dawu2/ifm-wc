@@ -278,7 +278,7 @@
                     var oInput = jQuery(_shadowRoot.getElementById("countInput"));
                     console.log("--- Input ---");
                     console.log(oInput);
-                    oInput.bindProperty("counter", oLength);
+                    // oInput.bindProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
