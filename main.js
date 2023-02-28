@@ -24,6 +24,7 @@
       controllerName="ifm.hack.initial"
       xmlns:t="sap.ui.table"
       xmlns:m="sap.m"
+      xmlns:f="sap.f"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
       height="100%"
@@ -117,6 +118,18 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                      	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+                        <f:header>
+                          <card:Header title="Upcoming Avtivities" subtitle="For Today" />
+                        </f:header>
+                        <f:content>
+                          <m:IllustratedMessage illustrationType="sapIllus-NoActivities">
+                            <m:additionalContent>
+                              <m:Button text="Add Activity" />
+                            </m:additionalContent>
+                          </m:IllustratedMessage>
+                        </f:content>
+                      </f:Card>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
                       <m:Image src="${imgProblem}" alt="Problem Statement" />
@@ -245,6 +258,11 @@
                     var oLength = oSource.iLength;
                     // sap.ui.getCore().getModel().setProperty("/count", oLength);
                     console.log(oLenght);
+                    if (iLenght === 0) {
+                      illustratedMsg = new sap.m.IllustratedMessage({
+
+                      });
+                    }
                   });
                 }
               }, oTable);
