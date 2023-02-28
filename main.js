@@ -402,6 +402,11 @@
                       });
 
                       aCols.push({
+                        label: 'URL',
+                        property: 'openURL',
+                      });
+
+                      aCols.push({
                         label: 'Created',
                         property: 'created',
                       });
