@@ -248,7 +248,6 @@
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
 
-
               // register an event handler
               oTable.addEventDelegate({
                 onAfterRendering: function () {
@@ -257,10 +256,10 @@
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
                     // sap.ui.getCore().getModel().setProperty("/count", oLength);
-                    console.log(oLenght);
-                    if (iLenght === 0) {
+                    console.log(oLength);
+                    if (oLength === 0) {
                       illustratedMsg = new sap.m.IllustratedMessage({
-
+                        illustrationType: "sapIllus-NoData"
                       });
                     }
                   });
