@@ -77,7 +77,7 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">
-                <m:Page id="root">
+                <m:Page id="root" height="100%">
                   <m:IconTabBar
                     select=".onFilterSelect"
                     class="sapUiResponsiveContentPadding">
