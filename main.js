@@ -99,31 +99,31 @@
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>    
+                  </m:OverflowToolbar>
+                  <m:Tree
+                    id="Tree"
+                    items="{path: 'tree/'}">
+                    <m:headerToolbar>
+                      <m:OverflowToolbar>
+                        <m:Title
+                          text="Tree" />
+                        <m:ToolbarSpacer />
+                        <m:ToggleButton
+                          icon="sap-icon://menu"
+                          tooltip="Enable / Disable Custom Context Menu"
+                          press="onToggleContextMenu" />
+                      </m:OverflowToolbar>
+                    </m:headerToolbar>
+                    <m:StandardTreeItem
+                      title="{text}"
+                      icon="{ref}"/>
+                  </m:Tree>  
                 </m:Page>
                 <m:Page id="p2">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
                     <m:ToolbarSpacer/>
-                    	<m:Tree
-                        id="Tree"
-                        items="{path: 'tree/'}">
-                        <m:headerToolbar>
-                          <m:OverflowToolbar>
-                            <m:Title
-                              text="Tree" />
-                            <m:ToolbarSpacer />
-                            <m:ToggleButton
-                              icon="sap-icon://menu"
-                              tooltip="Enable / Disable Custom Context Menu"
-                              press="onToggleContextMenu" />
-                          </m:OverflowToolbar>
-                        </m:headerToolbar>
-                        <m:StandardTreeItem
-                          title="{text}"
-                          icon="{ref}"/>
-                    </m:Tree>
                   </m:OverflowToolbar>
                   <m:Panel
                     id="About"
