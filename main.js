@@ -84,7 +84,7 @@
                     <m:items>
                       <m:IconTabFilter
                         icon="sap-icon://clinical-order"
-                        count="1"
+                        count="{counter>/rows}"
                         text="Stories"
                         key="All" />
                       <m:IconTabSeparator />
@@ -258,7 +258,7 @@
                     // sap.ui.getCore().getModel().setProperty("/count", oLength);
                     console.log(oLength);
                     if (oLength === 0) {
-                      illustratedMsg = new sap.m.IllustratedMessage({
+                      var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
                       });
                     }
@@ -289,7 +289,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{artifact>models}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -319,6 +319,8 @@
 
               var bindingPath = oTable._iBindingLength
               console.log(bindingPath);
+              var oRowCountModel = new JSONModel({ rows: bindingPath });
+              this.getView().setModel(oRowCountModel, "counter");
 
               oTable.setToolbar(new sap.m.Toolbar({
                 design: sap.m.ToolbarDesign.Info
