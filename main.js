@@ -117,10 +117,6 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
-                      <m:QuickViewCard
-                      id="quickViewCard"
-
-                      </m:QuickViewCard>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
                       <m:Image src="${imgProblem}" alt="Problem Statement" />
@@ -207,8 +203,6 @@
 
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
-              console.log("--- Panel Init ---")
-              console.log(this.oPanel);
               this.bindTable();
             },
 
@@ -222,9 +216,11 @@
             bindTable: function () {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
+
               oModel.attachRequestSent(function () {
                 oBusy.open();
               });
+
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
@@ -238,6 +234,19 @@
                 showNoData: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
+
+
+              // register an event handler
+              oTable.addEventDelegate({
+                onAfterRendering: function () {
+                  var oBinding = this.getBinding("rows");
+                  oBinding.attachChange(function (oEvent) {
+                    var oSource = oEvent.getSource();
+                    var oLength = oSource.iLength;
+                    sap.ui.getCore().getModel().setProperty("/count", oLength);
+                  });
+                }
+              }, oTable);
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Name" }),
