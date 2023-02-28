@@ -142,24 +142,6 @@
                           showBorder="false"
                           src="${ifmLogo}"           
                         />
-                        <m:QuickViewGroup heading="Kontakt">
-                          <m:QuickViewGroupElement
-                            label="Telefon"
-                            value="+49 69 56608-3000"
-                            url="http://www.infomotion.de"
-                            type="phone"
-                            emailSubject="IFM HACK"
-                            target="_blank" />
-                        </m:QuickViewGroup>
-                        <m:QuickViewGroup heading="Ansprechpartner">
-                          <m:QuickViewGroupElement
-                            label="Telefon"
-                            value="+49 69 56608 3231"
-                            url="http://www.infomotion.de"
-                            type="phone"
-                            emailSubject="IFM HACK"
-                            target="_blank" />
-                        </m:QuickViewGroup>
                       </m:QuickViewPage>
                     </m:QuickViewCard>
                   </m:Panel>
