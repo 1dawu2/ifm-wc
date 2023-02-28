@@ -78,29 +78,10 @@
             id="pageContainer"
             initialPage="root">
                 <m:Page id="root" height="100">
-                	<m:IconTabBar
-                    id="idIconTabBar"
-                    select=".onFilterSelect"
-                    class="sapUiResponsiveContentPadding">
-                    <m:items>
-                      <m:IconTabFilter
-                        showAll="true"
-                        count="1"
-                        text="Products"
-                        key="All" />
-                      <m:IconTabSeparator />
-                      <m:IconTabFilter
-                        icon="sap-icon://begin"
-                        iconColor="Positive"
-                        count="2"
-                        text="Ok"
-                        key="Ok" />
-                    </m:items>
-                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
-                    <m:OverflowToolbar>
-                      <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                    </m:OverflowToolbar>
-                  </m:IconTabBar>
+                  <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                  <m:OverflowToolbar>
+                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
+                  </m:OverflowToolbar>
                 </m:Page>
                 <m:Page id="p1">
                   <m:OverflowToolbar>
@@ -117,6 +98,52 @@
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
+                </m:Page>
+                <m:Page id="p2">
+                  <m:OverflowToolbar>
+                    <m:ToolbarSpacer/>
+                    <m:Title text="About"/>
+                    <m:ToolbarSpacer/>
+                  </m:OverflowToolbar>
+                  <m:Panel
+                    id="quickViewCardContainer"
+                    width="auto"
+                    height="650px">
+                    <m:QuickViewCard
+                      id="quickViewCard"
+                      <m:QuickViewPage
+                        header="About"
+                        title="INFOMOTION GmbH"
+                        titleUrl="http://www.infomotion.de"
+                        description="IFM HACK">
+                        <m:Avatar
+                          displaySize="XS"
+                          backgroundColor="Transparent"
+                          displayShape="Circle"
+                          showBorder="false"
+                          src="${ifmLogo}"           
+                        />
+                        <m:QuickViewGroup heading="Kontakt">
+                          <m:QuickViewGroupElement
+                            label="Telefon"
+                            value="+49 69 56608-3000"
+                            url="http://www.infomotion.de"
+                            type="phone"
+                            emailSubject="IFM HACK"
+                            target="_blank" />
+                        </m:QuickViewGroup>
+                        <m:QuickViewGroup heading="Ansprechpartner">
+                          <m:QuickViewGroupElement
+                            label="Telefon"
+                            value="+49 69 56608 3231"
+                            url="http://www.infomotion.de"
+                            type="phone"
+                            emailSubject="IFM HACK"
+                            target="_blank" />
+                        </m:QuickViewGroup>
+                      </m:QuickViewPage>
+                    </m:QuickViewCard>
+                  </m:Panel>                  
                 </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
