@@ -289,7 +289,7 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              var bindingPath = oTable.getBinding("artifact").sPath;
+              var bindingPath = oTable.getBinding("artifact");
               var model = oTable.getModel();
               var data = model.getProperty(bindingPath);
 
