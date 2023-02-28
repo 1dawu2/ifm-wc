@@ -77,6 +77,7 @@
             initialPage="root">            
                 <m:Page id="root">
                   <m:IconTabBar
+                    expandable="false"
                     select=".onFilterSelect"
                     class="sapUiResponsiveContentPadding">
                     <m:items>
