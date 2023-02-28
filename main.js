@@ -82,7 +82,6 @@
                     <m:items>
                       <m:IconTabFilter
                         icon="sap-icon://begin"
-                        showAll="true"
                         count="1"
                         text="Stories"
                         key="All" />
