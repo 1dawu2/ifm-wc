@@ -275,18 +275,13 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.m.ObjectAttribute({
-                  text: {
-                    path: "{artifact>created}",
-                    type: "sap.ui.model.odata.type.Date",
-                    formatOptions: {
-                      source: {
-                        pattern: "yyyy-MM-ddTHH:mm:ss"
-                      },
-                      pattern: "MMM dd,yyyy HH:mm:ss"
-                    }
-                  }
-                }),
+                template: new sap.ui.commons.TextField(
+                  {
+                    value: {
+                      path: "{artifact>createdBy}",
+                      formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "dd.MM.yyyy" }),
+                    },
+                  }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
