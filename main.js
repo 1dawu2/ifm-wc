@@ -77,12 +77,35 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">
-                <m:Page id="root" height="100">
+
+                    <m:IconTabBar
+                    id="root"
+                    select=".onFilterSelect"
+                    class="sapUiResponsiveContentPadding">
+                    <m:items>
+                      <m:IconTabFilter
+                        showAll="true"
+                        count="1"
+                        text="Products"
+                        key="All" />
+                      <m:IconTabSeparator />
+                      <m:IconTabFilter
+                        icon="sap-icon://begin"
+                        iconColor="Positive"
+                        count="2"
+                        text="Ok"
+                        key="Ok" />
+                    </m:items>
+                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                    <m:OverflowToolbar>
+                      <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
+                    </m:OverflowToolbar>
+                  </m:IconTabBar>
                   <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
-                </m:Page>
+  
                 <m:Page id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
@@ -220,8 +243,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "SAC Story/Application Overview:",
                 showNoData: true,
-                visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto,
-                height: "100",
+                visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -247,7 +269,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/description}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/description}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -280,6 +302,9 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
+              var oRowCount = oTable.getBinding("artifact").getLength();
+              console.log(oRowCount);
+
               // add table toolbar:
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
@@ -288,6 +313,7 @@
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
                       var iIndex = oTable.getSelectedIndex();
+                      console.log(iIndex);
                       var oContext;
                       var oObject;
                       if (iIndex < 0) {
@@ -297,6 +323,18 @@
                         oObject = oContext.getObject();
                         console.log(oObject);
                       }
+
+                      var selectedIndices = oTable.getSelectedIndices();
+
+                      var selectedEntries = [];
+                      var tableData = oTable.getModel().getData();
+                      for (var index = 0; index < selectedIndices.length; index++) {
+                        var tableIndex = selectedIndices[index];
+                        console.log(tableIndex);
+                        var tableRow = tableData.modelData[tableIndex];
+                        selectedEntries.push(tableRow.uid);
+                      }
+                      console.log(selectedEntries);
                     }
                   }),
                   new sap.ui.commons.Button({
@@ -314,41 +352,41 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
-                      sap.ui.getCore().getModel("artifact").refresh(true);;
+                      console.log(oTable.getModel("artifact"));
+                      oTable.getModel("artifact").refresh(true);
                     }
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
-                      if (!oDefaultDialog) {
-                        oDefaultDialog = new sap.m.Dialog({
-                          title: "Advanced Settings",
-                          // content: new List({
-                          //   items: {
-                          //     path: "/ProductCollection",
-                          //     template: new StandardListItem({
-                          //       title: "{Name}",
-                          //       counter: "{Quantity}"
-                          //     })
-                          //   }
-                          // }),
-                          beginButton: new sap.m.Button({
-                            text: "OK",
-                            press: function () {
-                              oDefaultDialog.close();
-                            }.bind(that_)
-                          }),
-                          endButton: new sap.m.Button({
-                            text: "Close",
-                            press: function () {
-                              oDefaultDialog.close();
-                            }.bind(that_)
-                          })
-                        });
+                      var oDefaultDialog = new sap.m.Dialog({
+                        title: "Advanced Settings",
+                        // content: new List({
+                        //   items: {
+                        //     path: "/ProductCollection",
+                        //     template: new StandardListItem({
+                        //       title: "{Name}",
+                        //       counter: "{Quantity}"
+                        //     })
+                        //   }
+                        // }),
+                        beginButton: new sap.m.Button({
+                          text: "OK",
+                          press: function () {
+                            oDefaultDialog.close();
+                          }.bind(that_)
+                        }),
+                        endButton: new sap.m.Button({
+                          text: "Close",
+                          press: function () {
+                            oDefaultDialog.close();
+                          }.bind(that_)
+                        })
+                      });
 
-                        // to get access to the controller's model
-                        that_.getView().addDependent(oDefaultDialog);
-                      }
+                      // to get access to the controller's model
+                      that_.getView().addDependent(oDefaultDialog);
+                      console.log(that_.getView());
 
                       oDefaultDialog.open();
                     }
