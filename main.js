@@ -243,7 +243,8 @@
                   oBinding.attachChange(function (oEvent) {
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
-                    sap.ui.getCore().getModel().setProperty("/count", oLength);
+                    // sap.ui.getCore().getModel().setProperty("/count", oLength);
+                    console.log(oLenght);
                   });
                 }
               }, oTable);
@@ -321,7 +322,7 @@
                       for (var i = 0; i < selectedIndices.lenght; i++) {
                         oContext = oTable.getContextByIndex(iIndex);
                         oObject = oContext.getObject();
-                        oURL = oContext.getProperty("");
+                        oURL = oContext.getProperty("openURL");
                         console.log(object);
                         console.log(oURL);
                         selectedEntries.push(oURL);
