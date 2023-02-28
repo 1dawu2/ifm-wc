@@ -85,7 +85,7 @@
                         showAll="true"
                         count="1"
                         text="Stories"
-                        key="All" />                
+                        key="All" />
                       <m:IconTabSeparator />
                       <m:IconTabFilter
                         icon="sap-icon://begin"
@@ -95,6 +95,9 @@
                         key="Ok" />
                     </m:items>
                   </m:IconTabBar>
+                  <m:content>
+                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                  </m:content>
                 </m:Page>
                 <m:Page id="p1">
                   <m:OverflowToolbar>
