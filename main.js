@@ -76,8 +76,13 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
-            initialPage="root">
+            initialPage="root">            
                 <m:Page id="root" height="100%">
+                  <m:OverflowToolbar>
+                    <m:ToolbarSpacer/>
+                    <m:Title text="IFM HACK Assistant"/>
+                    <m:ToolbarSpacer/>
+                  </m:OverflowToolbar>
                   <m:IconTabBar
                     select=".onFilterSelect"
                     class="sapUiResponsiveContentPadding">
@@ -87,11 +92,12 @@
                         showAll="true"
                         count="1"
                         text="Stories"
-                        key="All">
-                        <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
-                      </m:IconTabFilter>
+                        key="All">                        
+                      </m:IconTabFilter>                      
                       <m:IconTabSeparator />
+                      
                     </m:items>
+                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
                   </m:IconTabBar>
                 </m:Page>
                 <m:Page id="p1">
