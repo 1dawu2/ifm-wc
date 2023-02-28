@@ -289,7 +289,7 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              var bindingPath = oTable.getRows().length();
+              var bindingPath = oTable.getRows();
               console.log(bindingPath);
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
