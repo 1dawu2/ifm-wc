@@ -89,7 +89,12 @@
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
-
+                    <m:Carousel class="sapUiContentPadding" loop="true">
+                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                      <m:Image src="${imgCompany}" alt="Company" />
+                      <m:Image src="${imgProblem}" alt="Problem Statement" />
+                      <m:Image src="${imgSolution}" alt="Solution" />
+                    </m:Carousel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
@@ -104,40 +109,7 @@
                     id="quickViewCardContainer"
                     width="auto"
                     height="650px">
-                    <m:QuickViewCard
-                      id="quickViewCard"
-                      <m:QuickViewPage
-                        header="About"
-                        title="INFOMOTION GmbH"
-                        titleUrl="http://www.infomotion.de"
-                        description="IFM HACK">
-                        <m:Avatar
-                          displaySize="XS"
-                          backgroundColor="Transparent"
-                          displayShape="Circle"
-                          showBorder="false"
-                          src="${ifmLogo}"           
-                        />
-                        <m:QuickViewGroup heading="Kontakt">
-                          <m:QuickViewGroupElement
-                            label="Telefon"
-                            value="+49 69 56608-3000"
-                            url="http://www.infomotion.de"
-                            type="phone"
-                            emailSubject="IFM HACK"
-                            target="_blank" />
-                        </m:QuickViewGroup>
-                        <m:QuickViewGroup heading="Ansprechpartner">
-                          <m:QuickViewGroupElement
-                            label="Telefon"
-                            value="+49 69 56608 3231"
-                            url="http://www.infomotion.de"
-                            type="phone"
-                            emailSubject="IFM HACK"
-                            target="_blank" />
-                        </m:QuickViewGroup>
-                      </m:QuickViewPage>
-                    </m:QuickViewCard>
+                    
                   </m:Panel>                  
                 </m:Page>
           </m:NavContainer>
