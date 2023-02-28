@@ -99,12 +99,6 @@
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
-                    <m:Carousel class="sapUiContentPadding" loop="true">
-                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
-                      <m:Image src="${imgCompany}" alt="Company" />
-                      <m:Image src="${imgProblem}" alt="Problem Statement" />
-                      <m:Image src="${imgSolution}" alt="Solution" />
-                    </m:Carousel>
                   <m:OverflowToolbar>
                     <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
                   </m:OverflowToolbar>
@@ -119,7 +113,12 @@
                     id="quickViewCardContainer"
                     width="auto"
                     height="650px">
-                    
+                      <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                      <m:Image src="${imgCompany}" alt="Company" />
+                      <m:Image src="${imgProblem}" alt="Problem Statement" />
+                      <m:Image src="${imgSolution}" alt="Solution" />
+                    </m:Carousel>
                   </m:Panel>                  
                 </m:Page>
           </m:NavContainer>
