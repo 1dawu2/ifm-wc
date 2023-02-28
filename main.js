@@ -289,7 +289,8 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              // var bindingPath = oTable.getBinding("artifact");
+              var bindingPath = oTable.getRows().length();
+              console.log(bindingPath);
               // var model = oTable.getModel();
               // var data = model.getProperty(bindingPath);
               // //get total rows number
