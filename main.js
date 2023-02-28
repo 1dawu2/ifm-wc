@@ -77,8 +77,8 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">
-
-                    <m:IconTabBar
+                <m:Page id="root">
+                  <m:IconTabBar
                     id="root"
                     select=".onFilterSelect"
                     class="sapUiResponsiveContentPadding">
@@ -86,26 +86,14 @@
                       <m:IconTabFilter
                         showAll="true"
                         count="1"
-                        text="Products"
-                        key="All" />
+                        text="Stories"
+                        key="All">
+                        <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                      </m:IconTabFilter>
                       <m:IconTabSeparator />
-                      <m:IconTabFilter
-                        icon="sap-icon://begin"
-                        iconColor="Positive"
-                        count="2"
-                        text="Ok"
-                        key="Ok" />
                     </m:items>
-                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
-                    <m:OverflowToolbar>
-                      <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                    </m:OverflowToolbar>
                   </m:IconTabBar>
-                  <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
-                  <m:OverflowToolbar>
-                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                  </m:OverflowToolbar>
-  
+                </m:Page>
                 <m:Page id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
