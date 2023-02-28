@@ -289,8 +289,14 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              var oRowCount = oTable.getBinding("artifact").getLength();
-              console.log(oRowCount);
+              var bindingPath = oTable.getBinding("artifact").sPath;
+              var model = oTable.getModel();
+              var data = model.getProperty(bindingPath);
+
+              var data = model.getProperty(bindingPath);
+              //get total rows number
+              var rowCount = data.length;
+              console.log(" >> ", rowCount);
 
               // add table toolbar:
               oTable.setToolbar(new sap.ui.commons.Toolbar({
