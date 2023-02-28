@@ -103,10 +103,7 @@
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
-                  <m:OverflowToolbar>
-                    <m:OverflowToolbarButton tooltip="Info" text="Info" icon="sap-icon://hint"/>
-                  </m:OverflowToolbar>
+                  </m:OverflowToolbar>    
                 </m:Page>
                 <m:Page id="p2">
                   <m:OverflowToolbar>
@@ -115,10 +112,29 @@
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
                   <m:Panel
-                    id="quickViewCardContainer"
+                    id="About"
                     width="auto"
                     height="650px">
-                      <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                    <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                      <m:QuickViewCard
+                      id="quickViewCard"
+                      <m:QuickViewPage
+                        header="About"
+                        title="INFOMOTION GmbH"
+                        titleUrl="http://www.infomotion.de"
+                        description="IFM HACK">
+                        <m:Avatar
+                          displaySize="XS"
+                          backgroundColor="Transparent"
+                          displayShape="Circle"
+                          showBorder="false"
+                          src="${ifmLogo}"           
+                        />
+                          <m:QuickViewGroup heading="Kontakt">
+
+                          </m:QuickViewGroup>
+                        </m:QuickViewPage>
+                      </m:QuickViewCard>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
                       <m:Image src="${imgProblem}" alt="Problem Statement" />
