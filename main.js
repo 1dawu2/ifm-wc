@@ -120,7 +120,7 @@
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                       	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
                         <f:header>
-                          <card:Header title="Upcoming Avtivities" subtitle="For Today" />
+                          <m:Title text="Card"/>
                         </f:header>
                         <f:content>
                           <m:IllustratedMessage illustrationType="sapIllus-NoActivities">
