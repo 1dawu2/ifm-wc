@@ -275,10 +275,10 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextField(
+                template: new sap.ui.commons.TextView(
                   {
                     value: {
-                      path: "{artifact>createdBy}",
+                      path: "{artifact>created}",
                       formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "dd.MM.yyyy" }),
                     },
                   }),
@@ -298,20 +298,21 @@
                     icon: "sap-icon://begin",
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
-                      var iIndex = oTable.getSelectedIndex();
-                      console.log(iIndex);
                       var oContext;
                       var oObject;
-                      if (iIndex < 0) {
-                        oContext = "no item selected";
-                      } else {
-                        oContext = oTable.getContextByIndex(iIndex);
-                        oObject = oContext.getObject();
-                        console.log(oObject);
-                      }
+                      var oURL;
+                      var selectedEntries = [];
 
                       var selectedIndices = oTable.getSelectedIndices();
-                      console.log(selectedIndices);
+                      for (var i = 0; i < selectedIndices.lenght; i++) {
+                        oContext = oTable.getContextByIndex(iIndex);
+                        oObject = oContext.getObject();
+                        oURL = oContext.getProperty("");
+                        console.log(object);
+                        console.log(oURL);
+                        selectedEntries.push(oURL);
+                      }
+
 
                       // var selectedEntries = [];
                       // var tableData = oTable.getModel("artifact").getData();
@@ -370,10 +371,6 @@
                           }.bind(this)
                         })
                       });
-
-                      // to get access to the controller's model
-                      this.getView().addDependent(oDefaultDialog);
-                      console.log(this.getView());
 
                       oDefaultDialog.open();
                     }
