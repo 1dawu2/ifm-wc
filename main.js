@@ -82,7 +82,7 @@
                     class="sapUiResponsiveContentPadding">
                     <m:items>
                       <m:IconTabFilter
-                        icon="sap-icon://begin"
+                        icon="sap-icon://clinical-order"
                         count="1"
                         text="Stories"
                         key="All" />
@@ -90,7 +90,7 @@
                       <m:IconTabFilter
                         icon="sap-icon://begin"
                         iconColor="Positive"
-                        count="{/ProductCollectionStats/Counts/Weight/Ok}"
+                        count="1"
                         text="Ok"
                         key="Ok" />
                     </m:items>
