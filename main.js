@@ -210,6 +210,8 @@
       // console.log(sts);
 
       var that_ = that;
+      console.log("that");
+      console.log(that_);
 
       sap.ui.define(
         [
@@ -311,7 +313,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>models}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{/artifact/models/description}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "Models",
                 filterProperty: "Models",
               }));
@@ -347,10 +349,8 @@
                     press: function (oEvent) {
                       if (oTable.getVisibleRowCountMode() === "Interactive") {
                         oTable.setVisibleRowCountMode("Auto");
-                        console.log("resize auto");
                       } else {
                         oTable.setVisibleRowCountMode("Interactive");
-                        console.log("resize interactive");
                       }
                     }
                   }),
@@ -370,7 +370,7 @@
 
                       var selectedIndices = oTable.getSelectedIndices();
                       for (var i = 0; i < selectedIndices.lenght; i++) {
-                        oContext = oTable.getContextByIndex(iIndex);
+                        oContext = oTable.getContextByIndex(i);
                         oObject = oContext.getObject();
                         oURL = oContext.getProperty("openURL");
                         console.log(object);
