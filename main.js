@@ -120,7 +120,9 @@
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                       	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
                         <f:header>
-                          <m:Title text="Card"/>
+                          <m:layoutData>
+                            <m:Title text="Card"/>
+                          </m:layoutData>
                         </f:header>
                         <f:content>
                           <m:IllustratedMessage illustrationType="sapIllus-NoActivities">
@@ -303,7 +305,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView(
+                template: new sap.ui.commons.TextField(
                   {
                     value: {
                       path: "{artifact>created}",
