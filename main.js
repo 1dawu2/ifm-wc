@@ -84,8 +84,9 @@
                     class="sapUiResponsiveContentPadding">
                     <m:items>
                       <m:IconTabFilter
+                        id="countInput"
                         icon="sap-icon://clinical-order"
-                        count="{counter>/rows}"
+                        count="{/row/counter}"
                         text="Stories"
                         key="All" />
                     </m:items>
@@ -228,7 +229,7 @@
 
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
-              this.bindTable();
+              this.bindTable(oEvent);
             },
 
             onCollapseExpandPress: function () {
@@ -238,12 +239,12 @@
               oNavigationList.setExpanded(!bExpanded);
             },
 
-            bindTree: function () {
+            bindTree: function (oEvent) {
               var oModel = new JSONModel(sap.ui.require.toUrl(".https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
               this.getView().setModel(oModel, "tree");
             },
 
-            bindTable: function () {
+            bindTable: function (oEvent) {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
 
@@ -265,7 +266,7 @@
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
 
-              // register an event handler
+              // register a table event handler
               oTable.addEventDelegate({
                 onAfterRendering: function () {
                   var oBinding = this.getBinding("rows");
@@ -273,8 +274,9 @@
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
                     console.log(oLength);
-                    var oRowCountModel = new sap.ui.model.json.JSONModel({ rows: oLength });
-                    this.getView().setModel(oRowCountModel, "counter");
+                    var oInput = this.byId("countInput");
+                    oInput.bindElement("/row");
+                    oInput.bindProperty("count", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
