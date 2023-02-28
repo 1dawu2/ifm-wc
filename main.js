@@ -25,6 +25,7 @@
       xmlns:t="sap.ui.table"
       xmlns:m="sap.m"
       xmlns:f="sap.f"
+      xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
       height="100%"
@@ -113,12 +114,10 @@
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                       	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
                         <f:header>
-                          <m:layoutData>
-                            <m:Title text="Card"/>
-                          </m:layoutData>
+                          <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
                         </f:header>
                         <f:content>
-                          <m:IllustratedMessage illustrationType="sapIllus-NoActivities">
+                          <m:IllustratedMessage illustrationType="sapIllus-NoData">
                             <m:additionalContent>
                               <m:Button text="Add Activity" />
                             </m:additionalContent>
