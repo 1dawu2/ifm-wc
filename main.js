@@ -319,7 +319,7 @@
 
               var bindingPath = oTable._iBindingLength
               console.log(bindingPath);
-              var oRowCountModel = new JSONModel({ rows: bindingPath });
+              var oRowCountModel = new sap.ui.model.json.JSONModel({ rows: bindingPath });
               this.getView().setModel(oRowCountModel, "counter");
 
               oTable.setToolbar(new sap.m.Toolbar({
