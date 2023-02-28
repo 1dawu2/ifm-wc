@@ -320,6 +320,7 @@
               oTable.bindRows("artifact>/");
 
               var bindingPath = oTable._iBindingLength
+              console.log("--- Table Rows: ---")
               console.log(bindingPath);
               var oRowCountModel = new sap.ui.model.json.JSONModel({ rows: bindingPath });
               this.getView().setModel(oRowCountModel, "counter");
