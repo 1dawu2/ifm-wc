@@ -1083,7 +1083,7 @@
     let uqmMigration = documentContext.get("sap.fpa.bi.uqmMigration.UnsupportedFeatures");
     console.log("unsupported features");
     console.log(uqmMigration);
-    console.log(sap.fpa.bi.uqmMigration.UnsupportedFeatures);
+    // console.log(sap.fpa.bi.uqmMigration.UnsupportedFeatures);
 
     // SAC modules:
     // sap.fpa.ui.infra.service.AjaxHelper
