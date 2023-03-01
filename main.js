@@ -153,7 +153,7 @@
                               <f:GridContainerItemLayoutData minRows="2" columns="2" />
                             </m:layoutData>
                             <m:TileContent unit="Unit" footer="Footer Text">
-                              <NumericContent value="12" />
+                              <m:NumericContent value="12" />
                             </m:TileContent>
                           </m:GenericTile>
                         </f:GridContainer>
