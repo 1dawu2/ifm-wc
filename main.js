@@ -333,8 +333,13 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>created}" }),
-                type: new sap.ui.model.type.DateTime({ pattern: "MM/dd/yyyy", source: { pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" } }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: "{artifact>created}",
+                    formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
+                  }
+                }),
+                // type: new sap.ui.model.type.DateTime({ pattern: "MM/dd/yyyy", source: { pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" }}),
                 // template: new sap.ui.commons.TextField(
                 //   {
                 //     value: {
