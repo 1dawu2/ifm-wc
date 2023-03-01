@@ -319,7 +319,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/description/}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{/models/description/}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "description",
                 filterProperty: "description",
               }));
@@ -379,8 +379,9 @@
                       var selectedIndices = oTable.getSelectedIndices();
                       console.log("selected indicies");
                       console.log(selectedIndices);
-                      for (var i = 0; i < selectedIndices.lenght; i++) {
-                        oContext = oTable.getContextByIndex(i);
+                      for (var index = 0; index < selectedIndices.length; index++) {
+                        console.log(index);
+                        oContext = oTable.getContextByIndex(index);
                         oObject = oContext.getObject();
                         oURL = oContext.getProperty("openURL");
                         console.log(object);
