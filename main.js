@@ -273,7 +273,7 @@
             },
 
             bindTree: function (oEvent) {
-              var sPath = "assets/unsupported_features.json"
+              var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
               var oModel = new sap.ui.model.json.JSONModel(sPath);
               this.getView().setModel(oModel, "tree");
             },
