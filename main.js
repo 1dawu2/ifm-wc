@@ -370,6 +370,8 @@
                       var selectedEntries = [];
 
                       var selectedIndices = oTable.getSelectedIndices();
+                      console.log("selected indicies");
+                      console.log(selectedIndices);
                       for (var i = 0; i < selectedIndices.lenght; i++) {
                         oContext = oTable.getContextByIndex(i);
                         oObject = oContext.getObject();
