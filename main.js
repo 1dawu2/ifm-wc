@@ -435,7 +435,7 @@
                         oContext = oTable.getContextByIndex(index);
                         oObject = oContext.getObject();
                         oURL = oContext.getProperty("openURL");
-                        console.log(object);
+                        console.log(oObject);
                         console.log(oURL);
                         selectedEntries.push(oURL);
                       }
