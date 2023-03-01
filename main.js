@@ -1084,14 +1084,14 @@
     console.log("unsupported features");
     console.log(uqmMigration);
 
-    sap.ui.define([
-      "sap/fpa/ui/story/Utils"
-    ], function (Utils) {
-      // Your code here
-      Utils.getStoryById("59A395046F3F8A41401B0B1C28FD787D").then(function (story) {
-        console.log(story);
-      });
-    });
+    // sap.ui.define([
+    //   "sap/fpa/ui/story/Utils"
+    // ], function (Utils) {
+    //   // Your code here
+    //   Utils.getStoryById("59A395046F3F8A41401B0B1C28FD787D").then(function (story) {
+    //     console.log(story);
+    //   });
+    // });
     // console.log(sap.fpa.bi.uqmMigration.UnsupportedFeatures);
 
     // SAC modules:
