@@ -287,7 +287,7 @@
             },
 
             bindTree: function (oEvent) {
-              var oModel = new sap.ui.model.json.JSONModel("assets/unsupported_features.json")
+              var oModel = new sap.ui.model.json.JSONModel("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json");
               sap.ui.getCore().setModel(oModel);
               // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
               // this.getView().setModel(oModel, "tree");
@@ -442,17 +442,6 @@
                         console.log(oURL);
                         selectedEntries.push(oURL);
                       }
-
-
-                      // var selectedEntries = [];
-                      // var tableData = oTable.getModel("artifact").getData();
-                      // for (var index = 0; index < selectedIndices.length; index++) {
-                      //   var tableIndex = selectedIndices[index];
-                      //   console.log(tableIndex);
-                      //   var tableRow = tableData.modelData[tableIndex];
-                      //   selectedEntries.push(tableRow.uid);
-                      // }
-                      // console.log(selectedEntries);
                     }
                   }),
                   new sap.ui.commons.Button({
