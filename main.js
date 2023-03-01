@@ -235,6 +235,8 @@
       sap.ui.define(
         [
           "sap/ui/core/mvc/Controller",
+          "sap/ui/export/Spreadsheet",
+
         ],
         function (Controller, JSONModel, DragInfo, GridDropInfo) {
           "use strict";
@@ -273,13 +275,9 @@
             },
 
             bindTree: function (oEvent) {
-              // var oModel = new sap.ui.model.json.JSONModel("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json");
-              var sHeaders = { "Accept": "application/json" };
-              var oModel = new sap.ui.model.json.JSONModel();
-              oModel.loadData("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json", null, true, "GET", null, false, sHeaders);
-              sap.ui.getCore().setModel(oModel, "tree");
-              // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
-              // this.getView().setModel(oModel, "tree");
+              var sPath = "assets/unsupported_features.json"
+              var oModel = new sap.ui.model.json.JSONModel(sPath);
+              this.getView().setModel(oModel, "tree");
             },
 
             bindTable: function (oEvent) {
@@ -321,6 +319,7 @@
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
                       });
+                      this.oPanel.addContent(illustratedMsg);
                       console.log(illustratedMsg);
                     }
                   });
@@ -357,7 +356,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{/models/description/}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{/models/0/description/}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "description",
                 filterProperty: "description",
               }));
@@ -374,17 +373,9 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: "{artifact>created}",
-                    formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
+                    // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
                   }
                 }),
-                // type: new sap.ui.model.type.DateTime({ pattern: "MM/dd/yyyy", source: { pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" }}),
-                // template: new sap.ui.commons.TextField(
-                //   {
-                //     value: {
-                //       path: "{artifact>created}",
-                //       formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" }), //"2023-01-23T09:44:04.449Z"
-                //     },
-                //   }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
@@ -498,6 +489,11 @@
                       aCols.push({
                         label: 'Name',
                         property: 'name',
+                      });
+
+                      aCols.push({
+                        label: 'Story ID',
+                        property: 'id',
                       });
 
                       aCols.push({
