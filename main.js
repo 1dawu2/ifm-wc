@@ -130,6 +130,33 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                        <f:GridContainer
+                          id="grid1"
+                          class="sapUiSmallMargin"
+                          snapToRow="true">
+                          <f:layout>
+                            <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="8px" />
+                          </f:layout>
+                          <f:layoutXS>
+                            <f:GridContainerSettings rowSize="70px" columnSize="70px" gap="8px" />
+                          </f:layoutXS>
+                          <m:GenericTile header="Manage Activity Master Data Type" subheader="Subtitle">
+                            <m:layoutData>
+                              <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                            </m:layoutData>
+                            <m:TileContent>
+                              <m:ImageContent src="sap-icon://business-card" />
+                            </m:TileContent>
+                          </m:GenericTile>
+                          <m:GenericTile header="Cumulative Totals" subheader="Subtitle">
+                            <m:layoutData>
+                              <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                            </m:layoutData>
+                            <m:TileContent unit="Unit" footer="Footer Text">
+                              <NumericContent value="12" />
+                            </m:TileContent>
+                          </m:GenericTile>
+                        </f:GridContainer>
                       	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
                         <f:header>
                           <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
@@ -217,8 +244,10 @@
           "sap/ui/core/mvc/Controller",
           "sap/ui/core/format/DateFormat",
           "sap/ui/export/Spreadsheet",
+          "sap/ui/core/dnd/DragInfo",
+          "sap/f/dnd/GridDropInfo",
         ],
-        function (Controller) {
+        function (Controller, JSONModel, DragInfo, GridDropInfo) {
           "use strict";
 
           return Controller.extend("ifm.hack.initial", {
@@ -231,6 +260,8 @@
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
               this.bindTable(oEvent);
+              this.bindTree(oEvent);
+              this.configGrid();
             },
 
             onCollapseExpandPress: function () {
@@ -238,6 +269,21 @@
               var bExpanded = oNavigationList.getExpanded();
 
               oNavigationList.setExpanded(!bExpanded);
+            },
+
+            configGrid: function () {
+              // shortcut for sap.ui.core.dnd.DropLayout
+              var DropLayout = coreLibrary.dnd.DropLayout;
+
+              // shortcut for sap.ui.core.dnd.DropPosition
+              var DropPosition = coreLibrary.dnd.DropPosition;
+              var oGrid = this.byId("grid1");
+
+              oGrid.addDragDropConfig(new DragInfo({
+                sourceAggregation: "items"
+              }));
+
+
             },
 
             bindTree: function (oEvent) {
@@ -383,7 +429,7 @@
 
                       var selectedIndices = oTable.getSelectedIndices();
                       console.log("selected indicies");
-                      console.log(selectedIndices);
+                      console.log(typeof (selectedIndices));
                       for (var index = 0; index < selectedIndices.length; index++) {
                         console.log(index);
                         oContext = oTable.getContextByIndex(index);
@@ -1031,6 +1077,9 @@
     let storyModel = documentContext.get("sap.fpa.story.getstorymodel");
     console.log("Story Model:");
     console.log(storyModel);
+    let uqmMigration = documentContext.get("sap.fpa.bi.uqmMigration.UnsupportedFeatures");
+    console.log("unsupported features");
+    console.log(uqmMigration);
 
     // SAC modules:
     // sap.fpa.ui.infra.service.AjaxHelper
@@ -1038,6 +1087,7 @@
     // isConvertingToOptimizedDesignMode
     // migrateStoryForOptimizedFormat
     // migrateForUQM 
+    // sap.fpa.bi.uqmMigration.UnsupportedFeatures
     if (sap.lumira.story.StoryModel) {
       console.log(sap.lumira.story.StoryModel);
 
