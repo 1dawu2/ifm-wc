@@ -287,8 +287,10 @@
             },
 
             bindTree: function (oEvent) {
-              var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
-              this.getView().setModel(oModel, "tree");
+              var oModel = new sap.ui.model.json.JSONModel("./assets/unsupported_features.json")
+              sap.ui.getCore().setModel(oModel);
+              // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
+              // this.getView().setModel(oModel, "tree");
             },
 
             bindTable: function (oEvent) {
@@ -324,6 +326,7 @@
                     var oInput = jQuery(_shadowRoot.getElementById("countInput"));
                     console.log("--- Input ---");
                     console.log(oInput);
+                    sap.m.MessageToast.show(oInput);
                     // oInput.bindProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
@@ -1080,6 +1083,7 @@
     let uqmMigration = documentContext.get("sap.fpa.bi.uqmMigration.UnsupportedFeatures");
     console.log("unsupported features");
     console.log(uqmMigration);
+    console.log(sap.fpa.bi.uqmMigration.UnsupportedFeatures);
 
     // SAC modules:
     // sap.fpa.ui.infra.service.AjaxHelper
