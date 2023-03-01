@@ -132,14 +132,7 @@
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                         <f:GridContainer
                           id="grid1"
-                          class="sapUiSmallMargin"
                           snapToRow="true">
-                          <f:layout>
-                            <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="8px" />
-                          </f:layout>
-                          <f:layoutXS>
-                            <f:GridContainerSettings rowSize="70px" columnSize="70px" gap="8px" />
-                          </f:layoutXS>
                           <m:GenericTile header="Manage Activity Master Data Type" subheader="Subtitle">
                             <m:layoutData>
                               <f:GridContainerItemLayoutData minRows="2" columns="2" />
@@ -272,7 +265,7 @@
               var DropPosition = sap.ui.core.dnd.DropPosition;
               var oGrid = this.byId("grid1");
 
-              oGrid.addDragDropConfig(new DragInfo({
+              oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                 sourceAggregation: "items"
               }));
 
@@ -280,7 +273,9 @@
             },
 
             bindTree: function (oEvent) {
-              var oModel = new sap.ui.model.json.JSONModel("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json");
+              // var oModel = new sap.ui.model.json.JSONModel("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json");
+              var sHeaders = { "Accept": "application/json" };
+              oModel.loadData("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json", null, true, "GET", null, false, sHeaders);
               sap.ui.getCore().setModel(oModel, "tree");
               // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
               // this.getView().setModel(oModel, "tree");
