@@ -275,6 +275,7 @@
             bindTree: function (oEvent) {
               // var oModel = new sap.ui.model.json.JSONModel("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json");
               var sHeaders = { "Accept": "application/json" };
+              var oModel = new sap.ui.model.json.JSONModel();
               oModel.loadData("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json", null, true, "GET", null, false, sHeaders);
               sap.ui.getCore().setModel(oModel, "tree");
               // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
