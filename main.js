@@ -287,7 +287,7 @@
             },
 
             bindTree: function (oEvent) {
-              var oModel = new sap.ui.model.json.JSONModel("./assets/unsupported_features.json")
+              var oModel = new sap.ui.model.json.JSONModel("assets/unsupported_features.json")
               sap.ui.getCore().setModel(oModel);
               // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
               // this.getView().setModel(oModel, "tree");
@@ -1083,6 +1083,15 @@
     let uqmMigration = documentContext.get("sap.fpa.bi.uqmMigration.UnsupportedFeatures");
     console.log("unsupported features");
     console.log(uqmMigration);
+
+    sap.ui.define([
+      "sap/fpa/ui/story/Utils"
+    ], function (Utils) {
+      // Your code here
+      Utils.getStoryById("59A395046F3F8A41401B0B1C28FD787D").then(function (story) {
+        console.log(story);
+      });
+    });
     // console.log(sap.fpa.bi.uqmMigration.UnsupportedFeatures);
 
     // SAC modules:
