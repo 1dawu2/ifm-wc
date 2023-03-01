@@ -339,7 +339,7 @@
                     // console.log("--- Input ---");
                     // console.log(oInput);
                     // sap.m.MessageToast.show(oInput);
-                    this.oInput.bindProperty("counter", oLength);
+                    // this.oInput.bindProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
