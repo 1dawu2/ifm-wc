@@ -236,7 +236,8 @@
         [
           "sap/ui/core/mvc/Controller",
           "sap/ui/export/Spreadsheet",
-
+          "sap/f/dnd/GridDropInfo",
+          "sap/ui/core/library",
         ],
         function (Controller, JSONModel, DragInfo, GridDropInfo) {
           "use strict";
