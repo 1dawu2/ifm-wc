@@ -242,10 +242,6 @@
       sap.ui.define(
         [
           "sap/ui/core/mvc/Controller",
-          "sap/ui/core/format/DateFormat",
-          "sap/ui/export/Spreadsheet",
-          "sap/ui/core/dnd/DragInfo",
-          "sap/f/dnd/GridDropInfo",
         ],
         function (Controller, JSONModel, DragInfo, GridDropInfo) {
           "use strict";
@@ -284,7 +280,7 @@
             },
 
             bindTree: function (oEvent) {
-              var oModel = new sap.ui.model.json.JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
+              var oModel = new sap.ui.model.json.JSONModel("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json");
               sap.ui.getCore().setModel(oModel, "tree");
               // var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
               // this.getView().setModel(oModel, "tree");
