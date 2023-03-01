@@ -270,8 +270,6 @@
               oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                 sourceAggregation: "items"
               }));
-
-
             },
 
             bindTree: function (oEvent) {
@@ -356,7 +354,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{/models/0/description/}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/description/}" }), //salesOrderModel>/orders/0/products
                 sortProperty: "description",
                 filterProperty: "description",
               }));
@@ -370,12 +368,24 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: "{artifact>created}",
-                    // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
-                  }
+                // template: new sap.ui.commons.TextView({
+                //   text: {
+                //     path: "{artifact>created}",
+                //     // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
+                //   }
+                // }),
+                template: new sap.ui.commons.TextView().bindProperty("text", {
+                  path: "{artifact>created}",
+                  type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
                 }),
+                // template: new sap.ui.commons.TextView({
+                //   text: {
+                //     path: 'DATE',
+                //     formatter: function (value) {
+                //       return /* TODO: some format logic */;
+                //     }
+                //   }
+                // }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
@@ -422,6 +432,7 @@
                         console.log(oURL);
                         selectedEntries.push(oURL);
                       }
+                      console.log(selectedEntries);
                     }
                   }),
                   new sap.ui.commons.Button({
