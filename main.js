@@ -270,6 +270,32 @@
               oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                 sourceAggregation: "items"
               }));
+
+              oGrid.addDragDropConfig(new GridDropInfo({
+                targetAggregation: "items",
+                dropPosition: DropPosition.Between,
+                dropLayout: DropLayout.Horizontal,
+                drop: function (oInfo) {
+                  var oDragged = oInfo.getParameter("draggedControl"),
+                    oDropped = oInfo.getParameter("droppedControl"),
+                    sInsertPosition = oInfo.getParameter("dropPosition"),
+                    iDragPosition = oGrid.indexOfItem(oDragged),
+                    iDropPosition = oGrid.indexOfItem(oDropped);
+
+                  oGrid.removeItem(oDragged);
+
+                  if (iDragPosition < iDropPosition) {
+                    iDropPosition--;
+                  }
+
+                  if (sInsertPosition === "After") {
+                    iDropPosition++;
+                  }
+
+                  oGrid.insertItem(oDragged, iDropPosition);
+                  oGrid.focusItem(iDropPosition);
+                }
+              }));
             },
 
             bindTree: function (oEvent) {
@@ -309,10 +335,10 @@
                     var oLength = oSource.iLength;
                     console.log(oLength);
                     var oInput = jQuery(_shadowRoot.getElementById("countInput"));
-                    console.log("--- Input ---");
-                    console.log(oInput);
-                    sap.m.MessageToast.show(oInput);
-                    // oInput.bindProperty("counter", oLength);
+                    // console.log("--- Input ---");
+                    // console.log(oInput);
+                    // sap.m.MessageToast.show(oInput);
+                    this.oInput.bindProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
