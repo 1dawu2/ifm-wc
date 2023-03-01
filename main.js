@@ -272,11 +272,8 @@
             },
 
             configGrid: function () {
-              // shortcut for sap.ui.core.dnd.DropLayout
-              var DropLayout = coreLibrary.dnd.DropLayout;
-
-              // shortcut for sap.ui.core.dnd.DropPosition
-              var DropPosition = coreLibrary.dnd.DropPosition;
+              var DropLayout = sap.ui.core.dnd.DropLayout;
+              var DropPosition = sap.ui.core.dnd.DropPosition;
               var oGrid = this.byId("grid1");
 
               oGrid.addDragDropConfig(new DragInfo({
