@@ -312,9 +312,9 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{/artifact/models/description}" }), //salesOrderModel>/orders/0/products
-                sortProperty: "Models",
-                filterProperty: "Models",
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/description/}" }), //salesOrderModel>/orders/0/products
+                sortProperty: "description",
+                filterProperty: "description",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -326,13 +326,15 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                template: new sap.ui.commons.TextField(
-                  {
-                    value: {
-                      path: "{artifact>created}",
-                      formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss" }),
-                    },
-                  }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>created}" }),
+                type: new sap.ui.model.type.DateTime({ pattern: "MM/dd/yyyy", source: { pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" } }),
+                // template: new sap.ui.commons.TextField(
+                //   {
+                //     value: {
+                //       path: "{artifact>created}",
+                //       formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" }), //"2023-01-23T09:44:04.449Z"
+                //     },
+                //   }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
