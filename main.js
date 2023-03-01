@@ -91,7 +91,7 @@
                     </m:items>
                   </m:IconTabBar>
                   <m:content>
-                    <m:Panel expandable="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                    <m:Panel expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
                   </m:content>
                 </m:Page>
                 <m:Page id="p1">
