@@ -322,7 +322,7 @@
               console.log(oModel);
 
               var oTable = new sap.ui.table.Table({
-                title: "SAC Story/Application Overview:",
+                title: "Overview: SAC Stories",
                 showNoData: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
