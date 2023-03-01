@@ -271,7 +271,7 @@
                 sourceAggregation: "items"
               }));
 
-              oGrid.addDragDropConfig(new GridDropInfo({
+              oGrid.addDragDropConfig(new sap.f.dnd.GridDropInfo({
                 targetAggregation: "items",
                 dropPosition: DropPosition.Between,
                 dropLayout: DropLayout.Horizontal,
