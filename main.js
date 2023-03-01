@@ -287,7 +287,7 @@
             },
 
             bindTree: function (oEvent) {
-              var oModel = new JSONModel(sap.ui.require.toUrl(".https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
+              var oModel = new JSONModel(sap.ui.require.toUrl("https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"));
               this.getView().setModel(oModel, "tree");
             },
 
