@@ -297,6 +297,13 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Story ID" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>id}" }),
+                sortProperty: "id",
+                filterProperty: "id",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
                 sortProperty: "description",
