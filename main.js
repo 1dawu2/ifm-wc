@@ -75,7 +75,8 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
-            initialPage="root">            
+            initialPage="root">
+              <m:pages>            
                 <m:ScrollContainer id="root">
                 </m:ScrollContainer>
                 <m:ScrollContainer id="p1">
@@ -92,6 +93,7 @@
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>                 
                 </m:ScrollContainer>
+              </m:pages>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
