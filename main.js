@@ -357,7 +357,8 @@
                     var oLength = oSource.iLength;
                     console.log(oLength);
                     // var oInput = this.byId("countInput");
-                    console.log(this.getView());
+                    // console.log(this.getView());
+                    console.log(that_.getView().getModel());
                     // console.log(oInput);
                     // console.log("--- Input ---");
                     // console.log(oInput);
