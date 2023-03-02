@@ -517,8 +517,9 @@
                         content: new Text({ text: "Export the SAC activity log." }),
                         beginButton: new sap.m.Button({
                           type: ButtonType.Emphasized,
-                          text: "OK",
+                          text: "Export Log",
                           press: function () {
+                            this.getActivityLog();
                             oDefaultDialog.close();
                           }.bind(this)
                         })
