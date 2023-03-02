@@ -251,7 +251,7 @@
 
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
-              this.bindTable(oEvent, oPanel);
+              this.bindTable(oEvent, this.oPanel);
               this.bindTree(oEvent);
               this.configGrid();
             },
