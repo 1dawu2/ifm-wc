@@ -76,22 +76,22 @@
           <m:NavContainer
             id="pageContainer"
             initialPage="root">            
-                <m:Page id="root">
-                </m:Page>
-                <m:Page id="p1">
+                <m:ScrollContainer id="root">
+                </m:ScrollContainer>
+                <m:ScrollContainer id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
-                </m:Page>
-                <m:Page id="p2">
+                </m:ScrollContainer>
+                <m:ScrollContainer id="p2">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>                 
-                </m:Page>
+                </m:ScrollContainer>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -155,7 +155,7 @@
       console.log("that");
       console.log(that_);
 
-      sap.ui.require(
+      sap.ui.define(
         [
           "sap/ui/core/mvc/Controller",
           "sap/ui/export/Spreadsheet",
