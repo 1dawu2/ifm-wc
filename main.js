@@ -384,7 +384,8 @@
                     // console.log(oInput);
                     // sap.m.MessageToast.show(oInput);
                     // this.oInput.setProperty("counter", oLength);
-                    oWidgetObj.setProperty("counter", oLength);
+                    console.log(oWidgetObj);
+                    oWidgetObj.setProperty("count", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
