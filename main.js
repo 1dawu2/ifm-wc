@@ -16,9 +16,6 @@
         background-color: #fff;
       }
     </style>
-    <div id="ui5_content" name="ui5_content">
-      <slot name="content"></slot>
-    </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
       controllerName="ifm.hack.initial"
