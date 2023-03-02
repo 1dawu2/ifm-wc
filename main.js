@@ -251,7 +251,7 @@
 
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
-              this.bindTable(oEvent);
+              this.bindTable(oEvent, oPanel);
               this.bindTree(oEvent);
               this.configGrid();
             },
@@ -347,7 +347,7 @@
               // https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/$metadata
             },
 
-            bindTable: function (oEvent) {
+            bindTable: function (oEvent, oWidgetObj) {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
 
@@ -384,6 +384,7 @@
                     // console.log(oInput);
                     // sap.m.MessageToast.show(oInput);
                     // this.oInput.setProperty("counter", oLength);
+                    oWidgetObj.setProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
