@@ -300,6 +300,26 @@
             },
 
             bindTree: function (oEvent) {
+              var url = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json";
+              jQuery.ajax({
+                url: url,
+                dataType: "json",
+                success: function (data) {
+                  // Create a new instance of the JSONModel class
+                  var oModel = new sap.ui.model.json.JSONModel();
+
+                  // Set the retrieved data as the data property of the model
+                  oModel.setData(data);
+
+                  // Set the model to the core of the SAPUI5 application
+                  sap.ui.getCore().setModel(oModel, "tree");
+                },
+                error: function (xhr, status, error) {
+                  // Handle any errors that occur during the request
+                  console.error(error);
+                }
+              });
+
               var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
               var oModel = new sap.ui.model.json.JSONModel(sPath);
               this.getView().setModel(oModel, "tree");
@@ -358,12 +378,12 @@
                     console.log(oLength);
                     // var oInput = this.byId("countInput");
                     // console.log(this.getView());
-                    console.log(that_.getView().getModel());
+                    // console.log(that_.getView().getModel());
                     // console.log(oInput);
                     // console.log("--- Input ---");
                     // console.log(oInput);
                     // sap.m.MessageToast.show(oInput);
-                    this.oInput.setProperty("counter", oLength);
+                    // this.oInput.setProperty("counter", oLength);
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
