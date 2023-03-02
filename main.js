@@ -350,14 +350,15 @@
 
               // register a table event handler
               oTable.addEventDelegate({
-                onAfterRendering: function () {
+                onAfterRendering: function (oEvent) {
                   var oBinding = this.getBinding("rows");
                   oBinding.attachChange(function (oEvent) {
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
                     console.log(oLength);
-                    var oInput = this.byId("countInput");
-                    console.log(oInput);
+                    // var oInput = this.byId("countInput");
+                    console.log(this.getView());
+                    // console.log(oInput);
                     // console.log("--- Input ---");
                     // console.log(oInput);
                     // sap.m.MessageToast.show(oInput);
