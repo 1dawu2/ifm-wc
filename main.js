@@ -550,10 +550,10 @@
         });
 
       //### THE APP: place the XMLView somewhere into DOM ###
-      var oView = new sap.ui.core.mvc.XMLView({
-        viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-      });
-      oView.placeAt(content);
+      // var oView = new sap.ui.core.mvc.XMLView({
+      //   viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+      // });
+      // oView.placeAt(content);
 
     }
 
