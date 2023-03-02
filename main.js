@@ -155,14 +155,14 @@
       console.log("that");
       console.log(that_);
 
-      sap.ui.define(
+      sap.ui.require(
         [
           "sap/ui/core/mvc/Controller",
           "sap/ui/export/Spreadsheet",
           "sap/f/dnd/GridDropInfo",
           "sap/ui/core/library",
         ],
-        function (Controller, JSONModel, DragInfo, GridDropInfo) {
+        function (Controller, Spreadsheet, GridDropInfo, library) {
           "use strict";
 
           return Controller.extend("ifm.hack.initial", {
@@ -549,11 +549,11 @@
 
         });
 
-      //### THE APP: place the XMLView somewhere into DOM ###
-      // var oView = new sap.ui.core.mvc.XMLView({
-      //   viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-      // });
-      // oView.placeAt(content);
+      // ### THE APP: place the XMLView somewhere into DOM ###
+      var oView = new sap.ui.core.mvc.XMLView({
+        viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+      });
+      oView.placeAt(content);
 
     }
 
