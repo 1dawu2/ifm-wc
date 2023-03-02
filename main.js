@@ -357,6 +357,7 @@
                     var oLength = oSource.iLength;
                     console.log(oLength);
                     var oInput = jQuery(_shadowRoot.getElementById("countInput"));
+                    console.log(oInput);
                     // console.log("--- Input ---");
                     // console.log(oInput);
                     // sap.m.MessageToast.show(oInput);
@@ -402,7 +403,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/description/}" }), //salesOrderModel>/orders/0/products
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/description/}" }),
                 sortProperty: "description",
                 filterProperty: "description",
               }));
