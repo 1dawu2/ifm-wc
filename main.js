@@ -254,7 +254,6 @@
               this.bindTable(oEvent);
               this.bindTree(oEvent);
               this.configGrid();
-              this.getActivityLog(oEvent);
             },
 
             onCollapseExpandPress: function () {
@@ -508,25 +507,17 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
+                      var ValueState = sap.ui.core.ValueState;
+                      var ButtonType = sap.m.ButtonType;
+                      var DialogType = sap.m.DialogType;
                       var oDefaultDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
-                        // content: new List({
-                        //   items: {
-                        //     path: "/ProductCollection",
-                        //     template: new StandardListItem({
-                        //       title: "{Name}",
-                        //       counter: "{Quantity}"
-                        //     })
-                        //   }
-                        // }),
+                        type: DialogType.Message,
+                        state: ValueState.Information,
+                        content: new Text({ text: "Export the SAC activity log." }),
                         beginButton: new sap.m.Button({
+                          type: ButtonType.Emphasized,
                           text: "OK",
-                          press: function () {
-                            oDefaultDialog.close();
-                          }.bind(this)
-                        }),
-                        endButton: new sap.m.Button({
-                          text: "Close",
                           press: function () {
                             oDefaultDialog.close();
                           }.bind(this)
