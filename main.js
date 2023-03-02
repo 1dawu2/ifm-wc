@@ -28,7 +28,6 @@
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
-      height="100%"
       class="ifm-hack">
       <tnt:ToolPage id="toolPage" sideExpanded="false">
         <tnt:header>
