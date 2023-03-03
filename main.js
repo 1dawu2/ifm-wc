@@ -380,14 +380,14 @@
                     // this.oInput.setProperty("counter", oLength);
                     console.log(oWidgetObj);
                     //oWidgetObj.setProperty("count", oLength);
-                    var model = new sap.ui.model.json.JSONModel();
-                    model.setData({
+                    var modelCounter = new sap.ui.model.json.JSONModel();
+                    modelCounter.setData({
                       arrayName: [
-                        { counter: oLength },
+                        { counter: 100 },
                       ]
                     });
-                    console.log(model);
-                    sap.ui.getCore().setModel(oModel, "rowCounter");
+                    console.log(modelCounter);
+                    sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
