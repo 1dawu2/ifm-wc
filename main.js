@@ -391,7 +391,11 @@
                     var illustratedMsg = new sap.m.IllustratedMessage({
                       illustrationType: "sapIllus-NoData"
                     });
+                    var ValueState = sap.ui.core.ValueState;
+                    var ButtonType = sap.m.ButtonType;
+                    var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
+
                       var oDefaultDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
                         type: DialogType.Message,
