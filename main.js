@@ -138,8 +138,7 @@
                           <m:layoutData>
                             <f:GridContainerItemLayoutData minRows="2" columns="2" />
                           </m:layoutData>
-                          <m:TileContent unit="Unit" footer="Footer Text">
-                            <m:ImageContent src="sap-icon://desktop-mobile" />                                                      	
+                          <m:TileContent unit="Unit" footer="Footer Text">                                                                                  	
                             <m:NumericContent value="+49 69 56608 3231" />
                           </m:TileContent>
                         </m:GenericTile>
