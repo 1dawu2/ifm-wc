@@ -386,7 +386,8 @@
                         { counter: oLength },
                       ]
                     });
-                    oWidgetObj.getView().setModel(model, "rowCounter");
+                    console.log(model);
+                    this.getView().setModel(model, "rowCounter");
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
