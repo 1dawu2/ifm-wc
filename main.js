@@ -132,7 +132,6 @@
                           </m:layoutData>
                           <m:TileContent>
                             <m:ImageContent src="sap-icon://business-card" />
-                            <m:Text/>
                           </m:TileContent>
                         </m:GenericTile>
                         <m:GenericTile header="Kontaktperson" subheader="Subtitle">
