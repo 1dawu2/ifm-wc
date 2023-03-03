@@ -387,7 +387,7 @@
                       ]
                     });
                     console.log(model);
-                    this.getView().setModel(model, "rowCounter");
+                    sap.ui.getCore().setModel(oModel, "rowCounter");
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
