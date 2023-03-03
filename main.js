@@ -126,7 +126,7 @@
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
-                        <m:GenericTile header="Kontakt subheader="Subtitle">
+                        <m:GenericTile header="Kontakt" subheader="Subtitle">
                           <m:layoutData>
                             <f:GridContainerItemLayoutData minRows="2" columns="2" />
                           </m:layoutData>
