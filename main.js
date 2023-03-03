@@ -312,22 +312,6 @@
               this.getView().setModel(oModel, "tree");
             },
 
-            getActivityLog: function (oEvent) {
-              var oBusy = new sap.m.BusyDialog();
-              var oModel = new sap.ui.model.json.JSONModel();
-
-              oModel.attachRequestSent(function () {
-                oBusy.open();
-              });
-              var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-              oModel.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
-              console.log("Activities");
-              console.log(oModel);
-              oModel.attachRequestCompleted(function (oEvent) {
-                oBusy.close();
-              });
-            },
-
             getDataServices: function () {
               // https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/dataexport/administration/Namespaces
               // https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/dataexport/administration/$metadata
@@ -540,7 +524,19 @@
                           type: ButtonType.Emphasized,
                           text: "Export Log",
                           press: function () {
-                            getActivityLog();
+                            var oBusy = new sap.m.BusyDialog();
+                            var oModel = new sap.ui.model.json.JSONModel();
+
+                            oModel.attachRequestSent(function () {
+                              oBusy.open();
+                            });
+                            var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+                            oModel.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
+                            console.log("Activities");
+                            console.log(oModel);
+                            oModel.attachRequestCompleted(function (oEvent) {
+                              oBusy.close();
+                            });
                             oDefaultDialog.close();
                           }.bind(this)
                         })
