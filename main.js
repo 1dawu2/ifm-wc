@@ -124,38 +124,31 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
-                        <f:GridContainer
-                          id="grid1"
-                          snapToRow="true">
-                          <m:GenericTile header="Manage Activity Master Data Type" subheader="Subtitle">
-                            <m:layoutData>
-                              <f:GridContainerItemLayoutData minRows="2" columns="2" />
-                            </m:layoutData>
-                            <m:TileContent>
-                              <m:ImageContent src="sap-icon://business-card" />
-                            </m:TileContent>
-                          </m:GenericTile>
-                          <m:GenericTile header="Cumulative Totals" subheader="Subtitle">
-                            <m:layoutData>
-                              <f:GridContainerItemLayoutData minRows="2" columns="2" />
-                            </m:layoutData>
-                            <m:TileContent unit="Unit" footer="Footer Text">
-                              <m:NumericContent value="12" />
-                            </m:TileContent>
-                          </m:GenericTile>
-                        </f:GridContainer>
-                      	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
-                        <f:header>
-                          <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
-                        </f:header>
-                        <f:content>
-                          <m:IllustratedMessage illustrationType="sapIllus-NoData">
-                            <m:additionalContent>
-                              <m:Button text="Add Activity" />
-                            </m:additionalContent>
-                          </m:IllustratedMessage>
-                        </f:content>
-                      </f:Card>
+                      <f:GridContainer
+                        id="grid1"
+                        snapToRow="true">
+                        <m:GenericTile header="Manage Activity Master Data Type" subheader="Subtitle">
+                          <m:layoutData>
+                            <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                          </m:layoutData>
+                          <m:TileContent>
+                            <m:ImageContent src="sap-icon://business-card" />
+                          </m:TileContent>
+                        </m:GenericTile>
+                        <m:GenericTile header="Cumulative Totals" subheader="Subtitle">
+                          <m:layoutData>
+                            <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                          </m:layoutData>
+                          <m:TileContent unit="Unit" footer="Footer Text">
+                            <m:NumericContent value="12" />
+                            <m:IllustratedMessage illustrationType="sapIllus-NoData">
+                              <m:additionalContent>
+                                m:Button text="Add Activity" />
+                              </m:additionalContent>
+                            </m:IllustratedMessage>
+                          </m:TileContent>
+                        </m:GenericTile>
+                      </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
                       <m:Image src="${imgProblem}" alt="Problem Statement" />
@@ -369,24 +362,12 @@
                   oBinding.attachChange(function (oEvent) {
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
-                    console.log(oLength);
-                    // var oInput = this.byId("countInput");
-                    // console.log(this.getView());
-                    // console.log(that_.getView().getModel());
-                    // console.log(oInput);
-                    // console.log("--- Input ---");
-                    // console.log(oInput);
-                    // sap.m.MessageToast.show(oInput);
-                    // this.oInput.setProperty("counter", oLength);
-                    console.log(oWidgetObj);
-                    //oWidgetObj.setProperty("count", oLength);
                     var modelCounter = new sap.ui.model.json.JSONModel();
                     modelCounter.setData({
                       arrayName: [
                         { counter: 100 },
                       ]
                     });
-                    console.log(modelCounter);
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     var illustratedMsg = new sap.m.IllustratedMessage({
                       illustrationType: "sapIllus-NoData"
@@ -395,7 +376,6 @@
                     var ButtonType = sap.m.ButtonType;
                     var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
-
                       var oDefaultDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
                         type: DialogType.Message,
@@ -409,8 +389,7 @@
                           }.bind(this)
                         })
                       });
-                    } else {
-                      // destroy objects
+                      oDefaultDialog.open();
                     }
                   });
                 }
@@ -446,7 +425,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/description/}" }),
+                template: new sap.ui.commons.TextView({ text: "{models}" }),
                 sortProperty: "description",
                 filterProperty: "description",
               }));
@@ -466,7 +445,7 @@
                 //     // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
                 //   }
                 // }),
-                template: new sap.ui.commons.TextView().bindProperty("text", {
+                template: new sap.ui.commons.TextView("text", {
                   path: "{artifact>created}",
                   // type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
                 }),
@@ -532,10 +511,8 @@
                     press: function (oEvent) {
                       if (oTable.getVisibleRowCountMode() === "Interactive") {
                         oTable.setVisibleRowCountMode("Auto");
-                        console.log("resize auto");
                       } else {
                         oTable.setVisibleRowCountMode("Interactive");
-                        console.log("resize interactive");
                       }
                     }
                   }),
@@ -568,7 +545,6 @@
                           }.bind(this)
                         })
                       });
-
                       oDefaultDialog.open();
                     }
                   }),
