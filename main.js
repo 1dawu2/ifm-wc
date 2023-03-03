@@ -16,6 +16,9 @@
         background-color: #fff;
       }
     </style>
+    <div id="ui5_content" name="ui5_content">
+      <slot name="content"></slot>
+    </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
       controllerName="ifm.hack.initial"
@@ -25,7 +28,8 @@
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
-      >
+      height="100%"
+      class="ifm-hack">
       <tnt:ToolPage id="toolPage" sideExpanded="false">
         <tnt:header>
           <tnt:ToolHeader>
@@ -72,25 +76,99 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
-            initialPage="root">
-              <m:pages>            
-                <m:ScrollContainer id="root">
-                </m:ScrollContainer>
-                <m:ScrollContainer id="p1">
+            initialPage="root">            
+                <m:Page id="root">
+                  <m:IconTabBar
+                    expandable="false"
+                    class="sapUiResponsiveContentPadding">
+                    <m:items>
+                      <m:IconTabFilter
+                        id="countInput"
+                        icon="sap-icon://clinical-order"
+                        count="{rowCounter>counter}"
+                        text="Stories"
+                        key="All" />
+                    </m:items>
+                  </m:IconTabBar>
+                  <m:content>
+                    <m:Panel expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                  </m:content>
+                </m:Page>
+                <m:Page id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
-                </m:ScrollContainer>
-                <m:ScrollContainer id="p2">
+                  <m:Tree
+                    id="Tree"
+                    items="{path: 'tree/'}">
+                    <m:headerToolbar>
+                      <m:OverflowToolbar>
+                        <m:Title
+                          text="Tree" />
+                        <m:ToolbarSpacer />
+                        <m:ToggleButton
+                          icon="sap-icon://menu"
+                          tooltip="Enable / Disable Custom Context Menu"
+                          press="onToggleContextMenu" />
+                      </m:OverflowToolbar>
+                    </m:headerToolbar>
+                    <m:StandardTreeItem
+                      title="{text}"
+                      icon="{ref}"/>
+                  </m:Tree>  
+                </m:Page>
+                <m:Page id="p2">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
                     <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>                 
-                </m:ScrollContainer>
-              </m:pages>
+                  </m:OverflowToolbar>
+                  <m:Panel
+                    id="About"
+                    width="auto"
+                    height="650px">
+                    <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                        <f:GridContainer
+                          id="grid1"
+                          snapToRow="true">
+                          <m:GenericTile header="Manage Activity Master Data Type" subheader="Subtitle">
+                            <m:layoutData>
+                              <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                            </m:layoutData>
+                            <m:TileContent>
+                              <m:ImageContent src="sap-icon://business-card" />
+                            </m:TileContent>
+                          </m:GenericTile>
+                          <m:GenericTile header="Cumulative Totals" subheader="Subtitle">
+                            <m:layoutData>
+                              <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                            </m:layoutData>
+                            <m:TileContent unit="Unit" footer="Footer Text">
+                              <m:NumericContent value="12" />
+                            </m:TileContent>
+                          </m:GenericTile>
+                        </f:GridContainer>
+                      	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+                        <f:header>
+                          <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
+                        </f:header>
+                        <f:content>
+                          <m:IllustratedMessage illustrationType="sapIllus-NoData">
+                            <m:additionalContent>
+                              <m:Button text="Add Activity" />
+                            </m:additionalContent>
+                          </m:IllustratedMessage>
+                        </f:content>
+                      </f:Card>
+                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                      <m:Image src="${imgCompany}" alt="Company" />
+                      <m:Image src="${imgProblem}" alt="Problem Statement" />
+                      <m:Image src="${imgSolution}" alt="Solution" />
+                    </m:Carousel>
+                  </m:Panel>                  
+                </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
@@ -131,9 +209,9 @@
     buildUI(changedProperties, that) {
 
       // testing
-      // getSACMetadata();
-      // prepareJSON2OModel();
-      // convertSACArtifact();
+      getSACMetadata();
+      prepareJSON2OModel();
+      convertSACArtifact();
       // initSAC();
       // sap.fpa.story.optimized.model.validator > "getModelValidator"
       // sap.fpa.story.optimizedModeFeaturesValidator > bound _getService
@@ -161,7 +239,7 @@
           "sap/f/dnd/GridDropInfo",
           "sap/ui/core/library",
         ],
-        function (Controller, Spreadsheet, GridDropInfo, library) {
+        function (Controller, JSONModel, DragInfo, GridDropInfo) {
           "use strict";
 
           return Controller.extend("ifm.hack.initial", {
@@ -172,10 +250,10 @@
             },
 
             onInit: function (oEvent) {
-              // this.oPanel = this.byId("oPanel");
-              // this.bindTable(oEvent, this.oPanel);
-              // this.bindTree(oEvent);
-              // this.configGrid();
+              this.oPanel = this.byId("oPanel");
+              this.bindTable(oEvent, this.oPanel);
+              this.bindTree(oEvent);
+              this.configGrid();
             },
 
             onCollapseExpandPress: function () {
@@ -307,7 +385,14 @@
                     // sap.m.MessageToast.show(oInput);
                     // this.oInput.setProperty("counter", oLength);
                     console.log(oWidgetObj);
-                    oWidgetObj.setProperty("count", oLength);
+                    //oWidgetObj.setProperty("count", oLength);
+                    var model = new sap.ui.model.json.JSONModel();
+                    model.setData({
+                      arrayName: [
+                        { counter: oLength },
+                      ]
+                    });
+                    oWidgetObj.getView().setModel(model, "rowCounter");
                     if (oLength === 0) {
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
@@ -541,14 +626,14 @@
               //   icon: "sap-icon://process"
               // }));
 
-              // this.oPanel.addContent(oTable);
+              this.oPanel.addContent(oTable);
             }
 
           });
 
         });
 
-      // ### THE APP: place the XMLView somewhere into DOM ###
+      //### THE APP: place the XMLView somewhere into DOM ###
       var oView = new sap.ui.core.mvc.XMLView({
         viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
