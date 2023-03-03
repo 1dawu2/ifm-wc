@@ -22,7 +22,6 @@
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
-      height="90%"
       class="ifm-hack">
       <tnt:ToolPage id="toolPage" sideExpanded="false">
         <tnt:header>
@@ -85,7 +84,7 @@
                     </m:items>
                   </m:IconTabBar>
                   <m:content>
-                    <m:Panel expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel" height="100%"></m:Panel>
+                    <m:Panel expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
                   </m:content>
                 </m:Page>
                 <m:Page id="p1">
@@ -127,25 +126,22 @@
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
-                        <m:GenericTile header="Manage Activity Master Data Type" subheader="Subtitle">
+                        <m:GenericTile header="Kontakt subheader="Subtitle">
                           <m:layoutData>
                             <f:GridContainerItemLayoutData minRows="2" columns="2" />
                           </m:layoutData>
                           <m:TileContent>
                             <m:ImageContent src="sap-icon://business-card" />
+                            <m:Text/>
                           </m:TileContent>
                         </m:GenericTile>
-                        <m:GenericTile header="Cumulative Totals" subheader="Subtitle">
+                        <m:GenericTile header="Kontaktperson" subheader="Subtitle">
                           <m:layoutData>
                             <f:GridContainerItemLayoutData minRows="2" columns="2" />
                           </m:layoutData>
                           <m:TileContent unit="Unit" footer="Footer Text">
-                            <m:NumericContent value="12" />
-                            <m:IllustratedMessage illustrationType="sapIllus-NoData">
-                              <m:additionalContent>
-                                m:Button text="Add Activity" />
-                              </m:additionalContent>
-                            </m:IllustratedMessage>
+                            <m:NumericContent value="+49 69 56608 3231" />
+                            	"icon": "sap-icon://desktop-mobile"
                           </m:TileContent>
                         </m:GenericTile>
                       </f:GridContainer>
