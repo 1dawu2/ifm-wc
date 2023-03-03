@@ -12,13 +12,7 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
-      .sapTntSideNavigationSepar {
-        background-color: #fff;
-      }
     </style>
-    <div id="ui5_content" name="ui5_content">
-      <slot name="content"></slot>
-    </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
       controllerName="ifm.hack.initial"
@@ -28,7 +22,7 @@
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
-      height="100%"
+      height="90%"
       class="ifm-hack">
       <tnt:ToolPage id="toolPage" sideExpanded="false">
         <tnt:header>
