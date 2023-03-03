@@ -392,11 +392,21 @@
                       illustrationType: "sapIllus-NoData"
                     });
                     if (oLength === 0) {
-                      oWidgetObj.addContent(illustratedMsg);
-                      console.log(illustratedMsg);
+                      var oDefaultDialog = new sap.m.Dialog({
+                        title: "Advanced Settings",
+                        type: DialogType.Message,
+                        state: ValueState.Information,
+                        content: oWidgetObj.addContent(illustratedMsg),
+                        beginButton: new sap.m.Button({
+                          type: ButtonType.Emphasized,
+                          text: "OK",
+                          press: function () {
+                            oDefaultDialog.close();
+                          }.bind(this)
+                        })
+                      });
                     } else {
-                      illustratedMsg.destroy();
-
+                      // destroy objects
                     }
                   });
                 }
