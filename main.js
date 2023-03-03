@@ -392,7 +392,7 @@
                       var illustratedMsg = new sap.m.IllustratedMessage({
                         illustrationType: "sapIllus-NoData"
                       });
-                      this.oPanel.addContent(illustratedMsg);
+                      oWidgetObj.addContent(illustratedMsg);
                       console.log(illustratedMsg);
                     }
                   });
