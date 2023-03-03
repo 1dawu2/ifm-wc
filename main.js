@@ -300,10 +300,12 @@
                   console.error(error);
                 }
               });
+              console.log("Tree Model");
+              console.log(oModel);
 
-              var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
-              var oModel = new sap.ui.model.json.JSONModel(sPath);
-              this.getView().setModel(oModel, "tree");
+              // var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
+              // var oModel = new sap.ui.model.json.JSONModel(sPath);
+              // this.getView().setModel(oModel, "tree");
             },
 
             getDataServices: function () {
@@ -354,20 +356,20 @@
                     var ButtonType = sap.m.ButtonType;
                     var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
-                      var oDefaultDialog = new sap.m.Dialog({
+                      var noDataDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
                         type: DialogType.Message,
                         state: ValueState.Information,
-                        content: oWidgetObj.addContent(illustratedMsg),
+                        content: illustratedMsg,
                         beginButton: new sap.m.Button({
                           type: ButtonType.Emphasized,
                           text: "OK",
                           press: function () {
-                            oDefaultDialog.close();
+                            noDataDialog.close();
                           }.bind(this)
                         })
                       });
-                      oDefaultDialog.open();
+                      noDataDialog.open();
                     }
                   });
                 }
@@ -403,9 +405,9 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{models}" }),
-                sortProperty: "description",
-                filterProperty: "description",
+                template: new sap.ui.commons.TextView({ text: "{artifact>models}" }),
+                // sortProperty: "model",
+                // filterProperty: "model",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
