@@ -388,12 +388,15 @@
                     });
                     console.log(modelCounter);
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
+                    var illustratedMsg = new sap.m.IllustratedMessage({
+                      illustrationType: "sapIllus-NoData"
+                    });
                     if (oLength === 0) {
-                      var illustratedMsg = new sap.m.IllustratedMessage({
-                        illustrationType: "sapIllus-NoData"
-                      });
                       oWidgetObj.addContent(illustratedMsg);
                       console.log(illustratedMsg);
+                    } else {
+                      illustratedMsg.destroy();
+
                     }
                   });
                 }
@@ -546,7 +549,7 @@
                           type: ButtonType.Emphasized,
                           text: "Export Log",
                           press: function () {
-                            this.getActivityLog();
+                            getActivityLog();
                             oDefaultDialog.close();
                           }.bind(this)
                         })
