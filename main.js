@@ -237,7 +237,7 @@
               this.configGrid();
               var oModelActivities = new sap.ui.model.json.JSONModel();
               var cHeader = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-              oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=1000&csvName=activities", null, true, "GET", null, false, cHeaders);
+              oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=1000&csvName=activities", null, true, "GET", null, false, cHeader);
             },
 
             onCollapseExpandPress: function () {
