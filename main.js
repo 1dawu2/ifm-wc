@@ -288,7 +288,7 @@
               var oTreeModel = new sap.ui.model.json.JSONModel();
               var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
               var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
-              this.getView().setModel(oTreeModel, "tree");
+              sap.ui.getCore().setModel(oTreeModel, "tree");
               console.log("Tree Model");
               console.log(oTreeModel);
             },
