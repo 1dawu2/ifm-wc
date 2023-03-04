@@ -430,7 +430,7 @@
                 //     // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
                 //   }
                 // }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>created}", type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" }) }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>created}", type: sap.ui.model.type.Date }),
                 // path: "{artifact>created}",
                 // type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
                 // }),
