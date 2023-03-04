@@ -95,7 +95,7 @@
                   </m:OverflowToolbar>
                   <m:Tree
                     id="Tree"
-                    items="{path: 'tree>/'}">
+                    items="{path: '/'}">
                     <m:headerToolbar>
                       <m:OverflowToolbar>
                         <m:Title
@@ -279,10 +279,9 @@
             },
 
             bindTree: function (oEvent) {
-              var oTreeModel = new sap.ui.model.json.JSONModel();
               var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
               var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
-              sap.ui.getCore().setModel(oTreeModel, "tree");
+              sap.ui.getCore().setModel(oTreeModel);
               console.log("Tree Model");
               console.log(oTreeModel);
             },
