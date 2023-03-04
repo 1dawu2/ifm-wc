@@ -235,6 +235,9 @@
               this.bindTable(oEvent, this.oPanel);
               this.bindTree(oEvent);
               this.configGrid();
+              var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+              oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
+              console.log(oModelActivities);
             },
 
             onCollapseExpandPress: function () {
@@ -497,16 +500,16 @@
                           text: "Export Log",
                           press: function () {
                             var oBusy = new sap.m.BusyDialog();
-                            var oModelActivities = new sap.ui.model.json.JSONModel();
-                            oModelActivities.attachRequestSent(function () {
-                              oBusy.open();
-                            });
-                            var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-                            oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
-                            oModelActivities.attachRequestCompleted(function (oEvent) {
-                              oBusy.close();
-                            });
-                            oDefaultDialog.close();
+                            // var oModelActivities = new sap.ui.model.json.JSONModel();
+                            // oModelActivities.attachRequestSent(function () {
+                            // oBusy.open();
+                            // });
+                            // var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+                            // oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
+                            // oModelActivities.attachRequestCompleted(function (oEvent) {
+                            // oBusy.close();
+                            // });
+                            // oDefaultDialog.close();
                           }.bind(this)
                         })
                       });
