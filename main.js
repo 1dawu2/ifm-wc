@@ -281,13 +281,13 @@
             },
 
             bindTree: function (oEvent) {
-              var url = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json?callback=?";
-              $.getJSON(url, function (data) {
-                var oModel = new sap.ui.model.json.JSONModel();
-                console.log(data);
-                oModel.setData(data);
-                sap.ui.getCore().setModel(oModel, "tree");
-              });
+              // var url = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json?callback=?";
+              // $.getJSON(url, function (data) {
+              //   var oModel = new sap.ui.model.json.JSONModel();
+              //   console.log(data);
+              //   oModel.setData(data);
+              //   sap.ui.getCore().setModel(oModel, "tree");
+              // });
               // jQuery.ajax({
               //   url: url,
               //   dataType: "json",
@@ -306,12 +306,13 @@
               //     console.error(error);
               //   }
               // });
+
+              var oModel = new sap.ui.model.json.JSONModel();
+              var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
+              var oModel = new sap.ui.model.json.JSONModel(sPath);
+              this.getView().setModel(oModel, "tree");
               console.log("Tree Model");
               console.log(oModel);
-
-              // var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
-              // var oModel = new sap.ui.model.json.JSONModel(sPath);
-              // this.getView().setModel(oModel, "tree");
             },
 
             getDataServices: function () {
