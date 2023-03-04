@@ -95,7 +95,7 @@
                   </m:OverflowToolbar>
                   <m:Tree
                     id="Tree"
-                    items="{path: 'tree/'}">
+                    items="{path: 'tree>/'}">
                     <m:headerToolbar>
                       <m:OverflowToolbar>
                         <m:Title
@@ -128,7 +128,7 @@
                         snapToRow="true">
                         <m:GenericTile header="Kontakt" subheader="INFOMOTION GmbH">
                           <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="4" columns="4" />
+                            <f:GridContainerItemLayoutData minRows="4" columns="2" />
                           </m:layoutData>
                           <m:TileContent>
                             <m:ImageContent src="sap-icon://business-card" />
@@ -136,7 +136,7 @@
                         </m:GenericTile>
                         <m:GenericTile header="Kontaktperson" subheader="David Wurm">
                           <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="4" columns="4" />
+                            <f:GridContainerItemLayoutData minRows="4" columns="2" />
                           </m:layoutData>
                           <m:TileContent unit="Unit" footer="Footer Text">                                                                                  	
                             <m:NumericContent value="+49 69 56608 3231" />
@@ -281,38 +281,12 @@
             },
 
             bindTree: function (oEvent) {
-              // var url = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json?callback=?";
-              // $.getJSON(url, function (data) {
-              //   var oModel = new sap.ui.model.json.JSONModel();
-              //   console.log(data);
-              //   oModel.setData(data);
-              //   sap.ui.getCore().setModel(oModel, "tree");
-              // });
-              // jQuery.ajax({
-              //   url: url,
-              //   dataType: "json",
-              //   success: function (data) {
-              //     // Create a new instance of the JSONModel class
-              //     var oModel = new sap.ui.model.json.JSONModel();
-
-              //     // Set the retrieved data as the data property of the model
-              //     oModel.setData(data);
-
-              //     // Set the model to the core of the SAPUI5 application
-              //     sap.ui.getCore().setModel(oModel, "tree");
-              //   },
-              //   error: function (xhr, status, error) {
-              //     // Handle any errors that occur during the request
-              //     console.error(error);
-              //   }
-              // });
-
-              var oModel = new sap.ui.model.json.JSONModel();
-              var sPath = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
-              var oModel = new sap.ui.model.json.JSONModel(sPath);
-              this.getView().setModel(oModel, "tree");
+              var oTreeModel = new sap.ui.model.json.JSONModel();
+              var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
+              var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
+              this.getView().setModel(oTreeModel, "tree");
               console.log("Tree Model");
-              console.log(oModel);
+              console.log(oTreeModel);
             },
 
             getDataServices: function () {
@@ -527,15 +501,12 @@
                           press: function () {
                             var oBusy = new sap.m.BusyDialog();
                             var oModelActivities = new sap.ui.model.json.JSONModel();
-
-                            oModel.attachRequestSent(function () {
+                            oModelActivities.attachRequestSent(function () {
                               oBusy.open();
                             });
                             var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
                             oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
-                            console.log("Activities");
-                            console.log(oModelActivities);
-                            oModel.attachRequestCompleted(function (oEvent) {
+                            oModelActivities.attachRequestCompleted(function (oEvent) {
                               oBusy.close();
                             });
                             oDefaultDialog.close();
