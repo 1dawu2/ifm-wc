@@ -281,7 +281,7 @@
             },
 
             bindTree: function (oEvent) {
-              var url = "https://cors-anywhere.herokuapp.com/https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json";
+              var url = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json?callback=?";
               $.getJSON(url, function (data) {
                 var oModel = new sap.ui.model.json.JSONModel();
                 console.log(data);
