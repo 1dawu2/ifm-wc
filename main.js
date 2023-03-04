@@ -351,7 +351,7 @@
                     var oLength = oSource.iLength;
                     var modelCounter = new sap.ui.model.json.JSONModel();
                     modelCounter.setData(
-                      { counter: 100 }
+                      { counter: oLength }
                     );
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     var illustratedMsg = new sap.m.IllustratedMessage({
