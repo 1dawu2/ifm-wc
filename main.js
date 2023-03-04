@@ -78,7 +78,7 @@
                       <m:IconTabFilter
                         id="countInput"
                         icon="sap-icon://clinical-order"
-                        count="{rowCounter>counter}"
+                        count="{rowCounter>/counter}"
                         text="Stories"
                         key="All" />
                     </m:items>
@@ -308,7 +308,7 @@
               // });
 
               var oModel = new sap.ui.model.json.JSONModel();
-              var sPath = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json"
+              var sPath = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
               var oModel = new sap.ui.model.json.JSONModel(sPath);
               this.getView().setModel(oModel, "tree");
               console.log("Tree Model");
@@ -350,11 +350,9 @@
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
                     var modelCounter = new sap.ui.model.json.JSONModel();
-                    modelCounter.setData({
-                      arrayName: [
-                        { counter: 100 },
-                      ]
-                    });
+                    modelCounter.setData(
+                      { counter: 100 }
+                    );
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     var illustratedMsg = new sap.m.IllustratedMessage({
                       illustrationType: "sapIllus-NoData"
@@ -363,20 +361,21 @@
                     var ButtonType = sap.m.ButtonType;
                     var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
-                      var noDataDialog = new sap.m.Dialog({
-                        title: "Advanced Settings",
-                        type: DialogType.Message,
-                        state: ValueState.Information,
-                        content: illustratedMsg,
-                        beginButton: new sap.m.Button({
-                          type: ButtonType.Emphasized,
-                          text: "OK",
-                          press: function () {
-                            noDataDialog.close();
-                          }.bind(this)
-                        })
-                      });
-                      noDataDialog.open();
+                      sap.m.MessageToast.show(illustratedMsg);
+                      // var noDataDialog = new sap.m.Dialog({
+                      //   title: "Advanced Settings",
+                      //   type: DialogType.Message,
+                      //   state: ValueState.Information,
+                      //   content: illustratedMsg,
+                      //   beginButton: new sap.m.Button({
+                      //     type: ButtonType.Emphasized,
+                      //     text: "OK",
+                      //     press: function () {
+                      //       noDataDialog.close();
+                      //     }.bind(this)
+                      //   })
+                      // });
+                      // noDataDialog.open();
                     }
                   });
                 }
