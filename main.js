@@ -335,20 +335,21 @@
                     var ButtonType = sap.m.ButtonType;
                     var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
-                      var noDataDialog = new sap.m.Dialog({
-                        title: "Info",
-                        type: DialogType.Message,
-                        state: ValueState.Information,
-                        content: illustratedMsg,
-                        beginButton: new sap.m.Button({
-                          type: ButtonType.Emphasized,
-                          text: "OK",
-                          press: function () {
-                            noDataDialog.close();
-                          }.bind(this)
-                        })
-                      });
-                      noDataDialog.open();
+                      sap.m.MessageToast.show("no data");
+                      // var noDataDialog = new sap.m.Dialog({
+                      //   title: "Info",
+                      //   type: DialogType.Message,
+                      //   state: ValueState.Information,
+                      //   content: illustratedMsg,
+                      //   beginButton: new sap.m.Button({
+                      //     type: ButtonType.Emphasized,
+                      //     text: "OK",
+                      //     press: function () {
+                      //       noDataDialog.close();
+                      //     }.bind(this)
+                      //   })
+                      // });
+                      // noDataDialog.open();
                     }
                   });
                 }
@@ -451,15 +452,11 @@
                       var selectedEntries = [];
 
                       var selectedIndices = oTable.getSelectedIndices();
-                      console.log("selected indicies");
-                      console.log(typeof (selectedIndices));
                       for (var index = 0; index < selectedIndices.length; index++) {
                         console.log(index);
                         oContext = oTable.getContextByIndex(index);
                         oObject = oContext.getObject();
                         oURL = oContext.getProperty("openURL");
-                        console.log(oObject);
-                        console.log(oURL);
                         selectedEntries.push(oURL);
                       }
                       console.log(selectedEntries);
