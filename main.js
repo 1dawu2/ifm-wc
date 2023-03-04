@@ -282,24 +282,30 @@
 
             bindTree: function (oEvent) {
               var url = "https://1dawu2.github.io/ifm-wc/assets/unsupported_features.json";
-              jQuery.ajax({
-                url: url,
-                dataType: "json",
-                success: function (data) {
-                  // Create a new instance of the JSONModel class
-                  var oModel = new sap.ui.model.json.JSONModel();
-
-                  // Set the retrieved data as the data property of the model
-                  oModel.setData(data);
-
-                  // Set the model to the core of the SAPUI5 application
-                  sap.ui.getCore().setModel(oModel, "tree");
-                },
-                error: function (xhr, status, error) {
-                  // Handle any errors that occur during the request
-                  console.error(error);
-                }
+              $.getJSON(url, function (data) {
+                var oModel = new sap.ui.model.json.JSONModel();
+                console.log(data);
+                oModel.setData(data);
+                sap.ui.getCore().setModel(oModel, "tree");
               });
+              // jQuery.ajax({
+              //   url: url,
+              //   dataType: "json",
+              //   success: function (data) {
+              //     // Create a new instance of the JSONModel class
+              //     var oModel = new sap.ui.model.json.JSONModel();
+
+              //     // Set the retrieved data as the data property of the model
+              //     oModel.setData(data);
+
+              //     // Set the model to the core of the SAPUI5 application
+              //     sap.ui.getCore().setModel(oModel, "tree");
+              //   },
+              //   error: function (xhr, status, error) {
+              //     // Handle any errors that occur during the request
+              //     console.error(error);
+              //   }
+              // });
               console.log("Tree Model");
               console.log(oModel);
 
