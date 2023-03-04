@@ -320,13 +320,11 @@
                   oBinding.attachChange(function (oEvent) {
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
-                    var modelCounter = new sap.ui.model.json.JSONModel();
-                    modelCounter.setData(
-                      { counter: oLength }
-                    );
-                    console.log("model counter");
-                    console.log(modelCounter);
-                    sap.ui.getCore().setModel(modelCounter, "rowCounter");
+                    // var modelCounter = new sap.ui.model.json.JSONModel();
+                    // modelCounter.setData(
+                    //   { counter: oLength }
+                    // );
+                    // sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     var illustratedMsg = new sap.m.IllustratedMessage({
                       illustrationType: "sapIllus-NoData"
                     });
