@@ -132,6 +132,7 @@
                           </m:layoutData>
                           <m:TileContent>
                             <m:ImageContent src="sap-icon://business-card" />
+                            <m:Text text="david.wurm@infomotion.de" />
                           </m:TileContent>
                         </m:GenericTile>
                       </f:GridContainer>
