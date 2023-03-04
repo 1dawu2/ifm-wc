@@ -210,8 +210,6 @@
       // console.log(sts);
 
       var that_ = that;
-      console.log("that");
-      console.log(that_);
 
       sap.ui.define(
         [
@@ -327,6 +325,8 @@
                     modelCounter.setData(
                       { counter: oLength }
                     );
+                    console.log("model counter");
+                    console.log(modelCounter);
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     var illustratedMsg = new sap.m.IllustratedMessage({
                       illustrationType: "sapIllus-NoData"
