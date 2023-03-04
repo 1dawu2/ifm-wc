@@ -128,18 +128,10 @@
                         snapToRow="true">
                         <m:GenericTile header="Kontakt" subheader="INFOMOTION GmbH">
                           <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="4" columns="2" />
+                            <f:GridContainerItemLayoutData minRows="4" columns="8" />
                           </m:layoutData>
                           <m:TileContent>
                             <m:ImageContent src="sap-icon://business-card" />
-                          </m:TileContent>
-                        </m:GenericTile>
-                        <m:GenericTile header="Kontaktperson" subheader="David Wurm">
-                          <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="4" columns="2" />
-                          </m:layoutData>
-                          <m:TileContent unit="Unit" footer="Footer Text">                                                                                  	
-                            <m:NumericContent value="+49 69 56608 3231" />
                           </m:TileContent>
                         </m:GenericTile>
                       </f:GridContainer>
