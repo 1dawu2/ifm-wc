@@ -361,21 +361,20 @@
                     var ButtonType = sap.m.ButtonType;
                     var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
-                      sap.m.MessageToast.show(illustratedMsg);
-                      // var noDataDialog = new sap.m.Dialog({
-                      //   title: "Advanced Settings",
-                      //   type: DialogType.Message,
-                      //   state: ValueState.Information,
-                      //   content: illustratedMsg,
-                      //   beginButton: new sap.m.Button({
-                      //     type: ButtonType.Emphasized,
-                      //     text: "OK",
-                      //     press: function () {
-                      //       noDataDialog.close();
-                      //     }.bind(this)
-                      //   })
-                      // });
-                      // noDataDialog.open();
+                      var noDataDialog = new sap.m.Dialog({
+                        title: "Info",
+                        type: DialogType.Message,
+                        state: ValueState.Information,
+                        content: illustratedMsg,
+                        beginButton: new sap.m.Button({
+                          type: ButtonType.Emphasized,
+                          text: "OK",
+                          press: function () {
+                            noDataDialog.close();
+                          }.bind(this)
+                        })
+                      });
+                      noDataDialog.open();
                     }
                   });
                 }
