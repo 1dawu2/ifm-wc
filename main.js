@@ -126,17 +126,17 @@
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
-                        <m:GenericTile header="Kontakt" subheader="Subtitle">
+                        <m:GenericTile header="Kontakt" subheader="INFOMOTION GmbH">
                           <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                            <f:GridContainerItemLayoutData minRows="4" columns="4" />
                           </m:layoutData>
                           <m:TileContent>
                             <m:ImageContent src="sap-icon://business-card" />
                           </m:TileContent>
                         </m:GenericTile>
-                        <m:GenericTile header="Kontaktperson" subheader="Subtitle">
+                        <m:GenericTile header="Kontaktperson" subheader="David Wurm">
                           <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="2" columns="2" />
+                            <f:GridContainerItemLayoutData minRows="4" columns="4" />
                           </m:layoutData>
                           <m:TileContent unit="Unit" footer="Footer Text">                                                                                  	
                             <m:NumericContent value="+49 69 56608 3231" />
@@ -527,15 +527,15 @@
                           text: "Export Log",
                           press: function () {
                             var oBusy = new sap.m.BusyDialog();
-                            var oModel = new sap.ui.model.json.JSONModel();
+                            var oModelActivities = new sap.ui.model.json.JSONModel();
 
                             oModel.attachRequestSent(function () {
                               oBusy.open();
                             });
                             var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-                            oModel.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
+                            oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, sHeaders);
                             console.log("Activities");
-                            console.log(oModel);
+                            console.log(oModelActivities);
                             oModel.attachRequestCompleted(function (oEvent) {
                               oBusy.close();
                             });
