@@ -123,6 +123,31 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                    	<f:Card class="sapUiMediumMargin" width="300px">
+                        <f:header>
+                          <card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+                        </f:header>
+                        <f:content>
+                          <m:List
+                            showSeparators="None"
+                            items="{
+                              path: 'products>/productItems'
+                            }">
+                            <m:CustomListItem>
+                              <m:HBox alignItems="Center" justifyContent="SpaceBetween">
+                                <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+                                  <m:Title level="H3" text="{products>title}" />
+                                  <m:Text text="{products>subtitle}" />
+                                </m:VBox>
+                                <m:ObjectStatus
+                                  class="sapUiTinyMargin sapUiSmallMarginEnd"
+                                  text="{products>revenue}"
+                                  state="{products>statusSchema}" />
+                              </m:HBox>
+                            </m:CustomListItem>
+                          </m:List>
+                        </f:content>
+                      </f:Card>
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
