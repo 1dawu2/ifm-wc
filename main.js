@@ -501,33 +501,33 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
-                      var ValueState = sap.ui.core.ValueState;
-                      var ButtonType = sap.m.ButtonType;
-                      var DialogType = sap.m.DialogType;
-                      var oDefaultDialog = new sap.m.Dialog({
-                        title: "Advanced Settings",
-                        type: DialogType.Message,
-                        state: ValueState.Information,
-                        content: new Text({ text: "Export the SAC activity log." }),
-                        beginButton: new sap.m.Button({
-                          type: ButtonType.Emphasized,
-                          text: "Export Log",
-                          press: function () {
-                            var oBusy = new sap.m.BusyDialog();
-                            var oModelActivities = new sap.ui.model.json.JSONModel();
-                            oModelActivities.attachRequestSent(function () {
-                              oBusy.open();
-                            });
-                            var cHeader = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-                            oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
-                            oModelActivities.attachRequestCompleted(function (oEvent) {
-                              oBusy.close();
-                            });
-                            oDefaultDialog.close();
-                          }.bind(this)
-                        })
-                      });
-                      oDefaultDialog.open();
+                      // var ValueState = sap.ui.core.ValueState;
+                      // var ButtonType = sap.m.ButtonType;
+                      // var DialogType = sap.m.DialogType;
+                      // var oDefaultDialog = new sap.m.Dialog({
+                      //   title: "Advanced Settings",
+                      //   type: DialogType.Message,
+                      //   state: ValueState.Information,
+                      //   content: new Text({ text: "Export the SAC activity log." }),
+                      //   beginButton: new sap.m.Button({
+                      //     type: ButtonType.Emphasized,
+                      //     text: "Export Log",
+                      //     press: function () {
+                      //       var oBusy = new sap.m.BusyDialog();
+                      //       var oModelActivities = new sap.ui.model.json.JSONModel();
+                      //       oModelActivities.attachRequestSent(function () {
+                      //         oBusy.open();
+                      //       });
+                      //       var cHeader = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+                      //       oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+                      //       oModelActivities.attachRequestCompleted(function (oEvent) {
+                      //         oBusy.close();
+                      //       });
+                      //       oDefaultDialog.close();
+                      //     }.bind(this)
+                      //   })
+                      // });
+                      // oDefaultDialog.open();
                     }
                   }),
                   new sap.ui.commons.Button({
