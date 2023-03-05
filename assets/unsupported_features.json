@@ -1,11 +1,11 @@
 [
     {
         "text": "Node1",
-        "ref": "sap-icon://attachment-audio",
+        "ref": "sap-icon://mri-scan",
         "nodes": [
             {
                 "text": "Node1-1",
-                "ref": "sap-icon://attachment-e-pub",
+                "ref": "sap-icon://clear-all",
                 "nodes": [
                     {
                         "text": "Node1-1-1",
@@ -13,7 +13,7 @@
                     },
                     {
                         "text": "Node1-1-2",
-                        "ref": "sap-icon://attachment-photo",
+                        "ref": "sap-icon://sap-logo-shape",
                         "nodes": [
                             {
                                 "text": "Node1-1-2-1",
