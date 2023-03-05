@@ -440,7 +440,7 @@
                 //   }
                 // }),
                 template: new sap.ui.commons.TextView({
-                  path: 'artifact>created', type: 'sap.ui.model.odata.type.DateTimeOffset'
+                  path: "{artifact>created}", type: "sap.ui.model.odata.type.DateTimeOffset"
                 }),
                 // path: "{artifact>created}",
                 // type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
