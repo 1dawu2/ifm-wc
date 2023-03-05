@@ -123,42 +123,35 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
-                    	<f:Card class="sapUiMediumMargin" width="300px">
-                        <f:header>
-                          <card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
-                        </f:header>
-                        <f:content>
-                          <m:List
-                            showSeparators="None"
-                            items="{
-                              path: 'products>/productItems'
-                            }">
-                            <m:CustomListItem>
-                              <m:HBox alignItems="Center" justifyContent="SpaceBetween">
-                                <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-                                  <m:Title level="H3" text="{products>title}" />
-                                  <m:Text text="{products>subtitle}" />
-                                </m:VBox>
-                                <m:ObjectStatus
-                                  class="sapUiTinyMargin sapUiSmallMarginEnd"
-                                  text="{products>revenue}"
-                                  state="{products>statusSchema}" />
-                              </m:HBox>
-                            </m:CustomListItem>
-                          </m:List>
-                        </f:content>
-                      </f:Card>
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
                         <m:GenericTile header="Kontakt" subheader="INFOMOTION GmbH">
-                          <m:layoutData>
-                            <f:GridContainerItemLayoutData minRows="4" columns="8" />
-                          </m:layoutData>
-                          <m:TileContent>
-                            <m:ImageContent src="sap-icon://business-card" />
-                            <m:Text text="david.wurm@infomotion.de" />
-                          </m:TileContent>
+                          <f:Card class="sapUiMediumMargin" width="300px">
+                            <f:header>
+                              <card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+                            </f:header>
+                            <f:content>
+                              <m:List
+                                showSeparators="None"
+                                items="{
+                                  path: 'products>/productItems'
+                                }">
+                                <m:CustomListItem>
+                                  <m:HBox alignItems="Center" justifyContent="SpaceBetween">
+                                    <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+                                      <m:Title level="H3" text="{products>title}" />
+                                      <m:Text text="{products>subtitle}" />
+                                    </m:VBox>
+                                    <m:ObjectStatus
+                                      class="sapUiTinyMargin sapUiSmallMarginEnd"
+                                      text="{products>revenue}"
+                                      state="{products>statusSchema}" />
+                                  </m:HBox>
+                                </m:CustomListItem>
+                              </m:List>
+                            </f:content>
+                          </f:Card>
                         </m:GenericTile>
                       </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
@@ -264,6 +257,35 @@
               var DropLayout = sap.ui.core.dnd.DropLayout;
               var DropPosition = sap.ui.core.dnd.DropPosition;
               var oGrid = this.byId("grid1");
+              var modelProduct = new sap.ui.model.json.JSONModel();
+              modelProduct.setData(
+                {
+                  "productItems": [
+                    {
+                      "title": "Notebook HT",
+                      "subtitle": "ID23452256-D44",
+                      "revenue": "27.25K EUR",
+                      "status": "success",
+                      "statusSchema": "Success"
+                    },
+                    {
+                      "title": "Notebook XT",
+                      "subtitle": "ID27852256-D47",
+                      "revenue": "7.35K EUR",
+                      "status": "exceeded",
+                      "statusSchema": "Error"
+                    },
+                    {
+                      "title": "Notebook ST",
+                      "subtitle": "ID123555587-I05",
+                      "revenue": "22.89K EUR",
+                      "status": "warning",
+                      "statusSchema": "Warning"
+                    }
+                  ]
+                }
+              );
+              sap.ui.getCore().setModel(modelProduct, "products");
 
               oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                 sourceAggregation: "items"
