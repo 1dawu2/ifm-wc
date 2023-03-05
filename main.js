@@ -126,7 +126,6 @@
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
-                        <m:GenericTile header="Kontakt" subheader="INFOMOTION GmbH">
                           <f:Card class="sapUiMediumMargin" width="300px">
                             <f:header>
                               <card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
@@ -152,7 +151,6 @@
                               </m:List>
                             </f:content>
                           </f:Card>
-                        </m:GenericTile>
                       </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
