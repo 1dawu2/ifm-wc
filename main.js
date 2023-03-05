@@ -120,7 +120,30 @@
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
-                          <f:Card class="sapUiMediumMargin" width="300px">
+                          <f:Card class="sapUiMediumMargin" width="400px">
+                            <f:header>
+                              <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
+                            </f:header>
+                            <f:content>
+                              <m:List
+                                showSeparators="None"
+                                items="{products>/productItems}">
+                                <m:CustomListItem>
+                                  <m:HBox alignItems="Center" justifyContent="SpaceBetween">
+                                    <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+                                      <m:Title level="H3" text="{products>title}" />
+                                      <m:Text text="{products>subtitle}" />
+                                    </m:VBox>
+                                    <m:ObjectStatus
+                                      class="sapUiTinyMargin sapUiSmallMarginEnd"
+                                      text="{products>revenue}"
+                                      state="{products>statusSchema}" />
+                                  </m:HBox>
+                                </m:CustomListItem>
+                              </m:List>
+                            </f:content>
+                          </f:Card>
+                          <f:Card class="sapUiMediumMargin" width="400px">
                             <f:header>
                               <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
                             </f:header>
