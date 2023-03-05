@@ -95,7 +95,7 @@
                   </m:OverflowToolbar>
                   <m:Tree
                     id="Tree"
-                    items="{'treeModel>/'}">
+                    items="{treeModel>/}">
                     <m:headerToolbar>
                       <m:OverflowToolbar>
                         <m:Title
@@ -313,11 +313,11 @@
                   oBinding.attachChange(function (oEvent) {
                     var oSource = oEvent.getSource();
                     var oLength = oSource.iLength;
-                    // var modelCounter = new sap.ui.model.json.JSONModel();
-                    // modelCounter.setData(
-                    //   { counter: oLength }
-                    // );
-                    // sap.ui.getCore().setModel(modelCounter, "rowCounter");
+                    var modelCounter = new sap.ui.model.json.JSONModel();
+                    modelCounter.setData(
+                      { counter: oLength }
+                    );
+                    sap.ui.getCore().setModel(modelCounter, "rowCounter");
                     var illustratedMsg = new sap.m.IllustratedMessage({
                       illustrationType: "sapIllus-NoData"
                     });
@@ -375,7 +375,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models>/}" }),
                 // sortProperty: "model",
                 // filterProperty: "model",
               }));
