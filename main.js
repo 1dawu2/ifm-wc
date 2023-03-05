@@ -133,6 +133,11 @@
                                     <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
                                       <m:Title level="H3" text="{products>title}" />
                                       <m:Text text="{products>subtitle}" />
+                                      <core:Icon
+                                        src="sap-{products>iconFile}"
+                                        class="size1"
+                                        color="#031E48" >
+                                      </core:Icon>
                                     </m:VBox>
                                     <m:ObjectStatus
                                       class="sapUiTinyMargin sapUiSmallMarginEnd"
@@ -258,21 +263,24 @@
                       "subtitle": "ID23452256-D44",
                       "revenue": "27.25K EUR",
                       "status": "success",
-                      "statusSchema": "Success"
+                      "statusSchema": "Success",
+                      "iconFile": "sap- icon://mri-scan"
                     },
                     {
                       "title": "Notebook XT",
                       "subtitle": "ID27852256-D47",
                       "revenue": "7.35K EUR",
                       "status": "exceeded",
-                      "statusSchema": "Error"
+                      "statusSchema": "Error",
+                      "iconFile": "sap- icon://mri-scan"
                     },
                     {
                       "title": "Notebook ST",
                       "subtitle": "ID123555587-I05",
                       "revenue": "22.89K EUR",
                       "status": "warning",
-                      "statusSchema": "Warning"
+                      "statusSchema": "Warning",
+                      "iconFile": "sap- icon://mri-scan"
                     }
                   ]
                 }
