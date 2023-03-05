@@ -95,7 +95,7 @@
                   </m:OverflowToolbar>
                   <m:Tree
                     id="Tree"
-                    items="{path: '/'}">
+                    items="{'treeModel>/'}">
                     <m:headerToolbar>
                       <m:OverflowToolbar>
                         <m:Title
@@ -276,7 +276,7 @@
               var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
               sap.ui.getCore().setModel(oTreeModel);
               console.log("Tree Model");
-              console.log(oTreeModel);
+              console.log(oTreeModel, "treeModel");
             },
 
             getDataServices: function () {
