@@ -143,30 +143,7 @@
                               </m:List>
                             </f:content>
                           </f:Card>
-                          <f:Card class="sapUiMediumMargin" width="400px">
-                            <f:header>
-                              <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
-                            </f:header>
-                            <f:content>
-                              <m:List
-                                showSeparators="None"
-                                items="{products>/productItems}">
-                                <m:CustomListItem>
-                                  <m:HBox alignItems="Center" justifyContent="SpaceBetween">
-                                    <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-                                      <m:Title level="H3" text="{products>title}" />
-                                      <m:Text text="{products>subtitle}" />
-                                    </m:VBox>
-                                    <m:ObjectStatus
-                                      class="sapUiTinyMargin sapUiSmallMarginEnd"
-                                      text="{products>revenue}"
-                                      state="{products>statusSchema}" />
-                                  </m:HBox>
-                                </m:CustomListItem>
-                              </m:List>
-                            </f:content>
-                          </f:Card>
-                      </f:GridContainer>
+                       </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
                       <m:Image src="${imgProblem}" alt="Problem Statement" />
@@ -456,20 +433,21 @@
                 //     // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
                 //   }
                 // }),
-                template: new sap.ui.commons.TextView({
-                  path: "{artifact>created}", type: "sap.ui.model.odata.type.DateTimeOffset"
-                }),
+                // template: new sap.ui.commons.TextView({
+                //   path: "{artifact>created}", type: "sap.ui.model.odata.type.DateTimeOffset"
+                // }),
                 // path: "{artifact>created}",
                 // type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
                 // }),
-                // template: new sap.ui.commons.TextView({
-                //   text: {
-                //     path: 'DATE',
-                //     formatter: function (value) {
-                //       return /* TODO: some format logic */;
-                //     }
-                //   }
-                // }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>created',
+                    type: 'sap.ui.model.odata.type.DateTimeOffset',
+                    formatter: function (value) {
+                      return /* TODO: some format logic */;
+                    }
+                  }
+                }),
                 sortProperty: "created",
                 filterProperty: "created",
               }));
@@ -540,30 +518,30 @@
                       // var ValueState = sap.ui.core.ValueState;
                       // var ButtonType = sap.m.ButtonType;
                       // var DialogType = sap.m.DialogType;
-                      // var oDefaultDialog = new sap.m.Dialog({
-                      //   title: "Advanced Settings",
-                      //   type: DialogType.Message,
-                      //   state: ValueState.Information,
-                      //   content: new Text({ text: "Export the SAC activity log." }),
-                      //   beginButton: new sap.m.Button({
-                      //     type: ButtonType.Emphasized,
-                      //     text: "Export Log",
-                      //     press: function () {
-                      //       var oBusy = new sap.m.BusyDialog();
-                      //       var oModelActivities = new sap.ui.model.json.JSONModel();
-                      //       oModelActivities.attachRequestSent(function () {
-                      //         oBusy.open();
-                      //       });
-                      //       var cHeader = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-                      //       oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
-                      //       oModelActivities.attachRequestCompleted(function (oEvent) {
-                      //         oBusy.close();
-                      //       });
-                      //       oDefaultDialog.close();
-                      //     }.bind(this)
-                      //   })
-                      // });
-                      // oDefaultDialog.open();
+                      var oDefaultDialog = new sap.m.Dialog({
+                        title: "Advanced Settings",
+                        // type: DialogType.Message,
+                        // state: ValueState.Information,
+                        content: new Text({ text: "Export the SAC activity log." }),
+                        beginButton: new sap.m.Button({
+                          // type: ButtonType.Emphasized,
+                          text: "Export Log",
+                          press: function () {
+                            var oBusy = new sap.m.BusyDialog();
+                            var oModelActivities = new sap.ui.model.json.JSONModel();
+                            oModelActivities.attachRequestSent(function () {
+                              oBusy.open();
+                            });
+                            var cHeader = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+                            oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+                            oModelActivities.attachRequestCompleted(function (oEvent) {
+                              oBusy.close();
+                            });
+                            oDefaultDialog.close();
+                          }.bind(this)
+                        })
+                      });
+                      oDefaultDialog.open();
                     }
                   }),
                   new sap.ui.commons.Button({
