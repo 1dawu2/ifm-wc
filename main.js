@@ -94,17 +94,11 @@
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
                   <m:Tree
-                    id="Feature List"
+                    id="featureList"
                     items="{/}">
                     <m:headerToolbar>
                       <m:OverflowToolbar>
-                        <m:Title
-                          text="Tree" />
-                        <m:ToolbarSpacer />
-                        <m:ToggleButton
-                          icon="sap-icon://menu"
-                          tooltip="Enable / Disable Custom Context Menu"
-                          press="onToggleContextMenu" />
+                        <m:Title text="Feature List" />
                       </m:OverflowToolbar>
                     </m:headerToolbar>
                     <m:StandardTreeItem
