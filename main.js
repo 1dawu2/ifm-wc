@@ -415,7 +415,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models>/}" }),
+                template: new sap.ui.commons.TextView({ text: "{models>}" }),
                 // sortProperty: "model",
                 // filterProperty: "model",
               }));
@@ -432,10 +432,10 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>created',
-                    type: 'sap.ui.model.odata.type.Date',
-                    formatter: function (value) {
-                      console.log("formatter");
-                      return /* TODO: some format logic */;
+                    type: "sap.ui.model.type.Date",
+                    formatOptions: {
+                      pattern: "dd.MM.yyyy HH:mm:ss",
+                      UTC: true
                     }
                   }
                 }),
