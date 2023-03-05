@@ -133,9 +133,7 @@
                             <f:content>
                               <m:List
                                 showSeparators="None"
-                                items="{
-                                  path: 'products>/productItems'
-                                }">
+                                items="{products>/productItems}">
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
                                     <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
