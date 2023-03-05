@@ -94,7 +94,7 @@
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
                   <m:Tree
-                    id="Tree"
+                    id="Feature List"
                     items="{/}">
                     <m:headerToolbar>
                       <m:OverflowToolbar>
@@ -128,7 +128,7 @@
                         snapToRow="true">
                           <f:Card class="sapUiMediumMargin" width="300px">
                             <f:header>
-                              <card:Header title="Project Cloud Transformation" subtitle="Revenue per Product | EUR" />
+                              <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
                             </f:header>
                             <f:content>
                               <m:List
@@ -284,6 +284,7 @@
                 }
               );
               sap.ui.getCore().setModel(modelProduct, "products");
+              console.log(modelProduct);
 
               oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                 sourceAggregation: "items"
