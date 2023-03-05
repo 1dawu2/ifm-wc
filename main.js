@@ -427,23 +427,12 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
-                // template: new sap.ui.commons.TextView({
-                //   text: {
-                //     path: "{artifact>created}",
-                //     // formatter: sap.ui.core.format.DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss.SSSX" })
-                //   }
-                // }),
-                // template: new sap.ui.commons.TextView({
-                //   path: "{artifact>created}", type: "sap.ui.model.odata.type.DateTimeOffset"
-                // }),
-                // path: "{artifact>created}",
-                // type: new sap.ui.model.type.Date({ pattern: "MM/dd/yyyy hh:mm" })
-                // }),
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>created',
-                    type: 'sap.ui.model.odata.type.DateTimeOffset',
+                    type: 'sap.ui.model.odata.type.Date',
                     formatter: function (value) {
+                      console.log("formatter");
                       return /* TODO: some format logic */;
                     }
                   }
