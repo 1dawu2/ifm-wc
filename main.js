@@ -180,6 +180,8 @@
       this._export_settings.apiSecret = "";
       this._export_settings.oAuthURL = "";
 
+      this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
+
     }
 
     /**
@@ -219,7 +221,7 @@
           "sap/f/dnd/GridDropInfo",
           "sap/ui/core/library",
         ],
-        function (Controller, JSONModel, DragInfo, GridDropInfo) {
+        function (Controller) { //JSONModel, DragInfo, GridDropInfo
           "use strict";
 
           return Controller.extend("ifm.hack.initial", {
@@ -504,16 +506,16 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
-                      // var ValueState = sap.ui.core.ValueState;
-                      // var ButtonType = sap.m.ButtonType;
-                      // var DialogType = sap.m.DialogType;
+                      var ValueState = sap.ui.core.ValueState;
+                      var ButtonType = sap.m.ButtonType;
+                      var DialogType = sap.m.DialogType;
                       var oDefaultDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
-                        // type: DialogType.Message,
-                        // state: ValueState.Information,
+                        type: DialogType.Message,
+                        state: ValueState.Information,
                         content: new Text({ text: "Export the SAC activity log." }),
-                        beginButton: new sap.m.Button({
-                          // type: ButtonType.Emphasized,
+                        beginButton: new sap.ui.commons.Button({
+                          type: ButtonType.Emphasized,
                           text: "Export Log",
                           press: function () {
                             var oBusy = new sap.m.BusyDialog();
@@ -521,8 +523,8 @@
                             oModelActivities.attachRequestSent(function () {
                               oBusy.open();
                             });
-                            var cHeader = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-                            oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+                            var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
+                            oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap//api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
                             oModelActivities.attachRequestCompleted(function (oEvent) {
                               oBusy.close();
                             });
