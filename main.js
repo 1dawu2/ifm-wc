@@ -138,34 +138,9 @@
                                 showSeparators="None"
                                 items="{products>/productItems}">
                                 <m:StandardListItem
-                                  description="User Researcher"
-                                  icon="${ifmAvatar}"
-                                  title="Alain Chevalier" />
-                                <m:StandardListItem
-                                  description="Artist"
-                                  icon="${ifmAvatar}"
-                                  title="Monique Legrand" />
-                                <m:StandardListItem
-                                  description="UX Specialist"
-                                  icon="${ifmAvatar}"
-                                  title="Isabella Adams" />
-                                <m:CustomListItem>
-                                  <m:HBox alignItems="Center" justifyContent="SpaceBetween">
-                                    <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-                                      <m:Title level="H3" text="{products>title}" />
-                                      <m:Text text="{products>subtitle}" />
-                                      <core:Icon
-                                        src="{products>iconFile}"
-                                        class="size1"
-                                        color="#031E48" >
-                                      </core:Icon>
-                                    </m:VBox>
-                                    <m:ObjectStatus
-                                      class="sapUiTinyMargin sapUiSmallMarginEnd"
-                                      text="{products>revenue}"
-                                      state="{products>statusSchema}" />
-                                  </m:HBox>
-                                </m:CustomListItem>
+                                  description="{products>subtitle}"
+                                  icon="{products>iconFile}"
+                                  title="{products>title}" />
                               </m:List>
                             </f:content>
                           </f:Card>
