@@ -515,16 +515,10 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function (oEvent) {
-                      var ValueState = sap.ui.core.ValueState;
-                      var ButtonType = sap.m.ButtonType;
-                      var DialogType = sap.m.DialogType;
                       var oDefaultDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
-                        type: DialogType.Message,
-                        state: ValueState.Information,
                         content: new Text({ text: "Export the SAC activity log." }),
-                        beginButton: new sap.ui.commons.Button({
-                          type: ButtonType.Emphasized,
+                        beginButton: new sap.ui.m.Button({
                           text: "Export Log",
                           press: function () {
                             var oBusy = new sap.m.BusyDialog();
