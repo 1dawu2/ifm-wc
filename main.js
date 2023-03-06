@@ -125,9 +125,9 @@
                         	<f:layout>
 		                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
 	                        </f:layout>
-                          <f:Card class="sapUiMediumMargin" width="400px">
+                          <f:Card width="400px">
                             <f:header>
-                              <card:Header iconSrc="${ifmLogo}" title="Kontakt" subtitle="INFOMOTION GmbH" />
+                              <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
                             </f:header>
                             <f:content>
                               <m:List
@@ -140,14 +140,14 @@
                               </m:List>
                             </f:content>
                           </f:Card>
-                          	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
-                              <f:header>
-                                <card:Header title="Inbox" />
-                              </f:header>
-                              <f:content>
-                                <m:IllustratedMessage illustrationType="sapIllus-SuccessHighFive" />
-                              </f:content>
-                            </f:Card>
+                          <f:Card width="400px">
+                            <f:header>
+                              <card:Header title="Infobox" />
+                            </f:header>
+                            <f:content>
+                              <m:IllustratedMessage illustrationType="sapIllus-SuccessHighFive" />
+                            </f:content>
+                          </f:Card>
                        </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
@@ -280,9 +280,9 @@
                       "iconFile": "sap-icon://world"
                     },
                     {
-                      "title": "David Wurm",
-                      "subtitle": "Lead Consultant",
-                      "iconFile": ifmAvatar
+                      "title": "Telefon",
+                      "subtitle": "+49 69 56608 3231",
+                      "iconFile": "sap-icon://call"
                     },
                     {
                       "title": "Mail",
