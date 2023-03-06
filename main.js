@@ -426,7 +426,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{models>}" }),
+                template: new sap.ui.commons.TextView({ text: "{models}" }),
                 // sortProperty: "model",
                 // filterProperty: "model",
               }));
@@ -443,9 +443,12 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>created',
-                    type: "sap.ui.model.type.DateTime",
+                    type: "sap.ui.model.type.Date",
                     formatOptions: {
-                      style: 'short'
+                      source: {
+                        pattern: 'yyyy-MM-ddTHH:mm:ss Z' //2021-05-02T19:39:28.484Z
+                      },
+                      pattern: 'yyyy-MM-dd'
                     }
                   }
                 }),
@@ -540,7 +543,7 @@
                           }.bind(this)
                         })
                       });
-                      oDefaultDialog.open();
+                      oActivityDialog.open();
                     }
                   }),
                   new sap.ui.commons.Button({
