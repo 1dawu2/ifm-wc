@@ -138,15 +138,15 @@
                                 items="{products>/productItems}">
                                 <m:StandardListItem
                                   description="User Researcher"
-                                  image="{value:'man_avatar_3.png', formatter: '.resolveUrl'}"
+                                  image="sap-icon://attachment-html"
                                   text="Alain Chevalier" />
                                 <m:StandardListItem
                                   description="Artist"
-                                  image="{value:'woman_avatar_5.png', formatter: '.resolveUrl'}"
+                                  image="sap-icon://attachment-html"
                                   text="Monique Legrand" />
                                 <m:StandardListItem
                                   description="UX Specialist"
-                                  image="{value:'woman_avatar_4.png', formatter: '.resolveUrl'}"
+                                  image="sap-icon://attachment-html"
                                   text="Isabella Adams" />
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
@@ -210,6 +210,8 @@
       console.log(this._oStoryContainerController);
       this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
       console.log(this._oDocumentContext);
+      this._oDocument = this._oStoryContainerController.getDocument();
+      console.log(this._oDocument);
 
     }
 
