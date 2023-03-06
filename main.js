@@ -122,6 +122,9 @@
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
+                        	<f:layout>
+		                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+	                        </f:layout>
                           <f:Card class="sapUiMediumMargin" width="400px">
                             <f:header>
                               <card:Header iconSrc="${ifmLogo}" title="Kontakt" subtitle="INFOMOTION GmbH" />
