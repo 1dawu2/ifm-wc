@@ -124,14 +124,7 @@
                         snapToRow="true">
                           <f:Card class="sapUiMediumMargin" width="400px">
                             <f:header>
-                              <m:Avatar
-                                displaySize="XS"
-                                backgroundColor="Transparent"
-                                displayShape="Circle"
-                                showBorder="false"
-                                src="${ifmLogo}"           
-                              />
-                              <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
+                              <card:Header iconSrc="${ifmLogo}" title="Kontakt" subtitle="INFOMOTION GmbH" />
                             </f:header>
                             <f:content>
                               <m:List
