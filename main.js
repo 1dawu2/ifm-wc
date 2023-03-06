@@ -515,24 +515,28 @@
                   }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
-                    press: function (oEvent) {
-                      var oDefaultDialog = new sap.m.Dialog({
+                    press: function () {
+                      var oActivityDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
                         content: new Text({ text: "Export the SAC activity log." }),
                         beginButton: new sap.m.Button({
                           text: "Export Log",
                           press: function () {
-                            var oBusy = new sap.m.BusyDialog();
+                            // var oBusy = new sap.m.BusyDialog();
                             var oModelActivities = new sap.ui.model.json.JSONModel();
-                            oModelActivities.attachRequestSent(function () {
-                              oBusy.open();
-                            });
+                            // oModelActivities.attachRequestSent(function () {
+                            //   oBusy.open();
+                            // });
                             var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
                             oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
                             oModelActivities.attachRequestCompleted(function (oEvent) {
-                              oBusy.close();
+                              var oActivityData = oEvent.getSource().oActivityData;
+                              console.log(oActivityData);
                             });
-                            oDefaultDialog.close();
+                            // oModelActivities.attachRequestCompleted(function (oEvent) {
+                            //   // oBusy.close();
+                            // });
+                            oActivityDialog.close();
                           }.bind(this)
                         })
                       });
