@@ -415,13 +415,8 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Template (n/y)" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>isTemplate',
-                    type: "sap.ui.model.type.Boolean"
-                  }
-                }),
+                label: new sap.ui.commons.Label({ text: "Template (false/true)" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>isTemplate}" }),
                 sortProperty: "isTemplate",
                 filterProperty: "isTemplate",
               }));
