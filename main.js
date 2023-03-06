@@ -135,7 +135,7 @@
                                       <m:Title level="H3" text="{products>title}" />
                                       <m:Text text="{products>subtitle}" />
                                       <core:Icon
-                                        src="sap-{products>iconFile}"
+                                        src="{products>iconFile}"
                                         class="size1"
                                         color="#031E48" >
                                       </core:Icon>
@@ -443,7 +443,7 @@
                     path: 'artifact>created',
                     type: "sap.ui.model.type.Date",
                     formatOptions: {
-                      pattern: "dd.MM.yyyy HH:mm:ss",
+                      pattern: "yyyy-MM-dd",
                       UTC: true
                     }
                   }
