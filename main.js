@@ -137,6 +137,14 @@
                               </m:List>
                             </f:content>
                           </f:Card>
+                          	<f:Card width="300px" class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+                              <f:header>
+                                <card:Header title="Inbox" />
+                              </f:header>
+                              <f:content>
+                                <m:IllustratedMessage illustrationType="sapIllus-SuccessHighFive" />
+                              </f:content>
+                            </f:Card>
                        </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
@@ -264,28 +272,19 @@
                 {
                   "productItems": [
                     {
-                      "title": "Notebook HT",
-                      "subtitle": "ID23452256-D44",
-                      "revenue": "27.25K EUR",
-                      "status": "success",
-                      "statusSchema": "Success",
-                      "iconFile": "sap-icon://attachment-html"
+                      "title": "Website",
+                      "subtitle": "http://www.infomotion.de",
+                      "iconFile": "sap-icon://world"
                     },
                     {
-                      "title": "Notebook XT",
-                      "subtitle": "ID27852256-D47",
-                      "revenue": "7.35K EUR",
-                      "status": "exceeded",
-                      "statusSchema": "Error",
-                      "iconFile": "sap-icon://attachment-html"
+                      "title": "David Wurm",
+                      "subtitle": "Lead Consultant",
+                      "iconFile": ifmAvatar
                     },
                     {
-                      "title": "Notebook ST",
-                      "subtitle": "ID123555587-I05",
-                      "revenue": "22.89K EUR",
-                      "status": "warning",
-                      "statusSchema": "Warning",
-                      "iconFile": "sap-icon://attachment-html"
+                      "title": "Mail",
+                      "subtitle": "david.wurm@infomotion.de",
+                      "iconFile": "sap-icon://business-card"
                     }
                   ]
                 }
@@ -330,12 +329,6 @@
               sap.ui.getCore().setModel(oTreeModel);
               console.log("Tree Model");
               console.log(oTreeModel);
-            },
-
-            getDataServices: function () {
-              // https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/dataexport/administration/Namespaces
-              // https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/dataexport/administration/$metadata
-              // https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/$metadata
             },
 
             bindTable: function (oEvent, oWidgetObj) {
@@ -428,7 +421,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{models}" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/}" }),
                 // sortProperty: "model",
                 // filterProperty: "model",
               }));
