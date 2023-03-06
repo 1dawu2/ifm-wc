@@ -140,14 +140,6 @@
                               </m:List>
                             </f:content>
                           </f:Card>
-                          <f:Card width="400px">
-                            <f:header>
-                              <card:Header title="Infobox" />
-                            </f:header>
-                            <f:content>
-                              <m:IllustratedMessage illustrationType="sapIllus-SuccessHighFive" />
-                            </f:content>
-                          </f:Card>
                        </f:GridContainer>
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
