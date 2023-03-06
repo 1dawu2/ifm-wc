@@ -119,6 +119,10 @@
                     width="auto"
                     height="650px">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                      <m:Image src="${imgCompany}" alt="Company" />
+                      <m:Image src="${imgProblem}" alt="Problem Statement" />
+                      <m:Image src="${imgSolution}" alt="Solution" />
                       <f:GridContainer
                         id="grid1"
                         snapToRow="true">
@@ -141,10 +145,6 @@
                             </f:content>
                           </f:Card>
                        </f:GridContainer>
-                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
-                      <m:Image src="${imgCompany}" alt="Company" />
-                      <m:Image src="${imgProblem}" alt="Problem Statement" />
-                      <m:Image src="${imgSolution}" alt="Solution" />
                     </m:Carousel>
                   </m:Panel>                  
                 </m:Page>
