@@ -4,6 +4,7 @@
   let _clientID;
   let _apiSecret;
   let ifmLogo = "https://1dawu2.github.io/ifm-wc/assets/logo.png";
+  let ifmAvatar = "https://1dawu2.github.io/ifm-wc/assets/avatar.png";
   let backImg = "https://1dawu2.github.io/ifm-wc/assets/backImg.png";
   let imgCompany = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering.gif";
   let imgProblem = "https://1dawu2.github.io/ifm-wc/assets/SAC_Offering_Problem.png";
@@ -138,15 +139,15 @@
                                 items="{products>/productItems}">
                                 <m:StandardListItem
                                   description="User Researcher"
-                                  image="${ifmLogo}"
+                                  image="${ifmAvatar}"
                                   text="Alain Chevalier" />
                                 <m:StandardListItem
                                   description="Artist"
-                                  image="${ifmLogo}"
+                                  image="${ifmAvatar}"
                                   text="Monique Legrand" />
                                 <m:StandardListItem
                                   description="UX Specialist"
-                                  image="${ifmLogo}"
+                                  image="${ifmAvatar}"
                                   text="Isabella Adams" />
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
