@@ -138,15 +138,15 @@
                                 items="{products>/productItems}">
                                 <m:StandardListItem
                                   description="User Researcher"
-                                  image="sap-icon://attachment-html"
+                                  image="${ifmLogo}"
                                   text="Alain Chevalier" />
                                 <m:StandardListItem
                                   description="Artist"
-                                  image="sap-icon://attachment-html"
+                                  image="${ifmLogo}"
                                   text="Monique Legrand" />
                                 <m:StandardListItem
                                   description="UX Specialist"
-                                  image="sap-icon://attachment-html"
+                                  image="${ifmLogo}"
                                   text="Isabella Adams" />
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
