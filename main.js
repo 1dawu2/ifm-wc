@@ -415,10 +415,15 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>/models/0/}" }),
-                // sortProperty: "model",
-                // filterProperty: "model",
+                label: new sap.ui.commons.Label({ text: "Template (n/y)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>isTemplate',
+                    type: "sap.ui.model.type.Boolean"
+                  }
+                }),
+                sortProperty: "isTemplate",
+                filterProperty: "isTemplate",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
