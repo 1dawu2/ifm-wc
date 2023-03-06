@@ -123,12 +123,31 @@
                         snapToRow="true">
                           <f:Card class="sapUiMediumMargin" width="400px">
                             <f:header>
+                            	<m:avatar>
+                                displaySize="XS"
+                                backgroundColor="Transparent"
+                                displayShape="Circle"
+                                showBorder="false"
+                                src="${ifmLogo}" 
+                              </m:avatar>
                               <card:Header title="Kontakt" subtitle="INFOMOTION GmbH" />
                             </f:header>
                             <f:content>
                               <m:List
                                 showSeparators="None"
                                 items="{products>/productItems}">
+                                <m:StandardListItem
+                                  description="User Researcher"
+                                  image="{value:'man_avatar_3.png', formatter: '.resolveUrl'}"
+                                  text="Alain Chevalier" />
+                                <m:StandardListItem
+                                  description="Artist"
+                                  image="{value:'woman_avatar_5.png', formatter: '.resolveUrl'}"
+                                  text="Monique Legrand" />
+                                <m:StandardListItem
+                                  description="UX Specialist"
+                                  image="{value:'woman_avatar_4.png', formatter: '.resolveUrl'}"
+                                  text="Isabella Adams" />
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
                                     <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
@@ -516,39 +535,39 @@
                       oBusy.close();
                     }
                   }),
-                  new sap.ui.commons.Button({
-                    icon: "sap-icon://action-settings",
-                    press: function () {
-                      var oModelActivities = new sap.ui.model.json.JSONModel();
-                      var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                      oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
-                      // var oActivityDialog = new sap.m.Dialog({
-                      //   title: "Advanced Settings",
-                      //   content: new Text({ text: "Export the SAC activity log." }),
-                      //   beginButton: new sap.m.Button({
-                      //     text: "Export Log",
-                      //     press: function () {
-                      //       // var oBusy = new sap.m.BusyDialog();
-                      //       var oModelActivities = new sap.ui.model.json.JSONModel();
-                      //       // oModelActivities.attachRequestSent(function () {
-                      //       //   oBusy.open();
-                      //       // });
-                      //       var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                      //       oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
-                      //       oModelActivities.attachRequestCompleted(function (oEvent) {
-                      //         var oActivityData = oEvent.getSource().oActivityData;
-                      //         console.log(oActivityData);
-                      //       });
-                      //       // oModelActivities.attachRequestCompleted(function (oEvent) {
-                      //       //   // oBusy.close();
-                      //       // });
-                      //       oActivityDialog.close();
-                      //     }.bind(this)
-                      //   })
-                      // });
-                      // oActivityDialog.open();
-                    }
-                  }),
+                  // new sap.ui.commons.Button({
+                  //   icon: "sap-icon://action-settings",
+                  //   press: function () {
+                  //     var oModelActivities = new sap.ui.model.json.JSONModel();
+                  //     var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
+                  //     oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+                  //     // var oActivityDialog = new sap.m.Dialog({
+                  //     //   title: "Advanced Settings",
+                  //     //   content: new Text({ text: "Export the SAC activity log." }),
+                  //     //   beginButton: new sap.m.Button({
+                  //     //     text: "Export Log",
+                  //     //     press: function () {
+                  //     //       // var oBusy = new sap.m.BusyDialog();
+                  //     //       var oModelActivities = new sap.ui.model.json.JSONModel();
+                  //     //       // oModelActivities.attachRequestSent(function () {
+                  //     //       //   oBusy.open();
+                  //     //       // });
+                  //     //       var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
+                  //     //       oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+                  //     //       oModelActivities.attachRequestCompleted(function (oEvent) {
+                  //     //         var oActivityData = oEvent.getSource().oActivityData;
+                  //     //         console.log(oActivityData);
+                  //     //       });
+                  //     //       // oModelActivities.attachRequestCompleted(function (oEvent) {
+                  //     //       //   // oBusy.close();
+                  //     //       // });
+                  //     //       oActivityDialog.close();
+                  //     //     }.bind(this)
+                  //     //   })
+                  //     // });
+                  //     // oActivityDialog.open();
+                  //   }
+                  // }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
                     press: function (oEvent) {
