@@ -519,6 +519,7 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://action-settings",
                     press: function () {
+                      var oModelActivities = new sap.ui.model.json.JSONModel();
                       var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
                       oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
                       // var oActivityDialog = new sap.m.Dialog({
