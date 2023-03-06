@@ -441,10 +441,9 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>created',
-                    type: "sap.ui.model.type.Date",
+                    type: "sap.ui.model.type.DateTime",
                     formatOptions: {
-                      pattern: "yyyy-MM-dd",
-                      UTC: true
+                      style: 'short'
                     }
                   }
                 }),
