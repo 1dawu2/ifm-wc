@@ -140,15 +140,15 @@
                                 <m:StandardListItem
                                   description="User Researcher"
                                   icon="${ifmAvatar}"
-                                  text="Alain Chevalier" />
+                                  title="Alain Chevalier" />
                                 <m:StandardListItem
                                   description="Artist"
                                   icon="${ifmAvatar}"
-                                  text="Monique Legrand" />
+                                  title="Monique Legrand" />
                                 <m:StandardListItem
                                   description="UX Specialist"
                                   icon="${ifmAvatar}"
-                                  text="Isabella Adams" />
+                                  title="Isabella Adams" />
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
                                     <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
