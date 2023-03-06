@@ -139,15 +139,15 @@
                                 items="{products>/productItems}">
                                 <m:StandardListItem
                                   description="User Researcher"
-                                  image="${ifmAvatar}"
+                                  icon="${ifmAvatar}"
                                   text="Alain Chevalier" />
                                 <m:StandardListItem
                                   description="Artist"
-                                  image="${ifmAvatar}"
+                                  icon="${ifmAvatar}"
                                   text="Monique Legrand" />
                                 <m:StandardListItem
                                   description="UX Specialist"
-                                  image="${ifmAvatar}"
+                                  icon="${ifmAvatar}"
                                   text="Isabella Adams" />
                                 <m:CustomListItem>
                                   <m:HBox alignItems="Center" justifyContent="SpaceBetween">
@@ -214,6 +214,16 @@
       this._oDocument = this._oStoryContainerController.getDocument();
       console.log(this._oDocument);
 
+    }
+
+    getIsOptimizedEnabled() {
+      var t = e.get(sap.fpa.ui.story.StoryIntegration.CONTRIBUTIONS.DOCUMENT_STORE)
+        , n = !1;
+      if (t) {
+        var o = t.getState();
+        n = i(12136).isOptimizedEnabled(o)
+      }
+      return n
     }
 
     /**
