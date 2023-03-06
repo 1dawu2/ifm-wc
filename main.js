@@ -266,7 +266,7 @@
                       "revenue": "27.25K EUR",
                       "status": "success",
                       "statusSchema": "Success",
-                      "iconFile": "sap- icon://mri-scan"
+                      "iconFile": "sap-icon://attachment-html"
                     },
                     {
                       "title": "Notebook XT",
@@ -274,7 +274,7 @@
                       "revenue": "7.35K EUR",
                       "status": "exceeded",
                       "statusSchema": "Error",
-                      "iconFile": "sap- icon://mri-scan"
+                      "iconFile": "sap-icon://attachment-html"
                     },
                     {
                       "title": "Notebook ST",
@@ -282,7 +282,7 @@
                       "revenue": "22.89K EUR",
                       "status": "warning",
                       "statusSchema": "Warning",
-                      "iconFile": "sap- icon://mri-scan"
+                      "iconFile": "sap-icon://attachment-html"
                     }
                   ]
                 }
@@ -518,7 +518,7 @@
                       var oDefaultDialog = new sap.m.Dialog({
                         title: "Advanced Settings",
                         content: new Text({ text: "Export the SAC activity log." }),
-                        beginButton: new sap.ui.m.Button({
+                        beginButton: new sap.m.Button({
                           text: "Export Log",
                           press: function () {
                             var oBusy = new sap.m.BusyDialog();
