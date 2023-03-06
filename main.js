@@ -208,6 +208,8 @@
       this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
       console.log("Story Container");
       console.log(this._oStoryContainerController);
+      this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
+      console.log(this._oDocumentContext);
 
     }
 
