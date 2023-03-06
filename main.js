@@ -187,6 +187,7 @@
       this._export_settings.oAuthURL = "";
 
       this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
+      console.log(this._oStoryContainerController);
 
     }
 
