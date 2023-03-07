@@ -184,6 +184,7 @@
       console.log(this._oDocumentContext);
       this._oDocument = this._oStoryContainerController.getDocument();
       console.log(this._oDocument);
+      // n = this.getContext().get("sap.fpa.bi.documentService").getStoryModel()
 
     }
 
@@ -1125,7 +1126,9 @@
     let uqmMigration = documentContext.get("sap.fpa.bi.uqmMigration.UnsupportedFeatures");
     console.log("unsupported features");
     console.log(uqmMigration);
-
+    let r = sap.fpa.ui.infra.common.getContext().getSemanticObject();
+    console.log("semantic object");
+    console.log(r);
     // sap.ui.define([
     //   "sap/fpa/ui/story/Utils"
     // ], function (Utils) {
