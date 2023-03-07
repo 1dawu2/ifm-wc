@@ -417,7 +417,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (false/true)" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>isTemplate}" }),
+                template: new sap.ui.commons.TextView({ text: "" + "{artifact>isTemplate}" + "" }),
                 sortProperty: "isTemplate",
                 filterProperty: "isTemplate",
               }));
