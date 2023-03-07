@@ -403,12 +403,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>description',
-                    type: 'string'
-                  }
-                }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
                 sortProperty: "description",
                 filterProperty: "description",
               }));
