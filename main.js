@@ -182,9 +182,14 @@
       console.log(this._oStoryContainerController);
       this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
       console.log(this._oDocumentContext);
+      this._uqmLoad = this._oDocumentContext.get("sap.fpa.bi.uqmLoader")
       this._oDocument = this._oStoryContainerController.getDocument();
       console.log(this._oDocument);
       // n = this.getContext().get("sap.fpa.bi.documentService").getStoryModel()
+      // this._oStoryContainer.showConvertToOptimizedDesignModeDialog();
+      // "sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"
+      // sap.fpa.story.optimizedModeFeaturesValidator
+
 
     }
 
