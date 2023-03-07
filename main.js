@@ -424,7 +424,7 @@
                 label: new sap.ui.commons.Label({ text: "Template (false/true)" }),
                 template: new sap.ui.commons.TextView({ text: "" + "{artifact>isTemplate}" + "" }),
                 sortProperty: "isTemplate",
-                filterProperty: "isTemplate",
+                // filterProperty: "isTemplate",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
