@@ -71,8 +71,7 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
-            initialPage="root"> 
-              <m:pages>           
+            initialPage="root">       
                 <m:Page id="root">
                   <m:IconTabBar
                     expandable="false"
@@ -149,7 +148,6 @@
                     </m:Carousel>
                   </m:Panel>                  
                 </m:Page>
-              </m:pages>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
