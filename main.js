@@ -16,7 +16,6 @@
     </style>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
-      height="100%"
       controllerName="ifm.hack.initial"
       xmlns:core="sap.ui.core"
       xmlns:t="sap.ui.table"
@@ -87,7 +86,7 @@
                     </m:items>
                   </m:IconTabBar>
                   <m:content>
-                    <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
+                    <m:Panel expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
                   </m:content>
                 </m:Page>
                 <m:Page id="p1">
@@ -116,9 +115,7 @@
                     <m:ToolbarSpacer/>
                   </m:OverflowToolbar>
                   <m:Panel
-                    id="About"
-                    width="auto"
-                    height="650px">
+                    id="About">
                     <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                       <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                       <m:Image src="${imgCompany}" alt="Company" />
@@ -197,6 +194,9 @@
       this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
       console.log("story service");
       console.log(this._storyService)
+      this._storyContent = sap.fpa.ui.story.StoryFetcher.getContent("59A395046F3F8A41401B0B1C28FD787D");
+      console.log("story content");
+      console.log(this._storyContent);
 
     }
 
@@ -641,8 +641,8 @@
      * @param width - The width of the widget.
      * @param height - The height of the widget.
      */
-    onCustomWidgetResize(width, height) {
-    }
+    // onCustomWidgetResize(width, height) {
+    // }
 
     /**
      * The connectedCallback() function is called when the element is inserted into the DOM.
