@@ -16,7 +16,7 @@
     </style>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
-      height="70%"
+      height="100%"
       controllerName="ifm.hack.initial"
       xmlns:core="sap.ui.core"
       xmlns:t="sap.ui.table"
@@ -27,21 +27,27 @@
       xmlns:tnt="sap.tnt">
       <tnt:ToolPage id="toolPage">
         <tnt:header>
-          <f:ShellBar title="IFM HACK"
-            secondTitle="Health Analysis Conversion Kit"
-            showMenuButton="true"
-            homeIcon="${ifmLogo}"
-            menuButtonPressed="onMenuButtonPress">
-            <f:profile>
-              <m:Avatar
-                displaySize="XS"
-                backgroundColor="Transparent"
-                displayShape="Circle"
-                showBorder="false"
-                src="${ifmAvatar}"           
-              />
-            </f:profile>
-          </f:ShellBar>
+          <tnt:ToolHeader>
+            <m:Button
+              id="sideNavigationToggleButton"
+              icon="sap-icon://menu2"
+              type="Transparent"
+              press=".onCollapseExpandPress">
+              <m:layoutData>
+                <m:OverflowToolbarLayoutData priority="NeverOverflow" />
+              </m:layoutData>
+            </m:Button>
+            <m:ToolbarSpacer/>
+            <m:Title text="IFM Health Analysis Conversion Kit" level="H1"/>
+            <m:ToolbarSpacer/>
+            <m:Avatar
+              displaySize="XS"
+              backgroundColor="Transparent"
+              displayShape="Circle"
+              showBorder="false"   
+              src="${ifmLogo}"           
+            />
+          </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent>
           <tnt:SideNavigation
@@ -67,11 +73,7 @@
             id="pageContainer"
             initialPage="root"> 
               <m:pages>           
-                <m:ScrollContainer
-                  id="root"
-                  horizontal="false"
-                  vertical="true"
-                  height="100%">
+                <m:Page id="root">
                   <m:IconTabBar
                     expandable="false"
                     class="sapUiResponsiveContentPadding">
@@ -85,10 +87,10 @@
                     </m:items>
                   </m:IconTabBar>
                   <m:content>
-                    <m:Panel height="70%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
+                    <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
                   </m:content>
-                </m:ScrollContainer>
-                <m:ScrollContainer id="p1">
+                </m:Page>
+                <m:Page id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
@@ -106,8 +108,8 @@
                       title="{text}"
                       icon="{ref}"/>
                   </m:Tree>  
-                </m:ScrollContainer>
-                <m:ScrollContainer id="p2">
+                </m:Page>
+                <m:Page id="p2">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
@@ -146,7 +148,7 @@
                        </f:GridContainer>
                     </m:Carousel>
                   </m:Panel>                  
-                </m:ScrollContainer>
+                </m:Page>
               </m:pages>
           </m:NavContainer>
         </tnt:mainContents>
@@ -191,19 +193,11 @@
       // sap.fpa.story.optimizedModeFeaturesValidator
       this._contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
       console.log("content lib");
-      console.log(this._contentLib);
+      console.log(this._contentLib)
       this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
       console.log("story service");
-      console.log(this._storyService);
+      console.log(this._storyService)
 
-
-    }
-
-    getContentLibService() {
-      return sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib")
-    }
-    getStoryService() {
-      return sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService")
     }
 
     getIsOptimizedEnabled() {
@@ -1170,6 +1164,8 @@
     if (sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase) {
       console.log(sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase);
     }
+
+
 
     // try detect runtime settings
     if (window.sap && sap.fpa && sap.fpa.ui && sap.fpa.ui.infra) {
