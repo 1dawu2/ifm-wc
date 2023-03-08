@@ -16,6 +16,7 @@
     </style>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
+      height="100%"
       controllerName="ifm.hack.initial"
       xmlns:core="sap.ui.core"
       xmlns:t="sap.ui.table"
@@ -23,8 +24,7 @@
       xmlns:f="sap.f"
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
-      xmlns:tnt="sap.tnt"
-      class="ifm-hack">
+      xmlns:tnt="sap.tnt">
       <tnt:ToolPage id="toolPage">
         <tnt:header>
           <tnt:ToolHeader>
