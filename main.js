@@ -25,132 +25,9 @@
       xmlns:card="sap.f.cards"
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt">
-      <tnt:ToolPage id="toolPage">
-        <tnt:header>
-          <tnt:ToolHeader>
-            <m:Button
-              id="sideNavigationToggleButton"
-              icon="sap-icon://menu2"
-              type="Transparent"
-              press=".onCollapseExpandPress">
-              <m:layoutData>
-                <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-              </m:layoutData>
-            </m:Button>
-            <m:ToolbarSpacer/>
-            <m:Title text="IFM Health Analysis Conversion Kit" level="H1"/>
-            <m:ToolbarSpacer/>
-            <m:Avatar
-              displaySize="XS"
-              backgroundColor="Transparent"
-              displayShape="Circle"
-              showBorder="false"   
-              src="${ifmLogo}"           
-            />
-          </tnt:ToolHeader>
-        </tnt:header>
-        <tnt:sideContent>
-          <tnt:SideNavigation
-            id="sideNavigationList"
-            expanded="false"
-            itemSelect=".onItemSelect">
-            <tnt:NavigationList
-              expanded="false"
-              id="navigationList">
-              <tnt:NavigationListItem expanded="false" text="IFM HACK" icon="sap-icon://electrocardiogram" id="nl0" key="root"/>
-              <tnt:NavigationListItem text="Unsupported Features" icon="sap-icon://activities" id="nl1" key="p1"/>
-              <tnt:NavigationListItem text="About" icon="sap-icon://hint" id="nl2" key="p2"/>
-            </tnt:NavigationList>
-            <tnt:fixedItem>
-              <tnt:NavigationList>
-                <tnt:NavigationListItem text="INFOMOTION GmbH" icon="sap-icon://globe" href="http://www.infomotion.de" target="_blank"/>
-              </tnt:NavigationList>
-            </tnt:fixedItem>
-          </tnt:SideNavigation>
-        </tnt:sideContent>
-        <tnt:mainContents>
-          <m:NavContainer
-            id="pageContainer"
-            initialPage="root">       
-                <m:Page id="root">
-                  <m:IconTabBar
-                    expandable="false"
-                    class="sapUiResponsiveContentPadding">
-                    <m:items>
-                      <m:IconTabFilter
-                        id="countInput"
-                        icon="sap-icon://clinical-order"
-                        count="{rowCounter>/counter}"
-                        text="Stories"
-                        key="All" />
-                    </m:items>
-                  </m:IconTabBar>
-                  <m:content>
-                    <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
-                  </m:content>
-                </m:Page>
-                <m:Page id="p1">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="Unsupported Features"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
-                  <m:Tree
-                    id="featureList"
-                    items="{/}">
-                    <m:headerToolbar>
-                      <m:OverflowToolbar>
-                        <m:Title text="Feature List" />
-                      </m:OverflowToolbar>
-                    </m:headerToolbar>
-                    <m:StandardTreeItem
-                      title="{text}"
-                      icon="{ref}"/>
-                  </m:Tree>  
-                </m:Page>
-                <m:Page id="p2">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="About"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
-                  <m:Panel
-                    id="About"
-                    width="auto"
-                    height="650px">
-                    <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
-                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
-                      <m:Image src="${imgCompany}" alt="Company" />
-                      <m:Image src="${imgProblem}" alt="Problem Statement" />
-                      <m:Image src="${imgSolution}" alt="Solution" />
-                      <f:GridContainer
-                        id="grid1"
-                        snapToRow="true">
-                        	<f:layout>
-		                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-	                        </f:layout>
-                          <f:Card width="400px">
-                            <f:header>
-                              <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
-                            </f:header>
-                            <f:content>
-                              <m:List
-                                showSeparators="None"
-                                items="{products>/productItems}">
-                                <m:StandardListItem
-                                  description="{products>subtitle}"
-                                  icon="{products>iconFile}"
-                                  title="{products>title}" />
-                              </m:List>
-                            </f:content>
-                          </f:Card>
-                       </f:GridContainer>
-                    </m:Carousel>
-                  </m:Panel>                  
-                </m:Page>
-          </m:NavContainer>
-        </tnt:mainContents>
-      </tnt:ToolPage>
+      <m:page>
+        
+      </m:page>
     </mvc:View>
     </script>
   `;
@@ -665,7 +542,7 @@
      * @param changedProperties - An object containing the changed properties.
      */
     onCustomWidgetAfterUpdate(changedProperties) {
-      this.buildUI(changedProperties, this);
+      // this.buildUI(changedProperties, this);
     }
 
     // SETTINGS
