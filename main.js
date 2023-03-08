@@ -27,27 +27,30 @@
       xmlns:tnt="sap.tnt">
       <tnt:ToolPage id="toolPage">
         <tnt:header>
-          <tnt:ToolHeader>
-            <m:Button
-              id="sideNavigationToggleButton"
-              icon="sap-icon://menu2"
-              type="Transparent"
-              press=".onCollapseExpandPress">
-              <m:layoutData>
-                <m:OverflowToolbarLayoutData priority="NeverOverflow" />
-              </m:layoutData>
-            </m:Button>
-            <m:ToolbarSpacer/>
-            <m:Title text="IFM Health Analysis Conversion Kit" level="H1"/>
-            <m:ToolbarSpacer/>
-            <m:Avatar
-              displaySize="XS"
-              backgroundColor="Transparent"
-              displayShape="Circle"
-              showBorder="false"   
-              src="${ifmLogo}"           
-            />
-          </tnt:ToolHeader>
+          <f:ShellBar title="IFM HACK"
+            secondTitle="Health Analysis Conversion Kit"
+            showMenuButton="true"
+            homeIcon="${ifmLogo}"
+            menuButtonPressed="onMenuButtonPress">
+            <f:menu>
+              <Menu>
+                <MenuItem text="Flight booking" icon="sap-icon://flight" />
+                <MenuItem text="Car rental" icon="sap-icon://car-rental" />
+              </Menu>
+            </f:menu>
+            <f:profile>
+              <m:Avatar
+                displaySize="XS"
+                backgroundColor="Transparent"
+                displayShape="Circle"
+                showBorder="false"
+                src="${ifmAvatar}"           
+              />
+            </f:profile>
+            <f:searchManager>
+              <f:SearchManager/>
+            </f:searchManager>
+          </f:ShellBar>
         </tnt:header>
         <tnt:sideContent>
           <tnt:SideNavigation
