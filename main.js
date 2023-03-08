@@ -67,7 +67,11 @@
             id="pageContainer"
             initialPage="root"> 
               <m:pages>           
-                <m:Page id="root">
+                <m:ScrollContainer
+                  id="root"
+                  horizontal="false"
+                  vertical="true"
+                  height="100%">
                   <m:IconTabBar
                     expandable="false"
                     class="sapUiResponsiveContentPadding">
@@ -83,8 +87,8 @@
                   <m:content>
                     <m:Panel height="70%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
                   </m:content>
-                </m:Page>
-                <m:Page id="p1">
+                </m:ScrollContainer>
+                <m:ScrollContainer id="p1">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="Unsupported Features"/>
@@ -102,8 +106,8 @@
                       title="{text}"
                       icon="{ref}"/>
                   </m:Tree>  
-                </m:Page>
-                <m:Page id="p2">
+                </m:ScrollContainer>
+                <m:ScrollContainer id="p2">
                   <m:OverflowToolbar>
                     <m:ToolbarSpacer/>
                     <m:Title text="About"/>
@@ -142,7 +146,7 @@
                        </f:GridContainer>
                     </m:Carousel>
                   </m:Panel>                  
-                </m:Page>
+                </m:ScrollContainer>
               </m:pages>
           </m:NavContainer>
         </tnt:mainContents>
@@ -188,6 +192,9 @@
       this._contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
       console.log("content lib");
       console.log(this._contentLib);
+      this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
+      console.log("story service");
+      console.log(this._storyService);
 
 
     }
@@ -1163,8 +1170,6 @@
     if (sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase) {
       console.log(sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase);
     }
-
-
 
     // try detect runtime settings
     if (window.sap && sap.fpa && sap.fpa.ui && sap.fpa.ui.infra) {
