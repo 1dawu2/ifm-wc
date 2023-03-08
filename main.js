@@ -192,10 +192,16 @@
       this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
       console.log("story service");
       console.log(this._storyService)
-      this._storyContent = sap.fpa.ui.story.StoryFetcher.getContent("59A395046F3F8A41401B0B1C28FD787D");
-      console.log("story content");
-      console.log(this._storyContent);
+      this.getStory("59A395046F3F8A41401B0B1C28FD787D");
 
+
+    }
+
+    async getStory(storyID) {
+      let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+      console.log("story content");
+      console.log(storyContent);
+      return storyContent
     }
 
     getIsOptimizedEnabled() {
