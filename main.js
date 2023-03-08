@@ -25,7 +25,7 @@
       xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
       class="ifm-hack">
-      <tnt:ToolPage id="toolPage" sideExpanded="false">
+      <tnt:ToolPage id="toolPage">
         <tnt:header>
           <tnt:ToolHeader>
             <m:Button
@@ -260,7 +260,7 @@
             },
 
             onCollapseExpandPress: function () {
-              var oNavigationList = this.byId("sideNavigationList");
+              var oNavigationList = this.byId("toolPage");
               var bExpanded = oNavigationList.getExpanded();
 
               oNavigationList.setExpanded(!bExpanded);
