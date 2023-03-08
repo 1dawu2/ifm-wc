@@ -32,12 +32,6 @@
             showMenuButton="true"
             homeIcon="${ifmLogo}"
             menuButtonPressed="onMenuButtonPress">
-            <f:menu>
-              <Menu>
-                <MenuItem text="Flight booking" icon="sap-icon://flight" />
-                <MenuItem text="Car rental" icon="sap-icon://car-rental" />
-              </Menu>
-            </f:menu>
             <f:profile>
               <m:Avatar
                 displaySize="XS"
@@ -47,9 +41,6 @@
                 src="${ifmAvatar}"           
               />
             </f:profile>
-            <f:searchManager>
-              <f:SearchManager/>
-            </f:searchManager>
           </f:ShellBar>
         </tnt:header>
         <tnt:sideContent>
