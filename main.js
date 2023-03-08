@@ -185,8 +185,18 @@
       // this._oStoryContainer.showConvertToOptimizedDesignModeDialog();
       // "sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"
       // sap.fpa.story.optimizedModeFeaturesValidator
+      this._contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
+      console.log("content lib");
+      console.log(this._contentLib);
 
 
+    }
+
+    getContentLibService() {
+      return sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib")
+    }
+    getStoryService() {
+      return sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService")
     }
 
     getIsOptimizedEnabled() {
