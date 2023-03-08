@@ -70,83 +70,81 @@
         <tnt:mainContents>
           <m:NavContainer
             id="pageContainer"
-            initialPage="root"> 
-              <m:pages>           
-                <m:Page id="root">
-                  <m:IconTabBar
-                    expandable="false"
-                    class="sapUiResponsiveContentPadding">
-                    <m:items>
-                      <m:IconTabFilter
-                        id="countInput"
-                        icon="sap-icon://clinical-order"
-                        count="{rowCounter>/counter}"
-                        text="Stories"
-                        key="All" />
-                    </m:items>
-                  </m:IconTabBar>
-                  <m:content>
-                    <m:Panel expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
-                  </m:content>
-                </m:Page>
-                <m:Page id="p1">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="Unsupported Features"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
-                  <m:Tree
-                    id="featureList"
-                    items="{/}">
-                    <m:headerToolbar>
-                      <m:OverflowToolbar>
-                        <m:Title text="Feature List" />
-                      </m:OverflowToolbar>
-                    </m:headerToolbar>
-                    <m:StandardTreeItem
-                      title="{text}"
-                      icon="{ref}"/>
-                  </m:Tree>  
-                </m:Page>
-                <m:Page id="p2">
-                  <m:OverflowToolbar>
-                    <m:ToolbarSpacer/>
-                    <m:Title text="About"/>
-                    <m:ToolbarSpacer/>
-                  </m:OverflowToolbar>
-                  <m:Panel
-                    id="About">
-                    <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
-                      <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
-                      <m:Image src="${imgCompany}" alt="Company" />
-                      <m:Image src="${imgProblem}" alt="Problem Statement" />
-                      <m:Image src="${imgSolution}" alt="Solution" />
-                      <f:GridContainer
-                        id="grid1"
-                        snapToRow="true">
-                        	<f:layout>
-		                        <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
-	                        </f:layout>
-                          <f:Card width="400px">
-                            <f:header>
-                              <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
-                            </f:header>
-                            <f:content>
-                              <m:List
-                                showSeparators="None"
-                                items="{products>/productItems}">
-                                <m:StandardListItem
-                                  description="{products>subtitle}"
-                                  icon="{products>iconFile}"
-                                  title="{products>title}" />
-                              </m:List>
-                            </f:content>
-                          </f:Card>
-                       </f:GridContainer>
-                    </m:Carousel>
-                  </m:Panel>                  
-                </m:Page>
-              </m:pages>
+            initialPage="root">           
+              <m:Page id="root">
+                <m:IconTabBar
+                  expandable="false"
+                  class="sapUiResponsiveContentPadding">
+                  <m:items>
+                    <m:IconTabFilter
+                      id="countInput"
+                      icon="sap-icon://clinical-order"
+                      count="{rowCounter>/counter}"
+                      text="Stories"
+                      key="All" />
+                  </m:items>
+                </m:IconTabBar>
+                <m:content>
+                  <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
+                </m:content>
+              </m:Page>
+              <m:Page id="p1">
+                <m:OverflowToolbar>
+                  <m:ToolbarSpacer/>
+                  <m:Title text="Unsupported Features"/>
+                  <m:ToolbarSpacer/>
+                </m:OverflowToolbar>
+                <m:Tree
+                  id="featureList"
+                  items="{/}">
+                  <m:headerToolbar>
+                    <m:OverflowToolbar>
+                      <m:Title text="Feature List" />
+                    </m:OverflowToolbar>
+                  </m:headerToolbar>
+                  <m:StandardTreeItem
+                    title="{text}"
+                    icon="{ref}"/>
+                </m:Tree>  
+              </m:Page>
+              <m:Page id="p2">
+                <m:OverflowToolbar>
+                  <m:ToolbarSpacer/>
+                  <m:Title text="About"/>
+                  <m:ToolbarSpacer/>
+                </m:OverflowToolbar>
+                <m:Panel
+                  id="About">
+                  <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
+                    <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
+                    <m:Image src="${imgCompany}" alt="Company" />
+                    <m:Image src="${imgProblem}" alt="Problem Statement" />
+                    <m:Image src="${imgSolution}" alt="Solution" />
+                    <f:GridContainer
+                      id="grid1"
+                      snapToRow="true">
+                        <f:layout>
+                          <f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem" />
+                        </f:layout>
+                        <f:Card width="400px">
+                          <f:header>
+                            <card:Header iconSrc="${ifmAvatar}" title="Kontakt" subtitle="David Wurm" />
+                          </f:header>
+                          <f:content>
+                            <m:List
+                              showSeparators="None"
+                              items="{products>/productItems}">
+                              <m:StandardListItem
+                                description="{products>subtitle}"
+                                icon="{products>iconFile}"
+                                title="{products>title}" />
+                            </m:List>
+                          </f:content>
+                        </f:Card>
+                      </f:GridContainer>
+                  </m:Carousel>
+                </m:Panel>                  
+              </m:Page>
           </m:NavContainer>
         </tnt:mainContents>
       </tnt:ToolPage>
