@@ -16,7 +16,7 @@
     </style>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
-      height="100%"
+      height="70%"
       controllerName="ifm.hack.initial"
       xmlns:core="sap.ui.core"
       xmlns:t="sap.ui.table"
@@ -81,7 +81,7 @@
                     </m:items>
                   </m:IconTabBar>
                   <m:content>
-                    <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
+                    <m:Panel height="70%" expandable="true" expanded="true" headerText="SAC artifacts" id="oPanel"></m:Panel>
                   </m:content>
                 </m:Page>
                 <m:Page id="p1">
