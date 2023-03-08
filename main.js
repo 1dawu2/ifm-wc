@@ -260,10 +260,13 @@
             },
 
             onCollapseExpandPress: function () {
-              var oNavigationList = this.byId("toolPage");
-              var bExpanded = oNavigationList.getExpanded();
+              // var oNavigationList = this.byId("toolPage");
+              // var bExpanded = oNavigationList.getExpanded();
 
-              oNavigationList.setExpanded(!bExpanded);
+              // oNavigationList.setExpanded(!bExpanded);
+              var toolPage = this.byId("toolPage");
+
+              toolPage.setSideExpanded(!toolPage.getSideExpanded());
             },
 
             configGrid: function () {
