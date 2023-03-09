@@ -657,6 +657,10 @@
       });
       oView.placeAt(content);
 
+      if (that_._designMode) {
+        oView.byId("passwordInput").setEnabled(false);
+      }
+
     }
 
     /**
@@ -682,6 +686,9 @@
      * @param changedProperties - An object containing the changed properties.
      */
     onCustomWidgetBeforeUpdate(changedProperties) {
+      if ("designMode" in changedProperties) {
+        this._designMode = changedProperties["designMode"];
+      }
     }
 
     /**
