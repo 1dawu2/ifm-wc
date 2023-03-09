@@ -633,10 +633,10 @@
         });
 
       //### THE APP: place the XMLView somewhere into DOM ###
-      var oView = new sap.ui.core.mvc.XMLView({
-        viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-      });
-      oView.placeAt(content);
+      // var oView = new sap.ui.core.mvc.XMLView({
+      //   viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+      // });
+      // oView.placeAt(content);
 
     }
 
@@ -645,8 +645,8 @@
      * @param width - The width of the widget.
      * @param height - The height of the widget.
      */
-    // onCustomWidgetResize(width, height) {
-    // }
+    onCustomWidgetResize(width, height) {
+    }
 
     /**
      * The connectedCallback() function is called when the element is inserted into the DOM.
