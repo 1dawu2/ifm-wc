@@ -195,29 +195,8 @@
       this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
       console.log("story service");
       console.log(this._storyService)
-      this.getStory("59A395046F3F8A41401B0B1C28FD787D");
 
 
-    }
-
-    async getStory(storyID) {
-      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-      console.log("story content");
-      console.log(storyContent);
-      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-      console.log("optimized");
-      console.log(isOptimized);
-      return isOptimized
-    }
-
-    getIsOptimizedEnabled() {
-      var t = e.get(sap.fpa.ui.story.StoryIntegration.CONTRIBUTIONS.DOCUMENT_STORE)
-        , n = !1;
-      if (t) {
-        var o = t.getState();
-        n = i(12136).isOptimizedEnabled(o)
-      }
-      return n
     }
 
     /**
@@ -478,7 +457,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
-                template: new sap.ui.commons.TextView({ text: "" + this.getStory("{artifact>id}") + "" }),
+                template: new sap.ui.commons.TextView({ text: "" + getStory("{artifact>id}") + "" }),
                 // sortProperty: "createdBy",
                 // filterProperty: "createdBy",
               }));
@@ -761,6 +740,15 @@
   }
   customElements.define("com-ifm-hack-stories", IFMStories);
 
+  async function getStory(storyID) {
+    let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+    console.log("story content");
+    console.log(storyContent);
+    let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+    console.log("optimized");
+    console.log(isOptimized);
+    return isOptimized
+  }
 
   function initSAC(e) {
     jQuery.sap.declare("sap.fpa.ui.story.StoryIntegration"),
