@@ -470,8 +470,8 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: async function (storyID) {
-                      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+                    formatter: async function (id) {
+                      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(id);
                       console.log("story content");
                       console.log(storyContent);
                       let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
