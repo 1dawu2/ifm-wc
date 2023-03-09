@@ -247,6 +247,10 @@
 
       var that_ = that;
 
+      let content = document.createElement('div');
+      content.slot = "content";
+      that_.appendChild(content);
+
       sap.ui.define(
         [
           "sap/ui/core/mvc/Controller",
@@ -459,7 +463,7 @@
                     type: "sap.ui.model.type.Date",
                     formatOptions: {
                       source: {
-                        pattern: 'yyyy-MM-ddTHH:mm:ss Z' //2021-05-02T19:39:28.484Z
+                        pattern: 'yyyy-MM-ddTHH:mm:ss Z'
                       },
                       pattern: 'yyyy-MM-dd'
                     }
@@ -467,6 +471,13 @@
                 }),
                 sortProperty: "created",
                 filterProperty: "created",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
+                template: new sap.ui.commons.TextView({ text: "test" }),
+                // sortProperty: "createdBy",
+                // filterProperty: "createdBy",
               }));
 
               oTable.setModel(oModel, "artifact");
@@ -590,6 +601,11 @@
                       aCols.push({
                         label: 'Created by',
                         property: 'createdBy',
+                      });
+
+                      aCols.push({
+                        label: 'Template (false/true)',
+                        property: 'isTemplate',
                       });
 
                       aCols.push({
