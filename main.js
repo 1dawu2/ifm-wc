@@ -207,7 +207,7 @@
       let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
       console.log("optimized");
       console.log(isOptimized);
-      return storyContent
+      return isOptimized
     }
 
     getIsOptimizedEnabled() {
@@ -478,7 +478,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
-                template: new sap.ui.commons.TextView({ text: "test" }),
+                template: new sap.ui.commons.TextView({ text: this.getStory("{ artifact> id}") }),
                 // sortProperty: "createdBy",
                 // filterProperty: "createdBy",
               }));
