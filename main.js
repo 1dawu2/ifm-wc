@@ -117,7 +117,8 @@
                   <m:ToolbarSpacer/>
                 </m:OverflowToolbar>
                 <m:Panel
-                  id="About">
+                  id="About"
+                  width="90%">
                   <m:Carousel class="sapUiContentPadding" loop="true" showPageIndicator="true">
                     <m:Image src="${backImg}" alt="INFOMOTION GmbH" />
                     <m:Image src="${imgCompany}" alt="Company" />
