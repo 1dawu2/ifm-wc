@@ -457,7 +457,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
-                template: new sap.ui.commons.TextView({ text: "" + getStory("{artifact>id}") + "" }),
+                template: new sap.ui.commons.TextView({ text: "" + getStory(artifact > id) + "" }),
                 // sortProperty: "createdBy",
                 // filterProperty: "createdBy",
               }));
