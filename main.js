@@ -465,7 +465,7 @@
                       source: {
                         pattern: 'yyyy-MM-ddTHH:mm:ss Z'
                       },
-                      pattern: 'yyyy-MM-dd'
+                      pattern: 'yyyy-MM-ddTHH:mm:ss'
                     }
                   }
                 }),
