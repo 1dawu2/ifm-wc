@@ -469,7 +469,7 @@
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
-                    path: "{artifact>id}",
+                    path: 'artifact>id',
                     formatter: '.getStoryOptimized'
                   }
                 }),
