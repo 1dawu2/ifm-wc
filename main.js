@@ -498,9 +498,9 @@
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
-                  new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
+                  // new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
 
-                  }),
+                  // }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://begin",
                     press: function (oEvent) {
