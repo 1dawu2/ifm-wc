@@ -14,6 +14,9 @@
   tmpl.innerHTML = `
     <style>
     </style>
+    <div id="ifm_hack_content" name="ifm_hack_content">
+      <slot name="content"></slot>
+    </div>
     <script id="oView" name="oView" type="sapui5/xmlview">
     <mvc:View
       controllerName="ifm.hack.initial"
@@ -633,10 +636,10 @@
         });
 
       //### THE APP: place the XMLView somewhere into DOM ###
-      // var oView = new sap.ui.core.mvc.XMLView({
-      //   viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
-      // });
-      // oView.placeAt(content);
+      var oView = new sap.ui.core.mvc.XMLView({
+        viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
+      });
+      oView.placeAt(content);
 
     }
 
