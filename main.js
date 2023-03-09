@@ -470,7 +470,15 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: '.getStoryOptimized'
+                    formatter: async function (storyID) {
+                      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+                      console.log("story content");
+                      console.log(storyContent);
+                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+                      console.log("optimized");
+                      console.log(isOptimized);
+                      return isOptimized
+                    }
                   }
                 }),
                 // sortProperty: "createdBy",
