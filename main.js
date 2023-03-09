@@ -245,6 +245,16 @@
 
           return Controller.extend("ifm.hack.initial", {
 
+            getStoryOptimized: async function (storyID) {
+              let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+              console.log("story content");
+              console.log(storyContent);
+              let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+              console.log("optimized");
+              console.log(isOptimized);
+              return isOptimized
+            },
+
             onItemSelect: function (oEvent) {
               var oItem = oEvent.getParameter("item");
               this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
@@ -457,7 +467,12 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
-                template: new sap.ui.commons.TextView({ text: "" + getStory('artifact>id') + "" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: "{artifact>id}",
+                    formatter: '.getStoryOptimized'
+                  }
+                }),
                 // sortProperty: "createdBy",
                 // filterProperty: "createdBy",
               }));
@@ -739,16 +754,6 @@
 
   }
   customElements.define("com-ifm-hack-stories", IFMStories);
-
-  async function getStory(storyID) {
-    let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-    console.log("story content");
-    console.log(storyContent);
-    let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-    console.log("optimized");
-    console.log(isOptimized);
-    return isOptimized
-  }
 
   function initSAC(e) {
     jQuery.sap.declare("sap.fpa.ui.story.StoryIntegration"),
