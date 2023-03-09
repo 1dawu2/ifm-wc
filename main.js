@@ -480,24 +480,27 @@
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
 
-              oTable.setToolbar(new sap.m.Toolbar({
-                design: sap.m.ToolbarDesign.Info,
-                content: [
-                  new sap.ui.commons.Button({
-                    icon: "sap-icon://resize-vertical",
-                    press: function (oEvent) {
-                      if (oTable.getVisibleRowCountMode() === "Interactive") {
-                        oTable.setVisibleRowCountMode("Auto");
-                      } else {
-                        oTable.setVisibleRowCountMode("Interactive");
-                      }
-                    }
-                  }),
-                ]
-              }));
+              // oTable.setToolbar(new sap.m.Toolbar({
+              //   design: sap.m.ToolbarDesign.Info,
+              //   content: [
+              //     new sap.ui.commons.Button({
+              //       icon: "sap-icon://resize-vertical",
+              //       press: function (oEvent) {
+              //         if (oTable.getVisibleRowCountMode() === "Interactive") {
+              //           oTable.setVisibleRowCountMode("Auto");
+              //         } else {
+              //           oTable.setVisibleRowCountMode("Interactive");
+              //         }
+              //       }
+              //     }),
+              //   ]
+              // }));
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
+                  new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
+
+                  }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://begin",
                     press: function (oEvent) {
