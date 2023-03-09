@@ -201,7 +201,7 @@
     }
 
     async getStory(storyID) {
-      let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
       console.log("story content");
       console.log(storyContent);
       return storyContent
