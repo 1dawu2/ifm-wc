@@ -494,11 +494,11 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    // formatter: this.getStoryOptimized(id).then(
-                    //   function (value) {
-                    //     return value;
-                    //   }
-                    // )
+                    formatter: this.getStoryOptimized(id).then(
+                      function (value) {
+                        return value;
+                      }
+                    )
                   }
                 }),
                 // sortProperty: "createdBy",
