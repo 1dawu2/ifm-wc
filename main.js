@@ -494,7 +494,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: getStoryOptimized(id).then(
+                    formatter: this.getStoryOptimized(id).then(
                       function (value) {
                         return value;
                       }
