@@ -46,7 +46,6 @@
               id="pSwitchBtn"
               icon="sap-icon://grid"
               press=".onSwitchOpen" />
-            <m:ToolbarSpacer/>
             <m:Avatar
               displaySize="XS"
               backgroundColor="Transparent"
