@@ -457,7 +457,7 @@
                       source: {
                         pattern: 'yyyy-MM-ddTHH:mm:ss Z'
                       },
-                      pattern: 'yyyy-MM-ddTHH:mm:ss'
+                      pattern: 'dd.MM.yyyy HH:mm'
                     }
                   }
                 }),
@@ -487,22 +487,6 @@
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows("artifact>/");
-
-              // oTable.setToolbar(new sap.m.Toolbar({
-              //   design: sap.m.ToolbarDesign.Info,
-              //   content: [
-              //     new sap.ui.commons.Button({
-              //       icon: "sap-icon://resize-vertical",
-              //       press: function (oEvent) {
-              //         if (oTable.getVisibleRowCountMode() === "Interactive") {
-              //           oTable.setVisibleRowCountMode("Auto");
-              //         } else {
-              //           oTable.setVisibleRowCountMode("Interactive");
-              //         }
-              //       }
-              //     }),
-              //   ]
-              // }));
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
