@@ -264,6 +264,7 @@
               this.oSwitchMenu = this.byId("pSwitchBtn");
               var oSwitch = new sap.f.ProductSwitch({
                 items: new sap.f.ProductSwitchItem({
+                  src: "sap-icon://cloud",
                   title: "SAP Analytics Cloud",
                   target: "_blank",
                   targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
