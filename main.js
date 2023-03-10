@@ -261,16 +261,24 @@
             },
 
             onSwitchOpen: function (oEvent) {
-              this.oSwitchMenu = this.byId("pSwitchBtn");
+              // this.oSwitchMenu = this.byId("pSwitchBtn");
               var oSwitch = new sap.f.ProductSwitch({
-                items: new sap.f.ProductSwitchItem({
-                  src: "sap-icon://cloud",
-                  title: "SAP Analytics Cloud",
-                  target: "_blank",
-                  targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
-                })
+                items: [
+                  new sap.f.ProductSwitchItem({
+                    src: "sap-icon://cloud",
+                    title: "SAP Analytics Cloud",
+                    target: "_blank",
+                    targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
+                  }),
+                  new sap.f.ProductSwitchItem({
+                    src: "sap-icon://sap-logo-shape",
+                    title: "SAP Datasphere",
+                    target: "_blank",
+                    targetSrc: "https://dwc-infomotion.eu10.hcs.cloud.sap/dwaas-ui/index.html#/home"
+                  }),
+                ]
               });
-              this.oSwitchMenu.addContent(oSwitch);
+              // this.oSwitchMenu.addContent(oSwitch);
 
             },
 
@@ -487,16 +495,11 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: new Promise((function (id) {
-                      var storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
-                      console.log("story content");
-                      console.log(storyContent);
-                      var isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-                      console.log("optimized");
-                      console.log(isOptimized);
-                      return isOptimized
-                    }
-                    ))
+                    formatter: getStoryOptimized(id).then(
+                      function (value) {
+                        return value;
+                      }
+                    )
                   }
                 }),
                 // sortProperty: "createdBy",
