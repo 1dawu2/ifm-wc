@@ -42,6 +42,11 @@
             <m:ToolbarSpacer/>
             <m:Title text="IFM Health Analysis Conversion Kit" level="H1"/>
             <m:ToolbarSpacer/>
+            <m:Button
+              id="pSwitchBtn"
+              icon="sap-icon://grid"
+              press=".onSwitchOpen" />
+            <m:ToolbarSpacer/>
             <m:Avatar
               displaySize="XS"
               backgroundColor="Transparent"
@@ -255,6 +260,19 @@
               return isOptimized
             },
 
+            onSwitchOpen: function (oEvent) {
+              this.oSwitchMenu = this.byId("pSwitchBtn");
+              var oSwitch = new sap.f.ProductSwitch({
+                items: new sap.f.ProductSwitchItem({
+                  title: "SAP Analytics Cloud",
+                  target: "_blank",
+                  targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
+                })
+              });
+              this.oSwitchMenu.addContent(oSwitch);
+
+            },
+
             onItemSelect: function (oEvent) {
               var oItem = oEvent.getParameter("item");
               this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
@@ -341,8 +359,6 @@
               var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
               var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
               sap.ui.getCore().setModel(oTreeModel);
-              console.log("Tree Model");
-              console.log(oTreeModel);
             },
 
             bindTable: function (oEvent, oWidgetObj) {
