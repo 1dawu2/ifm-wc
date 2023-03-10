@@ -277,6 +277,7 @@
                   }),
                 ]
               });
+              this.getView().addDependent(oSwitch);
               // this.oSwitchMenu.addContent(oSwitch);
 
             },
@@ -628,6 +629,8 @@
                       aCols.push({
                         label: 'Created',
                         property: 'created',
+                        type: "sap.ui.model.type.Date",
+                        inputFormat: 'yyyy-MM-ddTHH:mm:ss Z',
                       });
 
                       oSettings = {
