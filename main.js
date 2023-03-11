@@ -315,7 +315,7 @@
               var oItemPressed = oEvent.getParameter("itemPressed"),
                 sTargetSrc = oItemPressed.getTargetSrc();
 
-              MessageToast.show("Redirecting to " + sTargetSrc);
+              sap.m.MessageToast.show("Redirecting to " + sTargetSrc);
 
               // Open the targetSrc manually
               URLHelper.redirect(sTargetSrc, true);
@@ -365,7 +365,7 @@
                       xmlns:m="sap.m"
                       xmlns:f="sap.f"
                       xmlns:core="sap.ui.core">
-                      <m:ResponsivePopover placement="Bottom" showHeader="false" >
+                      <m:ResponsivePopover contentWidth: "300px" placement="Bottom" showHeader="false" >
                         <f:ProductSwitch change="onSwitchChange">
                           <f:items>
                             <f:ProductSwitchItem
@@ -574,6 +574,7 @@
                 }),
                 sortProperty: "isTemplate",
                 filterProperty: "isTemplate",
+                filterType: new sap.ui.model.type.Boolean(),
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -623,7 +624,6 @@
                     press: function (oEvent) {
                       // TODO: call conversion for selected table entries
                       var oContext;
-                      var oObject;
                       var oURL;
                       var selectedEntries = [];
 
