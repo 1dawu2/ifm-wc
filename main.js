@@ -249,6 +249,14 @@
 
           return Controller.extend("ifm.hack.initial", {
 
+            onInit: function (oEvent) {
+              this.oPanel = this.byId("oPanel");
+              this.bindTable(oEvent, this.oPanel);
+              this.bindTree(oEvent);
+              this.configGrid();
+              this.configProductSwitch();
+            },
+
             getStoryOptimized: async function (storyID) {
               let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
               console.log("story content");
@@ -259,40 +267,54 @@
               return isOptimized
             },
 
-            onSwitchOpen: function (oEvent) {
-              // this.oSwitchMenu = this.byId("pSwitchBtn");
-              var oSwitchView = this.getView();
-              var oButton = this.getView().byId("pSwitchBtn");
-              var oSwitch = new sap.f.ProductSwitch({
-                items: [
-                  new sap.f.ProductSwitchItem({
-                    src: "sap-icon://cloud",
-                    title: "SAP Analytics Cloud",
-                    target: "_blank",
-                    targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
-                  }),
-                  new sap.f.ProductSwitchItem({
-                    src: "sap-icon://sap-logo-shape",
-                    title: "SAP Datasphere",
-                    target: "_blank",
-                    targetSrc: "https://dwc-infomotion.eu10.hcs.cloud.sap/dwaas-ui/index.html#/home"
-                  }),
-                ]
+            onSwitchChange: function (oEvent) {
+              var oItemPressed = oEvent.getParameter("itemPressed"),
+                sTargetSrc = oItemPressed.getTargetSrc();
+
+              MessageToast.show("Redirecting to " + sTargetSrc);
+
+              // Open the targetSrc manually
+              URLHelper.redirect(sTargetSrc, true);
+            },
+
+            onSwitchClose: function () {
+              this._pPopover.then(function (oPopover) {
+                oPopover.close();
               });
-              oSwitchView.addDependent(oSwitch);
-              oSwitch.openBy(oButton);
+            },
+
+            onSwitchOpen: function (oEvent) {
+              var oButton = this.getView().byId("pSwitchBtn");
+              this._pPopover.then(function (oPopover) {
+                oPopover.openBy(oButton);
+              });
+              // this.oSwitchMenu = this.byId("pSwitchBtn");
+              // var oSwitchView = this.getView();
+              // var oButton = this.getView().byId("pSwitchBtn");
+              // var oSwitch = new sap.f.ProductSwitch({
+              //   items: [
+              //     new sap.f.ProductSwitchItem({
+              //       src: "sap-icon://cloud",
+              //       title: "SAP Analytics Cloud",
+              //       target: "_blank",
+              //       targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
+              //     }),
+              //     new sap.f.ProductSwitchItem({
+              //       src: "sap-icon://sap-logo-shape",
+              //       title: "SAP Datasphere",
+              //       target: "_blank",
+              //       targetSrc: "https://dwc-infomotion.eu10.hcs.cloud.sap/dwaas-ui/index.html#/home"
+              //     }),
+              //   ]
+              // });
+              // oSwitchView.addDependent(oSwitch);
+              // oSwitch.openBy(oButton);
+
             },
 
             onItemSelect: function (oEvent) {
               var oItem = oEvent.getParameter("item");
               this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
-            },
-
-            onInit: function (oEvent) {
-              this.oPanel = this.byId("oPanel");
-              this.bindTable(oEvent, this.oPanel);
-              this.bindTree(oEvent);
-              this.configGrid();
             },
 
             onCollapseExpandPress: function () {
@@ -303,6 +325,30 @@
               var toolPage = this.byId("toolPage");
 
               toolPage.setSideExpanded(!toolPage.getSideExpanded());
+            },
+
+            configProductSwitch: function () {
+              var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
+              var oSwitchModel = new sap.ui.model.json.JSONModel(sJSON);
+
+              oSwitchView = this.getView();
+              oSwitchView.setModel(oSwitchModel);
+
+              if (!this._pPopover) {
+                this._pPopover = sap.ui.core.Fragment.load({
+                  // type: "XML",
+                  // definition: '<Button xmlns="sap.m" id="xmlfragbtn" text="This is an XML Fragment" press="doSomething"></Button>'
+                  id: oSwitchView.getId(),
+                  name: "product_switch",
+                  controller: this
+                }).then(function (oPopover) {
+                  oSwitchView.addDependent(oPopover);
+                  if (Device.system.phone) {
+                    oPopover.setEndButton(new Button({ text: "Close", type: "Emphasized", press: this.onSwitchClose.bind(this) }));
+                  }
+                  return oPopover;
+                }.bind(this));
+              }
             },
 
             configGrid: function () {
