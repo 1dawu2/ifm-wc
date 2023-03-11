@@ -650,7 +650,9 @@
                         label: 'Created',
                         property: 'created',
                         type: "sap.ui.model.type.Date",
-                        inputFormat: 'dd.MM.yyyy HH:mm',
+                        // type: "sap.ui.model.type.DateTime",
+                        // timezone: "Europe/Berlin"
+                        format: 'dd.MM.yyyy HH:mm',
                       });
 
                       oSettings = {
