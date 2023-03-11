@@ -501,13 +501,19 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
-                      console.log("story content");
-                      console.log(storyContent);
-                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-                      console.log("optimized");
-                      console.log(isOptimized);
-                      return isOptimized
+                      // let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
+                      // console.log("story content");
+                      // console.log(storyContent);
+                      // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+                      // console.log("optimized");
+                      // console.log(isOptimized);
+
+                      const isOptimized = async () => {
+                        const rValue = getStoryOptimized(id)
+                        return await Promise.resolve(rValue);
+                      }
+
+                      // return isOptimized
                       // getStoryOptimized(id).then(
                       //   function (value) {
                       //     return value;
