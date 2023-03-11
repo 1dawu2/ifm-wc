@@ -331,7 +331,7 @@
               var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
               var oSwitchModel = new sap.ui.model.json.JSONModel(sJSON);
 
-              oSwitchView = this.getView();
+              var oSwitchView = this.getView();
               oSwitchView.setModel(oSwitchModel);
 
               if (!this._pPopover) {
