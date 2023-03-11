@@ -336,10 +336,17 @@
 
               if (!this._pPopover) {
                 this._pPopover = sap.ui.core.Fragment.load({
-                  // type: "XML",
-                  // definition: '<Button xmlns="sap.m" id="xmlfragbtn" text="This is an XML Fragment" press="doSomething"></Button>'
-                  id: oSwitchView.getId(),
-                  name: "product_switch",
+                  type: "XML",
+                  definition: `
+                    <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core">
+                      < ResponsivePopover placement="Bottom" showHeader="false" >
+                        <f:ProductSwitch change="onSwitchChange" items="{ path: '/items' }">
+                          <f:items>
+                            <f:ProductSwitchItem src="{src}" title="{title}" subTitle="{subTitle}" targetSrc="{targetSrc}" target="{target}" />
+                          </f:items>
+                        </f:ProductSwitch>
+                      </ResponsivePopover>
+                    </core: FragmentDefinition >`,
                   controller: this
                 }).then(function (oPopover) {
                   oSwitchView.addDependent(oPopover);
