@@ -353,7 +353,7 @@
                   controller: this
                 }).then(function (oPopover) {
                   oSwitchView.addDependent(oPopover);
-                  if (Device.system.phone) {
+                  if (sap.ui.Device.system.phone) {
                     oPopover.setEndButton(new Button({ text: "Close", type: "Emphasized", press: this.onSwitchClose.bind(this) }));
                   }
                   return oPopover;
