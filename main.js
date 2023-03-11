@@ -328,11 +328,12 @@
             },
 
             configProductSwitch: function () {
-              var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
-              var oSwitchModel = new sap.ui.model.json.JSONModel(sJSON);
+              var psJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
+              var oSwitchModel = new sap.ui.model.json.JSONModel(psJSON);
 
               var oSwitchView = this.getView();
               oSwitchView.setModel(oSwitchModel);
+              sap.ui.getCore().setModel(oSwitchModel);
 
               if (!this._pPopover) {
                 this._pPopover = sap.ui.core.Fragment.load({
@@ -552,8 +553,8 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: async function (id) {
-                      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(id);
+                    formatter: function (id) {
+                      let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
                       console.log("story content");
                       console.log(storyContent);
                       let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
@@ -568,8 +569,8 @@
                     }
                   }
                 }),
-                // sortProperty: "createdBy",
-                // filterProperty: "createdBy",
+                sortProperty: "id",
+                filterProperty: "id",
               }));
 
               oTable.setModel(oModel, "artifact");
