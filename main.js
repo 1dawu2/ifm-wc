@@ -495,7 +495,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: async function callGetStoryOptimized(id) {
+                    formatter: async function (id) {
                       getStoryOptimized(id).then(
                         function (value) {
                           return value;
@@ -632,7 +632,7 @@
                         label: 'Created',
                         property: 'created',
                         type: "sap.ui.model.type.Date",
-                        inputFormat: 'yyyy-MM-ddTHH:mm:ss Z',
+                        inputFormat: 'dd.MM.yyyy HH:mm',
                       });
 
                       oSettings = {
