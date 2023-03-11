@@ -310,7 +310,7 @@
               var oSwitchModel = new sap.ui.model.json.JSONModel(psJSON);
 
               var oSwitchView = this.getView();
-              oSwitchView.setModel(oSwitchModel);
+              oSwitchView.setModel(oSwitchModel, "pSwitch");
               // sap.ui.getCore().setModel(oSwitchModel);
 
               if (!this._pPopover) {
@@ -322,7 +322,7 @@
                       xmlns:f="sap.f"
                       xmlns:core="sap.ui.core">
                       <m:ResponsivePopover placement="Bottom" showHeader="false" >
-                        <f:ProductSwitch change="onSwitchChange" items="{ path: '/items' }">
+                        <f:ProductSwitch change="onSwitchChange" items="{ path: 'pSwitch>/items' }">
                           <f:items>
                             <f:ProductSwitchItem src="{src}" title="{title}" subTitle="{subTitle}" targetSrc="{targetSrc}" target="{target}" />
                           </f:items>
