@@ -81,6 +81,7 @@
               <m:Page id="root">
                 <m:IconTabBar
                   expandable="false"
+                  select=".onFilterSelect"
                   class="sapUiResponsiveContentPadding">
                   <m:items>
                     <m:IconTabFilter
@@ -89,6 +90,11 @@
                       count="{rowCounter>/counter}"
                       text="Stories"
                       key="All" />
+                    <m:IconTabFilter
+                      id="activityLog"
+                      icon="sap-icon://clinical-tast-tracker"
+                      text="Activity Log"
+                      key="Activity" />
                   </m:items>
                 </m:IconTabBar>
                 <m:content>
@@ -265,6 +271,17 @@
               console.log("optimized");
               console.log(isOptimized);
               return isOptimized
+            },
+
+            onFilterSelect: function (oEvent) {
+              sKey = oEvent.getParameter("key");
+
+              if (sKey === "Activity") {
+                var oModelActivities = new sap.ui.model.json.JSONModel();
+                var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
+                oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+              }
+
             },
 
             onSwitchChange: function (oEvent) {
@@ -447,37 +464,23 @@
                     var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
                       sap.m.MessageToast.show("no data");
-                      // var noDataDialog = new sap.m.Dialog({
-                      //   title: "Info",
-                      //   type: DialogType.Message,
-                      //   state: ValueState.Information,
-                      //   content: illustratedMsg,
-                      //   beginButton: new sap.m.Button({
-                      //     type: ButtonType.Emphasized,
-                      //     text: "OK",
-                      //     press: function () {
-                      //       noDataDialog.close();
-                      //     }.bind(this)
-                      //   })
-                      // });
-                      // noDataDialog.open();
                     }
                   });
                 }
               }, oTable);
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Name" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
-                sortProperty: "name",
-                filterProperty: "name",
-              }));
-
-              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Story ID" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>id}" }),
                 sortProperty: "id",
                 filterProperty: "id",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Name" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
+                sortProperty: "name",
+                filterProperty: "name",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -489,9 +492,32 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "URL" }),
-                template: new sap.m.Link({ text: "{artifact>name}", href: "{artifact>openURL}", target: "_blank" }),
-                sortProperty: "name",
-                filterProperty: "name",
+                template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>id',
+                    formatter: function (id) {
+                      let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
+                      console.log("story content");
+                      console.log(storyContent);
+                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+                      console.log("optimized");
+                      console.log(isOptimized);
+                      return isOptimized
+                      // getStoryOptimized(id).then(
+                      //   function (value) {
+                      //     return value;
+                      //   }
+                      // )
+                    }
+                  }
+                }),
+                sortProperty: "id",
+                filterProperty: "id",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -524,31 +550,6 @@
                 }),
                 sortProperty: "created",
                 filterProperty: "created",
-              }));
-
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>id',
-                    formatter: function (id) {
-                      let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
-                      console.log("story content");
-                      console.log(storyContent);
-                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-                      console.log("optimized");
-                      console.log(isOptimized);
-                      return isOptimized
-                      // getStoryOptimized(id).then(
-                      //   function (value) {
-                      //     return value;
-                      //   }
-                      // )
-                    }
-                  }
-                }),
-                sortProperty: "id",
-                filterProperty: "id",
               }));
 
               oTable.setModel(oModel, "artifact");
@@ -598,39 +599,7 @@
                       oBusy.close();
                     }
                   }),
-                  // new sap.ui.commons.Button({
-                  //   icon: "sap-icon://action-settings",
-                  //   press: function () {
-                  //     var oModelActivities = new sap.ui.model.json.JSONModel();
-                  //     var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                  //     oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
-                  //     // var oActivityDialog = new sap.m.Dialog({
-                  //     //   title: "Advanced Settings",
-                  //     //   content: new Text({ text: "Export the SAC activity log." }),
-                  //     //   beginButton: new sap.m.Button({
-                  //     //     text: "Export Log",
-                  //     //     press: function () {
-                  //     //       // var oBusy = new sap.m.BusyDialog();
-                  //     //       var oModelActivities = new sap.ui.model.json.JSONModel();
-                  //     //       // oModelActivities.attachRequestSent(function () {
-                  //     //       //   oBusy.open();
-                  //     //       // });
-                  //     //       var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                  //     //       oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
-                  //     //       oModelActivities.attachRequestCompleted(function (oEvent) {
-                  //     //         var oActivityData = oEvent.getSource().oActivityData;
-                  //     //         console.log(oActivityData);
-                  //     //       });
-                  //     //       // oModelActivities.attachRequestCompleted(function (oEvent) {
-                  //     //       //   // oBusy.close();
-                  //     //       // });
-                  //     //       oActivityDialog.close();
-                  //     //     }.bind(this)
-                  //     //   })
-                  //     // });
-                  //     // oActivityDialog.open();
-                  //   }
-                  // }),
+
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
                     press: function (oEvent) {
