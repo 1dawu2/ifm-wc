@@ -283,7 +283,7 @@
 
                 oModelActivities.attachRequestCompleted(function (oEvent) {
                   var oData = oEvent.getSource().oData;
-                  console.log(oSwitchData);
+                  console.log(oData);
                 });
 
               }
@@ -561,7 +561,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>isTemplate',
-                    type: sap.ui.model.odata.type.Boolean,
+                    type: "sap.ui.model.odata.type.Boolean",
                   }
                 }),
                 sortProperty: "isTemplate",
