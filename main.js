@@ -338,7 +338,10 @@
                 this._pPopover = sap.ui.core.Fragment.load({
                   type: "XML",
                   definition: `
-                    <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core">
+                    <core:FragmentDefinition
+                      xmlns:m="sap.m"
+                      xmlns:f="sap.f"
+                      xmlns:core="sap.ui.core">
                       <m:ResponsivePopover placement="Bottom" showHeader="false" >
                         <f:ProductSwitch change="onSwitchChange" items="{ path: '/items' }">
                           <f:items>
