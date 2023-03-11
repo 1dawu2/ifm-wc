@@ -497,11 +497,18 @@
                   text: {
                     path: 'artifact>id',
                     formatter: async function (id) {
-                      getStoryOptimized(id).then(
-                        function (value) {
-                          return value;
-                        }
-                      )
+                      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(id);
+                      console.log("story content");
+                      console.log(storyContent);
+                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+                      console.log("optimized");
+                      console.log(isOptimized);
+                      return isOptimized
+                      // getStoryOptimized(id).then(
+                      //   function (value) {
+                      //     return value;
+                      //   }
+                      // )
                     }
                   }
                 }),
