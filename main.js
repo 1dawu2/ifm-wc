@@ -261,7 +261,7 @@
 
             onSwitchOpen: function (oEvent) {
               // this.oSwitchMenu = this.byId("pSwitchBtn");
-              this.getView().addDependent(oSwitch);
+              var oSwitchView = this.getView();
               var oButton = this.getView().byId("pSwitchBtn");
               var oSwitch = new sap.f.ProductSwitch({
                 items: [
@@ -279,6 +279,7 @@
                   }),
                 ]
               });
+              oSwitchView.addDependent(oSwitch);
               oSwitch.openBy(oButton);
             },
 
