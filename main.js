@@ -339,14 +339,14 @@
                   type: "XML",
                   definition: `
                     <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core">
-                      < ResponsivePopover placement="Bottom" showHeader="false" >
+                      <m:ResponsivePopover placement="Bottom" showHeader="false" >
                         <f:ProductSwitch change="onSwitchChange" items="{ path: '/items' }">
                           <f:items>
                             <f:ProductSwitchItem src="{src}" title="{title}" subTitle="{subTitle}" targetSrc="{targetSrc}" target="{target}" />
                           </f:items>
                         </f:ProductSwitch>
-                      </ResponsivePopover>
-                    </core: FragmentDefinition >`,
+                      </m:ResponsivePopover>
+                    </core:FragmentDefinition >`,
                   controller: this
                 }).then(function (oPopover) {
                   oSwitchView.addDependent(oPopover);
