@@ -543,7 +543,7 @@
                         return await Promise.resolve(rValue);
                       }
 
-                      // return isOptimized
+                      return isOptimized
                       // getStoryOptimized(id).then(
                       //   function (value) {
                       //     return value;
