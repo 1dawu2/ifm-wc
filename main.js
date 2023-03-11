@@ -288,28 +288,6 @@
               this._pPopover.then(function (oPopover) {
                 oPopover.openBy(oButton);
               });
-              // this.oSwitchMenu = this.byId("pSwitchBtn");
-              // var oSwitchView = this.getView();
-              // var oButton = this.getView().byId("pSwitchBtn");
-              // var oSwitch = new sap.f.ProductSwitch({
-              //   items: [
-              //     new sap.f.ProductSwitchItem({
-              //       src: "sap-icon://cloud",
-              //       title: "SAP Analytics Cloud",
-              //       target: "_blank",
-              //       targetSrc: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
-              //     }),
-              //     new sap.f.ProductSwitchItem({
-              //       src: "sap-icon://sap-logo-shape",
-              //       title: "SAP Datasphere",
-              //       target: "_blank",
-              //       targetSrc: "https://dwc-infomotion.eu10.hcs.cloud.sap/dwaas-ui/index.html#/home"
-              //     }),
-              //   ]
-              // });
-              // oSwitchView.addDependent(oSwitch);
-              // oSwitch.openBy(oButton);
-
             },
 
             onItemSelect: function (oEvent) {
@@ -333,7 +311,7 @@
 
               var oSwitchView = this.getView();
               oSwitchView.setModel(oSwitchModel);
-              sap.ui.getCore().setModel(oSwitchModel);
+              // sap.ui.getCore().setModel(oSwitchModel);
 
               if (!this._pPopover) {
                 this._pPopover = sap.ui.core.Fragment.load({
