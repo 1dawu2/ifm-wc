@@ -282,6 +282,32 @@
                 oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
               }
 
+              if (sKey === "All") {
+                var oDialog = new sap.m.Dialog({
+                  resizable: true,
+                  content: "",
+                  state: 'Info',
+                  beginButton: new sap.m.Button({
+                    press: function () {
+                      this.getParent().close();
+                    },
+                    text: "OK"
+                  }),
+                  customHeader: new sap.m.Bar({
+                    contentLeft: [oBackButton],
+                    contentMiddle: [
+                      new Title({
+                        text: "Story Übersicht",
+                        level: TitleLevel.H1
+                      })
+                    ]
+                  }),
+                  contentHeight: "50%",
+                  contentWidth: "50%",
+                  verticalScrolling: false
+                });
+              }
+
             },
 
             onSwitchChange: function (oEvent) {
