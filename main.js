@@ -285,7 +285,7 @@
               if (sKey === "All") {
                 var oDialog = new sap.m.Dialog({
                   resizable: true,
-                  content: "",
+                  content: "In der Übersichtsliste die jeweiligen Stories markieren und den Konvertierungsmodus starten",
                   state: 'Info',
                   beginButton: new sap.m.Button({
                     press: function () {
@@ -294,11 +294,9 @@
                     text: "OK"
                   }),
                   customHeader: new sap.m.Bar({
-                    contentLeft: [oBackButton],
                     contentMiddle: [
                       new Title({
                         text: "Story Übersicht",
-                        level: TitleLevel.H1
                       })
                     ]
                   }),
