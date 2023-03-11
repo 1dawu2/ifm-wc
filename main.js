@@ -581,7 +581,8 @@
                       source: {
                         pattern: 'yyyy-MM-ddTHH:mm:ss Z'
                       },
-                      pattern: 'dd.MM.yyyy HH:mm'
+                      pattern: 'dd.MM.yyyy HH:mm',
+                      UTC: false,
                     }
                   }
                 }),
