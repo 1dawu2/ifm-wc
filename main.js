@@ -315,10 +315,10 @@
               var oItemPressed = oEvent.getParameter("itemPressed"),
                 sTargetSrc = oItemPressed.getTargetSrc();
 
-              sap.m.MessageToast.show("Redirecting to " + sTargetSrc);
+              sap.m.MessageToast.show(sTargetSrc) + " wird geöffnet";
 
               // Open the targetSrc manually
-              URLHelper.redirect(sTargetSrc, true);
+              sap.m.URLHelper.redirect(sTargetSrc, true);
             },
 
             onSwitchClose: function () {
@@ -365,7 +365,7 @@
                       xmlns:m="sap.m"
                       xmlns:f="sap.f"
                       xmlns:core="sap.ui.core">
-                      <m:ResponsivePopover contentWidth="300px" placement="Bottom" showHeader="false" >
+                      <m:ResponsivePopover contentWidth="450px" placement="Bottom" showHeader="false" >
                         <f:ProductSwitch change="onSwitchChange">
                           <f:items>
                             <f:ProductSwitchItem
