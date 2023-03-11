@@ -350,12 +350,12 @@
             },
 
             configProductSwitch: function () {
-              var psJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
-              var oSwitchModel = new sap.ui.model.json.JSONModel(psJSON);
+              // var psJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
+              // var oSwitchModel = new sap.ui.model.json.JSONModel(psJSON);
 
               var oSwitchView = this.getView();
               // oSwitchView.setModel(oSwitchModel, );
-              sap.ui.getCore().setModel(oSwitchModel, "pSwitch");
+              // sap.ui.getCore().setModel(oSwitchModel, "pSwitch");
 
               if (!this._pPopover) {
                 this._pPopover = sap.ui.core.Fragment.load({
@@ -366,9 +366,20 @@
                       xmlns:f="sap.f"
                       xmlns:core="sap.ui.core">
                       <m:ResponsivePopover placement="Bottom" showHeader="false" >
-                        <f:ProductSwitch change="onSwitchChange" items="{ path: 'pSwitch>/items' }">
+                        <f:ProductSwitch change="onSwitchChange">
                           <f:items>
-                            <f:ProductSwitchItem src="{src}" title="{title}" subTitle="{subTitle}" targetSrc="{targetSrc}" target="{target}" />
+                            <f:ProductSwitchItem
+                              src="sap-icon://cloud"
+                              title="SAP Analytics Cloud"
+                              subTitle="Landing Page"
+                              targetSrc="https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/home"
+                              target="_blank" />
+                            <f:ProductSwitchItem
+                              src="sap-icon://sap-logo-shape"
+                              title="SAP Datasphere"
+                              subTitle="Landing Page"
+                              targetSrc="https://dwc-infomotion.eu10.hcs.cloud.sap/dwaas-ui/index.html#/home"
+                              target="_blank" />
                           </f:items>
                         </f:ProductSwitch>
                       </m:ResponsivePopover>
@@ -554,7 +565,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Template (false/true)" }),
+                label: new sap.ui.commons.Label({ text: "Template (No/Yes)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>isTemplate',
@@ -588,11 +599,10 @@
                     path: 'artifact>created',
                     type: "sap.ui.model.odata.type.Date", //sap.ui.model.type.Date
                     formatOptions: {
-                      source: {
-                        pattern: 'yyyy-MM-ddTHH:mm:ss Z'
-                      },
+                      // source: {
+                      //   pattern: 'yyyy-MM-ddTHH:mm:ss Z'
+                      // },
                       pattern: 'dd.MM.yyyy HH:mm',
-                      UTC: false,
                     }
                   }
                 }),
