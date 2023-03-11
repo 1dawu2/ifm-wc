@@ -351,8 +351,8 @@
               var oSwitchModel = new sap.ui.model.json.JSONModel(psJSON);
 
               var oSwitchView = this.getView();
-              oSwitchView.setModel(oSwitchModel, "pSwitch");
-              // sap.ui.getCore().setModel(oSwitchModel);
+              // oSwitchView.setModel(oSwitchModel, );
+              sap.ui.getCore().setModel(oSwitchModel, "pSwitch");
 
               if (!this._pPopover) {
                 this._pPopover = sap.ui.core.Fragment.load({
