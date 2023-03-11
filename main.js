@@ -554,9 +554,14 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (false/true)" }),
-                template: new sap.ui.commons.TextView({ text: "" + "{artifact>isTemplate}" + "" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>isTemplate',
+                    type: sap.ui.model.odata.type.Boolean,
+                  }
+                }),
                 sortProperty: "isTemplate",
-                // filterProperty: "isTemplate",
+                filterProperty: "isTemplate",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -665,6 +670,7 @@
                       aCols.push({
                         label: 'Template (false/true)',
                         property: 'isTemplate',
+                        type: 'sap.ui.model.odata.type.Boolean',
                       });
 
                       aCols.push({
