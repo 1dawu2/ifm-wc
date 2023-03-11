@@ -365,7 +365,7 @@
                       xmlns:m="sap.m"
                       xmlns:f="sap.f"
                       xmlns:core="sap.ui.core">
-                      <m:ResponsivePopover contentWidth: "300px" placement="Bottom" showHeader="false" >
+                      <m:ResponsivePopover contentWidth="300px" placement="Bottom" showHeader="false" >
                         <f:ProductSwitch change="onSwitchChange">
                           <f:items>
                             <f:ProductSwitchItem
