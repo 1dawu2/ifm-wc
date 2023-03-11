@@ -576,6 +576,15 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Created orig" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>created',
+                  }
+                }),
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
                 template: new sap.ui.commons.TextView({
                   text: {
