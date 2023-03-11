@@ -274,7 +274,7 @@
             },
 
             onFilterSelect: function (oEvent) {
-              sKey = oEvent.getParameter("key");
+              var sKey = oEvent.getParameter("key");
 
               if (sKey === "Activity") {
                 var oModelActivities = new sap.ui.model.json.JSONModel();
