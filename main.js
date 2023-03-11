@@ -538,7 +538,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: async function (id) {
+                    formatter: function (id) {
                       let storyContent = Promise.resolve(sap.fpa.ui.story.StoryFetcher.getContent(id));
                       console.log("story content");
                       console.log(storyContent);
