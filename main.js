@@ -278,7 +278,7 @@
 
               if (sKey === "Activity") {
                 var oModelActivities = new sap.ui.model.json.JSONModel();
-                var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
+                var cHeaders = { "DataServiceVersion": "2.0", "Accept": "*/*" };
                 oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities", null, true, "GET", null, false, cHeaders);
 
               }
@@ -286,7 +286,9 @@
               if (sKey === "All") {
                 var oDialog = new sap.m.Dialog({
                   resizable: true,
-                  content: "In der Übersichtsliste die jeweiligen Stories markieren und den Konvertierungsmodus starten",
+                  content: new sap.m.TextView({
+                    text: "Stories markieren und Konvertierungsmodus starten"
+                  }),
                   state: 'Info',
                   beginButton: new sap.m.Button({
                     press: function () {
@@ -525,18 +527,18 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: function (id) {
-                      // let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(id);
-                      // console.log("story content");
-                      // console.log(storyContent);
-                      // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-                      // console.log("optimized");
-                      // console.log(isOptimized);
+                    formatter: async function (id) {
+                      let storyContent = Promise.resolve(sap.fpa.ui.story.StoryFetcher.getContent(id));
+                      console.log("story content");
+                      console.log(storyContent);
+                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+                      console.log("optimized");
+                      console.log(isOptimized);
 
-                      const isOptimized = async () => {
-                        const rValue = getStoryOptimized(id)
-                        return await Promise.resolve(rValue);
-                      }
+                      // const isOptimized = async () => {
+                      //   const rValue = getStoryOptimized(id)
+                      //   return await Promise.resolve(rValue);
+                      // }
 
                       return isOptimized
                       // getStoryOptimized(id).then(
@@ -584,7 +586,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>created',
-                    type: "sap.ui.model.type.Date",
+                    type: "sap.ui.model.odata.type.Date", //sap.ui.model.type.Date
                     formatOptions: {
                       source: {
                         pattern: 'yyyy-MM-ddTHH:mm:ss Z'
