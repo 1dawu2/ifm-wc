@@ -282,7 +282,7 @@
                 oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", oData, true, "POST", null, false, cHeader);
 
                 oModelActivities.attachRequestCompleted(function (oEvent) {
-                  var oSwitchData = oEvent.getSource().oData;
+                  var oData = oEvent.getSource().oData;
                   console.log(oSwitchData);
                 });
 
