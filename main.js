@@ -279,7 +279,7 @@
               if (sKey === "Activity") {
                 var oModelActivities = new sap.ui.model.json.JSONModel();
                 var cHeader = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", null, true, "GET", null, false, cHeader);
+                oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100000&csvName=activities", oData, true, "POST", null, false, cHeader);
 
                 oModelActivities.attachRequestCompleted(function (oEvent) {
                   var oSwitchData = oEvent.getSource().oData;
