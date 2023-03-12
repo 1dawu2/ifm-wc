@@ -540,6 +540,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Test" }),
                 template: new sap.ui.core.Icon({ src: "sap-icon://complete" }),
+                hAlign: "Center"
               }));
 
 
