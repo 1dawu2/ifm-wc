@@ -585,15 +585,6 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Created orig" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>created',
-                  }
-                }),
-              }));
-
-              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Created" }),
                 template: new sap.ui.commons.TextView({
                   text: {
@@ -601,10 +592,10 @@
                     type: "sap.ui.model.type.Date",
                     formatOptions: {
                       UTC: true,
-                      source: {
-                        pattern: 'yyyy-MM-ddTHH:mm:ss Z'
-                      },
-                      pattern: 'dd.MM.yyyy HH:mm',
+                      // source: {
+                      //   pattern: 'yyyy-MM-ddTHH:mm:ss Z'
+                      // },
+                      // pattern: 'dd.MM.yyyy HH:mm',
                     }
                   }
                 }),
