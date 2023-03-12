@@ -588,7 +588,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: async function (id) {
-                      const storyContent = await getStoryOptimized(id);
+                      const storyContent = await this.getStoryOptimized(id);
                       console.log("story content");
                       console.log(storyContent);
                       // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
