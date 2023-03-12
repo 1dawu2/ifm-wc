@@ -472,15 +472,20 @@
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
                 oBusy.close();
+                var storyArtifacts = oModel.getProperty("artifact>id");
+                console.log("story ids");
+                console.log(storyArtifacts);
               });
-              console.log("JSON Model:");
-              console.log(oModel);
+
 
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
                 showNoData: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
+
+              oTable.setModel(oModel, "artifact");
+              oTable.bindRows("artifact>/");
 
               // register a table event handler
               oTable.addEventDelegate({
@@ -604,9 +609,6 @@
                 sortProperty: "created",
                 filterProperty: "created",
               }));
-
-              oTable.setModel(oModel, "artifact");
-              oTable.bindRows("artifact>/");
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
