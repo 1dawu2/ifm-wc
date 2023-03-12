@@ -592,9 +592,9 @@
                     type: "sap.ui.model.type.Date",
                     formatOptions: {
                       UTC: true,
-                      // source: {
-                      //   pattern: 'yyyy-MM-ddTHH:mm:ss Z'
-                      // },
+                      source: {
+                        pattern: 'yyyy-MM-ddTHH:mm:ss Z'
+                      },
                       // pattern: 'dd.MM.yyyy HH:mm',
                     }
                   }
