@@ -539,7 +539,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Test" }),
-                template: sap.ui.core.Icon({ src: "sap-icon://complete" }),
+                template: new sap.ui.core.Icon({ src: "sap-icon://complete" }),
               }));
 
 
