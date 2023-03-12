@@ -431,7 +431,6 @@
                 }
               );
               sap.ui.getCore().setModel(modelProduct, "products");
-              console.log(modelProduct);
 
               oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
                 sourceAggregation: "items"
@@ -481,7 +480,7 @@
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
                 oBusy.close();
-                var storyArtifacts = oModel.getProperty("artifact>id");
+                var storyArtifacts = oModel.getProperty("/id");
                 console.log("story ids");
                 console.log(storyArtifacts);
               });
@@ -492,9 +491,6 @@
                 showNoData: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
-
-              oTable.setModel(oModel, "artifact");
-              oTable.bindRows("artifact>/");
 
               // register a table event handler
               oTable.addEventDelegate({
@@ -615,6 +611,9 @@
                 sortProperty: "created",
                 filterProperty: "created",
               }));
+
+              oTable.setModel(oModel, "artifact");
+              oTable.bindRows("artifact>/");
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
