@@ -331,7 +331,7 @@
                       text: "Stories markieren und Konvertierungsmodus starten"
                     }),
                     new sap.m.IllustratedMessage({
-                      illustrationType: "sap.m.IllustratedMessageType.SimpleCheckMark"
+                      illustrationType: "sapIllus-SimpleCheckMark"
                     })
                   ],
                   beginButton: new sap.m.Button({
