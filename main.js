@@ -281,23 +281,28 @@
 
             onFilterSelect: function (oEvent) {
               var sKey = oEvent.getParameter("key");
-              var downloadItems = "100";
 
               if (sKey === "Activity") {
+
+                var downloadItems = "100";
 
                 var oActivityDialog = new sap.m.Dialog({
                   resizable: false,
                   contentWidth: "400px",
-                  content: new sap.m.RangeSlider({
+                  content: new sap.m.StepInput({
                     change: function (value) {
                       downloadItems = value;
                     },
-                    range: [0, 100000],
-                    value2: 100
+                    description: "Zeilen",
+                    min: 1,
+                    max: 100000,
+                    step: 1000,
+                    value: 100,
+                    textAlign: "Center",
                   }),
                   beginButton: new sap.m.Button({
                     press: function () {
-                      var activityURL = `"https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=${downloadItems}&csvName=activities"`;
+                      var activityURL = `'https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=${downloadItems}&csvName=activities'`;
                       sap.m.URLHelper.redirect(activityURL, true);
                       this.getParent().close();
                     },
@@ -638,7 +643,7 @@
                     formatOptions: {
                       UTC: true,
                       source: {
-                        pattern: 'yyyy-MM-ddTHH:mm:ss Z',
+                        pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
                       },
                       // style: 'full',
                       // calendarType: 'sap.ui.core.CalendarType.Gregorian',
