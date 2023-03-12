@@ -318,7 +318,7 @@
               var oItemPressed = oEvent.getParameter("itemPressed"),
                 sTargetSrc = oItemPressed.getTargetSrc();
 
-              sap.m.MessageToast.show(sTargetSrc) + " wird geöffnet";
+              sap.m.MessageToast.show(sTargetSrc + " wird geöffnet");
 
               // Open the targetSrc manually
               sap.m.URLHelper.redirect(sTargetSrc, true);
