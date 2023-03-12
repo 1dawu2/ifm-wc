@@ -516,7 +516,7 @@
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
                 oBusy.close();
-                var storyArtifacts = oModel.getProperty("/id");
+                var storyArtifacts = oModel.getProperty("artifact>/id");
                 console.log("story ids");
                 console.log(storyArtifacts);
               });
@@ -593,7 +593,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: async function (id) {
-                      const storyContent = await this.getStoryOptimized(id);
+                      const storyContent = await getStoryOptimized(id);
                       console.log("story content");
                       console.log(storyContent);
                       // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
