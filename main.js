@@ -265,9 +265,9 @@
             },
 
             getStoryOptimized: function (storyID) {
-              return new Promise((resolve) => {
+              return new Promise(function (resolve) {
                 setTimeout(() => {
-                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 2000);
+                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000);
                 });
               });
               // let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(storyID);
@@ -597,15 +597,19 @@
                   text: {
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
-                    formatter: async function (id) {
-                      const storyContent = await getStoryOptimized(id);
-                      console.log("story content");
-                      console.log(storyContent);
+                    formatter: function (id) {
+                      var storyContent = this.getStoryOptimized(id);
+                      storyContent.then(function (data) {
+                        console.log("story content");
+                        console.log(data);
+                        return data
+                      }.bind(this)).catch(function (oError) {
+                        console.log(oError);
+                      }.bind(this));
+
                       // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
                       // console.log("optimized");
                       // console.log(isOptimized);
-
-                      return storyContent
                       // getStoryOptimized(id).then(
                       //   function (value) {
                       //     return value;
