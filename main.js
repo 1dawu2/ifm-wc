@@ -205,6 +205,7 @@
       this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
       console.log("story service");
       console.log(this._storyService)
+      // o.getUnsupportedFeatures(this._getStoryModel(), this.getDocumentContext(), n, t);
 
 
     }
@@ -290,9 +291,7 @@
               if (sKey === "All") {
                 var oDialog = new sap.m.Dialog({
                   resizable: true,
-                  content: new sap.m.TextView({
-                    text: "Stories markieren und Konvertierungsmodus starten"
-                  }),
+                  content: new sap.ui.commons.TextView({ text: "Stories markieren und Konvertierungsmodus starten" }),
                   state: 'Info',
                   beginButton: new sap.m.Button({
                     press: function () {
