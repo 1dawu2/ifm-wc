@@ -289,7 +289,7 @@
               };
 
               if (sKey === "All") {
-                var oDialog = new sap.m.Dialog({
+                var oAllDialog = new sap.m.Dialog({
                   resizable: true,
                   content: new sap.ui.commons.TextView({ text: "Stories markieren und Konvertierungsmodus starten" }),
                   beginButton: new sap.m.Button({
@@ -310,6 +310,7 @@
                   verticalScrolling: false
                 });
               };
+              oAllDialog.open();
 
             },
 
