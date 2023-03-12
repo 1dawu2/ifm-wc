@@ -277,11 +277,15 @@
               var sKey = oEvent.getParameter("key");
 
               if (sKey === "Activity") {
-                var oModelActivities = new sap.ui.model.json.JSONModel();
-                var cHeaders = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities", null, true, "GET", null, false, cHeaders);
 
-              }
+                var activityURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities";
+                sap.m.URLHelper.redirect(activityURL, true);
+
+                // var oModelActivities = new sap.ui.model.json.JSONModel();
+                // var cHeaders = { "DataServiceVersion": "2.0", "Accept": "*/*" };
+                // oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities", null, true, "GET", null, false, cHeaders);
+
+              };
 
               if (sKey === "All") {
                 var oDialog = new sap.m.Dialog({
@@ -307,7 +311,7 @@
                   contentWidth: "50%",
                   verticalScrolling: false
                 });
-              }
+              };
 
             },
 
