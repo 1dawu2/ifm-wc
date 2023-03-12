@@ -292,7 +292,6 @@
                 var oDialog = new sap.m.Dialog({
                   resizable: true,
                   content: new sap.ui.commons.TextView({ text: "Stories markieren und Konvertierungsmodus starten" }),
-                  state: 'Info',
                   beginButton: new sap.m.Button({
                     press: function () {
                       this.getParent().close();
