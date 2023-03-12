@@ -264,14 +264,19 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID) {
-              let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-              console.log("story content");
-              console.log(storyContent);
-              let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-              console.log("optimized");
-              console.log(isOptimized);
-              return isOptimized
+            getStoryOptimized: function (storyID) {
+              return new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 2000);
+                });
+              });
+              // let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+              // console.log("story content");
+              // console.log(storyContent);
+              // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+              // console.log("optimized");
+              // console.log(isOptimized);
+              // return isOptimized
             },
 
             onFilterSelect: function (oEvent) {
@@ -290,7 +295,8 @@
 
               if (sKey === "All") {
                 var oAllDialog = new sap.m.Dialog({
-                  resizable: true,
+                  resizable: false,
+                  contentWidth: "400px",
                   content: new sap.ui.commons.TextView({ text: "Stories markieren und Konvertierungsmodus starten" }),
                   beginButton: new sap.m.Button({
                     press: function () {
@@ -550,14 +556,14 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: async function (id) {
-                      let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(id);
+                      const storyContent = await getStoryOptimized(id);
                       console.log("story content");
                       console.log(storyContent);
-                      let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-                      console.log("optimized");
-                      console.log(isOptimized);
+                      // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
+                      // console.log("optimized");
+                      // console.log(isOptimized);
 
-                      return isOptimized
+                      return storyContent
                       // getStoryOptimized(id).then(
                       //   function (value) {
                       //     return value;
@@ -596,7 +602,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>created',
-                    type: "sap.ui.model.type.Date",
+                    type: "sap.ui.model.type.DateTime",
                     formatOptions: {
                       UTC: true,
                       source: {
@@ -604,7 +610,7 @@
                       },
                       // style: 'full',
                       // calendarType: 'sap.ui.core.CalendarType.Gregorian',
-                      pattern: 'dd.MM.yyyy HH:mm',
+                      // pattern: 'dd.MM.yyyy HH:mm',
                     }
                   }
                 }),
