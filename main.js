@@ -660,6 +660,7 @@
                 }),
                 sortProperty: "created",
                 filterProperty: "created",
+                filterType: new sap.ui.model.type.DateTime(),
               }));
 
               oTable.setModel(oModel, "artifact");
