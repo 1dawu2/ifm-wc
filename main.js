@@ -547,7 +547,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    type: "sap.ui.model.odata.type.Boolean",
+                    // type: "sap.ui.model.odata.type.Boolean",
                     formatter: async function (id) {
                       let storyContent = await sap.fpa.ui.story.StoryFetcher.getContent(id);
                       console.log("story content");
@@ -566,8 +566,8 @@
                   }
                 }),
                 sortProperty: "id",
-                filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
+                // filterProperty: "id",
+                // filterType: new sap.ui.model.type.Boolean(),
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
