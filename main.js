@@ -552,11 +552,6 @@
                       console.log("optimized");
                       console.log(isOptimized);
 
-                      // const isOptimized = async () => {
-                      //   const rValue = getStoryOptimized(id)
-                      //   return await Promise.resolve(rValue);
-                      // }
-
                       return isOptimized
                       // getStoryOptimized(id).then(
                       //   function (value) {
@@ -600,7 +595,9 @@
                     formatOptions: {
                       UTC: true,
                       source: {
-                        pattern: 'yyyy-MM-ddTHH:mm:ss Z'
+                        pattern: 'yyyy-MM-ddTHH:mm:ss Z',
+                        style: 'full',
+                        calendarType: 'sap.ui.core.CalendarType.Gregorian',
                       },
                       // pattern: 'dd.MM.yyyy HH:mm',
                     }
