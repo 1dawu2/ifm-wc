@@ -281,23 +281,49 @@
 
             onFilterSelect: function (oEvent) {
               var sKey = oEvent.getParameter("key");
+              var downloadItems = "100";
 
               if (sKey === "Activity") {
 
-                var activityURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities";
-                sap.m.URLHelper.redirect(activityURL, true);
-
-                // var oModelActivities = new sap.ui.model.json.JSONModel();
-                // var cHeaders = { "DataServiceVersion": "2.0", "Accept": "*/*" };
-                // oModelActivities.loadData("https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities", null, true, "GET", null, false, cHeaders);
-
+                var oActivityDialog = new sap.m.Dialog({
+                  resizable: false,
+                  contentWidth: "400px",
+                  content: new sap.m.RangeSlider({
+                    change: function (value) {
+                      downloadItems = value;
+                    },
+                    range: [0, 100000],
+                    value2: 100
+                  }),
+                  beginButton: new sap.m.Button({
+                    press: function () {
+                      var activityURL = `"https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=${downloadItems}&csvName=activities"`;
+                      sap.m.URLHelper.redirect(activityURL, true);
+                      this.getParent().close();
+                    },
+                    text: "OK"
+                  }),
+                  customHeader: new sap.m.Bar({
+                    contentMiddle: [
+                      new sap.m.Title({
+                        text: "Download Optionen",
+                      })
+                    ]
+                  }),
+                  contentHeight: "50%",
+                  contentWidth: "50%",
+                  verticalScrolling: false
+                });
+                oActivityDialog.open();
               };
 
               if (sKey === "All") {
                 var oAllDialog = new sap.m.Dialog({
                   resizable: false,
                   contentWidth: "400px",
-                  content: new sap.ui.commons.TextView({ text: "Stories markieren und Konvertierungsmodus starten" }),
+                  content: new sap.ui.commons.TextView({
+                    text: "Stories markieren und Konvertierungsmodus starten"
+                  }),
                   beginButton: new sap.m.Button({
                     press: function () {
                       this.getParent().close();
@@ -315,9 +341,8 @@
                   contentWidth: "50%",
                   verticalScrolling: false
                 });
+                oAllDialog.open();
               };
-              oAllDialog.open();
-
             },
 
             onSwitchChange: function (oEvent) {
