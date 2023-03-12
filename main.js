@@ -571,7 +571,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Template (No/Yes)" }),
+                label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>isTemplate',
