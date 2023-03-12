@@ -598,7 +598,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      var storyContent = this.getStoryOptimized(id);
+                      var storyContent = getStoryOptimized(id);
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data);
