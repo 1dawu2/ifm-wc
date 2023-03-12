@@ -251,7 +251,7 @@
           "sap/f/dnd/GridDropInfo",
           "sap/ui/core/library",
         ],
-        function (Controller) { //JSONModel, DragInfo, GridDropInfo
+        function (Controller) {
           "use strict";
 
           return Controller.extend("ifm.hack.initial", {
@@ -326,9 +326,14 @@
                 var oAllDialog = new sap.m.Dialog({
                   resizable: false,
                   contentWidth: "400px",
-                  content: new sap.ui.commons.TextView({
-                    text: "Stories markieren und Konvertierungsmodus starten"
-                  }),
+                  content: [
+                    new sap.ui.commons.TextView({
+                      text: "Stories markieren und Konvertierungsmodus starten"
+                    }),
+                    new sap.m.IllustratedMessage({
+                      illustrationType: "sap.m.IllustratedMessageType.SimpleCheckMark"
+                    })
+                  ],
                   beginButton: new sap.m.Button({
                     press: function () {
                       this.getParent().close();
@@ -540,12 +545,12 @@
                       { counter: oLength }
                     );
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
-                    var illustratedMsg = new sap.m.IllustratedMessage({
-                      illustrationType: "sapIllus-NoData"
-                    });
-                    var ValueState = sap.ui.core.ValueState;
-                    var ButtonType = sap.m.ButtonType;
-                    var DialogType = sap.m.DialogType;
+                    // var illustratedMsg = new sap.m.IllustratedMessage({
+                    //   illustrationType: "sap.m.IllustratedMessageType.SimpleCheckMark"
+                    // });
+                    // var ValueState = sap.ui.core.ValueState;
+                    // var ButtonType = sap.m.ButtonType;
+                    // var DialogType = sap.m.DialogType;
                     if (oLength === 0) {
                       sap.m.MessageToast.show("no data");
                     }
