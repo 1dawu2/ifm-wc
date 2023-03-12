@@ -380,6 +380,12 @@
                               subTitle="Landing Page"
                               targetSrc="https://dwc-infomotion.eu10.hcs.cloud.sap/dwaas-ui/index.html#/home"
                               target="_blank" />
+                            <f:ProductSwitchItem
+                              src="sap-icon://headset"
+                              title="Support"
+                              subTitle="Landing Page"
+                              targetSrc="https://www.infomotion.de/"
+                              target="_blank" />
                           </f:items>
                         </f:ProductSwitch>
                       </m:ResponsivePopover>
