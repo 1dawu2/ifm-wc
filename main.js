@@ -607,8 +607,8 @@
                       source: {
                         pattern: 'yyyy-MM-ddTHH:mm:ss Z',
                       },
-                      style: 'full',
-                      calendarType: 'sap.ui.core.CalendarType.Gregorian',
+                      // style: 'full',
+                      // calendarType: 'sap.ui.core.CalendarType.Gregorian',
                       // pattern: 'dd.MM.yyyy HH:mm',
                     }
                   }
