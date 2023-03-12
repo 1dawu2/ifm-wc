@@ -609,7 +609,7 @@
                       },
                       // style: 'full',
                       // calendarType: 'sap.ui.core.CalendarType.Gregorian',
-                      // pattern: 'dd.MM.yyyy HH:mm',
+                      pattern: 'dd.MM.yyyy HH:mm',
                     }
                   }
                 }),
