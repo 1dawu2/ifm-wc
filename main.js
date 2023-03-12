@@ -538,6 +538,12 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Test" }),
+                template: sap.ui.core.Icon({ src: "sap-icon://complete" }),
+              }));
+
+
+              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
                 sortProperty: "description",
