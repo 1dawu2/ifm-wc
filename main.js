@@ -290,8 +290,8 @@
                   resizable: false,
                   contentWidth: "400px",
                   content: new sap.m.StepInput({
-                    change: function (value) {
-                      downloadItems = value;
+                    change: function (oEvent) {
+                      downloadItems = oEvent.getParameter("value");
                     },
                     description: "Zeilen",
                     min: 1,
@@ -645,9 +645,7 @@
                       source: {
                         pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
                       },
-                      // style: 'full',
-                      // calendarType: 'sap.ui.core.CalendarType.Gregorian',
-                      // pattern: 'dd.MM.yyyy HH:mm',
+                      pattern: 'dd.MM.yyyy HH:mm',
                     }
                   }
                 }),
