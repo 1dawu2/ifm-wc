@@ -20,8 +20,15 @@
                 ]
             },
             {
-                "text": "SAP Notes",
-                "ref": "sap-icon://activate"
+                "text": "SAP Notes BW Live Connection",
+                "ref": "sap-icon://activate",
+                "nodes": [
+                    {
+                        "text": "Central Note",
+                        "ref": "sap-icon://chain-link",
+                        "link": "https://launchpad.support.sap.com/#/notes/2715030"
+                    }
+                ]
             }
         ]
     }
