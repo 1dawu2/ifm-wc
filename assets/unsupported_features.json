@@ -8,13 +8,15 @@
                 "ref": "sap-icon://performance",
                 "nodes": [
                     {
-                        "text": "Story Builder",
+                        "text": "Optimize the Story Builder Performance",
                         "ref": "sap-icon://chain-link",
+                        "title": "Story Builder",
                         "link": "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/bf77843031e04ce6b6e721e67ccadeaf.html?locale=en-US"
                     },
                     {
-                        "text": "Best Practices",
+                        "text": "Best Practices for Performance Optimization in Your Story Design",
                         "ref": "sap-icon://chain-link",
+                        "title": "Best Practices",
                         "link": "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/fbe339efda1241b5a3f46cf17f54cdff.html?locale=en-US&state=PRODUCTION&version=release"
                     }
                 ]
@@ -24,8 +26,9 @@
                 "ref": "sap-icon://activate",
                 "nodes": [
                     {
-                        "text": "Central Note",
+                        "text": "Considerations when using SAP BW and SAP S/4HANA Live Connections in SAC",
                         "ref": "sap-icon://chain-link",
+                        "title": "Central Note",
                         "link": "https://launchpad.support.sap.com/#/notes/2715030"
                     }
                 ]

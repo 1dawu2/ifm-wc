@@ -116,11 +116,13 @@
                     </m:OverflowToolbar>
                   </m:headerToolbar>
                   <m:CustomTreeItem>
-                    <core:Icon src="{ref}" />
-                    <m:Link
-                      text="{text}"
-                      target="_blank"
-                      href="{link}" />
+                  	<m:HBox>
+			                <core:Icon size="2rem" src="{ref}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+			                <m:VBox  class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+                        <m:Link text="{text}" target="_blank" href="{link}" />
+                        <m:Label text="{title}"/>
+                      </m:VBox>
+                    </m:HBox>
                   </m:CustomTreeItem>
                 </m:Tree>  
               </m:Page>
