@@ -593,29 +593,19 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       var storyContent = that.getStoryOptimized(id);
-                      var isOptimized = false;
+                      var isOptimized = new sap.ui.model.type.Boolean();
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data.cdata.isOptimizedEnabled);
                         isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
 
-                      }.bind(this)).catch(function (oError) {
-                        console.log(oError);
-                        isOptimized = false;
+                        // }.bind(this)).catch(function (oError) {
+                        //   console.log(oError);
+                        //   isOptimized = false;
 
                       }.bind(this));
 
                       return isOptimized;
-
-
-                      // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-                      // console.log("optimized");
-                      // console.log(isOptimized);
-                      // getStoryOptimized(id).then(
-                      //   function (value) {
-                      //     return value;
-                      //   }
-                      // )
                     }
                   }
                 }),
