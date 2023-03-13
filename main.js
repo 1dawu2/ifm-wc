@@ -591,18 +591,18 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       var storyContent = that.getStoryOptimized(id);
                       storyContent.then(function (data) {
                         console.log("story content");
-                        console.log(data);
-                        let isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
+                        console.log(data.cdata.isOptimizedEnabled);
+                        var isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
+                        return isOptimized
                       }.bind(this)).catch(function (oError) {
                         console.log(oError);
                       }.bind(this));
 
-                      return isOptimized
+
                       // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
                       // console.log("optimized");
                       // console.log(isOptimized);
