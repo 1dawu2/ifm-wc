@@ -273,10 +273,12 @@
             },
 
             getStoryOptimized: function (storyID) {
-              return new Promise(function (resolve) {
-                // setTimeout(() => {
-                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
-                // });
+              return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 5000);
+                });
+                reject("error occurred while retrieving story details")
+
               });
             },
 
@@ -593,7 +595,7 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       var storyContent = that.getStoryOptimized(id);
-                      var isOptimized = new sap.ui.model.type.Boolean();
+                      var isOptimized;
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data.cdata.isOptimizedEnabled);
@@ -611,7 +613,7 @@
                 }),
                 sortProperty: "id",
                 filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
+                // filterType: new sap.ui.model.type.Boolean(),
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
