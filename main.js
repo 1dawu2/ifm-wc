@@ -213,7 +213,7 @@
       console.log(this._storyService)
       // o.getUnsupportedFeatures(this._getStoryModel(), this.getDocumentContext(), n, t);
       console.log("Story Info");
-      console.log(sap.fpa.ui.story.FpaStoryUtils.getStoryInfo("59A395046F3F8A41401B0B1C28FD787D"));
+      // console.log(sap.fpa.ui.story.FpaStoryUtils.getStoryInfo("59A395046F3F8A41401B0B1C28FD787D"));
 
 
     }
@@ -278,13 +278,6 @@
                   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000);
                 });
               });
-              // let storyContent = sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-              // console.log("story content");
-              // console.log(storyContent);
-              // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
-              // console.log("optimized");
-              // console.log(isOptimized);
-              // return isOptimized
             },
 
             onFilterSelect: function (oEvent) {
@@ -377,8 +370,6 @@
                 sTargetSrc = oItemPressed.getTargetSrc();
 
               sap.m.MessageToast.show(sTargetSrc + " wird geöffnet");
-
-              // Open the targetSrc manually
               sap.m.URLHelper.redirect(sTargetSrc, true);
             },
 
@@ -401,22 +392,13 @@
             },
 
             onCollapseExpandPress: function () {
-              // var oNavigationList = this.byId("toolPage");
-              // var bExpanded = oNavigationList.getExpanded();
-
-              // oNavigationList.setExpanded(!bExpanded);
               var toolPage = this.byId("toolPage");
-
               toolPage.setSideExpanded(!toolPage.getSideExpanded());
             },
 
             configProductSwitch: function () {
-              // var psJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/product_switch.json"
-              // var oSwitchModel = new sap.ui.model.json.JSONModel(psJSON);
 
               var oSwitchView = this.getView();
-              // oSwitchView.setModel(oSwitchModel, );
-              // sap.ui.getCore().setModel(oSwitchModel, "pSwitch");
 
               if (!this._pPopover) {
                 this._pPopover = sap.ui.core.Fragment.load({
@@ -563,12 +545,7 @@
                       { counter: oLength }
                     );
                     sap.ui.getCore().setModel(modelCounter, "rowCounter");
-                    // var illustratedMsg = new sap.m.IllustratedMessage({
-                    //   illustrationType: "sap.m.IllustratedMessageType.SimpleCheckMark"
-                    // });
-                    // var ValueState = sap.ui.core.ValueState;
-                    // var ButtonType = sap.m.ButtonType;
-                    // var DialogType = sap.m.DialogType;
+
                     if (oLength === 0) {
                       sap.m.MessageToast.show("no data");
                     }
@@ -620,7 +597,8 @@
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data);
-                        return data
+                        let isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
+                        return isOptimized
                       }.bind(this)).catch(function (oError) {
                         console.log(oError);
                       }.bind(this));
@@ -773,8 +751,6 @@
                         label: 'Created',
                         property: 'created',
                         type: "sap.ui.model.type.Date",
-                        // type: "sap.ui.model.type.DateTime",
-                        // timezone: "Europe/Berlin"
                         format: 'dd.MM.yyyy HH:mm',
                       });
 
@@ -798,12 +774,6 @@
                 ]
               }));
 
-              // create table footer:
-              // oTable.setFooter(new sap.ui.commons.Button({
-              //   text: "Migration Steps",
-              //   icon: "sap-icon://process"
-              // }));
-
               this.oPanel.addContent(oTable);
             }
 
@@ -816,10 +786,6 @@
         viewContent: jQuery(_shadowRoot.getElementById("oView")).html(),
       });
       oView.placeAt(content);
-
-      // if (that_._designMode) {
-      //   oView.byId("oView").setEnabled(false);
-      // }
 
     }
 
