@@ -290,7 +290,7 @@
                   resizable: false,
                   contentWidth: "400px",
                   content: [
-                    new sap.ui.commons.Label({ text: "Name" }),
+                    new sap.ui.commons.Label({ text: "Name", design: "Bold" }),
                     new sap.m.StepInput({
                       change: function (oEvent) {
                         downloadItems = oEvent.getParameter("value");
