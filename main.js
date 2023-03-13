@@ -587,7 +587,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (n/y)" }),
+                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
@@ -598,11 +598,11 @@
                         console.log("story content");
                         console.log(data);
                         let isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
-                        return isOptimized
                       }.bind(this)).catch(function (oError) {
                         console.log(oError);
                       }.bind(this));
 
+                      return isOptimized
                       // let isOptimized = ((storyContent || {}).cdata || {}).isOptimizedEnabled;
                       // console.log("optimized");
                       // console.log(isOptimized);
@@ -615,8 +615,8 @@
                   }
                 }),
                 sortProperty: "id",
-                // filterProperty: "id",
-                // filterType: new sap.ui.model.type.Boolean(),
+                filterProperty: "id",
+                filterType: new sap.ui.model.type.Boolean(),
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
