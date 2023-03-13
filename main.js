@@ -274,9 +274,9 @@
 
             getStoryOptimized: function (storyID) {
               return new Promise(function (resolve) {
-                setTimeout(() => {
-                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000);
-                });
+                // setTimeout(() => {
+                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
+                // });
               });
             },
 
