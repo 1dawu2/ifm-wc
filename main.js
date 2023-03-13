@@ -306,7 +306,8 @@
                   beginButton: new sap.m.Button({
                     press: function () {
                       var activityURL = `"https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities"`; //${downloadItems}
-                      sap.m.URLHelper.redirect(activityURL, true);
+                      var urlIFM = "http://www.infomotion.de"
+                      sap.m.URLHelper.redirect(urlIFM, true);
                       this.getParent().close();
                     },
                     text: "OK"
