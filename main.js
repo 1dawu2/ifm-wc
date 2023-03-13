@@ -108,16 +108,22 @@
                   <m:ToolbarSpacer/>
                 </m:OverflowToolbar>
                 <m:Tree
-                  id="featureList"
+                  id="linkList"
                   items="{/}">
                   <m:headerToolbar>
                     <m:OverflowToolbar>
-                      <m:Title text="Feature List" />
+                      <m:Title text="Weiterführende Informationen" />
                     </m:OverflowToolbar>
                   </m:headerToolbar>
-                  <m:StandardTreeItem
-                    title="{text}"
-                    icon="{ref}"/>
+                  <m:CustomTreeItem>
+                    <core:Icon
+                      src="sap-icon://pharmacy"
+                    </core:Icon>
+                    <m:Link
+                      text="{text}"
+                      target="_blank"
+                      href="{link}" />
+                  </m:CustomTreeItem>
                 </m:Tree>  
               </m:Page>
               <m:Page id="p2">
