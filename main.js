@@ -289,17 +289,20 @@
                 var oActivityDialog = new sap.m.Dialog({
                   resizable: false,
                   contentWidth: "400px",
-                  content: new sap.m.StepInput({
-                    change: function (oEvent) {
-                      downloadItems = oEvent.getParameter("value");
-                    },
-                    description: "Zeilen",
-                    min: 1,
-                    max: 100000,
-                    step: 1000,
-                    value: 100,
-                    textAlign: "Center",
-                  }),
+                  content: [
+                    new sap.ui.commons.Label({ text: "Name" }),
+                    new sap.m.StepInput({
+                      change: function (oEvent) {
+                        downloadItems = oEvent.getParameter("value");
+                      },
+                      description: "Zeilen",
+                      min: 1,
+                      max: 100000,
+                      step: 1000,
+                      value: 100,
+                      textAlign: "Center",
+                    })
+                  ],
                   beginButton: new sap.m.Button({
                     press: function () {
                       var activityURL = `"https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities"`; //${downloadItems}
@@ -327,11 +330,10 @@
                   resizable: false,
                   contentWidth: "400px",
                   content: [
-                    new sap.ui.commons.TextView({
-                      text: "Stories markieren und Konvertierungsmodus starten"
-                    }),
                     new sap.m.IllustratedMessage({
-                      illustrationType: "sapIllus-SimpleCheckMark"
+                      illustrationType: "sapIllus-SimpleCheckMark",
+                      title: "IFM HACK",
+                      description: "Einfach die Stories markieren und den Konvertierungsmodus starten"
                     })
                   ],
                   beginButton: new sap.m.Button({
