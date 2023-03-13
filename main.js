@@ -311,7 +311,14 @@
                   ],
                   beginButton: new sap.m.Button({
                     press: function () {
-                      var activityURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities"; //${downloadItems}
+                      var tenantURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap";
+                      var apiURL = "/api/v1/audit/activities/exportActivities?";
+                      var paraSortDec = "sortDescending=true&";
+                      var paraSortKey = "sortKey=TIMESTAMP&";
+                      var paraPageIndex = "pageIndex=1&";
+                      var paraPageSize = "pageSize=" + downloadItems;
+                      var paraFileName = "&csvName=activities";
+                      var activityURL = tenantURL + apiURL + paraSortDec + paraSortKey + paraPageIndex + paraPageSize + paraFileName
                       sap.m.URLHelper.redirect(activityURL, true);
                       this.getParent().close();
                     },
