@@ -290,7 +290,7 @@
 
               if (sKey === "Activity") {
 
-                var downloadItems = "100";
+                var downloadItems = "1000";
 
                 var oActivityDialog = new sap.m.Dialog({
                   resizable: false,
@@ -305,15 +305,14 @@
                       min: 1,
                       max: 100000,
                       step: 1000,
-                      value: 100,
+                      value: 1000,
                       textAlign: "Center",
                     })
                   ],
                   beginButton: new sap.m.Button({
                     press: function () {
-                      var activityURL = `"https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities"`; //${downloadItems}
-                      var urlIFM = "http://www.infomotion.de"
-                      sap.m.URLHelper.redirect(urlIFM, true);
+                      var activityURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap/api/v1/audit/activities/exportActivities?sortDescending=true&sortKey=TIMESTAMP&pageIndex=1&pageSize=100&csvName=activities"; //${downloadItems}
+                      sap.m.URLHelper.redirect(activityURL, true);
                       this.getParent().close();
                     },
                     text: "OK"
