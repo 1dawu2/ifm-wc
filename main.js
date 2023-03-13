@@ -273,12 +273,10 @@
             },
 
             getStoryOptimized: function (storyID) {
-              return new Promise(function (resolve, reject) {
+              return new Promise(function (resolve) {
                 setTimeout(() => {
                   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 5000);
                 });
-                reject("error occurred while retrieving story details")
-
               });
             },
 
@@ -601,9 +599,9 @@
                         console.log(data.cdata.isOptimizedEnabled);
                         isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
 
-                        // }.bind(this)).catch(function (oError) {
-                        //   console.log(oError);
-                        //   isOptimized = false;
+                      }.bind(this)).catch(function (oError) {
+                        console.log(oError);
+                        isOptimized = false;
 
                       }.bind(this));
 
