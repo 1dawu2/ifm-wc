@@ -116,9 +116,7 @@
                     </m:OverflowToolbar>
                   </m:headerToolbar>
                   <m:CustomTreeItem>
-                    <core:Icon
-                      src="sap-icon://pharmacy"
-                    </core:Icon>
+                    <core:Icon src="{ref}" />
                     <m:Link
                       text="{text}"
                       target="_blank"
