@@ -679,8 +679,7 @@
                       for (var index = 0; index < selectedIndices.length; index++) {
                         console.log(index);
                         oContext = oTable.getContextByIndex(index);
-                        oObject = oContext.getObject();
-                        oURL = oContext.getProperty("openURL");
+                        oURL = oContext.getProperty("id");
                         selectedEntries.push(oURL);
                       }
                       console.log(selectedEntries);
