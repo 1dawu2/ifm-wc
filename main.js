@@ -258,7 +258,7 @@
 
             onInit: function (oEvent) {
               this.oPanel = this.byId("oPanel");
-              this.bindTable(oEvent, this.oPanel);
+              this.bindTable(oEvent);
               this.bindTree(oEvent);
               this.configGrid();
               this.configProductSwitch();
@@ -512,9 +512,10 @@
               sap.ui.getCore().setModel(oTreeModel);
             },
 
-            bindTable: function (oEvent, oWidgetObj) {
+            bindTable: function (oEvent) {
               var oBusy = new sap.m.BusyDialog();
               var oModel = new sap.ui.model.json.JSONModel();
+              var that = this;
 
               oModel.attachRequestSent(function () {
                 oBusy.open();
@@ -600,7 +601,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      var storyContent = getStoryOptimized(id);
+                      var storyContent = that.getStoryOptimized(id);
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data);
