@@ -272,11 +272,12 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: function (storyID) {
+            getStoryOptimized: async function (storyID) {
               return new Promise(function (resolve) {
                 setTimeout(() => {
                   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 5000);
                 });
+
               });
             },
 
@@ -620,9 +621,6 @@
                       var storyContent = that.getStoryOptimized(id);
                       var isOptimized;
                       storyContent.then(function (data) {
-                        console.log("story content");
-                        console.log(data.cdata);
-                        // isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedBlockingUnsupportedFeatures;
                         isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
                         return isOptimized;
 
