@@ -591,7 +591,8 @@
                         console.log("story content");
                         console.log(data.cdata);
                         // isOptimized = ((data || {}).cdata).content.optimizedEnabled;
-                        isOptimized = data.cdata.content.optimizedEnabled;
+                        isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;
+
                         return isOptimized;
 
                       }.bind(that)).catch(function (oError) {
@@ -622,7 +623,7 @@
                         console.log("story content");
                         console.log(data.cdata);
                         // isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedBlockingUnsupportedFeatures;
-                        isOptimized = data.cdata.optimizedBlockingUnsupportedFeatures;
+                        isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
                         return isOptimized;
 
                       }.bind(that)).catch(function (oError) {
