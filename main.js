@@ -568,13 +568,6 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Test" }),
-                template: new sap.ui.core.Icon({ src: "sap-icon://complete" }),
-                hAlign: "Center"
-              }));
-
-
-              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Description" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
                 sortProperty: "description",
@@ -596,8 +589,8 @@
                       var isOptimized;
                       storyContent.then(function (data) {
                         console.log("story content");
-                        console.log(data.cdata.isOptimizedEnabled);
-                        isOptimized = ((data || {}).cdata || {}).isOptimizedEnabled;
+                        console.log(data.cdata);
+                        isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedEnabled;
 
                       }.bind(this)).catch(function (oError) {
                         console.log(oError);
@@ -611,7 +604,35 @@
                 }),
                 sortProperty: "id",
                 filterProperty: "id",
-                // filterType: new sap.ui.model.type.Boolean(),
+                filterType: new sap.ui.model.type.Boolean(),
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>id',
+                    formatter: function (id) {
+                      var storyContent = that.getStoryOptimized(id);
+                      var isOptimized;
+                      storyContent.then(function (data) {
+                        console.log("story content");
+                        console.log(data.cdata);
+                        isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedBlockingUnsupportedFeatures;
+
+                      }.bind(this)).catch(function (oError) {
+                        console.log(oError);
+                        isOptimized = false;
+
+                      }.bind(this));
+
+                      return isOptimized;
+                    }
+                  }
+                }),
+                sortProperty: "id",
+                filterProperty: "id",
+                filterType: new sap.ui.model.type.Boolean(),
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
