@@ -590,7 +590,7 @@
                       var isOptimized;
                       storyContent.then(function (data) {
                         console.log("story content");
-                        console.log(data.cdata);
+                        console.log(data.cdata.content.optimizedEnabled);
                         // isOptimized = ((data || {}).cdata).content.optimizedEnabled;
                         isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;
 
@@ -599,6 +599,7 @@
                       }).catch(function (oError) {
                         console.log(oError);
                         isOptimized = false;
+
                         return isOptimized;
 
                       });
