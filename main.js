@@ -623,14 +623,15 @@
                         console.log(data.cdata);
                         // isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedBlockingUnsupportedFeatures;
                         isOptimized = data.cdata.optimizedBlockingUnsupportedFeatures;
+                        return isOptimized;
 
-                      }.bind(this)).catch(function (oError) {
+                      }.bind(that)).catch(function (oError) {
                         console.log(oError);
                         isOptimized = false;
+                        return isOptimized;
 
-                      }.bind(this));
+                      }.bind(that));
 
-                      return isOptimized;
                     }
                   }
                 }),
