@@ -590,7 +590,8 @@
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data.cdata);
-                        isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedEnabled;
+                        // isOptimized = ((data || {}).cdata).content.optimizedEnabled;
+                        isOptimized = data.cdata.content.optimizedEnabled;
 
                       }.bind(this)).catch(function (oError) {
                         console.log(oError);
@@ -618,13 +619,14 @@
                       storyContent.then(function (data) {
                         console.log("story content");
                         console.log(data.cdata);
-                        isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedBlockingUnsupportedFeatures;
+                        // isOptimized = ((data || {}).(cdata || {}).content || {}).optimizedBlockingUnsupportedFeatures;
+                        isOptimized = data.cdata.optimizedBlockingUnsupportedFeatures.
 
                       }.bind(this)).catch(function (oError) {
-                        console.log(oError);
-                        isOptimized = false;
+                          console.log(oError);
+                          isOptimized = false;
 
-                      }.bind(this));
+                        }.bind(this));
 
                       return isOptimized;
                     }
