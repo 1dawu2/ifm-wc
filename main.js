@@ -212,7 +212,7 @@
       console.log("story service");
       console.log(this._storyService)
       // o.getUnsupportedFeatures(this._getStoryModel(), this.getDocumentContext(), n, t);
-      console.log("Story Info");
+      // console.log("Story Info");
       // console.log(sap.fpa.ui.story.FpaStoryUtils.story.getStoryInfo("59A395046F3F8A41401B0B1C28FD787D"));
 
 
@@ -596,12 +596,12 @@
 
                         return isOptimized;
 
-                      }.bind(that)).catch(function (oError) {
+                      }).catch(function (oError) {
                         console.log(oError);
                         isOptimized = false;
                         return isOptimized;
 
-                      }.bind(that));
+                      });
 
 
                     }
