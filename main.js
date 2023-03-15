@@ -274,13 +274,13 @@
 
             getStoryOptimized: function (storyID) {
 
-              var Promise = new Promise(function (resolve, reject) {
+              var storyContent = new Promise(function (resolve, reject) {
                 reject("the SAC story getContent promise has been rejected")
 
                 resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
               });
 
-              Promise.then(function (value) {
+              storyContent.then(function (value) {
                 return value;
 
               }).catch(function (error) {
