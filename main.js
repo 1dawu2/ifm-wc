@@ -601,8 +601,8 @@
                       var storyContent = that.getStoryOptimized(id);
                       console.log("story content");
                       console.log(storyContent);
-                      var isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;;
-                      return isOptimized
+                      // var isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;;
+                      return storyContent;
                       // storyContent.then(function (data) {
                       //   console.log("story content");
                       //   console.log(data.cdata.content.optimizedEnabled);
