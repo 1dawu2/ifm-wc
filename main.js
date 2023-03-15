@@ -272,13 +272,25 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID) {
-              return new Promise(function (resolve) {
-                setTimeout(() => {
-                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 5000);
-                });
+            getStoryOptimized: function (storyID) {
+
+              var Promise = new Promise(function (resolve, reject) {
+                reject("the SAC story getContent promise has been rejected")
+
+                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
+              });
+
+              Promise.then(function (value) {
+                return value;
+
+              }).catch(function (error) {
+                return error;
 
               });
+              // return new Promise(function (resolve, reject) {
+              //   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
+
+              // });
             },
 
             onFilterSelect: function (oEvent) {
@@ -587,50 +599,26 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       var storyContent = that.getStoryOptimized(id);
-                      var isOptimized;
-                      storyContent.then(function (data) {
-                        console.log("story content");
-                        console.log(data.cdata.content.optimizedEnabled);
-                        // isOptimized = ((data || {}).cdata).content.optimizedEnabled;
-                        isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;
-
-                        return isOptimized;
-
-                      }).catch(function (oError) {
-                        console.log(oError);
-                        isOptimized = false;
-
-                        return isOptimized;
-
-                      });
+                      console.log("story content");
+                      console.log(storyContent);
+                      var isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;;
+                      return isOptimized
+                      // storyContent.then(function (data) {
+                      //   console.log("story content");
+                      //   console.log(data.cdata.content.optimizedEnabled);
+                      //   // isOptimized = ((data || {}).cdata).content.optimizedEnabled;
 
 
-                    }
-                  }
-                }),
-                sortProperty: "id",
-                filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
-              }));
+                      //   return isOptimized;
 
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>id',
-                    formatter: function (id) {
-                      var storyContent = that.getStoryOptimized(id);
-                      var isOptimized;
-                      storyContent.then(function (data) {
-                        isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-                        return isOptimized;
+                      // }).catch(function (oError) {
+                      //   console.log(oError);
+                      //   isOptimized = false;
 
-                      }.bind(that)).catch(function (oError) {
-                        console.log(oError);
-                        isOptimized = false;
-                        return isOptimized;
+                      //   return isOptimized;
 
-                      }.bind(that));
+                      // });
+
 
                     }
                   }
@@ -639,6 +627,33 @@
                 filterProperty: "id",
                 filterType: new sap.ui.model.type.Boolean(),
               }));
+
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
+              //   template: new sap.ui.commons.TextView({
+              //     text: {
+              //       path: 'artifact>id',
+              //       formatter: function (id) {
+              //         var storyContent = that.getStoryOptimized(id);
+              //         var isOptimized;
+              //         storyContent.then(function (data) {
+              //           isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
+              //           return isOptimized;
+
+              //         }.bind(that)).catch(function (oError) {
+              //           console.log(oError);
+              //           isOptimized = false;
+              //           return isOptimized;
+
+              //         }.bind(that));
+
+              //       }
+              //     }
+              //   }),
+              //   sortProperty: "id",
+              //   filterProperty: "id",
+              //   filterType: new sap.ui.model.type.Boolean(),
+              // }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
@@ -1339,6 +1354,7 @@
     // migrateForUQM 
     // sap.fpa.bi.uqmMigration.UnsupportedFeatures
     if (sap.lumira.story.StoryModel) {
+      console.log("story model");
       console.log(sap.lumira.story.StoryModel);
 
     }
@@ -1347,7 +1363,9 @@
       console.log(sap.fpa.ui.infra.service.firefly.FireflyServiceManagerBase);
     }
 
+    jQuery.sap.declare("sap.fpa.ui.story.StoryIntegration"), function () {
 
+    }
 
     // try detect runtime settings
     if (window.sap && sap.fpa && sap.fpa.ui && sap.fpa.ui.infra) {
