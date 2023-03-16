@@ -272,21 +272,57 @@
               this.configProductSwitch();
             },
 
+            getPromiseState: function (promise) {
+
+              if (promise.isFulfilled) {
+                return promise;
+              }
+
+              var isPending = true;
+              var isRejected = false;
+              var isFulfilled = false;
+
+              var result = promise.then(
+                function (v) {
+                  isFulfilled = true;
+                  isPending = false;
+                },
+                function (e) {
+                  isRejected = true;
+                  isPending = false;
+                }
+
+              );
+
+              result.isFulfilled = function () {
+                return isFulfilled;
+              };
+
+              result.isPending = function () {
+                return isPending;
+              };
+
+              result.isRejected = function () {
+                return isRejected;
+              };
+
+              return result;
+
+            },
+
             getStoryOptimized: function (storyID) {
 
               var storyContent = new Promise(function (resolve, reject) {
-                reject("the SAC story getContent promise has been rejected")
-
-                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
+                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
               });
 
-              storyContent.then(function (value) {
-                return value;
+              // storyContent.then(function (value) {
+              //   return value;
 
-              }).catch(function (error) {
-                return error;
+              // }).catch(function (error) {
+              //   return error;
 
-              });
+              // });
               // return new Promise(function (resolve, reject) {
               //   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
 
@@ -598,29 +634,16 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      var storyContent = that.getStoryOptimized(id);
-                      console.log("story content");
-                      console.log(storyContent);
-                      // var isOptimized = typeof data.cdata.content.optimizedEnabled !== 'undefined' ? data.cdata.content.optimizedEnabled : false;;
-                      return storyContent;
-                      // storyContent.then(function (data) {
-                      //   console.log("story content");
-                      //   console.log(data.cdata.content.optimizedEnabled);
-                      //   // isOptimized = ((data || {}).cdata).content.optimizedEnabled;
+                      var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                      myPromise.then(function (data) {
+                        console.log("story data");
+                        console.log(data);
+                        console.log("Final fulfiled: ", myPromise.isFulfilled());
+                        console.log("Final rejected: ", myPromise.isRejected());
+                        console.log("Final pending: ", myPromise.isPending());
+                      });
 
-
-                      //   return isOptimized;
-
-                      // }).catch(function (oError) {
-                      //   console.log(oError);
-                      //   isOptimized = false;
-
-                      //   return isOptimized;
-
-                      // });
-
-
-                    }
+                    };
                   }
                 }),
                 sortProperty: "id",
