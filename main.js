@@ -664,13 +664,17 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: function (id) {
-                      var isBlocking = sap.fpa.ui.story.StoryFetcher.getContent(id);
-                      if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                        return isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures;
-                      } else {
-                        return false;
-                      }
+                    formatter: async function (id) {
+                      var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
+                        function () {
+                          if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                            return isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures;
+                          } else {
+                            return false;
+                          }
+                        }
+                      );
+
                       // var storyContent = that.getStoryOptimized(id);
                       // var isOptimized;
                       // storyContent.then(function (data) {
