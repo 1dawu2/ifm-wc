@@ -638,11 +638,17 @@
                     formatter: function (id) {
                       var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       myPromise.then(function (data) {
-                        console.log("story data");
-                        console.log(data);
-                        console.log("Final fulfiled: ", myPromise.isFulfilled());
-                        console.log("Final rejected: ", myPromise.isRejected());
-                        console.log("Final pending: ", myPromise.isPending());
+                        if (myPromise.isFulfilled === true || myPromise.isPending) {
+                          if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                            return data.cdata.content.optimizedEnabled
+                          } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                            return data.cdata.isOptimizedEnabled
+                          } else {
+                            return false
+                          }
+                        } else if (myPromise.isRejected === true) {
+                          return false;
+                        }
                       });
 
                     }
