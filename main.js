@@ -643,7 +643,7 @@
                         console.log("Final pending: ", myPromise.isPending());
                       });
 
-                    };
+                    }
                   }
                 }),
                 sortProperty: "id",
