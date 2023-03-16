@@ -312,9 +312,9 @@
 
             },
 
-            getStoryOptimized: function (storyID) {
+            getStoryOptimized: async function (storyID) {
 
-              return new Promise(function (resolve) {
+              return await new Promise(function (resolve) {
                 resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
               });
 
