@@ -286,10 +286,12 @@
                 function (v) {
                   isFulfilled = true;
                   isPending = false;
+                  return v;
                 },
                 function (e) {
                   isRejected = true;
                   isPending = false;
+                  throw e;
                 }
 
               );
