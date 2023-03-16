@@ -312,8 +312,10 @@
 
             getStoryOptimized: function (storyID) {
 
-              var storyContent = new Promise(function (resolve, reject) {
-                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
+              return new Promise(function (resolve) {
+                if (storyID != Null) {
+                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
+                }
               });
 
               // storyContent.then(function (value) {
