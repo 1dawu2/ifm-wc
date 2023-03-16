@@ -666,8 +666,8 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       var isBlocking = sap.fpa.ui.story.StoryFetcher.getContent(id);
-                      if (typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                        return data.cdata.content.optimizedBlockingUnsupportedFeatures;
+                      if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                        return isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures;
                       } else {
                         return false;
                       }
