@@ -659,32 +659,38 @@
                 filterType: new sap.ui.model.type.Boolean(),
               }));
 
-              // oTable.addColumn(new sap.ui.table.Column({
-              //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
-              //   template: new sap.ui.commons.TextView({
-              //     text: {
-              //       path: 'artifact>id',
-              //       formatter: function (id) {
-              //         var storyContent = that.getStoryOptimized(id);
-              //         var isOptimized;
-              //         storyContent.then(function (data) {
-              //           isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-              //           return isOptimized;
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>id',
+                    formatter: function (id) {
+                      var isBlocking = sap.fpa.ui.story.StoryFetcher.getContent(id);
+                      if (typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                        return data.cdata.content.optimizedBlockingUnsupportedFeatures;
+                      } else {
+                        return false;
+                      }
+                      // var storyContent = that.getStoryOptimized(id);
+                      // var isOptimized;
+                      // storyContent.then(function (data) {
+                      //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
+                      //   return isOptimized;
 
-              //         }.bind(that)).catch(function (oError) {
-              //           console.log(oError);
-              //           isOptimized = false;
-              //           return isOptimized;
+                      // }.bind(that)).catch(function (oError) {
+                      //   console.log(oError);
+                      //   isOptimized = false;
+                      //   return isOptimized;
 
-              //         }.bind(that));
+                      // }.bind(that));
 
-              //       }
-              //     }
-              //   }),
-              //   sortProperty: "id",
-              //   filterProperty: "id",
-              //   filterType: new sap.ui.model.type.Boolean(),
-              // }));
+                    }
+                  }
+                }),
+                sortProperty: "id",
+                filterProperty: "id",
+                filterType: new sap.ui.model.type.Boolean(),
+              }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
