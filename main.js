@@ -193,24 +193,27 @@
       this._export_settings.apiSecret = "";
       this._export_settings.oAuthURL = "";
 
-      this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
-      console.log("Story Container");
-      console.log(this._oStoryContainerController);
-      this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
-      console.log(this._oDocumentContext);
-      this._uqmLoad = this._oDocumentContext.get("sap.fpa.bi.uqmLoader")
-      this._oDocument = this._oStoryContainerController.getDocument();
-      console.log(this._oDocument);
+      // controlling functions
+      // this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
+      // console.log("Story Container");
+      // console.log(this._oStoryContainerController);
+      // this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
+      // console.log(this._oDocumentContext);
+      // this._uqmLoad = this._oDocumentContext.get("sap.fpa.bi.uqmLoader")
+      // this._oDocument = this._oStoryContainerController.getDocument();
+      // console.log(this._oDocument);
+      // this._contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
+      // console.log("content lib");
+      // console.log(this._contentLib)
+      // this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
+      // console.log("story service");
+      // console.log(this._storyService)
+
+      // not working functions
       // n = this.getContext().get("sap.fpa.bi.documentService").getStoryModel()
       // this._oStoryContainer.showConvertToOptimizedDesignModeDialog();
       // "sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"
       // sap.fpa.story.optimizedModeFeaturesValidator
-      this._contentLib = sap.fpa.ui.infra.service.ServiceManager.getService("EPM/Contentlib");
-      console.log("content lib");
-      console.log(this._contentLib)
-      this._storyService = sap.fpa.ui.infra.service.ServiceManager.getService("fpa.StoryService");
-      console.log("story service");
-      console.log(this._storyService)
       // o.getUnsupportedFeatures(this._getStoryModel(), this.getDocumentContext(), n, t);
       // console.log("Story Info");
       // console.log(sap.fpa.ui.story.FpaStoryUtils.story.getStoryInfo("59A395046F3F8A41401B0B1C28FD787D"));
@@ -227,9 +230,10 @@
     buildUI(changedProperties, that) {
 
       // testing
-      getSACMetadata();
-      prepareJSON2OModel();
-      convertSACArtifact();
+      // getSACMetadata();
+      // prepareJSON2OModel();
+      // convertSACArtifact();
+
       // initSAC();
       // sap.fpa.story.optimized.model.validator > "getModelValidator"
       // sap.fpa.story.optimizedModeFeaturesValidator > bound _getService
@@ -572,9 +576,6 @@
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
                 oBusy.close();
-                var storyArtifacts = oModel.getProperty("artifact>/id");
-                console.log("story ids");
-                console.log(storyArtifacts);
               });
 
 
@@ -641,19 +642,17 @@
                         if (myPromise.isFulfilled === true || myPromise.isPending) {
                           if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
                             id = data.cdata.content.optimizedEnabled;
-                            return id;
                           } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
                             id = data.cdata.isOptimizedEnabled;
-                            return id;
                           } else {
                             id = false;
-                            return id
                           }
                         } else if (myPromise.isRejected === true) {
                           id = false;
-                          return id;
                         }
                       });
+                      console.log(id);
+                      return id;
 
                     }
                   }
@@ -673,11 +672,11 @@
                         function () {
                           if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
                             id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
-                            return id;
                           } else {
                             id = false;
-                            return id;
                           }
+                          console.log(id);
+                          return id;
                         }
                       );
 
@@ -760,15 +759,12 @@
 
                       var selectedIndices = oTable.getSelectedIndices();
                       for (var index = 0; index < selectedIndices.length; index++) {
-                        console.log(index);
                         oContext = oTable.getContextByIndex(index);
                         oURL = oContext.getProperty("id");
                         selectedEntries.push(oURL);
                       }
                       console.log(selectedEntries);
-
                       var oODMDialog = new sap.fpa.ui.story.StoryOptimizedUnsupportedDialog(
-
                       );
                       oODMDialog.open();
 
