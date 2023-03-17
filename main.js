@@ -636,8 +636,8 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: function (id) {
-                      var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                    formatter: async function (id) {
+                      var myPromise = await that.getPromiseState(that.getStoryOptimized(id));
                       var res = false;
                       myPromise.then((data) => {
                         if (myPromise.isFulfilled === true || myPromise.isPending) {
@@ -652,7 +652,7 @@
                           res = false;
                         }
                         console.log(res);
-                        return res;
+                        return id;
                       }).catch((e) => {
                         console.log(e.message);
                       });
