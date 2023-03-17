@@ -638,25 +638,24 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                      var res = false;
                       myPromise.then((data) => {
                         if (myPromise.isFulfilled === true || myPromise.isPending) {
                           if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                            id = data.cdata.content.optimizedEnabled;
+                            res = data.cdata.content.optimizedEnabled;
                           } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                            id = data.cdata.isOptimizedEnabled;
+                            res = data.cdata.isOptimizedEnabled;
                           } else {
-                            id = false;
+                            res = false;
                           }
                         } else if (myPromise.isRejected === true) {
-                          id = false;
+                          res = false;
                         }
-                        console.log(id);
-                        return id;
+                        console.log(res);
+                        return res;
                       }).catch((e) => {
                         console.log(e.message);
                       });
-
-
                     }
                   }
                 }),
