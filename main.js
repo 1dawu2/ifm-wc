@@ -640,14 +640,18 @@
                       myPromise.then(function (data) {
                         if (myPromise.isFulfilled === true || myPromise.isPending) {
                           if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                            return data.cdata.content.optimizedEnabled
+                            id = data.cdata.content.optimizedEnabled;
+                            return id;
                           } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                            return data.cdata.isOptimizedEnabled
+                            id = data.cdata.isOptimizedEnabled;
+                            return id;
                           } else {
-                            return false
+                            id = false;
+                            return id
                           }
                         } else if (myPromise.isRejected === true) {
-                          return false;
+                          id = false;
+                          return id;
                         }
                       });
 
@@ -668,9 +672,11 @@
                       var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
                         function () {
                           if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                            return isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures;
+                            id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
+                            return id;
                           } else {
-                            return false;
+                            id = false;
+                            return id;
                           }
                         }
                       );
