@@ -766,8 +766,10 @@
                         selectedEntries.push(oURL);
                       }
                       console.log(selectedEntries);
-                      var oODMDialog = new sap.fpa.ui.story.StoryOptimizedUnsupportedDialog(
-                      );
+                      jQuery.sap.declare("sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"),
+                        e.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
+
+                        };
                       oODMDialog.open();
 
 
