@@ -890,6 +890,13 @@
                         format: 'dd.MM.yyyy HH:mm',
                       });
 
+                      aCols.push({
+                        label: 'Changed',
+                        property: 'changed',
+                        type: "sap.ui.model.type.Date",
+                        format: 'dd.MM.yyyy HH:mm',
+                      });
+
                       oSettings = {
                         workbook: {
                           columns: aCols,
