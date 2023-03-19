@@ -642,6 +642,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
+                    type: "sap.ui.model.odata.type.Boolean",
                     formatter: async function (id) {
 
                       var story = await sap.fpa.ui.story.StoryFetcher.getContent(id)
