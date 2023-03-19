@@ -577,6 +577,9 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
+                var oStoryID = oModel.getProperty("id");
+                console.log("story model: > id");
+                console.log(oStoryID);
                 oBusy.close();
               });
 
@@ -750,9 +753,7 @@
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
-                  // new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
 
-                  // }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://begin",
                     press: function (oEvent) {
@@ -768,8 +769,11 @@
                         selectedEntries.push(oURL);
                       }
                       console.log(selectedEntries);
+                      // new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
+
+                      // }),
                       jQuery.sap.declare("sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"),
-                        e.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
+                        oEvent.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
 
                         };
                       oODMDialog.open();
