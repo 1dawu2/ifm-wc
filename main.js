@@ -319,7 +319,9 @@
             getStoryOptimized: async function (storyID) {
 
               return await new Promise(function (resolve) {
-                resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
+                setTimeout(
+                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
+                );
               });
 
               // storyContent.then(function (value) {
@@ -636,8 +638,8 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: async function (id) {
-                      var myPromise = await that.getPromiseState(that.getStoryOptimized(id));
+                    formatter: function (id) {
+                      var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       var res = false;
                       myPromise.then((data) => {
                         if (myPromise.isFulfilled === true || myPromise.isPending) {
