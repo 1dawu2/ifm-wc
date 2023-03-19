@@ -645,7 +645,15 @@
                     formatter: async function (id) {
 
                       var story = await sap.fpa.ui.story.StoryFetcher.getContent(id)
-                      return story.cdata.content.optimizedEnabled;
+                      var isOptimized = false;
+                      if (typeof story.cdata.content.optimizedEnabled !== 'undefined') {
+                        isOptimized = story.cdata.content.optimizedEnabled;
+                      } else if (typeof story.cdata.isOptimizedEnabled !== 'undefined') {
+                        isOptimized = story.cdata.isOptimizedEnabled;
+                      } else {
+                        isOptimized = false;
+                      }
+                      return isOptimized;
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       // var res = false;
                       // myPromise.then((data) => {
