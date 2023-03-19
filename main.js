@@ -645,7 +645,7 @@
                     formatter: function (id) {
 
                       var story = sap.fpa.ui.story.StoryFetcher.getContent(id)
-                      return story;
+                      return story.cdata.content.optimizedEnabled;
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       // var res = false;
                       // myPromise.then((data) => {
