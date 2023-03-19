@@ -637,10 +637,13 @@
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
 
+              var iframeURL = "{artifact>openURL}";
+              console.log("iframe");
+              console.log(iframeURL);
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
                 template: new sap.ui.core.HTML({
-                  content: '<html:iframe src="{artifact>openURL}" height ="200px" width="200px"></html:iframe>'
+                  content: `'<html:iframe src="${"artifact>openURL"}" height ="200px" width="200px"></html:iframe>'`
                 }),
               }));
 
