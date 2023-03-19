@@ -639,7 +639,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
-                template: sap.ui.core.HTML({
+                template: new sap.ui.core.HTML({
                   content: '<html:iframe src="{artifact>openURL}" height ="200px" width="200px"></html:iframe>'
                 }),
               }));
