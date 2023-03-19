@@ -642,9 +642,9 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: function (id) {
+                    formatter: async function (id) {
 
-                      var story = sap.fpa.ui.story.StoryFetcher.getContent(id)
+                      var story = await sap.fpa.ui.story.StoryFetcher.getContent(id)
                       return story.cdata.content.optimizedEnabled;
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       // var res = false;
