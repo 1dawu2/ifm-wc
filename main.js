@@ -643,25 +643,29 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      var myPromise = that.getPromiseState(that.getStoryOptimized(id));
-                      var res = false;
-                      myPromise.then((data) => {
-                        if (myPromise.isFulfilled === true || myPromise.isPending) {
-                          if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                            res = data.cdata.content.optimizedEnabled;
-                          } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                            res = data.cdata.isOptimizedEnabled;
-                          } else {
-                            res = false;
-                          }
-                        } else if (myPromise.isRejected === true) {
-                          res = false;
-                        }
-                        console.log(res);
-                        return id;
-                      }).catch((e) => {
-                        console.log(e.message);
-                      });
+                      setTimeout(
+                        story = resolve(sap.fpa.ui.story.StoryFetcher.getContent(id), 1000)
+                      );
+                      return story;
+                      // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                      // var res = false;
+                      // myPromise.then((data) => {
+                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                      //       res = data.cdata.content.optimizedEnabled;
+                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                      //       res = data.cdata.isOptimizedEnabled;
+                      //     } else {
+                      //       res = false;
+                      //     }
+                      //   } else if (myPromise.isRejected === true) {
+                      //     res = false;
+                      //   }
+                      //   console.log(res);
+                      //   return id;
+                      // }).catch((e) => {
+                      //   console.log(e.message);
+                      // });
                     }
                   }
                 }),
