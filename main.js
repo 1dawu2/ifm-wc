@@ -640,7 +640,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
                 template: new sap.ui.core.HTML({
-                  content: '<html:iframe src=" + +" height ="200px" width="200px"></html:iframe>'
+                  content: '<html:iframe src="artifact>openURL" height="200px" width="200px"></html:iframe>'
                 }),
               }));
 
@@ -650,7 +650,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    type: "sap.ui.model.odata.type.Boolean",
+                    // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       var isOptimized = false;
                       const story = sap.fpa.ui.story.StoryFetcher.getContent(id).then(function (result) {
