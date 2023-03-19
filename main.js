@@ -579,6 +579,7 @@
               oModel.attachRequestCompleted(function (oEvent) {
                 var oStoryID = oModel.getProperty("artifact>id");
                 console.log("story model: > id");
+                console.log(oModel);
                 console.log(oStoryID);
                 oBusy.close();
               });
@@ -769,7 +770,7 @@
                         selectedEntries.push(oURL);
                       }
                       console.log(selectedEntries);
-                      oODMDialog = new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
+                      var oODMDialog = new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
 
                       });
                       oODMDialog.open();
