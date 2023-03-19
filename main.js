@@ -577,7 +577,7 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
-                var oStoryID = oModel.getProperty("artifact>id");
+                var oStoryID = oModel.getProperty("/id");
                 console.log("story model: > id");
                 console.log(oModel);
                 console.log(oStoryID);
