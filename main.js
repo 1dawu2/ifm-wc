@@ -645,7 +645,7 @@
                     type: "sap.ui.model.odata.type.Boolean",
                     formatter: async function (id) {
 
-                      var story = await sap.fpa.ui.story.StoryFetcher.getContent(id)
+                      var story = new Promise(resolve => setTimeout(sap.fpa.ui.story.StoryFetcher.getContent(id), 1000));
                       var isOptimized = false;
                       if (typeof story.cdata.content.optimizedEnabled !== 'undefined') {
                         isOptimized = story.cdata.content.optimizedEnabled;
