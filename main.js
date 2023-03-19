@@ -645,50 +645,50 @@
               }));
 
 
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>id',
-                    type: "sap.ui.model.odata.type.Boolean",
-                    formatter: async function (id) {
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
+              //   template: new sap.ui.commons.TextView({
+              //     text: {
+              //       path: 'artifact>id',
+              //       type: "sap.ui.model.odata.type.Boolean",
+              //       formatter: async function (id) {
 
-                      var story = new Promise(resolve => setTimeout(sap.fpa.ui.story.StoryFetcher.getContent(id), 1000));
-                      var isOptimized = false;
-                      if (typeof story.cdata.content.optimizedEnabled !== 'undefined') {
-                        isOptimized = story.cdata.content.optimizedEnabled;
-                      } else if (typeof story.cdata.isOptimizedEnabled !== 'undefined') {
-                        isOptimized = story.cdata.isOptimizedEnabled;
-                      } else {
-                        isOptimized = false;
-                      }
-                      return isOptimized;
-                      // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
-                      // var res = false;
-                      // myPromise.then((data) => {
-                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.content.optimizedEnabled;
-                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.isOptimizedEnabled;
-                      //     } else {
-                      //       res = false;
-                      //     }
-                      //   } else if (myPromise.isRejected === true) {
-                      //     res = false;
-                      //   }
-                      //   console.log(res);
-                      //   return id;
-                      // }).catch((e) => {
-                      //   console.log(e.message);
-                      // });
-                    }
-                  }
-                }),
-                sortProperty: "id",
-                filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
-              }));
+              //         var story = await new Promise(resolve => setTimeout(sap.fpa.ui.story.StoryFetcher.getContent(id), 1000));
+              //         var isOptimized = false;
+              //         if (typeof story.cdata.content.optimizedEnabled !== 'undefined') {
+              //           isOptimized = story.cdata.content.optimizedEnabled;
+              //         } else if (typeof story.cdata.isOptimizedEnabled !== 'undefined') {
+              //           isOptimized = story.cdata.isOptimizedEnabled;
+              //         } else {
+              //           isOptimized = false;
+              //         }
+              //         return isOptimized;
+              //         // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+              //         // var res = false;
+              //         // myPromise.then((data) => {
+              //         //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+              //         //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+              //         //       res = data.cdata.content.optimizedEnabled;
+              //         //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+              //         //       res = data.cdata.isOptimizedEnabled;
+              //         //     } else {
+              //         //       res = false;
+              //         //     }
+              //         //   } else if (myPromise.isRejected === true) {
+              //         //     res = false;
+              //         //   }
+              //         //   console.log(res);
+              //         //   return id;
+              //         // }).catch((e) => {
+              //         //   console.log(e.message);
+              //         // });
+              //       }
+              //     }
+              //   }),
+              //   sortProperty: "id",
+              //   filterProperty: "id",
+              //   filterType: new sap.ui.model.type.Boolean(),
+              // }));
 
               // oTable.addColumn(new sap.ui.table.Column({
               //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
