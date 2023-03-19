@@ -638,6 +638,14 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "iFrame" }),
+                template: sap.ui.core.HTML({
+                  content: '<html:iframe src="{artifact>openURL}" height ="200px" width="200px"></html:iframe>'
+                }),
+              }));
+
+
+              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
@@ -758,6 +766,26 @@
                 }),
                 sortProperty: "created",
                 filterProperty: "created",
+                filterType: new sap.ui.model.type.DateTime(),
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Changed" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>changed',
+                    type: "sap.ui.model.type.DateTime",
+                    formatOptions: {
+                      UTC: true,
+                      source: {
+                        pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                      },
+                      pattern: 'dd.MM.yyyy HH:mm',
+                    }
+                  }
+                }),
+                sortProperty: "changed",
+                filterProperty: "changed",
                 filterType: new sap.ui.model.type.DateTime(),
               }));
 
