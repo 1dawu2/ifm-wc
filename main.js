@@ -643,9 +643,8 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      setTimeout(
-                        story = resolve(sap.fpa.ui.story.StoryFetcher.getContent(id), 1000)
-                      );
+
+                      var story = sap.fpa.ui.story.StoryFetcher.getContent(id)
                       return story;
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       // var res = false;
