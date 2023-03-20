@@ -611,7 +611,7 @@
                     });
 
                     // handle table entries
-                    var modelID = oTable.getModel();
+                    var modelID = oTable.getModel("artifact");
                     console.log("model id");
                     console.log(modelID);
                   }
@@ -660,18 +660,22 @@
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       var isOptimized = false;
-                      const story = sap.fpa.ui.story.StoryFetcher.getContent(id).then(function (result) {
-                        if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                          isOptimized = result.cdata.content.optimizedEnabled;
-                        } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                          isOptimized = result.cdata.isOptimizedEnabled;
-                        } else {
-                          isOptimized = false;
-                        }
-                        console.log("odm mode:");
-                        console.log(isOptimized);
-                        return isOptimized;
-                      });
+                      const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
+                        .then(function (result) {
+                          if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                            isOptimized = result.cdata.content.optimizedEnabled;
+                          } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                            isOptimized = result.cdata.isOptimizedEnabled;
+                          } else {
+                            isOptimized = false;
+                          }
+                          console.log("odm mode:");
+                          console.log(isOptimized);
+                          return isOptimized;
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       // var res = false;
                       // myPromise.then((data) => {
@@ -694,9 +698,9 @@
                     }
                   }
                 }),
-                sortProperty: "id",
-                filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
+                // sortProperty: "id",
+                // filterProperty: "id",
+                // filterType: new sap.ui.model.type.Boolean(),
               }));
 
               // oTable.addColumn(new sap.ui.table.Column({
