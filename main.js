@@ -593,22 +593,28 @@
 
               // register a table event handler
               oTable.addEventDelegate({
-                onAfterRendering: function (oEvent) {
-                  var oBinding = this.getBinding("rows");
-                  oBinding.attachChange(function (oEvent) {
-                    var oSource = oEvent.getSource();
-                    var oLength = oSource.iLength;
-                    var modelCounter = new sap.ui.model.json.JSONModel();
-                    modelCounter.setData(
-                      { counter: oLength }
-                    );
-                    sap.ui.getCore().setModel(modelCounter, "rowCounter");
+                onAfterRendering:
+                  function (oEvent) {
+                    var oBinding = this.getBinding("rows");
+                    oBinding.attachChange(function (oEvent) {
+                      var oSource = oEvent.getSource();
+                      var oLength = oSource.iLength;
+                      var modelCounter = new sap.ui.model.json.JSONModel();
+                      modelCounter.setData(
+                        { counter: oLength }
+                      );
+                      sap.ui.getCore().setModel(modelCounter, "rowCounter");
 
-                    if (oLength === 0) {
-                      sap.m.MessageToast.show("no data");
-                    }
-                  });
-                }
+                      if (oLength === 0) {
+                        sap.m.MessageToast.show("no data");
+                      }
+                    });
+
+                    // handle table entries
+                    var modelID = oTable.getModel("artifact").getProperty("id");
+                    console.log("model id");
+                    console.log(modelID);
+                  }
               }, oTable);
 
               oTable.addColumn(new sap.ui.table.Column({
