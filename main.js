@@ -804,7 +804,11 @@
               }));
 
               oTable.setModel(oModel, "artifact");
-              oTable.bindRows("artifact>/");
+              // oTable.bindRows("artifact>/");
+              oTable.bindRows({
+                path: "artifact>/",
+                parameters: { expand: "models" }
+              });
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
