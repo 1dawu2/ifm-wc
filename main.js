@@ -613,7 +613,7 @@
                     // handle table entries
                     var modelID = oTable.getModel("artifact");
                     console.log("model id");
-                    console.log(modelID);
+                    console.log(modelID.getProperty("id"));
                   }
               }, oTable);
 
