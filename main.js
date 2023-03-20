@@ -611,7 +611,7 @@
                     });
 
                     // handle table entries
-                    var modelID = oTable.getModel("artifact").getProperty("id");
+                    var modelID = oTable.getModel();
                     console.log("model id");
                     console.log(modelID);
                   }
