@@ -637,10 +637,13 @@
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
 
+
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
                 template: new sap.ui.core.HTML({
-                  content: '<html:iframe src="artifact>openURL" height="200px" width="200px"></html:iframe>'
+                  // content: '<html:iframe src="artifact>openURL" height="200px" width="200px"></html:iframe>'
+                  content: "<iframe src='" + openURL +
+                    "pdf/web/viewer.html' style='width: 100%; height: 700px;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
                 }),
               }));
 
@@ -661,6 +664,8 @@
                         } else {
                           isOptimized = false;
                         }
+                        console.log("odm mode:");
+                        console.log(isOptimized);
                         return isOptimized;
                       });
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
