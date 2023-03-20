@@ -611,10 +611,9 @@
                     });
 
                     // handle table entries
-                    var modelID = oTable.getModel("artifact");
+                    var modelData = oTable.getModel("artifact").oData;
                     console.log("model id");
-                    console.log(modelID.getProperty("{artifact>id}"));
-                    console.log(modelID.getProperty("/artifact/id"));
+                    console.log(modelData[entity].id);
                   }
               }, oTable);
 
@@ -742,6 +741,13 @@
               //   filterProperty: "id",
               //   filterType: new sap.ui.model.type.Boolean(),
               // }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Models" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>models/}" }),
+                sortProperty: "models",
+                filterProperty: "models",
+              }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
