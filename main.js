@@ -641,9 +641,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
                 template: new sap.ui.core.HTML({
-                  // content: '<html:iframe src="artifact>openURL" height="200px" width="200px"></html:iframe>'
-                  content: "<iframe src='" + openURL +
-                    "pdf/web/viewer.html' style='width: 100%; height: 700px;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
+                  content: '<html:iframe src="artifact>openURL" height="200px" width="200px"></html:iframe>'
                 }),
               }));
 
