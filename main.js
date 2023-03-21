@@ -624,13 +624,14 @@
                     });
 
                     // handle table entries
+                    var oItems = this.byId("oPanel").getRows();
                     var modelData = oTable.getModel("artifact");
-                    modelData.attachRequestCompleted(function (oEvent) {
-                      var oStoryID = oModel.getProperty("id");
-                      console.log("story model: > id");
-                      console.log(modelData);
-                      console.log(oStoryID);
+                    oItems.forEach(function (oItem) {
+                      var oContext = oItem.getBindingContext();
+                      console.log("context rows");
+                      console.log(oContext);
                     });
+
                   }
               }, oTable);
 
@@ -664,7 +665,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
                 template: new sap.ui.core.HTML({
-                  content: '<html:iframe src="artifact>openURL" height="200px" width="200px"></html:iframe>'
+                  content: '<iframe src="artifact>openURL" height="200px" width="200px" />'
                 }),
               }));
 
@@ -761,7 +762,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{artifact>models/}" }),
+                template: new sap.ui.commons.TextView({ text: "{models/}" }),
                 sortProperty: "models",
                 filterProperty: "models",
               }));
