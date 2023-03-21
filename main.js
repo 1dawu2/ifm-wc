@@ -609,12 +609,12 @@
                     console.log(oBinding);
                     console.log(oItems);
                     console.log(oModelData);
-                    // oItems.foreach(function (oItem) {
-                    //   var oContext = oItem.getBindingContext();
-                    //   console.log("context rows");
-                    //   console.log(oContext);
-                    //   // oModelData.setProperty("unit ", "NewUnit", oContext);
-                    // });
+                    oItems.forEach(function (oItem) {
+                      var oContext = oItem.getBindingContext();
+                      console.log("context rows");
+                      console.log(oContext);
+                      // oModelData.setProperty("unit ", "NewUnit", oContext);
+                    });
 
                     // get row counter
                     oBinding.attachChange(function (oEvent) {
