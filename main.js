@@ -126,8 +126,7 @@
                     <m:HBox>
 			                <core:Icon size="2rem" src="sap-icon://learning-assistant" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
 			                <m:VBox  class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-                        <core:HTML content='&lt;iframe width=&quot;100%;&gt hight=&quot;100%;&gt src=&quot;https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK;&gt;'>
-                        </core:HTML> 
+                        <core:html:iframe width="150" height="150"  src="https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK" frameborder="0" allowfullscreen="true" />
                       </m:VBox>
                     </m:HBox>
                   </m:CustomTreeItem>
