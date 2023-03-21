@@ -604,17 +604,19 @@
                   function (oEvent) {
                     var oBinding = this.getBinding("rows");
                     var oItems = this.getRows();
-                    var oModelData = oTable.getModel("artifact");
+                    var oModelData = this.getModel("artifact");
 
                     // modify table entries                    
                     console.log("binding table");
                     console.log(oBinding);
-                    oItems.foreach(function (oItem) {
-                      var oContext = oItem.getBindingContext();
-                      console.log("context rows");
-                      console.log(oContext);
-                      // oModelData.setProperty("unit ", "NewUnit", oContext);
-                    });
+                    console.log(oItems);
+                    console.log(oModelData);
+                    // oItems.foreach(function (oItem) {
+                    //   var oContext = oItem.getBindingContext();
+                    //   console.log("context rows");
+                    //   console.log(oContext);
+                    //   // oModelData.setProperty("unit ", "NewUnit", oContext);
+                    // });
 
                     // get row counter
                     oBinding.attachChange(function (oEvent) {
