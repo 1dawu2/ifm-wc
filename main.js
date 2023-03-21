@@ -601,18 +601,20 @@
                 onAfterRendering:
                   function (oEvent) {
                     var oBinding = this.getBinding("rows");
-                    var oItems = this.getRows();
+                    var oItems = oEvent.getSource();
+                    var oContext = oItems.getBindingContext();
                     var oModelData = this.getModel("artifact");
 
                     // modify table entries                    
                     console.log("binding table");
                     console.log(oBinding);
                     console.log(oItems);
+                    console.log(oContext);
                     console.log(oModelData);
                     oItems.forEach(function (oItem) {
-                      var oContext = oItem.getBindingContext();
+                      var oCxt = oItem.getBindingContext();
                       console.log("context rows");
-                      console.log(oContext);
+                      console.log(oCxt);
                       // oModelData.setProperty("unit ", "NewUnit", oContext);
                     });
 
