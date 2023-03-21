@@ -609,6 +609,16 @@
                 onAfterRendering:
                   function (oEvent) {
                     var oBinding = this.getBinding("rows");
+
+                    // modify table entries
+                    // var modelData = oTable.getModel("artifact");
+                    oBinding.forEach(function (oItem) {
+                      var oContext = oItem.getBindingContext();
+                      console.log("context rows");
+                      console.log(oContext);
+                    });
+
+                    // get row counter
                     oBinding.attachChange(function (oEvent) {
                       var oSource = oEvent.getSource();
                       var oLength = oSource.iLength;
@@ -621,15 +631,6 @@
                       if (oLength === 0) {
                         sap.m.MessageToast.show("no data");
                       }
-                    });
-
-                    // handle table entries
-                    var oItems = this.byId("oPanel").getRows();
-                    var modelData = oTable.getModel("artifact");
-                    oItems.forEach(function (oItem) {
-                      var oContext = oItem.getBindingContext();
-                      console.log("context rows");
-                      console.log(oContext);
                     });
 
                   }
