@@ -125,9 +125,7 @@
                     </m:HBox>
                   </m:CustomTreeItem>
                 </m:Tree>
-                <m:content>
-                  <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC Help" id="helpODM"></m:Panel>
-                </m:content
+                <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC Help" id="helpODM"></m:Panel>
               </m:Page>
               <m:Page id="p2">
                 <m:OverflowToolbar>
