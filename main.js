@@ -125,7 +125,7 @@
                     </m:HBox>
                     <m:HBox>
 			                <core:Icon size="2rem" src="sap-icon://learning-assistant" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
-			                <m:VBox id="helpODM"class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >                        
+			                <m:VBox id="helpODM" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >                        
                       </m:VBox>
                     </m:HBox>
                   </m:CustomTreeItem>
