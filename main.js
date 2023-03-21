@@ -577,13 +577,8 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
-                var oStoryID = oModel.getProperty("/id");
-                console.log("story model: > id");
-                console.log(oModel);
-                console.log(oStoryID);
                 oBusy.close();
               });
-
 
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
@@ -612,8 +607,12 @@
 
                     // handle table entries
                     var modelData = oTable.getModel("artifact").oData;
-                    console.log("model id");
-                    console.log(modelData[entity].id);
+                    modelData.attachRequestCompleted(function (oEvent) {
+                      var oStoryID = oModel.getProperty("id");
+                      console.log("story model: > id");
+                      console.log(modelData);
+                      console.log(oStoryID);
+                    });
                   }
               }, oTable);
 
