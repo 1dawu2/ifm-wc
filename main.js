@@ -125,8 +125,9 @@
                     </m:HBox>
                   </m:CustomTreeItem>
                 </m:Tree>
-                <m:Title text="SAP Help" />
-                <m:Panel id="helpODM"></m:Panel>
+                <m:content>
+                  <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC Help" id="helpODM"></m:Panel>
+                </m:content
               </m:Page>
               <m:Page id="p2">
                 <m:OverflowToolbar>
