@@ -124,14 +124,16 @@
                       </m:VBox>
                     </m:HBox>
                   </m:CustomTreeItem>
-                  <m:CustomTreeItem>
+                </m:Tree>
+                <m:Tree id="helpList">
+                   <m:CustomTreeItem>
                     <m:HBox>
 			                <core:Icon size="2rem" src="sap-icon://learning-assistant" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
 			                <m:VBox id="helpODM" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >                        
                       </m:VBox>
                     </m:HBox>
                   </m:CustomTreeItem>
-                </m:Tree>  
+                </m:Tree>
               </m:Page>
               <m:Page id="p2">
                 <m:OverflowToolbar>
@@ -279,6 +281,7 @@
               this.oPanel = this.byId("oPanel");
               this.bindTable(oEvent);
               this.bindTree(oEvent);
+              this.bindHelp(oEvent);
               this.configGrid();
               this.configProductSwitch();
             },
