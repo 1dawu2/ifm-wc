@@ -123,6 +123,8 @@
                         <m:Label text="{title}"/>
                       </m:VBox>
                     </m:HBox>
+                  </m:CustomTreeItem>
+                  <m:CustomTreeItem>
                     <m:HBox>
 			                <core:Icon size="2rem" src="sap-icon://learning-assistant" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
 			                <m:VBox id="helpODM" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >                        
