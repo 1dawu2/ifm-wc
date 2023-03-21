@@ -570,7 +570,7 @@
 
             bindHelp: function (oEvent) {
               var oiFrame = new sap.ui.core.HTML({
-                content: "<iframe id='helpViewer' src='https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
+                content: "<iframe id='helpViewer' height='100%' src='https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
               });
               let oVBox = this.getView().byId("helpODM");
               oVBox.addContent(oiFrame);
