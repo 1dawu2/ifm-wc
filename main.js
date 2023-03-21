@@ -118,15 +118,15 @@
                   <m:CustomTreeItem>
                   	<m:HBox>
 			                <core:Icon size="2rem" src="{ref}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
-			                <m:VBox  class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+			                <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
                         <m:Link text="{text}" target="_blank" href="{link}" />
                         <m:Label text="{title}"/>
                       </m:VBox>
                     </m:HBox>
                     <m:HBox>
 			                <core:Icon size="2rem" src="sap-icon://learning-assistant" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
-			                <m:VBox  class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-                        <core:html:iframe width="150" height="150"  src="https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK" frameborder="0" allowfullscreen="true" />
+			                <m:VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+                        <core:HTML content='iframe width="150" height="150"  src="https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK" frameborder="0" allowfullscreen="true"' />
                       </m:VBox>
                     </m:HBox>
                   </m:CustomTreeItem>
