@@ -666,7 +666,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
                 template: new sap.ui.core.HTML({
-                  content: '<iframe src="artifact>openURL" height="200px" width="200px" />'
+                  content: '<iframe src="https://infomotion1.eu10.hanacloudservices.cloud.sap/" />'
                 }),
               }));
 
