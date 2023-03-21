@@ -125,6 +125,11 @@
                     </m:HBox>
                   </m:CustomTreeItem>
                 </m:Tree>
+                <m:headerToolbar>
+                  <m:OverflowToolbar>
+                    <m:Title text="SAP Help" />
+                  </m:OverflowToolbar>
+                </m:headerToolbar>
                 <m:Panel id="helpODM"></m:Panel>
               </m:Page>
               <m:Page id="p2">
