@@ -125,15 +125,7 @@
                     </m:HBox>
                   </m:CustomTreeItem>
                 </m:Tree>
-                <m:Tree id="helpList">
-                   <m:CustomTreeItem>
-                    <m:HBox>
-			                <core:Icon size="2rem" src="sap-icon://learning-assistant" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
-			                <m:VBox id="helpODM" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >                        
-                      </m:VBox>
-                    </m:HBox>
-                  </m:CustomTreeItem>
-                </m:Tree>
+                <m:Panel id="helpODM"></m:Panel>
               </m:Page>
               <m:Page id="p2">
                 <m:OverflowToolbar>
@@ -612,11 +604,13 @@
 
                     // modify table entries
                     // var modelData = oTable.getModel("artifact");
-                    oBinding.forEach(function (oItem) {
-                      var oContext = oItem.getBindingContext();
-                      console.log("context rows");
-                      console.log(oContext);
-                    });
+                    console.log("binding table");
+                    console.log(oBinding);
+                    // oBinding.forEach(function (oItem) {
+                    //   var oContext = oItem.getBindingContext();
+                    //   console.log("context rows");
+                    //   console.log(oContext);
+                    // });
 
                     // get row counter
                     oBinding.attachChange(function (oEvent) {
@@ -663,12 +657,12 @@
               }));
 
 
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "iFrame" }),
-                template: new sap.ui.core.HTML({
-                  content: '<iframe src="https://infomotion1.eu10.hanacloudservices.cloud.sap/" />'
-                }),
-              }));
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   label: new sap.ui.commons.Label({ text: "iFrame" }),
+              //   template: new sap.ui.core.HTML({
+              //     content: '<iframe src="https://infomotion1.eu10.hanacloudservices.cloud.sap/" />'
+              //   }),
+              // }));
 
 
               oTable.addColumn(new sap.ui.table.Column({
