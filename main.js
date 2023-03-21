@@ -687,9 +687,8 @@
                           } else {
                             isOptimized = false;
                           }
-                          console.log("odm mode:");
-                          console.log(isOptimized);
-                          return isOptimized;
+                          id = isOptimized
+                          return id;
                         })
                         .catch(function (error) {
                           console.log(error);
@@ -762,7 +761,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{models/}" }),
+                template: new sap.ui.commons.TextView({ text: "{/models/description}" }),
                 sortProperty: "models",
                 filterProperty: "models",
               }));
