@@ -7,6 +7,7 @@
             {
                 "text": "Performance",
                 "ref": "sap-icon://performance",
+                "link": "https://community.sap.com/topics/cloud-analytics/best-practices-troubleshooting",
                 "nodes": [
                     {
                         "text": "Optimize the Story Builder Performance",
