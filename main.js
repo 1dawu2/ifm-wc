@@ -588,7 +588,11 @@
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
                 console.log("json model");
-                console.log(this.getData());
+                var tableData = this.getData();
+                tableData.results.forEach(function (item) {
+                  console.log(item);
+                });
+
 
                 oBusy.close();
               });
@@ -748,9 +752,9 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{/models/description}" }),
-                sortProperty: "models",
-                filterProperty: "models",
+                template: new sap.ui.commons.TextView({ text: "{models/description}" }),
+                // sortProperty: "models",
+                // filterProperty: "models",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({

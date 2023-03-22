@@ -2,11 +2,13 @@
     {
         "text": "SAP Ressourcen",
         "ref": "sap-icon://mri-scan",
+        "title": "SAC Hilfestellung",
         "link": "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD?locale=en-US",
         "nodes": [
             {
                 "text": "Performance",
                 "ref": "sap-icon://performance",
+                "title": "Best Practices",
                 "link": "https://community.sap.com/topics/cloud-analytics/best-practices-troubleshooting",
                 "nodes": [
                     {
@@ -26,6 +28,7 @@
             {
                 "text": "SAP Notes BW Live Connection",
                 "ref": "sap-icon://activate",
+                "title": "SAP Support",
                 "link": "https://support.sap.com/en/my-support/knowledge-base.html",
                 "nodes": [
                     {
