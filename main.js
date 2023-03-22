@@ -587,6 +587,9 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
+                console.log("json model");
+                console.log(this.getData());
+
                 oBusy.close();
               });
 
@@ -601,23 +604,6 @@
                 onAfterRendering:
                   function (oEvent) {
                     var oBinding = this.getBinding("rows");
-                    var oItems = oEvent.getSource();
-                    var oContext = oItems.getBindingContext();
-                    var oModelData = this.getModel("artifact");
-
-                    // modify table entries                    
-                    console.log("binding table");
-                    console.log(oBinding);
-                    console.log(oItems);
-                    console.log(oContext);
-                    console.log(oModelData);
-                    oItems.forEach(function (oItem) {
-                      var oCxt = oItem.getBindingContext();
-                      console.log("context rows");
-                      console.log(oCxt);
-                      // oModelData.setProperty("unit ", "NewUnit", oContext);
-                    });
-
                     // get row counter
                     oBinding.attachChange(function (oEvent) {
                       var oSource = oEvent.getSource();
