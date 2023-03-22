@@ -589,7 +589,7 @@
               oModel.attachRequestCompleted(function (oEvent) {
                 console.log("json model");
                 var tableData = this.getData();
-                tableData.results.forEach(function (item) {
+                tableData.forEach(function (item) {
                   console.log(item);
                 });
 
