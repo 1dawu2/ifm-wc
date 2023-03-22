@@ -257,213 +257,212 @@
       content.slot = "content";
       that_.appendChild(content);
 
-      // sap.ui.define(
-      //   [
-      //     "sap/ui/core/mvc/Controller",
-      //     "sap/ui/export/Spreadsheet",
-      //     "sap/f/dnd/GridDropInfo",
-      //     "sap/ui/core/library",
-      //   ],
-      //   function (Controller) {
-      //     "use strict";
+      sap.ui.define(
+        [
+          "sap/ui/core/mvc/Controller",
+          "sap/ui/export/Spreadsheet",
+          "sap/f/dnd/GridDropInfo",
+          "sap/ui/core/library",
+        ],
+        function (Controller) {
+          "use strict";
 
-      //     return Controller.extend("ifm.hack.initial", {
-      sap.ui.controller("ifm.hack.initial", {
+          return Controller.extend("ifm.hack.initial", {
 
-        onInit: function (oEvent) {
-          this.oPanel = this.byId("oPanel");
-          this.bindTable(oEvent);
-          this.bindTree(oEvent);
-          this.bindHelp(oEvent);
-          this.configGrid();
-          this.configProductSwitch();
-        },
-
-        getPromiseState: function (promise) {
-
-          if (promise.isFulfilled) {
-            return promise;
-          }
-
-          var isPending = true;
-          var isRejected = false;
-          var isFulfilled = false;
-
-          var result = promise.then(
-            function (v) {
-              isFulfilled = true;
-              isPending = false;
-              return v;
+            onInit: function (oEvent) {
+              this.oPanel = this.byId("oPanel");
+              this.bindTable(oEvent);
+              this.bindTree(oEvent);
+              this.bindHelp(oEvent);
+              this.configGrid();
+              this.configProductSwitch();
             },
-            function (e) {
-              isRejected = true;
-              isPending = false;
-              throw e;
-            }
 
-          );
+            getPromiseState: function (promise) {
 
-          result.isFulfilled = function () {
-            return isFulfilled;
-          };
+              if (promise.isFulfilled) {
+                return promise;
+              }
 
-          result.isPending = function () {
-            return isPending;
-          };
+              var isPending = true;
+              var isRejected = false;
+              var isFulfilled = false;
 
-          result.isRejected = function () {
-            return isRejected;
-          };
-
-          return result;
-
-        },
-
-        getStoryOptimized: async function (storyID) {
-
-          return await new Promise(function (resolve) {
-            setTimeout(
-              resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
-            );
-          });
-
-          // storyContent.then(function (value) {
-          //   return value;
-
-          // }).catch(function (error) {
-          //   return error;
-
-          // });
-          // return new Promise(function (resolve, reject) {
-          //   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
-
-          // });
-        },
-
-        onFilterSelect: function (oEvent) {
-          var sKey = oEvent.getParameter("key");
-
-          if (sKey === "Activity") {
-
-            var downloadItems = "1000";
-
-            var oActivityDialog = new sap.m.Dialog({
-              resizable: false,
-              contentWidth: "400px",
-              content: [
-                new sap.ui.commons.Label({ text: "Log-Aktivitäten:", design: "Bold" }),
-                new sap.m.StepInput({
-                  change: function (oEvent) {
-                    downloadItems = oEvent.getParameter("value");
-                  },
-                  description: "Zeilen",
-                  min: 1,
-                  max: 100000,
-                  step: 1000,
-                  value: 1000,
-                  textAlign: "Center",
-                })
-              ],
-              beginButton: new sap.m.Button({
-                press: function () {
-                  var tenantURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap";
-                  var apiURL = "/api/v1/audit/activities/exportActivities?";
-                  var paraSortDec = "sortDescending=true&";
-                  var paraSortKey = "sortKey=TIMESTAMP&";
-                  var paraPageIndex = "pageIndex=1&";
-                  var paraPageSize = "pageSize=" + downloadItems;
-                  var paraFileName = "&csvName=activities";
-                  var activityURL = tenantURL + apiURL + paraSortDec + paraSortKey + paraPageIndex + paraPageSize + paraFileName
-                  sap.m.URLHelper.redirect(activityURL, true);
-                  this.getParent().close();
+              var result = promise.then(
+                function (v) {
+                  isFulfilled = true;
+                  isPending = false;
+                  return v;
                 },
-                text: "OK"
-              }),
-              customHeader: new sap.m.Bar({
-                contentMiddle: [
-                  new sap.m.Title({
-                    text: "Download Optionen",
-                  })
-                ]
-              }),
-              contentHeight: "50%",
-              contentWidth: "50%",
-              verticalScrolling: false
-            });
-            oActivityDialog.open();
-          };
+                function (e) {
+                  isRejected = true;
+                  isPending = false;
+                  throw e;
+                }
 
-          if (sKey === "All") {
-            var oAllDialog = new sap.m.Dialog({
-              resizable: false,
-              contentWidth: "400px",
-              content: [
-                new sap.m.IllustratedMessage({
-                  illustrationType: "sapIllus-SimpleCheckMark",
-                  title: "IFM HACK",
-                  description: "Einfach die Stories markieren und den Konvertierungsmodus starten"
-                })
-              ],
-              beginButton: new sap.m.Button({
-                press: function () {
-                  this.getParent().close();
-                },
-                text: "OK"
-              }),
-              customHeader: new sap.m.Bar({
-                contentMiddle: [
-                  new sap.m.Title({
-                    text: "Story Übersicht",
-                  })
-                ]
-              }),
-              contentHeight: "50%",
-              contentWidth: "50%",
-              verticalScrolling: false
-            });
-            oAllDialog.open();
-          };
-        },
+              );
 
-        onSwitchChange: function (oEvent) {
-          var oItemPressed = oEvent.getParameter("itemPressed"),
-            sTargetSrc = oItemPressed.getTargetSrc();
+              result.isFulfilled = function () {
+                return isFulfilled;
+              };
 
-          sap.m.MessageToast.show(sTargetSrc + " wird geöffnet");
-          sap.m.URLHelper.redirect(sTargetSrc, true);
-        },
+              result.isPending = function () {
+                return isPending;
+              };
 
-        onSwitchClose: function () {
-          this._pPopover.then(function (oPopover) {
-            oPopover.close();
-          });
-        },
+              result.isRejected = function () {
+                return isRejected;
+              };
 
-        onSwitchOpen: function (oEvent) {
-          var oButton = this.getView().byId("pSwitchBtn");
-          this._pPopover.then(function (oPopover) {
-            oPopover.openBy(oButton);
-          });
-        },
+              return result;
 
-        onItemSelect: function (oEvent) {
-          var oItem = oEvent.getParameter("item");
-          this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
-        },
+            },
 
-        onCollapseExpandPress: function () {
-          var toolPage = this.byId("toolPage");
-          toolPage.setSideExpanded(!toolPage.getSideExpanded());
-        },
+            getStoryOptimized: async function (storyID) {
 
-        configProductSwitch: function () {
+              return await new Promise(function (resolve) {
+                setTimeout(
+                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
+                );
+              });
 
-          var oSwitchView = this.getView();
+              // storyContent.then(function (value) {
+              //   return value;
 
-          if (!this._pPopover) {
-            this._pPopover = sap.ui.core.Fragment.load({
-              type: "XML",
-              definition: `
+              // }).catch(function (error) {
+              //   return error;
+
+              // });
+              // return new Promise(function (resolve, reject) {
+              //   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
+
+              // });
+            },
+
+            onFilterSelect: function (oEvent) {
+              var sKey = oEvent.getParameter("key");
+
+              if (sKey === "Activity") {
+
+                var downloadItems = "1000";
+
+                var oActivityDialog = new sap.m.Dialog({
+                  resizable: false,
+                  contentWidth: "400px",
+                  content: [
+                    new sap.ui.commons.Label({ text: "Log-Aktivitäten:", design: "Bold" }),
+                    new sap.m.StepInput({
+                      change: function (oEvent) {
+                        downloadItems = oEvent.getParameter("value");
+                      },
+                      description: "Zeilen",
+                      min: 1,
+                      max: 100000,
+                      step: 1000,
+                      value: 1000,
+                      textAlign: "Center",
+                    })
+                  ],
+                  beginButton: new sap.m.Button({
+                    press: function () {
+                      var tenantURL = "https://infomotion1.eu10.hanacloudservices.cloud.sap";
+                      var apiURL = "/api/v1/audit/activities/exportActivities?";
+                      var paraSortDec = "sortDescending=true&";
+                      var paraSortKey = "sortKey=TIMESTAMP&";
+                      var paraPageIndex = "pageIndex=1&";
+                      var paraPageSize = "pageSize=" + downloadItems;
+                      var paraFileName = "&csvName=activities";
+                      var activityURL = tenantURL + apiURL + paraSortDec + paraSortKey + paraPageIndex + paraPageSize + paraFileName
+                      sap.m.URLHelper.redirect(activityURL, true);
+                      this.getParent().close();
+                    },
+                    text: "OK"
+                  }),
+                  customHeader: new sap.m.Bar({
+                    contentMiddle: [
+                      new sap.m.Title({
+                        text: "Download Optionen",
+                      })
+                    ]
+                  }),
+                  contentHeight: "50%",
+                  contentWidth: "50%",
+                  verticalScrolling: false
+                });
+                oActivityDialog.open();
+              };
+
+              if (sKey === "All") {
+                var oAllDialog = new sap.m.Dialog({
+                  resizable: false,
+                  contentWidth: "400px",
+                  content: [
+                    new sap.m.IllustratedMessage({
+                      illustrationType: "sapIllus-SimpleCheckMark",
+                      title: "IFM HACK",
+                      description: "Einfach die Stories markieren und den Konvertierungsmodus starten"
+                    })
+                  ],
+                  beginButton: new sap.m.Button({
+                    press: function () {
+                      this.getParent().close();
+                    },
+                    text: "OK"
+                  }),
+                  customHeader: new sap.m.Bar({
+                    contentMiddle: [
+                      new sap.m.Title({
+                        text: "Story Übersicht",
+                      })
+                    ]
+                  }),
+                  contentHeight: "50%",
+                  contentWidth: "50%",
+                  verticalScrolling: false
+                });
+                oAllDialog.open();
+              };
+            },
+
+            onSwitchChange: function (oEvent) {
+              var oItemPressed = oEvent.getParameter("itemPressed"),
+                sTargetSrc = oItemPressed.getTargetSrc();
+
+              sap.m.MessageToast.show(sTargetSrc + " wird geöffnet");
+              sap.m.URLHelper.redirect(sTargetSrc, true);
+            },
+
+            onSwitchClose: function () {
+              this._pPopover.then(function (oPopover) {
+                oPopover.close();
+              });
+            },
+
+            onSwitchOpen: function (oEvent) {
+              var oButton = this.getView().byId("pSwitchBtn");
+              this._pPopover.then(function (oPopover) {
+                oPopover.openBy(oButton);
+              });
+            },
+
+            onItemSelect: function (oEvent) {
+              var oItem = oEvent.getParameter("item");
+              this.byId("pageContainer").to(this.getView().createId(oItem.getKey()));
+            },
+
+            onCollapseExpandPress: function () {
+              var toolPage = this.byId("toolPage");
+              toolPage.setSideExpanded(!toolPage.getSideExpanded());
+            },
+
+            configProductSwitch: function () {
+
+              var oSwitchView = this.getView();
+
+              if (!this._pPopover) {
+                this._pPopover = sap.ui.core.Fragment.load({
+                  type: "XML",
+                  definition: `
                     <core:FragmentDefinition
                       xmlns:m="sap.m"
                       xmlns:f="sap.f"
@@ -493,465 +492,465 @@
                         </f:ProductSwitch>
                       </m:ResponsivePopover>
                     </core:FragmentDefinition >`,
-              controller: this
-            }).then(function (oPopover) {
-              oSwitchView.addDependent(oPopover);
-              if (sap.ui.Device.system.phone) {
-                oPopover.setEndButton(new Button({ text: "Close", type: "Emphasized", press: this.onSwitchClose.bind(this) }));
-              }
-              return oPopover;
-            }.bind(this));
-          }
-        },
-
-        configGrid: function () {
-          var DropLayout = sap.ui.core.dnd.DropLayout;
-          var DropPosition = sap.ui.core.dnd.DropPosition;
-          var oGrid = this.byId("grid1");
-          var modelProduct = new sap.ui.model.json.JSONModel();
-          modelProduct.setData(
-            {
-              "productItems": [
-                {
-                  "title": "Website",
-                  "subtitle": "http://www.infomotion.de",
-                  "iconFile": "sap-icon://world"
-                },
-                {
-                  "title": "Telefon",
-                  "subtitle": "+49 69 56608 3231",
-                  "iconFile": "sap-icon://call"
-                },
-                {
-                  "title": "Mail",
-                  "subtitle": "david.wurm@infomotion.de",
-                  "iconFile": "sap-icon://business-card"
-                }
-              ]
-            }
-          );
-          sap.ui.getCore().setModel(modelProduct, "products");
-
-          oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
-            sourceAggregation: "items"
-          }));
-
-          oGrid.addDragDropConfig(new sap.f.dnd.GridDropInfo({
-            targetAggregation: "items",
-            dropPosition: DropPosition.Between,
-            dropLayout: DropLayout.Horizontal,
-            drop: function (oInfo) {
-              var oDragged = oInfo.getParameter("draggedControl"),
-                oDropped = oInfo.getParameter("droppedControl"),
-                sInsertPosition = oInfo.getParameter("dropPosition"),
-                iDragPosition = oGrid.indexOfItem(oDragged),
-                iDropPosition = oGrid.indexOfItem(oDropped);
-
-              oGrid.removeItem(oDragged);
-
-              if (iDragPosition < iDropPosition) {
-                iDropPosition--;
-              }
-
-              if (sInsertPosition === "After") {
-                iDropPosition++;
-              }
-
-              oGrid.insertItem(oDragged, iDropPosition);
-              oGrid.focusItem(iDropPosition);
-            }
-          }));
-        },
-
-        bindTree: function (oEvent) {
-          var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
-          var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
-          sap.ui.getCore().setModel(oTreeModel);
-        },
-
-        bindHelp: function (oEvent) {
-          var oiFrame = new sap.ui.core.HTML({
-            content: "<iframe id='helpViewer' height='100%' src='https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
-          });
-          let oVBox = this.getView().byId("helpODM");
-          oVBox.addContent(oiFrame);
-        },
-
-        bindTable: function (oEvent) {
-          var oBusy = new sap.m.BusyDialog();
-          var oModel = new sap.ui.model.json.JSONModel();
-          var that = this;
-
-          oModel.attachRequestSent(function () {
-            oBusy.open();
-          });
-          var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
-          oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
-          oModel.attachRequestCompleted(function (oEvent) {
-            console.log("json model");
-            console.log(this.getData());
-
-            oBusy.close();
-          });
-
-          var oTable = new sap.ui.table.Table({
-            title: "Overview: SAC Stories",
-            showNoData: true,
-            visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
-          });
-
-          // register a table event handler
-          oTable.addEventDelegate({
-            onAfterRendering:
-              function (oEvent) {
-                var oBinding = this.getBinding("rows");
-                // get row counter
-                oBinding.attachChange(function (oEvent) {
-                  var oSource = oEvent.getSource();
-                  var oLength = oSource.iLength;
-                  var modelCounter = new sap.ui.model.json.JSONModel();
-                  modelCounter.setData(
-                    { counter: oLength }
-                  );
-                  sap.ui.getCore().setModel(modelCounter, "rowCounter");
-
-                  if (oLength === 0) {
-                    sap.m.MessageToast.show("no data");
+                  controller: this
+                }).then(function (oPopover) {
+                  oSwitchView.addDependent(oPopover);
+                  if (sap.ui.Device.system.phone) {
+                    oPopover.setEndButton(new Button({ text: "Close", type: "Emphasized", press: this.onSwitchClose.bind(this) }));
                   }
-                });
-
+                  return oPopover;
+                }.bind(this));
               }
-          }, oTable);
+            },
 
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Story ID" }),
-            template: new sap.ui.commons.TextView({ text: "{artifact>id}" }),
-            sortProperty: "id",
-            filterProperty: "id",
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Name" }),
-            template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
-            sortProperty: "name",
-            filterProperty: "name",
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Description" }),
-            template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
-            sortProperty: "description",
-            filterProperty: "description",
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "URL" }),
-            template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
-          }));
-
-
-          // oTable.addColumn(new sap.ui.table.Column({
-          //   label: new sap.ui.commons.Label({ text: "iFrame" }),
-          //   template: new sap.ui.core.HTML({
-          //     content: '<iframe src="https://infomotion1.eu10.hanacloudservices.cloud.sap/" />'
-          //   }),
-          // }));
-
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
-            template: new sap.ui.commons.TextView({
-              text: {
-                path: 'artifact>id',
-                // type: "sap.ui.model.odata.type.Boolean",
-                formatter: function (id) {
-                  var isOptimized = false;
-                  const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
-                    .then(function (result) {
-                      if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                        isOptimized = result.cdata.content.optimizedEnabled;
-                      } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                        isOptimized = result.cdata.isOptimizedEnabled;
-                      } else {
-                        isOptimized = false;
-                      }
-                      id = isOptimized
-                      return id;
-                    })
-                    .catch(function (error) {
-                      console.log(error);
-                    });
-                  // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
-                  // var res = false;
-                  // myPromise.then((data) => {
-                  //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                  //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                  //       res = data.cdata.content.optimizedEnabled;
-                  //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                  //       res = data.cdata.isOptimizedEnabled;
-                  //     } else {
-                  //       res = false;
-                  //     }
-                  //   } else if (myPromise.isRejected === true) {
-                  //     res = false;
-                  //   }
-                  //   console.log(res);
-                  //   return id;
-                  // }).catch((e) => {
-                  //   console.log(e.message);
-                  // });
-                }
-              }
-            }),
-            // sortProperty: "id",
-            // filterProperty: "id",
-            // filterType: new sap.ui.model.type.Boolean(),
-          }));
-
-          // oTable.addColumn(new sap.ui.table.Column({
-          //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
-          //   template: new sap.ui.commons.TextView({
-          //     text: {
-          //       path: 'artifact>id',
-          //       formatter: async function (id) {
-          //         var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
-          //           function () {
-          //             if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-          //               id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
-          //             } else {
-          //               id = false;
-          //             }
-          //             console.log(id);
-          //             return id;
-          //           }
-          //         );
-
-          //         // var storyContent = that.getStoryOptimized(id);
-          //         // var isOptimized;
-          //         // storyContent.then(function (data) {
-          //         //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-          //         //   return isOptimized;
-
-          //         // }.bind(that)).catch(function (oError) {
-          //         //   console.log(oError);
-          //         //   isOptimized = false;
-          //         //   return isOptimized;
-
-          //         // }.bind(that));
-
-          //       }
-          //     }
-          //   }),
-          //   sortProperty: "id",
-          //   filterProperty: "id",
-          //   filterType: new sap.ui.model.type.Boolean(),
-          // }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Models" }),
-            template: new sap.ui.commons.TextView({ text: "{/models/description}" }),
-            sortProperty: "models",
-            filterProperty: "models",
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
-            template: new sap.ui.commons.TextView({
-              text: {
-                path: 'artifact>isTemplate',
-                type: "sap.ui.model.odata.type.Boolean",
-              }
-            }),
-            sortProperty: "isTemplate",
-            filterProperty: "isTemplate",
-            filterType: new sap.ui.model.type.Boolean(),
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Created by" }),
-            template: new sap.ui.commons.TextView({ text: "{artifact>createdBy}" }),
-            sortProperty: "createdBy",
-            filterProperty: "createdBy",
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Created" }),
-            template: new sap.ui.commons.TextView({
-              text: {
-                path: 'artifact>created',
-                type: "sap.ui.model.type.DateTime",
-                formatOptions: {
-                  UTC: true,
-                  source: {
-                    pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-                  },
-                  pattern: 'dd.MM.yyyy HH:mm',
-                }
-              }
-            }),
-            sortProperty: "created",
-            filterProperty: "created",
-            filterType: new sap.ui.model.type.DateTime(),
-          }));
-
-          oTable.addColumn(new sap.ui.table.Column({
-            label: new sap.ui.commons.Label({ text: "Changed" }),
-            template: new sap.ui.commons.TextView({
-              text: {
-                path: 'artifact>changed',
-                type: "sap.ui.model.type.DateTime",
-                formatOptions: {
-                  UTC: true,
-                  source: {
-                    pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-                  },
-                  pattern: 'dd.MM.yyyy HH:mm',
-                }
-              }
-            }),
-            sortProperty: "changed",
-            filterProperty: "changed",
-            filterType: new sap.ui.model.type.DateTime(),
-          }));
-
-          oTable.setModel(oModel, "artifact");
-          // oTable.bindRows("artifact>/");
-          oTable.bindRows({
-            path: "artifact>/",
-            parameters: { expand: "models" }
-          });
-
-          oTable.setToolbar(new sap.ui.commons.Toolbar({
-            items: [
-
-              new sap.ui.commons.Button({
-                icon: "sap-icon://begin",
-                press: function (oEvent) {
-                  // TODO: call conversion for selected table entries
-                  var oContext;
-                  var oURL;
-                  var selectedEntries = [];
-
-                  var selectedIndices = oTable.getSelectedIndices();
-                  for (var index = 0; index < selectedIndices.length; index++) {
-                    oContext = oTable.getContextByIndex(index);
-                    oURL = oContext.getProperty("id");
-                    selectedEntries.push(oURL);
-                  }
-                  console.log(selectedEntries);
-                  var oODMDialog = new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
-
-                  });
-                  oODMDialog.open();
-                  // jQuery.sap.declare("sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"),
-                  //   oEvent.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
-
-                  //   };
-
-
-                }
-              }),
-              new sap.ui.commons.Button({
-                icon: "sap-icon://resize-vertical",
-                press: function (oEvent) {
-                  if (oTable.getVisibleRowCountMode() === "Interactive") {
-                    oTable.setVisibleRowCountMode("Auto");
-                  } else {
-                    oTable.setVisibleRowCountMode("Interactive");
-                  }
-                }
-              }),
-              new sap.ui.commons.Button({
-                icon: "sap-icon://synchronize",
-                press: function (oEvent) {
-                  var oModel = oTable.getModel("artifact");
-                  oBusy.open();
-                  oModel.refresh(true);
-                  oBusy.close();
-                }
-              }),
-
-              new sap.ui.commons.Button({
-                icon: "sap-icon://excel-attachment",
-                press: function (oEvent) {
-
-                  var oRowBinding, oSettings, oSheet, oTable;
-
-                  oRowBinding = oModel.getData();
-
-                  var aCols = [];
-
-                  aCols.push({
-                    label: 'Name',
-                    property: 'name',
-                  });
-
-                  aCols.push({
-                    label: 'Story ID',
-                    property: 'id',
-                  });
-
-                  aCols.push({
-                    label: 'Description',
-                    property: 'description',
-                  });
-
-                  aCols.push({
-                    label: 'Created by',
-                    property: 'createdBy',
-                  });
-
-                  aCols.push({
-                    label: 'Template (false/true)',
-                    property: 'isTemplate',
-                    type: 'sap.ui.model.odata.type.Boolean',
-                  });
-
-                  aCols.push({
-                    label: 'URL',
-                    property: 'openURL',
-                  });
-
-                  aCols.push({
-                    label: 'Created',
-                    property: 'created',
-                    type: "sap.ui.model.type.Date",
-                    format: 'dd.MM.yyyy HH:mm',
-                  });
-
-                  aCols.push({
-                    label: 'Changed',
-                    property: 'changed',
-                    type: "sap.ui.model.type.Date",
-                    format: 'dd.MM.yyyy HH:mm',
-                  });
-
-                  oSettings = {
-                    workbook: {
-                      columns: aCols,
-                      hierarchyLevel: 'Level'
+            configGrid: function () {
+              var DropLayout = sap.ui.core.dnd.DropLayout;
+              var DropPosition = sap.ui.core.dnd.DropPosition;
+              var oGrid = this.byId("grid1");
+              var modelProduct = new sap.ui.model.json.JSONModel();
+              modelProduct.setData(
+                {
+                  "productItems": [
+                    {
+                      "title": "Website",
+                      "subtitle": "http://www.infomotion.de",
+                      "iconFile": "sap-icon://world"
                     },
-
-                    dataSource: oRowBinding,
-                    fileName: 'Export.xlsx',
-                    worker: false
-                  };
-
-                  oSheet = new sap.ui.export.Spreadsheet(oSettings);
-                  oSheet.build().finally(function () {
-                    oSheet.destroy();
-                  });
+                    {
+                      "title": "Telefon",
+                      "subtitle": "+49 69 56608 3231",
+                      "iconFile": "sap-icon://call"
+                    },
+                    {
+                      "title": "Mail",
+                      "subtitle": "david.wurm@infomotion.de",
+                      "iconFile": "sap-icon://business-card"
+                    }
+                  ]
                 }
-              })
-            ]
-          }));
+              );
+              sap.ui.getCore().setModel(modelProduct, "products");
 
-          this.oPanel.addContent(oTable);
-        }
+              oGrid.addDragDropConfig(new sap.ui.core.dnd.DragInfo({
+                sourceAggregation: "items"
+              }));
 
-      });
+              oGrid.addDragDropConfig(new sap.f.dnd.GridDropInfo({
+                targetAggregation: "items",
+                dropPosition: DropPosition.Between,
+                dropLayout: DropLayout.Horizontal,
+                drop: function (oInfo) {
+                  var oDragged = oInfo.getParameter("draggedControl"),
+                    oDropped = oInfo.getParameter("droppedControl"),
+                    sInsertPosition = oInfo.getParameter("dropPosition"),
+                    iDragPosition = oGrid.indexOfItem(oDragged),
+                    iDropPosition = oGrid.indexOfItem(oDropped);
 
-      // });
+                  oGrid.removeItem(oDragged);
+
+                  if (iDragPosition < iDropPosition) {
+                    iDropPosition--;
+                  }
+
+                  if (sInsertPosition === "After") {
+                    iDropPosition++;
+                  }
+
+                  oGrid.insertItem(oDragged, iDropPosition);
+                  oGrid.focusItem(iDropPosition);
+                }
+              }));
+            },
+
+            bindTree: function (oEvent) {
+              var sJSON = "https://raw.githubusercontent.com/1dawu2/ifm-wc/main/assets/unsupported_features.json"
+              var oTreeModel = new sap.ui.model.json.JSONModel(sJSON);
+              sap.ui.getCore().setModel(oTreeModel);
+            },
+
+            bindHelp: function (oEvent) {
+              var oiFrame = new sap.ui.core.HTML({
+                content: "<iframe id='helpViewer' height='100%' src='https://assets.sapanalytics.cloud/production/help/help-2023.2/en/65a0e996d2214fd6ab0d77fc27fc58cf.html?css=https%3A%2F%2Finfomotion1.eu10.hanacloudservices.cloud.sap%2Fsap%2Ffpa%2Fservices%2Frest%2Fepm%2Ffeature%2Fcss%3Ftenant%3DK' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
+              });
+              let oVBox = this.getView().byId("helpODM");
+              oVBox.addContent(oiFrame);
+            },
+
+            bindTable: function (oEvent) {
+              var oBusy = new sap.m.BusyDialog();
+              var oModel = new sap.ui.model.json.JSONModel();
+              var that = this;
+
+              oModel.attachRequestSent(function () {
+                oBusy.open();
+              });
+              var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
+              oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
+              oModel.attachRequestCompleted(function (oEvent) {
+                console.log("json model");
+                console.log(this.getData());
+
+                oBusy.close();
+              });
+
+              var oTable = new sap.ui.table.Table({
+                title: "Overview: SAC Stories",
+                showNoData: true,
+                visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
+              });
+
+              // register a table event handler
+              oTable.addEventDelegate({
+                onAfterRendering:
+                  function (oEvent) {
+                    var oBinding = this.getBinding("rows");
+                    // get row counter
+                    oBinding.attachChange(function (oEvent) {
+                      var oSource = oEvent.getSource();
+                      var oLength = oSource.iLength;
+                      var modelCounter = new sap.ui.model.json.JSONModel();
+                      modelCounter.setData(
+                        { counter: oLength }
+                      );
+                      sap.ui.getCore().setModel(modelCounter, "rowCounter");
+
+                      if (oLength === 0) {
+                        sap.m.MessageToast.show("no data");
+                      }
+                    });
+
+                  }
+              }, oTable);
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Story ID" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>id}" }),
+                sortProperty: "id",
+                filterProperty: "id",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Name" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
+                sortProperty: "name",
+                filterProperty: "name",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Description" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
+                sortProperty: "description",
+                filterProperty: "description",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "URL" }),
+                template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
+              }));
+
+
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   label: new sap.ui.commons.Label({ text: "iFrame" }),
+              //   template: new sap.ui.core.HTML({
+              //     content: '<iframe src="https://infomotion1.eu10.hanacloudservices.cloud.sap/" />'
+              //   }),
+              // }));
+
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>id',
+                    // type: "sap.ui.model.odata.type.Boolean",
+                    formatter: function (id) {
+                      var isOptimized = false;
+                      const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
+                        .then(function (result) {
+                          if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                            isOptimized = result.cdata.content.optimizedEnabled;
+                          } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                            isOptimized = result.cdata.isOptimizedEnabled;
+                          } else {
+                            isOptimized = false;
+                          }
+                          id = isOptimized
+                          return id;
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        });
+                      // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                      // var res = false;
+                      // myPromise.then((data) => {
+                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                      //       res = data.cdata.content.optimizedEnabled;
+                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                      //       res = data.cdata.isOptimizedEnabled;
+                      //     } else {
+                      //       res = false;
+                      //     }
+                      //   } else if (myPromise.isRejected === true) {
+                      //     res = false;
+                      //   }
+                      //   console.log(res);
+                      //   return id;
+                      // }).catch((e) => {
+                      //   console.log(e.message);
+                      // });
+                    }
+                  }
+                }),
+                // sortProperty: "id",
+                // filterProperty: "id",
+                // filterType: new sap.ui.model.type.Boolean(),
+              }));
+
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
+              //   template: new sap.ui.commons.TextView({
+              //     text: {
+              //       path: 'artifact>id',
+              //       formatter: async function (id) {
+              //         var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
+              //           function () {
+              //             if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+              //               id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
+              //             } else {
+              //               id = false;
+              //             }
+              //             console.log(id);
+              //             return id;
+              //           }
+              //         );
+
+              //         // var storyContent = that.getStoryOptimized(id);
+              //         // var isOptimized;
+              //         // storyContent.then(function (data) {
+              //         //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
+              //         //   return isOptimized;
+
+              //         // }.bind(that)).catch(function (oError) {
+              //         //   console.log(oError);
+              //         //   isOptimized = false;
+              //         //   return isOptimized;
+
+              //         // }.bind(that));
+
+              //       }
+              //     }
+              //   }),
+              //   sortProperty: "id",
+              //   filterProperty: "id",
+              //   filterType: new sap.ui.model.type.Boolean(),
+              // }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Models" }),
+                template: new sap.ui.commons.TextView({ text: "{/models/description}" }),
+                sortProperty: "models",
+                filterProperty: "models",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>isTemplate',
+                    type: "sap.ui.model.odata.type.Boolean",
+                  }
+                }),
+                sortProperty: "isTemplate",
+                filterProperty: "isTemplate",
+                filterType: new sap.ui.model.type.Boolean(),
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Created by" }),
+                template: new sap.ui.commons.TextView({ text: "{artifact>createdBy}" }),
+                sortProperty: "createdBy",
+                filterProperty: "createdBy",
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Created" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>created',
+                    type: "sap.ui.model.type.DateTime",
+                    formatOptions: {
+                      UTC: true,
+                      source: {
+                        pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                      },
+                      pattern: 'dd.MM.yyyy HH:mm',
+                    }
+                  }
+                }),
+                sortProperty: "created",
+                filterProperty: "created",
+                filterType: new sap.ui.model.type.DateTime(),
+              }));
+
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Changed" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>changed',
+                    type: "sap.ui.model.type.DateTime",
+                    formatOptions: {
+                      UTC: true,
+                      source: {
+                        pattern: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                      },
+                      pattern: 'dd.MM.yyyy HH:mm',
+                    }
+                  }
+                }),
+                sortProperty: "changed",
+                filterProperty: "changed",
+                filterType: new sap.ui.model.type.DateTime(),
+              }));
+
+              oTable.setModel(oModel, "artifact");
+              // oTable.bindRows("artifact>/");
+              oTable.bindRows({
+                path: "artifact>/",
+                parameters: { expand: "models" }
+              });
+
+              oTable.setToolbar(new sap.ui.commons.Toolbar({
+                items: [
+
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://begin",
+                    press: function (oEvent) {
+                      // TODO: call conversion for selected table entries
+                      var oContext;
+                      var oURL;
+                      var selectedEntries = [];
+
+                      var selectedIndices = oTable.getSelectedIndices();
+                      for (var index = 0; index < selectedIndices.length; index++) {
+                        oContext = oTable.getContextByIndex(index);
+                        oURL = oContext.getProperty("id");
+                        selectedEntries.push(oURL);
+                      }
+                      console.log(selectedEntries);
+                      var oODMDialog = new sap.fpa.ui.story.controls.ToggleOptimizedModeMenuItem({
+
+                      });
+                      oODMDialog.open();
+                      // jQuery.sap.declare("sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"),
+                      //   oEvent.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
+
+                      //   };
+
+
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://resize-vertical",
+                    press: function (oEvent) {
+                      if (oTable.getVisibleRowCountMode() === "Interactive") {
+                        oTable.setVisibleRowCountMode("Auto");
+                      } else {
+                        oTable.setVisibleRowCountMode("Interactive");
+                      }
+                    }
+                  }),
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://synchronize",
+                    press: function (oEvent) {
+                      var oModel = oTable.getModel("artifact");
+                      oBusy.open();
+                      oModel.refresh(true);
+                      oBusy.close();
+                    }
+                  }),
+
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://excel-attachment",
+                    press: function (oEvent) {
+
+                      var oRowBinding, oSettings, oSheet, oTable;
+
+                      oRowBinding = oModel.getData();
+
+                      var aCols = [];
+
+                      aCols.push({
+                        label: 'Name',
+                        property: 'name',
+                      });
+
+                      aCols.push({
+                        label: 'Story ID',
+                        property: 'id',
+                      });
+
+                      aCols.push({
+                        label: 'Description',
+                        property: 'description',
+                      });
+
+                      aCols.push({
+                        label: 'Created by',
+                        property: 'createdBy',
+                      });
+
+                      aCols.push({
+                        label: 'Template (false/true)',
+                        property: 'isTemplate',
+                        type: 'sap.ui.model.odata.type.Boolean',
+                      });
+
+                      aCols.push({
+                        label: 'URL',
+                        property: 'openURL',
+                      });
+
+                      aCols.push({
+                        label: 'Created',
+                        property: 'created',
+                        type: "sap.ui.model.type.Date",
+                        format: 'dd.MM.yyyy HH:mm',
+                      });
+
+                      aCols.push({
+                        label: 'Changed',
+                        property: 'changed',
+                        type: "sap.ui.model.type.Date",
+                        format: 'dd.MM.yyyy HH:mm',
+                      });
+
+                      oSettings = {
+                        workbook: {
+                          columns: aCols,
+                          hierarchyLevel: 'Level'
+                        },
+
+                        dataSource: oRowBinding,
+                        fileName: 'Export.xlsx',
+                        worker: false
+                      };
+
+                      oSheet = new sap.ui.export.Spreadsheet(oSettings);
+                      oSheet.build().finally(function () {
+                        oSheet.destroy();
+                      });
+                    }
+                  })
+                ]
+              }));
+
+              this.oPanel.addContent(oTable);
+            }
+
+          });
+
+        });
 
       //### THE APP: place the XMLView somewhere into DOM ###
       var oView = new sap.ui.core.mvc.XMLView({
