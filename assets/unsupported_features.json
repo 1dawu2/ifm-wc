@@ -2,6 +2,7 @@
     {
         "text": "SAP Ressourcen",
         "ref": "sap-icon://mri-scan",
+        "link": "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD?locale=en-US",
         "nodes": [
             {
                 "text": "Performance",
@@ -24,6 +25,7 @@
             {
                 "text": "SAP Notes BW Live Connection",
                 "ref": "sap-icon://activate",
+                "link": "https://support.sap.com/en/my-support/knowledge-base.html",
                 "nodes": [
                     {
                         "text": "Considerations when using SAP BW and SAP S/4HANA Live Connections in SAC",
