@@ -785,8 +785,8 @@
                     }
                   }
                 }),
-                // sortProperty: "id",
-                // filterProperty: "id",
+                sortProperty: "id",
+                filterProperty: "id",
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
