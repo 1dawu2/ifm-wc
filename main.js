@@ -782,9 +782,9 @@
 
                       //   // }.bind(that));
 
-                      // }
                     }
-                  }),
+                  }
+                }),
                 // sortProperty: "id",
                 // filterProperty: "id",
                 // filterType: new sap.ui.model.type.Boolean(),
