@@ -589,6 +589,9 @@
               oModel.attachRequestCompleted(function (oEvent) {
                 console.log("json model");
                 console.log(oModel);
+                var propID = oModel.getProperty("/id");
+                console.log("property");
+                console.log(propID);
                 var tableData = this.getData();
                 console.log("table data");
                 console.log(tableData);
@@ -709,43 +712,43 @@
                   text: {
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
-                    formatter: function (id) {
-                      const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
-                        .then(function (result) {
-                          if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                            id = result.cdata.content.optimizedEnabled;
-                          } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                            id = result.cdata.isOptimizedEnabled;
-                          } else {
-                            id = false;
-                          }
-                        })
-                        .catch(function (error) {
-                          console.log(error);
-                          id = false;
-                        });
-                      return id;
-                      // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
-                      // var res = false;
-                      // myPromise.then((data) => {
-                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.content.optimizedEnabled;
-                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.isOptimizedEnabled;
-                      //     } else {
-                      //       res = false;
-                      //     }
-                      //   } else if (myPromise.isRejected === true) {
-                      //     res = false;
-                      //   }
-                      //   console.log(res);
-                      //   return id;
-                      // }).catch((e) => {
-                      //   console.log(e.message);
-                      // });
-                    }
+                    // formatter: function (id) {
+                    //   const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
+                    //     .then(function (result) {
+                    //       if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                    //         id = result.cdata.content.optimizedEnabled;
+                    //       } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                    //         id = result.cdata.isOptimizedEnabled;
+                    //       } else {
+                    //         id = false;
+                    //       }
+                    //     })
+                    //     .catch(function (error) {
+                    //       console.log(error);
+                    //       id = false;
+                    //     });
+                    //   return id;
+                    // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                    // var res = false;
+                    // myPromise.then((data) => {
+                    //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+                    //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                    //       res = data.cdata.content.optimizedEnabled;
+                    //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                    //       res = data.cdata.isOptimizedEnabled;
+                    //     } else {
+                    //       res = false;
+                    //     }
+                    //   } else if (myPromise.isRejected === true) {
+                    //     res = false;
+                    //   }
+                    //   console.log(res);
+                    //   return id;
+                    // }).catch((e) => {
+                    //   console.log(e.message);
+                    // });
                   }
+                  // }
                 }),
                 // sortProperty: "id",
                 // filterProperty: "id",
@@ -757,33 +760,33 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: async function (id) {
-                      var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
-                        function () {
-                          if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                            id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
-                          } else {
-                            id = false;
-                          }
-                        }
-                      );
-                      return id;
+                    // formatter: async function (id) {
+                    //   var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
+                    //     function () {
+                    //       if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                    //         id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
+                    //       } else {
+                    //         id = false;
+                    //       }
+                    //     }
+                    //   );
+                    //   return id;
 
-                      //   // var storyContent = that.getStoryOptimized(id);
-                      //   // var isOptimized;
-                      //   // storyContent.then(function (data) {
-                      //   //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-                      //   //   return isOptimized;
+                    //   // var storyContent = that.getStoryOptimized(id);
+                    //   // var isOptimized;
+                    //   // storyContent.then(function (data) {
+                    //   //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
+                    //   //   return isOptimized;
 
-                      //   // }.bind(that)).catch(function (oError) {
-                      //   //   console.log(oError);
-                      //   //   isOptimized = false;
-                      //   //   return isOptimized;
+                    //   // }.bind(that)).catch(function (oError) {
+                    //   //   console.log(oError);
+                    //   //   isOptimized = false;
+                    //   //   return isOptimized;
 
-                      //   // }.bind(that));
+                    //   // }.bind(that));
 
-                    }
                   }
+                  // }
                 }),
                 sortProperty: "id",
                 filterProperty: "id",
