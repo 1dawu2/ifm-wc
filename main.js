@@ -591,7 +591,7 @@
                 var tableData = this.getData();
                 tableData.forEach(function (item) {
                   // console.log(item);
-                  console.log(item[models]);
+                  console.log(item['models']);
                 });
 
 
