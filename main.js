@@ -590,9 +590,26 @@
                 console.log("json model");
                 var tableData = this.getData();
                 tableData.forEach(function (item) {
-                  // console.log(item);
-                  console.log(item['id']);
-                  console.log(item['models']['decription']);
+                  // get isOptimized
+                  var isOptimized = false;
+                  const story = sap.fpa.ui.story.StoryFetcher.getContent(item['id'])
+                    .then(function (result) {
+                      if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                        isOptimized = result.cdata.content.optimizedEnabled;
+                      } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                        isOptimized = result.cdata.isOptimizedEnabled;
+                      } else {
+                        isOptimized = false;
+                      }
+                      console.log(isOptimized);
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+
+                  item['models'].forEach(function (description) {
+                    console.log(description);
+                  });
                 });
 
 
