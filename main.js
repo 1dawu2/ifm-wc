@@ -125,7 +125,7 @@
                     </m:HBox>
                   </m:CustomTreeItem>
                 </m:Tree>
-                <m:Panel height="100%" expandable="true" expanded="true" headerText="SAC Help" id="helpODM"></m:Panel>
+                <m:Panel height="100%" expandable="true" expanded="false" headerText="SAC Help" id="helpODM"></m:Panel>
               </m:Page>
               <m:Page id="p2">
                 <m:OverflowToolbar>
@@ -607,6 +607,7 @@
                     .catch(function (error) {
                       console.log(error);
                     });
+                  tableData.setProperty("isOptimized", isOptimized);
 
                   // item['models'].forEach(function (description) {
                   //   console.log(description);
