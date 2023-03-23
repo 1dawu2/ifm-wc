@@ -609,8 +609,10 @@
                       res = false;
                     }
                   }).catch((e) => {
-                    console.log(e.message);
+                    res = false;
                   });
+                  console.log("resource:");
+                  console.log(res);
 
                   // var isOptimized = false;
                   // const story = sap.fpa.ui.story.StoryFetcher.getContent()
