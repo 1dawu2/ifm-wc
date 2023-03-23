@@ -823,7 +823,10 @@
               // oTable.bindRows("artifact>/");
               oTable.bindRows({
                 path: "artifact>/",
-                parameters: { expand: "models" }
+                parameters: {
+                  expand: "models",
+                  select: "description"
+                }
               });
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
