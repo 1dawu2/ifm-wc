@@ -590,6 +590,8 @@
                 console.log("json model");
                 console.log(oModel);
                 var tableData = this.getData();
+                console.log("table data");
+                console.log(tableData);
                 tableData.forEach(function (item) {
                   // get isOptimized
                   var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
