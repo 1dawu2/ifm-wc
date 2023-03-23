@@ -588,6 +588,7 @@
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
               oModel.attachRequestCompleted(function (oEvent) {
                 console.log("json model");
+                console.log(oModel);
                 var tableData = this.getData();
                 tableData.forEach(function (item) {
                   // get isOptimized
@@ -607,9 +608,9 @@
                       console.log(error);
                     });
 
-                  item['models'].forEach(function (description) {
-                    console.log(description);
-                  });
+                  // item['models'].forEach(function (description) {
+                  //   console.log(description);
+                  // });
                 });
 
 
