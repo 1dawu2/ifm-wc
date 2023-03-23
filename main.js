@@ -590,7 +590,8 @@
                 console.log("json model");
                 var tableData = this.getData();
                 tableData.forEach(function (item) {
-                  console.log(item);
+                  // console.log(item);
+                  console.log(item[models]);
                 });
 
 
