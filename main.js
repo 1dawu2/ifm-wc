@@ -594,25 +594,25 @@
                 console.log(tableData);
                 tableData.forEach(function (item) {
                   // get isOptimized
-                  var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
-                  var res = false;
-                  myPromise.then((data) => {
-                    if (myPromise.isFulfilled === true || myPromise.isPending) {
-                      if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                        res = data.cdata.content.optimizedEnabled;
-                      } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                        res = data.cdata.isOptimizedEnabled;
-                      } else {
-                        res = false;
-                      }
-                    } else if (myPromise.isRejected === true) {
-                      res = false;
-                    }
-                  }).catch((e) => {
-                    res = false;
-                  });
-                  console.log("resource:");
-                  console.log(res);
+                  // var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
+                  // var res = false;
+                  // myPromise.then((data) => {
+                  //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+                  //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                  //       res = data.cdata.content.optimizedEnabled;
+                  //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                  //       res = data.cdata.isOptimizedEnabled;
+                  //     } else {
+                  //       res = false;
+                  //     }
+                  //   } else if (myPromise.isRejected === true) {
+                  //     res = false;
+                  //   }
+                  // }).catch((e) => {
+                  //   res = false;
+                  // });
+                  // console.log("resource:");
+                  // console.log(res);
 
                   // var isOptimized = false;
                   // const story = sap.fpa.ui.story.StoryFetcher.getContent()
@@ -636,8 +636,6 @@
                   //   console.log(description);
                   // });
                 });
-
-
                 oBusy.close();
               });
 
@@ -755,44 +753,44 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
-              // oTable.addColumn(new sap.ui.table.Column({
-              //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
-              //   template: new sap.ui.commons.TextView({
-              //     text: {
-              //       path: 'artifact>id',
-              //       formatter: async function (id) {
-              //         var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
-              //           function () {
-              //             if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-              //               id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
-              //             } else {
-              //               id = false;
-              //             }
-              //             console.log(id);
-              //             return id;
-              //           }
-              //         );
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
+                template: new sap.ui.commons.TextView({
+                  text: {
+                    path: 'artifact>id',
+                    // formatter: async function (id) {
+                    //   var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
+                    //     function () {
+                    //       if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                    //         id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
+                    //       } else {
+                    //         id = false;
+                    //       }
+                    //       console.log(id);
+                    //       return id;
+                    //     }
+                    //   );
 
-              //         // var storyContent = that.getStoryOptimized(id);
-              //         // var isOptimized;
-              //         // storyContent.then(function (data) {
-              //         //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-              //         //   return isOptimized;
+                    //   // var storyContent = that.getStoryOptimized(id);
+                    //   // var isOptimized;
+                    //   // storyContent.then(function (data) {
+                    //   //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
+                    //   //   return isOptimized;
 
-              //         // }.bind(that)).catch(function (oError) {
-              //         //   console.log(oError);
-              //         //   isOptimized = false;
-              //         //   return isOptimized;
+                    //   // }.bind(that)).catch(function (oError) {
+                    //   //   console.log(oError);
+                    //   //   isOptimized = false;
+                    //   //   return isOptimized;
 
-              //         // }.bind(that));
+                    //   // }.bind(that));
 
-              //       }
-              //     }
-              //   }),
-              //   sortProperty: "id",
-              //   filterProperty: "id",
-              //   filterType: new sap.ui.model.type.Boolean(),
-              // }));
+                    // }
+                  }
+                }),
+                // sortProperty: "id",
+                // filterProperty: "id",
+                // filterType: new sap.ui.model.type.Boolean(),
+              }));
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
