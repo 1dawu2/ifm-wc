@@ -710,22 +710,21 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      var isOptimized = false;
                       const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
                         .then(function (result) {
                           if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                            isOptimized = result.cdata.content.optimizedEnabled;
+                            id = result.cdata.content.optimizedEnabled;
                           } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                            isOptimized = result.cdata.isOptimizedEnabled;
+                            id = result.cdata.isOptimizedEnabled;
                           } else {
-                            isOptimized = false;
+                            id = false;
                           }
-                          id = isOptimized
-                          return id;
                         })
                         .catch(function (error) {
                           console.log(error);
+                          id = false;
                         });
+                      return id;
                       // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
                       // var res = false;
                       // myPromise.then((data) => {
@@ -758,35 +757,34 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    // formatter: async function (id) {
-                    //   var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
-                    //     function () {
-                    //       if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                    //         id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
-                    //       } else {
-                    //         id = false;
-                    //       }
-                    //       console.log(id);
-                    //       return id;
-                    //     }
-                    //   );
+                    formatter: async function (id) {
+                      var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
+                        function () {
+                          if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                            id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
+                          } else {
+                            id = false;
+                          }
+                        }
+                      );
+                      return id;
 
-                    //   // var storyContent = that.getStoryOptimized(id);
-                    //   // var isOptimized;
-                    //   // storyContent.then(function (data) {
-                    //   //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-                    //   //   return isOptimized;
+                      //   // var storyContent = that.getStoryOptimized(id);
+                      //   // var isOptimized;
+                      //   // storyContent.then(function (data) {
+                      //   //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
+                      //   //   return isOptimized;
 
-                    //   // }.bind(that)).catch(function (oError) {
-                    //   //   console.log(oError);
-                    //   //   isOptimized = false;
-                    //   //   return isOptimized;
+                      //   // }.bind(that)).catch(function (oError) {
+                      //   //   console.log(oError);
+                      //   //   isOptimized = false;
+                      //   //   return isOptimized;
 
-                    //   // }.bind(that));
+                      //   // }.bind(that));
 
-                    // }
-                  }
-                }),
+                      // }
+                    }
+                  }),
                 // sortProperty: "id",
                 // filterProperty: "id",
                 // filterType: new sap.ui.model.type.Boolean(),
