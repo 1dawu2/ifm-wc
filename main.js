@@ -592,22 +592,41 @@
                 var tableData = this.getData();
                 tableData.forEach(function (item) {
                   // get isOptimized
-                  var isOptimized = false;
-                  const story = sap.fpa.ui.story.StoryFetcher.getContent(item['id'])
-                    .then(function (result) {
-                      if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                        isOptimized = result.cdata.content.optimizedEnabled;
-                      } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                        isOptimized = result.cdata.isOptimizedEnabled;
+                  var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
+                  var res = false;
+                  myPromise.then((data) => {
+                    if (myPromise.isFulfilled === true || myPromise.isPending) {
+                      if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                        res = data.cdata.content.optimizedEnabled;
+                      } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                        res = data.cdata.isOptimizedEnabled;
                       } else {
-                        isOptimized = false;
+                        res = false;
                       }
-                      console.log(isOptimized);
-                    })
-                    .catch(function (error) {
-                      console.log(error);
-                    });
-                  tableData.setProperty("isOptimized", isOptimized);
+                    } else if (myPromise.isRejected === true) {
+                      res = false;
+                    }
+                  }).catch((e) => {
+                    console.log(e.message);
+                  });
+
+                  // var isOptimized = false;
+                  // const story = sap.fpa.ui.story.StoryFetcher.getContent()
+                  //   .then(function (result) {
+                  //     if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                  //       isOptimized = result.cdata.content.optimizedEnabled;
+                  //     } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                  //       isOptimized = result.cdata.isOptimizedEnabled;
+                  //     } else {
+                  //       isOptimized = false;
+                  //     }
+                  //     console.log(isOptimized);
+                  //   })
+                  //   .catch(function (error) {
+                  //     console.log(error);
+                  //   });
+
+                  // tableData.setProperty("isOptimized", res);
 
                   // item['models'].forEach(function (description) {
                   //   console.log(description);
