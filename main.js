@@ -589,12 +589,15 @@
               oModel.attachRequestCompleted(function (oEvent) {
                 console.log("json model");
                 console.log(oModel);
-                var propID = oModel.getProperty("artifact/id");
+                var propID = oModel.getProperty("/artifact/id");
                 console.log("property");
                 console.log(propID);
                 var tableData = this.getData();
                 console.log("table data");
                 console.log(tableData);
+                for (var i = 0; i < propID.length; i++) {
+                  oModel.setProperty("/NotificationSet/" + iNotification + "/selected", bSelectAll);
+                }
                 tableData.forEach(function (item) {
                   oModel.setProperty("/artifact/" + iNotification + "/isOpt", item['id']);
                   oModel.create("isOpt", item['id']);
