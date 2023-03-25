@@ -759,7 +759,7 @@
                 label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
-                    path: sap.fpa.ui.story.StoryFetcher.getContent('artifact>id'),
+                    path: 'artifact>id',
                     // formatter: async function (id) {
                     //   var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
                     //     function () {
