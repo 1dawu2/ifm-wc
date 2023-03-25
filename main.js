@@ -589,7 +589,7 @@
               oModel.attachRequestCompleted(function (oEvent) {
                 console.log("json model");
                 console.log(oModel);
-                var propID = oModel.getProperty("artifact>/id");
+                var propID = oModel.getProperty("artifact/id");
                 console.log("property");
                 console.log(propID);
                 var tableData = this.getData();
