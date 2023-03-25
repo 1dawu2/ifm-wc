@@ -596,6 +596,7 @@
                 console.log("table data");
                 console.log(tableData);
                 tableData.forEach(function (item) {
+                  oModel.create("isOpt", item['id']);
                   // get isOptimized
                   // var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
                   // var res = false;
