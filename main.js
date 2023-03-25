@@ -596,6 +596,7 @@
                 console.log("table data");
                 console.log(tableData);
                 tableData.forEach(function (item) {
+                  oModel.setProperty("/artifact/" + iNotification + "/isOpt", item['id']);
                   oModel.create("isOpt", item['id']);
                   // get isOptimized
                   // var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
