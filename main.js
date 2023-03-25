@@ -592,6 +592,7 @@
                 var propID = this.getProperty("artifact>/id");
                 console.log("property");
                 console.log(propID);
+                console.log(oEvent.getSource());
                 var tableData = this.getData();
                 console.log("table data");
                 console.log(tableData);
