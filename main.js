@@ -759,7 +759,7 @@
                 label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
-                    path: 'artifact>id',
+                    path: sap.fpa.ui.story.StoryFetcher.getContent('artifact>id'),
                     // formatter: async function (id) {
                     //   var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
                     //     function () {
@@ -864,10 +864,10 @@
               // oTable.bindRows("artifact>/");
               oTable.bindRows({
                 path: "artifact>/",
-                parameters: {
-                  expand: "models",
-                  select: "description"
-                }
+                // parameters: {
+                //   expand: "models",
+                //   select: "description"
+                // }
               });
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
@@ -892,10 +892,10 @@
 
                       });
                       oODMDialog.open();
-                      // jQuery.sap.declare("sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"),
-                      //   oEvent.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
+                      jQuery.sap.declare("sap.fpa.ui.story.StoryOptimizedUnsupportedDialog"),
+                        oEvent.exports = sap.fpa.ui.story.StoryOptimizedUnsupportedDialog = {
 
-                      //   };
+                        };
 
 
                     }
