@@ -861,15 +861,15 @@
                 filterType: new sap.ui.model.type.DateTime(),
               }));
 
-              oTable.setModel(oModel, "artifact");
+              // oTable.setModel(oModel, "artifact");
               // oTable.bindRows("artifact>/");
-              oTable.bindRows({
-                path: "artifact>/",
-                // parameters: {
-                //   expand: "models",
-                //   select: "description"
-                // }
-              });
+              // oTable.bindRows({
+              // path: "artifact>/",
+              // parameters: {
+              //   expand: "models",
+              //   select: "description"
+              // }
+              // });
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
