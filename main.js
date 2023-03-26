@@ -605,7 +605,7 @@
                 //   oModel.setProperty("/NotificationSet/" + iNotification + "/selected", bSelectAll);
                 // }
                 tableData.forEach(function (item, index) {
-                  console.log(index);
+                  // console.log(index);
                   // oModel.setProperty("/artifact/" + iNotification + "/isOpt", item['id']);
 
                   // oModel.create("isOpt", item['id']);
@@ -812,7 +812,7 @@
                   cells: [
                     new sap.m.Text({
                       text: {
-                        path: "{artifact/0/description}",
+                        path: "{artifact/models/0/description}",
                       }
                     })
                   ]
