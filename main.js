@@ -802,7 +802,7 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
-              oTable.addColumn(new sap.ui.table.ColumnHeader({
+              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.ui.commons.ListBox({
                   items: {
@@ -814,10 +814,10 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.m.List({
+                template: new sap.ui.commons.ListBox({
                   items: {
-                    path: "artifact>models",
-                    template: new sap.ui.core.ListItem({ text: "{models/id}" })
+                    path: "/artifact/models",
+                    template: new sap.ui.core.ListItem({ text: "{description}" })
                   },
                 })
               }));
