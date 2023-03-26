@@ -592,7 +592,10 @@
                 var propID = oModel.getProperty("/id");
                 console.log("property");
                 console.log(propID);
-                console.log(oEvent.getSource());
+                var oItems = oEvent.getSource();
+                var oBindingContext = oItems.getBindingContext();
+                console.log("context");
+                console.log(oBindingContext);
                 var tableData = this.getData();
                 console.log("table data");
                 console.log(tableData);
@@ -803,7 +806,15 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.TextView({ text: "{models/description}" }),
+                template: new sap.m.ColumnListItem({
+                  cells: [
+                    new sap.m.Text({
+                      text: {
+                        path: "{artifact/0/description}",
+                      }
+                    })
+                  ]
+                }),
                 // sortProperty: "models",
                 // filterProperty: "models",
               }));
