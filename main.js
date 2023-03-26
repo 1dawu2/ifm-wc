@@ -806,16 +806,6 @@
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.ui.commons.ListBox({
                   items: {
-                    path: "artifact>models",
-                    template: new sap.ui.core.ListItem({ text: "{description}" })
-                  },
-                })
-              }));
-
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.ListBox({
-                  items: {
                     path: "/artifact/models",
                     template: new sap.ui.core.ListItem({ text: "{description}" })
                   },
@@ -884,11 +874,11 @@
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows({
-                path: "artifact>/",
-                parameters: {
-                  expand: "models",
-                  select: "description"
-                }
+                path: "artifact/",
+                // parameters: {
+                //   expand: "models",
+                //   select: "description"
+                // }
               });
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
