@@ -591,6 +591,8 @@
                 var oItems = oEvent.getSource().getData();
                 oItems.forEach(function (item, index) {
                   console.log(item.id);
+                  story = sap.fpa.ui.story.StoryFetcher.getContent(item.id);
+                  console.log(story.cdata.content.optimizedEnabled);
 
                 });
 
