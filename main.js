@@ -812,9 +812,9 @@
                 })
               }));
 
-              oTable.addColumn(new sap.ui.table.ColumnHeader({
+              oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.ListBox({
+                template: new sap.m.List({
                   items: {
                     path: "artifact>models",
                     template: new sap.ui.core.ListItem({ text: "{models/id}" })
