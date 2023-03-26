@@ -808,7 +808,7 @@
                 template: new sap.m.List({
                   items: {
                     path: "artifact>models/",
-                    template: new sap.ui.core.ListItem({ text: "{artifact>description}" })
+                    template: new sap.ui.commons.TextView({ text: "{artifact>description}" })
                   },
                 })
               }));
