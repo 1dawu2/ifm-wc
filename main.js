@@ -800,19 +800,14 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
-              oTable.addColumn(new sap.ui.table.Column({
+              oTable.addColumn(new sap.ui.table.ColumnHeader({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.m.ColumnListItem({
-                  cells: [
-                    new sap.m.Text({
-                      text: {
-                        path: 'artifact>models',
-                      }
-                    })
-                  ]
-                }),
-                // sortProperty: "models",
-                // filterProperty: "models",
+                template: new sap.ui.commons.ListBox({
+                  items: {
+                    path: "artifact>models",
+                    template: new sap.ui.core.ListItem({ text: "{id}" })
+                  },
+                })
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
