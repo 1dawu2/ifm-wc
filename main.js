@@ -806,7 +806,7 @@
                   cells: [
                     new sap.m.Text({
                       text: {
-                        path: 'artifact>models/0/description',
+                        path: 'artifact>models',
                       }
                     })
                   ]
