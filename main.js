@@ -808,7 +808,7 @@
                 template: new sap.ui.commons.ListBox({
                   items: {
                     path: "artifact>models/",
-                    template: new sap.ui.core.ListItem({ text: "{models}" })
+                    template: new sap.ui.core.ListItem({ text: "{artifact>id}" })
                   },
                 })
               }));
