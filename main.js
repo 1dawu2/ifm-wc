@@ -586,72 +586,66 @@
               });
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
+
               oModel.attachRequestCompleted(function (oEvent) {
-                console.log("json model");
-                console.log(oModel);
-                var propID = oModel.getProperty("/id");
-                console.log("property");
-                console.log(propID);
-                var oItems = oEvent.getSource();
-                console.log("source");
-                console.log(oItems);
-                // var oBindingContext = oItems.getBindingContext();
-                // console.log("context");
-                // console.log(oBindingContext);
-                var tableData = this.getData();
-                console.log("table data");
-                console.log(tableData);
+                var oItems = oEvent.getSource().getData();
+                oItems.forEach(function (item, index) {
+                  console.log(item.id);
+
+                });
+
+
                 // for (var i = 0; i < propID.length; i++) {
                 //   oModel.setProperty("/NotificationSet/" + iNotification + "/selected", bSelectAll);
                 // }
-                tableData.forEach(function (item, index) {
-                  // console.log(index);
-                  // oModel.setProperty("/artifact/" + iNotification + "/isOpt", item['id']);
+                // tableData.forEach(function (item, index) {
+                // console.log(index);
+                // oModel.setProperty("/artifact/" + iNotification + "/isOpt", item['id']);
 
-                  // oModel.create("isOpt", item['id']);
-                  // get isOptimized
-                  // var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
-                  // var res = false;
-                  // myPromise.then((data) => {
-                  //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                  //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                  //       res = data.cdata.content.optimizedEnabled;
-                  //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                  //       res = data.cdata.isOptimizedEnabled;
-                  //     } else {
-                  //       res = false;
-                  //     }
-                  //   } else if (myPromise.isRejected === true) {
-                  //     res = false;
-                  //   }
-                  // }).catch((e) => {
-                  //   res = false;
-                  // });
-                  // console.log("resource:");
-                  // console.log(res);
+                // oModel.create("isOpt", item['id']);
+                // get isOptimized
+                // var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
+                // var res = false;
+                // myPromise.then((data) => {
+                //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+                //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                //       res = data.cdata.content.optimizedEnabled;
+                //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                //       res = data.cdata.isOptimizedEnabled;
+                //     } else {
+                //       res = false;
+                //     }
+                //   } else if (myPromise.isRejected === true) {
+                //     res = false;
+                //   }
+                // }).catch((e) => {
+                //   res = false;
+                // });
+                // console.log("resource:");
+                // console.log(res);
 
-                  // var isOptimized = false;
-                  // const story = sap.fpa.ui.story.StoryFetcher.getContent()
-                  //   .then(function (result) {
-                  //     if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                  //       isOptimized = result.cdata.content.optimizedEnabled;
-                  //     } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                  //       isOptimized = result.cdata.isOptimizedEnabled;
-                  //     } else {
-                  //       isOptimized = false;
-                  //     }
-                  //     console.log(isOptimized);
-                  //   })
-                  //   .catch(function (error) {
-                  //     console.log(error);
-                  //   });
+                // var isOptimized = false;
+                // const story = sap.fpa.ui.story.StoryFetcher.getContent()
+                //   .then(function (result) {
+                //     if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                //       isOptimized = result.cdata.content.optimizedEnabled;
+                //     } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                //       isOptimized = result.cdata.isOptimizedEnabled;
+                //     } else {
+                //       isOptimized = false;
+                //     }
+                //     console.log(isOptimized);
+                //   })
+                //   .catch(function (error) {
+                //     console.log(error);
+                //   });
 
-                  // tableData.setProperty("isOptimized", res);
+                // tableData.setProperty("isOptimized", res);
 
-                  // item['models'].forEach(function (description) {
-                  //   console.log(description);
-                  // });
-                });
+                // item['models'].forEach(function (description) {
+                //   console.log(description);
+                // });
+                // });
                 oBusy.close();
               });
 
