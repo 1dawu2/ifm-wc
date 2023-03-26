@@ -874,7 +874,7 @@
 
               oTable.setModel(oModel, "artifact");
               oTable.bindRows({
-                path: "artifact/",
+                path: "artifact",
                 // parameters: {
                 //   expand: "models",
                 //   select: "description"
