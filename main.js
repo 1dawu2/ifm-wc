@@ -807,7 +807,17 @@
                 template: new sap.ui.commons.ListBox({
                   items: {
                     path: "artifact>models",
-                    template: new sap.ui.core.ListItem({ text: "{models>id}" })
+                    template: new sap.ui.core.ListItem({ text: "{/id}" })
+                  },
+                })
+              }));
+
+              oTable.addColumn(new sap.ui.table.ColumnHeader({
+                label: new sap.ui.commons.Label({ text: "Models" }),
+                template: new sap.ui.commons.ListBox({
+                  items: {
+                    path: "artifact>models",
+                    template: new sap.ui.core.ListItem({ text: "{models/id}" })
                   },
                 })
               }));
