@@ -593,9 +593,11 @@
                 console.log("property");
                 console.log(propID);
                 var oItems = oEvent.getSource();
-                var oBindingContext = oItems.getBindingContext();
-                console.log("context");
-                console.log(oBindingContext);
+                console.log("source");
+                console.log(oItems);
+                // var oBindingContext = oItems.getBindingContext();
+                // console.log("context");
+                // console.log(oBindingContext);
                 var tableData = this.getData();
                 console.log("table data");
                 console.log(tableData);
