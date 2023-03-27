@@ -837,7 +837,7 @@
                     path: 'artifact>isTemplate',
                     type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (oVal) {
-                      switch (sStateValueToLower) {
+                      switch (oVal) {
                         case "No":
                           return 8;
                         case "Yes":
