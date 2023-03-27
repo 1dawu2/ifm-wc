@@ -820,7 +820,7 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
-                template: new sap.ui.commons.TextView({
+                template: new sap.tnt.InfoLabel({
                   text: {
                     path: 'artifact>isTemplate',
                     type: "sap.ui.model.odata.type.Boolean",
