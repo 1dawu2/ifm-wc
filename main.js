@@ -861,7 +861,7 @@
                         case false:
                           return "sap-icon://error";
                         case true:
-                          return "sap-icon://status-completed";
+                          return "sap-icon://message-success";
                         default:
                           return "sap-icon://error";
                       }
