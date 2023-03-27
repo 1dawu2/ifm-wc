@@ -808,11 +808,23 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
+              var listItem = new sap.m.CustomListItem({
+                type: sap.m.ListType.Active,
+                content: new sap.m.Label({
+                  text: {
+                    path: 'artifact>id',
+                    formatter: function (oVal) {
+                      return "Formatted " + oVal;
+                    }
+                  }
+                })
+              });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.ColumnListItem({
                   cells: {
                     path: "artifact>models/",
+
                     template: new sap.tnt.InfoLabel({ text: "{artifact>id}", icon: "sap-icon://database" })
                   },
                 })
@@ -824,6 +836,16 @@
                   text: {
                     path: 'artifact>isTemplate',
                     type: "sap.ui.model.odata.type.Boolean",
+                    formatter: function (oVal) {
+                      switch (sStateValueToLower) {
+                        case "No":
+                          return 8;
+                        case "Yes":
+                          return 3;
+                        default:
+                          return 9;
+                      }
+                    }
                   }
                 }),
                 sortProperty: "isTemplate",
