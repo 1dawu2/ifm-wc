@@ -840,11 +840,11 @@
                     formatter: function (oVal) {
                       switch (oVal) {
                         case false:
-                          return 1;
+                          return 9;
                         case true:
                           return 8;
                         default:
-                          return 1;
+                          return 9;
                       }
                     }
                   },
