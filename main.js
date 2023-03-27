@@ -13,11 +13,6 @@
   let tmpl = document.createElement("template");
   tmpl.innerHTML = `
     <style>
-      li:not(:last-of-type).sapUiLbxI {
-        display: table;
-        list-style-position: inside;
-        border: 0px;
-      }
     </style>
     <div id="ifm_hack_content" name="ifm_hack_content">
       <slot name="content"></slot>
