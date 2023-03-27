@@ -835,9 +835,9 @@
                     formatter: function (oVal) {
                       switch (oVal) {
                         case false:
-                          return 1;
-                        case true:
                           return 3;
+                        case true:
+                          return 8;
                         default:
                           return 3;
                       }
