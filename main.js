@@ -833,9 +833,10 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
                 template: new sap.tnt.InfoLabel({
-                  text: {
-                    path: 'artifact>isTemplate',
-                    type: "sap.ui.model.odata.type.Boolean",
+                  colorScheme: {
+                    parts: [
+                      { path: 'artifact>isTemplate' }
+                    ],
                     formatter: function (oVal) {
                       switch (oVal) {
                         case "No":
@@ -846,7 +847,12 @@
                           return 9;
                       }
                     }
-                  }
+                  },
+                  text: {
+                    path: 'artifact>isTemplate',
+                    type: "sap.ui.model.odata.type.Boolean",
+                  },
+                  icon: "sap-icon://database"
                 }),
                 sortProperty: "isTemplate",
                 filterProperty: "isTemplate",
