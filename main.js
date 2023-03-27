@@ -806,7 +806,7 @@
               var listItem = new sap.m.CustomListItem({
                 // type: sap.m.ListType.Active,
                 content: new sap.tnt.InfoLabel({
-                  colorScheme: 7,
+                  colorScheme: 9,
                   icon: "sap-icon://database",
                   text: {
                     path: 'artifact>description',
