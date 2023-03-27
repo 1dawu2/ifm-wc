@@ -810,10 +810,10 @@
 
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.ui.commons.ListBox({
-                  items: {
+                template: new sap.m.ColumnListItem({
+                  cells: {
                     path: "artifact>models/",
-                    template: new sap.ui.core.ListItem({ text: "{artifact>id}" })
+                    template: new sap.tnt.InfoLabel({ text: "{artifact>id}", icon: "sap-icon://database" })
                   },
                 })
               }));
