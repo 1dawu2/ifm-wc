@@ -814,7 +814,7 @@
                       if (oVal !== "") {
                         return oVal
                       } else {
-                        return 'artifact>id'
+                        return '{artifact>id}'
                       }
                     }
                   }
