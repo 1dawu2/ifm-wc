@@ -707,13 +707,15 @@
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
 
-
-              // oTable.addColumn(new sap.ui.table.Column({
-              //   label: new sap.ui.commons.Label({ text: "iFrame" }),
-              //   template: new sap.ui.core.HTML({
-              //     content: '<iframe src="https://infomotion1.eu10.hanacloudservices.cloud.sap/" />'
-              //   }),
-              // }));
+              var oiFrame = new sap.ui.core.HTML({
+                content: "{artifact>id}"
+              });
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "iFrame" }),
+                template: new sap.ui.core.HTML({
+                  content: oiFrame
+                }),
+              }));
 
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -805,18 +807,20 @@
 
               var listItem = new sap.m.CustomListItem({
                 // type: sap.m.ListType.Active,
-                content: new sap.tnt.InfoLabel({
-                  colorScheme: 9,
-                  icon: "sap-icon://database",
-                  text: {
+                content: new sap.m.Link({
+                  // colorScheme: 9,
+                  // icon: "sap-icon://database",
+                  target: "_blank",
+                  href: {
                     parts: [
-                      { path: "artifact>id" },
-                      { path: "artifact>description" }
+                      { path: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/analyticapp&/aa/" },
+                      { path: "artifact>id" }
                     ],
                     formatter: function (a, b) {
-                      return a + " - " + b;
+                      return a + b;
                     }
-                  }
+                  },
+                  text: { "artifact>description" },
                 })
               });
               oTable.addColumn(new sap.ui.table.Column({
