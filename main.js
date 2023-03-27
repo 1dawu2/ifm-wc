@@ -806,8 +806,9 @@
               var listItem = new sap.m.CustomListItem({
                 type: sap.m.ListType.Active,
                 content: new sap.tnt.InfoLabel({
+                  colorScheme: 2,
                   text: {
-                    path: 'artifact>id',
+                    path: 'artifact>description',
                   }
                 })
               });
