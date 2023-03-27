@@ -821,10 +821,10 @@
                       { path: "artifact>id" }
                     ],
                     formatter: function (a) {
-                      return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/analyticapp&/aa/" + a;
+                      return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/" + a;
                     }
                   },
-                  text: "artifact>description",
+                  text: "{artifact>description}",
                 })
               });
               oTable.addColumn(new sap.ui.table.Column({
