@@ -835,11 +835,11 @@
                     formatter: function (oVal) {
                       switch (oVal) {
                         case false:
-                          return 3;
+                          return 1;
                         case true:
-                          return 8;
+                          return 7;
                         default:
-                          return 3;
+                          return 1;
                       }
                     }
                   },
