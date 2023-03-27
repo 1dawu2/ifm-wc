@@ -828,7 +828,7 @@
                       return a + b;
                     }
                   },
-                  text: { "artifact>description" },
+                  text: "artifact>description",
                 })
               });
               oTable.addColumn(new sap.ui.table.Column({
