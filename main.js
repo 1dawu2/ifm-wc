@@ -811,7 +811,6 @@
               }));
 
               var listItem = new sap.m.CustomListItem({
-                // type: sap.m.ListType.Active,
                 content: new sap.m.Link({
                   // colorScheme: 9,
                   // icon: "sap-icon://database",
@@ -835,7 +834,9 @@
                     path: "artifact>models/",
                     template: listItem
                   },
-                })
+                }),
+                sortProperty: "models",
+                filterProperty: "models",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
