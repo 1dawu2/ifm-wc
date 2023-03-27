@@ -833,7 +833,7 @@
                         case false:
                           return 1;
                         case true:
-                          return 3;
+                          return 8;
                         default:
                           return 1;
                       }
