@@ -852,7 +852,22 @@
                     path: 'artifact>isTemplate',
                     type: "sap.ui.model.odata.type.Boolean",
                   },
-                  icon: "sap-icon://database"
+                  icon: {
+                    parts: [
+                      { path: 'artifact>isTemplate' }
+                    ],
+                    formatter: function (oVal) {
+                      switch (oVal) {
+                        case "No":
+                          return "sap-icon://error";
+                        case "Yes":
+                          return "sap-icon://status-completed";
+                        default:
+                          return "sap-icon://error";
+                      }
+                    }
+
+                  },
                 }),
                 sortProperty: "isTemplate",
                 filterProperty: "isTemplate",
