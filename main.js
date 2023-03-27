@@ -807,6 +807,7 @@
                 type: sap.m.ListType.Active,
                 content: new sap.tnt.InfoLabel({
                   colorScheme: 2,
+                  icon: "sap-icon://database",
                   text: {
                     path: 'artifact>description',
                   }
