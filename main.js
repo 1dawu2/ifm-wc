@@ -840,9 +840,9 @@
                     formatter: function (oVal) {
                       switch (oVal) {
                         case "No":
-                          return 8;
+                          return 2;
                         case "Yes":
-                          return 3;
+                          return 8;
                         default:
                           return 9;
                       }
