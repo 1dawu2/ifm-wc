@@ -710,8 +710,8 @@
               var oiFrame = new sap.ui.core.HTML({
                 content: {
                   path: "artifact>id",
-                  formatter: function (a, b) {
-                    return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" + b;
+                  formatter: function (a) {
+                    return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" + a;
                   }
                 },
               });
@@ -820,8 +820,8 @@
                     parts: [
                       { path: "artifact>id" }
                     ],
-                    formatter: function (a, b) {
-                      return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/analyticapp&/aa/" + b;
+                    formatter: function (a) {
+                      return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/analyticapp&/aa/" + a;
                     }
                   },
                   text: "artifact>description",
