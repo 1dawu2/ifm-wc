@@ -708,7 +708,15 @@
               }));
 
               var oiFrame = new sap.ui.core.HTML({
-                content: "{artifact>id}"
+                content: {
+                  parts: [
+                    { path: "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" },
+                    { path: "artifact>id" }
+                  ],
+                  formatter: function (a, b) {
+                    return a + b;
+                  }
+                },
               });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
@@ -928,8 +936,8 @@
               oTable.bindRows({
                 path: "artifact>/",
                 // parameters: {
-                //   expand: "models",
-                //   select: "description"
+                //   expand: "",
+                //   select: ""
                 // }
               });
 
