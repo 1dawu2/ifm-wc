@@ -654,7 +654,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
                 showNoData: true,
-                alternateRowColors: true,
+                // alternateRowColors: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
 
@@ -814,7 +814,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
-                  cells: {
+                  items: {
                     path: "artifact>models/",
                     template: listItem
                   },
