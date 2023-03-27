@@ -809,13 +809,12 @@
                   colorScheme: 9,
                   icon: "sap-icon://database",
                   text: {
-                    path: 'artifact>description',
-                    formatter: function (oVal) {
-                      if (oVal !== "") {
-                        return oVal
-                      } else {
-                        return '{artifact>id}'
-                      }
+                    parts: [
+                      { path: "artifact>id" },
+                      { path: "artifact>description" }
+                    ],
+                    formatter: function (a, b) {
+                      return a + " - " + b;
                     }
                   }
                 })
