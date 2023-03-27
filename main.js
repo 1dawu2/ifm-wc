@@ -834,6 +834,7 @@
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
+                  backgroundDesign: "Transparent",
                   items: {
                     path: "artifact>models/",
                     template: listItem
