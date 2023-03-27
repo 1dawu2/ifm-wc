@@ -805,12 +805,9 @@
 
               var listItem = new sap.m.CustomListItem({
                 type: sap.m.ListType.Active,
-                content: new sap.m.Label({
+                content: new sap.tnt.InfoLabel({
                   text: {
                     path: 'artifact>id',
-                    formatter: function (oVal) {
-                      return "Formatted " + oVal;
-                    }
                   }
                 })
               });
@@ -819,8 +816,7 @@
                 template: new sap.m.ColumnListItem({
                   cells: {
                     path: "artifact>models/",
-
-                    template: new sap.tnt.InfoLabel({ text: "{artifact>id}", icon: "sap-icon://database" })
+                    template: listItem
                   },
                 })
               }));
