@@ -813,7 +813,7 @@
               });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
-                template: new sap.m.ColumnListItem({
+                template: new sap.m.List({
                   cells: {
                     path: "artifact>models/",
                     template: listItem
