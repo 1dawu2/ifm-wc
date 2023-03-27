@@ -839,9 +839,9 @@
                     ],
                     formatter: function (oVal) {
                       switch (oVal) {
-                        case "No":
+                        case false:
                           return "2";
-                        case "Yes":
+                        case true:
                           return "8";
                         default:
                           return "2";
@@ -858,9 +858,9 @@
                     ],
                     formatter: function (oVal) {
                       switch (oVal) {
-                        case "No":
+                        case false:
                           return "sap-icon://error";
-                        case "Yes":
+                        case true:
                           return "sap-icon://status-completed";
                         default:
                           return "sap-icon://error";
