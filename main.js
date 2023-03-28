@@ -707,18 +707,19 @@
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
 
-              // var oiFrame = new sap.ui.core.HTML({
-              //   content: {
-              //     path: "artifact>id",
-              //     formatter: function (a) {
-              //       return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" + a;
-              //     }
-              //   },
-              // });
-              // oTable.addColumn(new sap.ui.table.Column({
-              //   label: new sap.ui.commons.Label({ text: "iFrame" }),
-              //   template: oiFrame
-              // }));
+              var oiFrame = new sap.ui.core.HTML({
+                content: {
+                  path: "artifact>id",
+                  formatter: function (path) {
+                    var htmlContent = "<iframe id='pdfViewer' src='https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" + path + "' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
+                    return htmlContent;
+                  }
+                },
+              });
+              oTable.addColumn(new sap.ui.table.Column({
+                label: new sap.ui.commons.Label({ text: "iFrame" }),
+                template: oiFrame
+              }));
 
 
               oTable.addColumn(new sap.ui.table.Column({
@@ -811,9 +812,9 @@
               var listItem = new sap.m.CustomListItem({
                 content: new sap.m.Button({
                   icon: "sap-icon://database",
-                  text: "{artifact>description",
-                  press: function () {
-                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + '{artifact>id}', '_blank');
+                  text: "{artifact>id",
+                  press: function (oVal) {
+                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + oVal, '_blank');
                   }
 
 
