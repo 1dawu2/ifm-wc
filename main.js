@@ -717,9 +717,7 @@
               });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "iFrame" }),
-                template: new sap.ui.core.HTML({
-                  content: oiFrame
-                }),
+                template: oiFrame
               }));
 
 
