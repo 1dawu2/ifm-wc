@@ -707,19 +707,19 @@
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
 
-              var oiFrame = new sap.ui.core.HTML({
-                content: {
-                  path: "artifact>id",
-                  formatter: function (path) {
-                    var htmlContent = "<iframe id='pdfViewer' src='https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" + path + "' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
-                    return htmlContent;
-                  }
-                },
-              });
-              oTable.addColumn(new sap.ui.table.Column({
-                label: new sap.ui.commons.Label({ text: "iFrame" }),
-                template: oiFrame
-              }));
+              // var oiFrame = new sap.ui.core.HTML({
+              //   content: {
+              //     path: "artifact>id",
+              //     formatter: function (path) {
+              //       var htmlContent = "<iframe id='storyViewer' src='https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/story&/s/" + path + "?mode=edit' style='width: 100%; height: 100%;' allowfullscreen='' webkitallowfullscreen=''</iframe>"
+              //       return htmlContent;
+              //     }
+              //   },
+              // });
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   label: new sap.ui.commons.Label({ text: "iFrame" }),
+              //   template: oiFrame
+              // }));
 
 
               oTable.addColumn(new sap.ui.table.Column({
