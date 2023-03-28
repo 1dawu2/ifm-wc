@@ -812,9 +812,9 @@
               var listItem = new sap.m.CustomListItem({
                 content: new sap.m.Button({
                   icon: "sap-icon://database",
-                  text: "{artifact>id",
-                  press: function (oVal) {
-                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + oVal, '_blank');
+                  text: "{artifact>description",
+                  press: function () {
+                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + "artifact>id", '_blank');
                   }
 
 
