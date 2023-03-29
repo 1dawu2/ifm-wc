@@ -810,11 +810,12 @@
               }));
 
               var listItem = new sap.m.CustomListItem({
-                content: new sap.m.Button({
+                content: new sap.ui.commons.Button({
                   icon: "sap-icon://database",
                   text: "{artifact>description",
-                  press: function () {
-                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + "artifact>id", '_blank');
+                  press: function (oEvent) {
+                    console.log(this.getModel().getProperty(e.getSource().getBindingContext().getPath()));
+                    // window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + "artifact>id", '_blank');
                   }
 
 
