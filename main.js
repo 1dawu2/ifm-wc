@@ -814,9 +814,9 @@
                   icon: "sap-icon://database",
                   text: "{artifact>description",
                   press: function (oEvent) {
-                    var modelInfo = this.getModel("artifacts");
+                    var modelInfo = oTable.getModel("artifact");
                     var path = oEvent.getSource().getBindingContext().getPath();
-                    var obj = model.getProperty(path);
+                    var obj = modelInfo.getProperty(path);
                     console.log(obj);
                     // getProperty(oEvent.getSource().getBindingContext().getPath())
                     // window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + "artifact>id", '_blank');
