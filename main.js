@@ -814,7 +814,7 @@
                   icon: "sap-icon://database",
                   text: "{artifact>description",
                   press: function (oEvent) {
-                    var modelInfo = this.getModel();
+                    var modelInfo = this.getModel("artifacts");
                     var path = oEvent.getSource().getBindingContext().getPath();
                     var obj = model.getProperty(path);
                     console.log(obj);
