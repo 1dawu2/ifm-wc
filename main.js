@@ -814,18 +814,7 @@
                   icon: "sap-icon://database",
                   text: "{artifact>description",
                   press: function (oEvent) {
-                    var itemIndex = oTable.indexOfItem(oTable.getSelectedItem());
-                    if (itemIndex !== -1) {
-                      var oItems = oTable.getSelectedItems();
-                      for (var i = 0; i < oItems.length; i++) {
-
-                        var modelID = oItems[i].getBindingContext().getProperty("models");
-                        console.log(modelID);
-
-                      }
-                    } else {
-                      alert("No Items Selected. Please Select an Item");
-                    }
+                    var item = oEvent.oSource.oBindingContexts.json.sPath;
                     // getProperty(oEvent.getSource().getBindingContext().getPath())
                     // window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + "artifact>id", '_blank');
                   }
