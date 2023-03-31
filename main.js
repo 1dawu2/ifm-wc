@@ -815,7 +815,7 @@
                   text: "{artifact>description",
                   press: function (oEvent) {
                     var modelInfo = oTable.getModel("artifact");
-                    var context = oTable.getBindingContext();
+                    var context = modelInfo.getBindingContext();
                     // var obj = modelInfo.getProperty(path);
                     console.log(context);
                     // getProperty(oEvent.getSource().getBindingContext().getPath())
