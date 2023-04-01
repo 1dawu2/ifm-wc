@@ -819,9 +819,9 @@
                     ]
                   },
                   press: function (oEvent) {
-                    var index = oEvent.getSource().getParent().getIndex();
-                    var rowContext = oTable.getContextByIndex(index);
-                    var objId = rowContext.getPropert("id");
+                    var index = oEvent.getSource().getParent();
+                    // var rowContext = oTable.getContextByIndex(index);
+                    // var objId = rowContext.getPropert("id");
 
                     window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + objId, '_blank');
                   }
