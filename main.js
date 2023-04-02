@@ -654,6 +654,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
                 showNoData: true,
+                fixedLayout: false,
                 // alternateRowColors: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
@@ -829,10 +830,6 @@
                 }),
               });
               oTable.addColumn(new sap.ui.table.Column({
-                flexible: true,
-                resizable: true,
-                autoResizable: true,
-                width: 'auto',
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
                   backgroundDesign: "Transparent",
