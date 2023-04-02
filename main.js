@@ -809,30 +809,49 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
+              var listItem = new sap.m.CustomListItem({
+                content: new sap.ui.commons.Button({
+                  icon: "sap-icon://database",
+                  text: {
+                    parts: [
+                      { path: "artifact>id" },
+                      { path: "artifact>description" }
+                    ],
+                    formatter: function (id, desc) {
+                      return id + " - " + desc;
+                    },
+                  },
+                  press: function (oEvent) {
+                    var sValue = oEvent.getSource();
+
+                    // var rowContext = oTable.getContextByIndex(index);
+                    // var objId = rowContext.getPropert("id");
+
+                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + sValue, '_blank');
+                  },
+                }),
+                // content: new sap.m.Link({
+                //   // colorScheme: 9,
+                //   // icon: "sap-icon://database",
+                //   target: "_blank",
+                //   href: {
+                //     parts: [
+                //       { path: "artifact>id" }
+                //     ],
+                //     formatter: function (a) {
+                //       return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/" + a;
+                //     }
+                //   },
+                //   text: "{artifact>description}",
+                // })
+              });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
                   backgroundDesign: "Transparent",
                   items: {
                     path: "artifact>models/",
-                    template: new sap.m.CustomListItem({
-                      content: new sap.m.Button({
-                        icon: "sap-icon://database",
-                        text: {
-                          parts: [
-                            { path: "artifact>id" },
-                            { path: "artifact>description" }
-                          ],
-                          formatter: function (id, desc) {
-                            return new sap.m.Button({
-                              press: function () {
-                                window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
-                              }
-                            });
-                          },
-                        }
-                      }),
-                    }),
+                    template: listItem
                   },
                 }),
                 sortProperty: "models",
