@@ -809,8 +809,8 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
-              var listItem = new sap.m.CustomListItem({
-                content: {
+              var listItem = new sap.m.Button({
+                text: {
                   parts: [
                     { path: "artifact>id" },
                     { path: "artifact>description" }
