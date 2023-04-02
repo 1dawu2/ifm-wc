@@ -823,7 +823,8 @@
                   },
                   press: function (oEvent) {
                     var sValue = oEvent.getParameter("text").a;
-                    console.log(oEvent.getMetadata());
+
+                    console.log(oEvent.getSource().getBindingContext().getObject());
                     var id = sValue.split("-")[0];
 
                     // var rowContext = oTable.getContextByIndex(index);
