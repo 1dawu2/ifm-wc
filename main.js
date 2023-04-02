@@ -822,7 +822,7 @@
                     },
                   },
                   press: function (oEvent) {
-                    var sValue = oEvent.getSource();
+                    var sValue = oEvent.getSource().getParameter("text");
 
                     // var rowContext = oTable.getContextByIndex(index);
                     // var objId = rowContext.getPropert("id");
