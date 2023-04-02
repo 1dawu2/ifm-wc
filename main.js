@@ -822,7 +822,7 @@
                     },
                   },
                   press: function (oEvent) {
-                    var sValue = oEvent.getParameter("text").a;
+                    // var sValue = oEvent.getParameter("text").a;
 
                     console.log(oEvent.getSource().getBindingContext().getObject());
                     var id = sValue.split("-")[0];
