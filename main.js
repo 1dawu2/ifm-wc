@@ -822,7 +822,7 @@
                     return id + " - " + desc;
                   },
                   press: function (oEvent) {
-                    var sValue = this.bindProperty("${id}");
+                    var sValue = oEvent.getSource().getBindingContext().getProperty("artifact>id");
 
                     // var rowContext = oTable.getContextByIndex(index);
                     // var objId = rowContext.getPropert("id");
