@@ -811,7 +811,7 @@
 
               var listItem = new sap.m.CustomListItem({
                 content: new sap.ui.commons.Button({
-                  type: "Transparent",
+                  type: "Attention",
                   icon: "sap-icon://database",
                   text: {
                     parts: [
