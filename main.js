@@ -814,12 +814,16 @@
                   icon: "sap-icon://database",
                   text: {
                     parts: [
-                      "{artifact>description}",
-                      "{artifact>id}"
+                      { path: "artifact>id" },
+                      { path: "artifact>description" }
                     ]
                   },
+                  formatter: function (id, desc) {
+                    return id + " - " + desc;
+                  },
                   press: function (oEvent) {
-                    var index = oEvent.getSource().getParent();
+                    var index = this.getParent().getParent();
+                    var context = index.getBindingContext().getProperty("id");
                     // var rowContext = oTable.getContextByIndex(index);
                     // var objId = rowContext.getPropert("id");
 
