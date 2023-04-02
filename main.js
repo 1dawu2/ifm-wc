@@ -811,7 +811,6 @@
 
               var listItem = new sap.m.CustomListItem({
                 content: new sap.ui.commons.Button({
-                  type: "Attention",
                   icon: "sap-icon://database",
                   text: {
                     parts: [
@@ -830,6 +829,10 @@
                 }),
               });
               oTable.addColumn(new sap.ui.table.Column({
+                flexible: true,
+                resizable: true,
+                autoResizable: true,
+                width: 'auto',
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
                   backgroundDesign: "Transparent",
