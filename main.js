@@ -822,13 +822,15 @@
                     return id + " - " + desc;
                   },
                   press: function (oEvent) {
-                    var index = this.getParent().getParent();
-                    var context = index.getBindingContext().getProperty("id");
+                    var sValue = oEvent.getSource().getParent().getBindingContext().getProperty("id")
+
                     // var rowContext = oTable.getContextByIndex(index);
                     // var objId = rowContext.getPropert("id");
 
-                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + objId, '_blank');
-                  }
+                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + sValue, '_blank');
+                  },
+                  sortProperty: "id",
+                  filterProperty: "id",
                 }),
                 // content: new sap.m.Link({
                 //   // colorScheme: 9,
