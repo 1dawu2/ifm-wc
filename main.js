@@ -816,21 +816,18 @@
                     parts: [
                       { path: "artifact>id" },
                       { path: "artifact>description" }
-                    ]
+                    ],
+                    formatter: function (id, desc) {
+                      return new sap.m.Button({
+                        text: desc,
+                        press: function () {
+                          window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
+                        }
+                      });
+                    },
                   },
-                  formatter: function (id, desc) {
-                    return id + " - " + desc;
-                  },
-                  press: function (oEvent) {
-                    var sValue = oEvent.getSource().getBindingContext().getProperty("artifact>id");
-
-                    // var rowContext = oTable.getContextByIndex(index);
-                    // var objId = rowContext.getPropert("id");
-
-                    window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + sValue, '_blank');
-                  },
-                  sortProperty: "id",
-                  filterProperty: "id",
+                  sortProperty: "artifact>id",
+                  filterProperty: "artifact>id",
                 }),
                 // content: new sap.m.Link({
                 //   // colorScheme: 9,
