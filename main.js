@@ -810,20 +810,18 @@
               }));
 
               var listItem = new sap.m.CustomListItem({
-                text: {
-                  parts: [
-                    { path: "artifact>id" },
-                    { path: "artifact>description" }
-                  ],
-                  formatter: function (id, desc) {
-                    return new sap.m.Button({
-                      icon: "sap-icon://database",
-                      text: desc,
-                      press: function () {
-                        window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
-                      }
-                    });
-                  },
+                parts: [
+                  { path: "artifact>id" },
+                  { path: "artifact>description" }
+                ],
+                formatter: function (id, desc) {
+                  return new sap.m.Button({
+                    icon: "sap-icon://database",
+                    text: desc,
+                    press: function () {
+                      window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
+                    }
+                  });
                 },
               });
               oTable.addColumn(new sap.ui.table.Column({
