@@ -822,31 +822,11 @@
                     },
                   },
                   press: function (oEvent) {
-                    // var sValue = oEvent.getParameter("text").a;
-
                     var sValue = oEvent.oSource.mProperties["text"];
                     var id = sValue.split("-")[0];
-
-                    // var rowContext = oTable.getContextByIndex(index);
-                    // var objId = rowContext.getPropert("id");
-
                     window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
                   },
                 }),
-                // content: new sap.m.Link({
-                //   // colorScheme: 9,
-                //   // icon: "sap-icon://database",
-                //   target: "_blank",
-                //   href: {
-                //     parts: [
-                //       { path: "artifact>id" }
-                //     ],
-                //     formatter: function (a) {
-                //       return "https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/" + a;
-                //     }
-                //   },
-                //   text: "{artifact>description}",
-                // })
               });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
@@ -857,8 +837,8 @@
                     template: listItem
                   },
                 }),
-                sortProperty: "models",
-                filterProperty: "models",
+                sortProperty: "{artifact>description}",
+                filterProperty: "{artifact>description}",
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
