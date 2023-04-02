@@ -809,30 +809,29 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
-              var listItem = new sap.m.Button({
-                text: {
-                  parts: [
-                    { path: "artifact>id" },
-                    { path: "artifact>description" }
-                  ],
-                  formatter: function (id, desc) {
-                    return new sap.m.Button({
-                      icon: "sap-icon://database",
-                      text: desc,
-                      press: function () {
-                        window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
-                      }
-                    });
-                  },
-                }
-              });
               oTable.addColumn(new sap.ui.table.Column({
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
                   backgroundDesign: "Transparent",
                   items: {
                     path: "artifact>models/",
-                    template: listItem
+                    template: new sap.m.Button({
+                      icon: "sap-icon://database",
+                      text: {
+                        parts: [
+                          { path: "artifact>id" },
+                          { path: "artifact>description" }
+                        ],
+                        formatter: function (id, desc) {
+                          return new sap.m.Button({
+                            press: function () {
+                              window.open('https://infomotion1.eu10.hanacloudservices.cloud.sap/sap/fpa/ui/app.html#/modeler&/m/model/' + id, '_blank');
+                            }
+                          });
+                        },
+                      }
+
+                    }),
                   },
                 }),
                 sortProperty: "models",
