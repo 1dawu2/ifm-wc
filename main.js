@@ -822,7 +822,7 @@
                     },
                   },
                   press: function (oEvent) {
-                    var sValue = oEvent.getParameter("text");
+                    var sValue = oEvent.getParameter("a");
                     var id = sValue.split("-")[0];
 
                     // var rowContext = oTable.getContextByIndex(index);
