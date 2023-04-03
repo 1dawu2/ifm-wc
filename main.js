@@ -683,6 +683,7 @@
               }, oTable);
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Story ID" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>id}" }),
                 sortProperty: "id",
@@ -690,6 +691,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Name" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>name}" }),
                 sortProperty: "name",
@@ -697,6 +699,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Description" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>description}" }),
                 sortProperty: "description",
@@ -704,6 +707,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "URL" }),
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
@@ -724,6 +728,7 @@
 
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
@@ -773,6 +778,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
@@ -830,6 +836,7 @@
                 }),
               });
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Models" }),
                 template: new sap.m.List({
                   backgroundDesign: "Transparent",
@@ -843,6 +850,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
                 template: new sap.tnt.InfoLabel({
                   colorScheme: {
@@ -887,6 +895,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Created by" }),
                 template: new sap.ui.commons.TextView({ text: "{artifact>createdBy}" }),
                 sortProperty: "createdBy",
@@ -894,6 +903,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Created" }),
                 template: new sap.ui.commons.TextView({
                   text: {
@@ -914,6 +924,7 @@
               }));
 
               oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Changed" }),
                 template: new sap.ui.commons.TextView({
                   text: {
