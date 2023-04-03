@@ -777,8 +777,8 @@
                       //   console.log(e.message);
                       // });
                     }
-                    // }
-                  }),
+                  }
+                }),
                 // sortProperty: "id",
                 // filterProperty: "id",
                 // filterType: new sap.ui.model.type.Boolean(),
