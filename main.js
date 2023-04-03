@@ -654,7 +654,7 @@
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
                 showNoData: true,
-                fixedLayout: false,
+                // fixedLayout: false,
                 // alternateRowColors: true,
                 visibleRowCountMode: sap.ui.table.VisibleRowCountMode.Auto
               });
