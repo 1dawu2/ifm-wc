@@ -1014,7 +1014,12 @@
                       oBusy.close();
                     }
                   }),
-
+                  new sap.ui.commons.Button({
+                    icon: "sap-icon://resize-horizontal",
+                    press: function (oEvent) {
+                      oTable.autoResizeColumns();
+                    }
+                  }),
                   new sap.ui.commons.Button({
                     icon: "sap-icon://excel-attachment",
                     press: function (oEvent) {
