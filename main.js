@@ -956,7 +956,7 @@
                     setTimeout(function () {
                       // resize columns
                       for (var i = 0; i < oTable.getColumns().length; i++) {
-                        oTable.autoResizeColumn(i);
+                        this.autoResizeColumn(i);
                       }
                     }, 10);
                   }
@@ -1006,18 +1006,18 @@
                     }
                   }),
                   new sap.ui.commons.Button({
+                    icon: "sap-icon://resize-horizontal",
+                    press: function (oEvent) {
+                      this.autoResizeColumns();
+                    }
+                  }),
+                  new sap.ui.commons.Button({
                     icon: "sap-icon://synchronize",
                     press: function (oEvent) {
                       var oModel = oTable.getModel("artifact");
                       oBusy.open();
                       oModel.refresh(true);
                       oBusy.close();
-                    }
-                  }),
-                  new sap.ui.commons.Button({
-                    icon: "sap-icon://resize-horizontal",
-                    press: function (oEvent) {
-                      oTable.autoResizeColumns();
                     }
                   }),
                   new sap.ui.commons.Button({
