@@ -953,12 +953,7 @@
                 // }
                 events: {
                   dataReceived: function () {
-                    setTimeout(function () {
-                      // resize columns
-                      for (var i = 0; i < oTable.getColumns().length; i++) {
-                        this.autoResizeColumn(i);
-                      }
-                    }, 10);
+                    oTable.getColumns().map((col, index) => oTable.autoResizeColumn(index));
                   }
                 }
               });
@@ -1008,7 +1003,7 @@
                   new sap.ui.commons.Button({
                     icon: "sap-icon://resize-horizontal",
                     press: function (oEvent) {
-                      this.autoResizeColumns();
+                      oTable.getColumns().map((col, index) => oTable.autoResizeColumn(index));
                     }
                   }),
                   new sap.ui.commons.Button({
