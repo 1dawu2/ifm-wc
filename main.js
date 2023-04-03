@@ -195,11 +195,12 @@
       this._export_settings.oAuthURL = "";
 
       // controlling functions
-      // this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
-      // console.log("Story Container");
-      // console.log(this._oStoryContainerController);
-      // this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
-      // console.log(this._oDocumentContext);
+      this._oStoryContainerController = sap.ui.controller("sap.epm.story.StoryContainer");
+      console.log("Story Container");
+      console.log(this._oStoryContainerController);
+      this._oDocumentContext = this._oStoryContainerController.getDocumentContext();
+      console.log("Document Context")
+      console.log(this._oDocumentContext);
       // this._uqmLoad = this._oDocumentContext.get("sap.fpa.bi.uqmLoader")
       // this._oDocument = this._oStoryContainerController.getDocument();
       // console.log(this._oDocument);
@@ -682,6 +683,7 @@
                   }
               }, oTable);
 
+              // ID
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Story ID" }),
@@ -690,6 +692,7 @@
                 filterProperty: "id",
               }));
 
+              // Name
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Name" }),
@@ -698,6 +701,7 @@
                 filterProperty: "name",
               }));
 
+              // Description
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Description" }),
@@ -706,6 +710,7 @@
                 filterProperty: "description",
               }));
 
+              // URL
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "URL" }),
@@ -727,6 +732,7 @@
               // }));
 
 
+              // ODM
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
@@ -777,6 +783,7 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
+              // Unsupported Features
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
@@ -816,6 +823,7 @@
                 // filterType: new sap.ui.model.type.Boolean(),
               }));
 
+              // Models
               var listItem = new sap.m.CustomListItem({
                 content: new sap.ui.commons.Button({
                   icon: "sap-icon://database",
@@ -845,10 +853,11 @@
                     template: listItem
                   },
                 }),
-                sortProperty: "{artifact>description}",
-                filterProperty: "{artifact>description}",
+                sortProperty: "description}",
+                filterProperty: "description}",
               }));
 
+              // Template
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Template (False/True)" }),
@@ -894,6 +903,7 @@
                 filterType: new sap.ui.model.type.Boolean(),
               }));
 
+              // Created by
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Created by" }),
@@ -902,6 +912,7 @@
                 filterProperty: "createdBy",
               }));
 
+              // Created
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Created" }),
@@ -923,6 +934,7 @@
                 filterType: new sap.ui.model.type.DateTime(),
               }));
 
+              // Changed
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
                 label: new sap.ui.commons.Label({ text: "Changed" }),
@@ -944,6 +956,7 @@
                 filterType: new sap.ui.model.type.DateTime(),
               }));
 
+              // bind model to table rows
               oTable.setModel(oModel, "artifact");
               oTable.bindRows({
                 path: "artifact>/",
@@ -951,15 +964,14 @@
                 //   expand: "",
                 //   select: ""
                 // }
-                events: {
-                  dataReceived: function () {
-                    oTable.getColumns().map((col, index) => oTable.autoResizeColumn(index));
-                  }
-                }
+                // events: {
+                //   dataReceived: function () {
+                //     oTable.getColumns().map((col, index) => oTable.autoResizeColumn(index));
+                //   }
+                // }
               });
 
-
-
+              // configure toolbar
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
 
@@ -1090,6 +1102,7 @@
                 ]
               }));
 
+              // assign the table content to the shadow DOM element oPanel
               this.oPanel.addContent(oTable);
             }
 
