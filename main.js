@@ -943,7 +943,7 @@
               });
 
               // resize columns
-              for (i = 0; i < oTable.getColumns().length; i++) {
+              for (var i = 0; i < oTable.getColumns().length; i++) {
                 oTable.autoResizeColumn(i);
               }
 
