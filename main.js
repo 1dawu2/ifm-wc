@@ -943,11 +943,16 @@
                 events: {
                   dataReceived: function () {
                     setTimeout(function () {
-                      oTable.autoResizeColumn(0);
+                      // resize columns
+                      for (var i = 0; i < oTable.getColumns().length; i++) {
+                        oTable.autoResizeColumn(i);
+                      }
                     }, 10);
                   }
                 }
               });
+
+
 
               oTable.setToolbar(new sap.ui.commons.Toolbar({
                 items: [
