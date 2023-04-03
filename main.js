@@ -742,7 +742,7 @@
                     path: 'artifact>id',
                     type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      var story = sap.fpa.ui.story.StoryFetcher.getContent(id)
+                      const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
                         .then(function (result) {
                           if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
                             id = result.cdata.content.optimizedEnabled;
