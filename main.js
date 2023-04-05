@@ -764,24 +764,25 @@
                       // return id;
 
                       var myPromise = that.getStoryOptimized(id);
+                      console.log(myPromise);
                       var res = false;
-                      myPromise.then((data) => {
-                        if (myPromise.isFulfilled === true || myPromise.isPending) {
-                          if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                            res = data.cdata.content.optimizedEnabled;
-                          } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                            res = data.cdata.isOptimizedEnabled;
-                          } else {
-                            res = false;
-                          }
-                        } else if (myPromise.isRejected === true) {
-                          res = false;
-                        }
-                        console.log(res);
-                        return id;
-                      }).catch((e) => {
-                        console.log(e.message);
-                      });
+                      // myPromise.then((data) => {
+                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
+                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                      //       res = data.cdata.content.optimizedEnabled;
+                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                      //       res = data.cdata.isOptimizedEnabled;
+                      //     } else {
+                      //       res = false;
+                      //     }
+                      //   } else if (myPromise.isRejected === true) {
+                      //     res = false;
+                      //   }
+                      //   console.log(res);
+                      //   return id;
+                      // }).catch((e) => {
+                      //   console.log(e.message);
+                      // });
                     }
                   }
                 }),
