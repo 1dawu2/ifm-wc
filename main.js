@@ -763,7 +763,7 @@
                       //   });
                       // return id;
 
-                      var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                      var myPromise = that.getStoryOptimized(id);
                       var res = false;
                       myPromise.then((data) => {
                         if (myPromise.isFulfilled === true || myPromise.isPending) {
