@@ -321,12 +321,17 @@
 
             },
 
-            getStoryOptimized: async function (storyID) {
+            getStoryOptimized: function (storyID) {
 
-              return await new Promise(function (resolve) {
-                setTimeout(
-                  resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
-                );
+              // return await new Promise(function (resolve) {
+              //   setTimeout(
+              //     resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
+              //   );
+              // });
+              Promise.all([
+                sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              ]).then(function () {
+                console.log("promise all");
               });
 
               // storyContent.then(function (value) {
@@ -736,46 +741,47 @@
               // ODM
               oTable.addColumn(new sap.ui.table.Column({
                 autoResizable: true,
-                label: new sap.ui.commons.Label({ text: "Optimized Design Mode (False/True)" }),
+                label: new sap.ui.commons.Label({ text: "ODM (False/True)" }),
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
                     type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
-                        .then(function (result) {
-                          if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                            id = result.cdata.content.optimizedEnabled;
-                          } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                            id = result.cdata.isOptimizedEnabled;
-                          } else {
-                            id = false;
-                          }
-                        })
-                        .catch(function (error) {
-                          console.log(error);
-                          id = false;
-                        });
-                      return id;
-                      // var myPromise = that.getPromiseState(that.getStoryOptimized(id));
-                      // var res = false;
-                      // myPromise.then((data) => {
-                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.content.optimizedEnabled;
-                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.isOptimizedEnabled;
+                      // const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
+                      //   .then(function (result) {
+                      //     if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
+                      //       id = result.cdata.content.optimizedEnabled;
+                      //     } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
+                      //       id = result.cdata.isOptimizedEnabled;
                       //     } else {
-                      //       res = false;
+                      //       id = false;
                       //     }
-                      //   } else if (myPromise.isRejected === true) {
-                      //     res = false;
-                      //   }
-                      //   console.log(res);
-                      //   return id;
-                      // }).catch((e) => {
-                      //   console.log(e.message);
-                      // });
+                      //   })
+                      //   .catch(function (error) {
+                      //     console.log(error);
+                      //     id = false;
+                      //   });
+                      // return id;
+
+                      var myPromise = that.getPromiseState(that.getStoryOptimized(id));
+                      var res = false;
+                      myPromise.then((data) => {
+                        if (myPromise.isFulfilled === true || myPromise.isPending) {
+                          if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
+                            res = data.cdata.content.optimizedEnabled;
+                          } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
+                            res = data.cdata.isOptimizedEnabled;
+                          } else {
+                            res = false;
+                          }
+                        } else if (myPromise.isRejected === true) {
+                          res = false;
+                        }
+                        console.log(res);
+                        return id;
+                      }).catch((e) => {
+                        console.log(e.message);
+                      });
                     }
                   }
                 }),
