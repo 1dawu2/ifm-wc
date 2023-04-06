@@ -281,46 +281,6 @@
               this.configProductSwitch();
             },
 
-            getPromiseState: function (promise) {
-
-              if (promise.isFulfilled) {
-                return promise;
-              }
-
-              var isPending = true;
-              var isRejected = false;
-              var isFulfilled = false;
-
-              var result = promise.then(
-                function (v) {
-                  isFulfilled = true;
-                  isPending = false;
-                  return v;
-                },
-                function (e) {
-                  isRejected = true;
-                  isPending = false;
-                  throw e;
-                }
-
-              );
-
-              result.isFulfilled = function () {
-                return isFulfilled;
-              };
-
-              result.isPending = function () {
-                return isPending;
-              };
-
-              result.isRejected = function () {
-                return isRejected;
-              };
-
-              return result;
-
-            },
-
             getStoryOptimized: function (storyID) {
 
               // return await new Promise(function (resolve) {
@@ -330,8 +290,11 @@
               // });
               Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-              ]).then(function () {
+              ]).then(function (resolve) {
                 console.log("promise all");
+                console.log(resolve);
+              }).catch(function (error) {
+                console.log(error.message);
               });
 
               // storyContent.then(function (value) {
