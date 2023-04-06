@@ -293,6 +293,14 @@
               ]).then(function (resolve) {
                 console.log("promise all");
                 console.log(resolve);
+                if (typeof resolve.cdata.content.optimizedEnabled !== 'undefined') {
+                  id = resolve.cdata.content.optimizedEnabled;
+                } else if (typeof resolve.cdata.isOptimizedEnabled !== 'undefined') {
+                  id = resolve.cdata.isOptimizedEnabled;
+                } else {
+                  id = false;
+                }
+                return id;
               }).catch(function (error) {
                 console.log(error.message);
               });
@@ -710,48 +718,13 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      // const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
-                      //   .then(function (result) {
-                      //     if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                      //       id = result.cdata.content.optimizedEnabled;
-                      //     } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                      //       id = result.cdata.isOptimizedEnabled;
-                      //     } else {
-                      //       id = false;
-                      //     }
-                      //   })
-                      //   .catch(function (error) {
-                      //     console.log(error);
-                      //     id = false;
-                      //   });
-                      // return id;
-
-                      var myPromise = that.getStoryOptimized(id);
-                      console.log(myPromise);
-                      var res = false;
-                      // myPromise.then((data) => {
-                      //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                      //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.content.optimizedEnabled;
-                      //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                      //       res = data.cdata.isOptimizedEnabled;
-                      //     } else {
-                      //       res = false;
-                      //     }
-                      //   } else if (myPromise.isRejected === true) {
-                      //     res = false;
-                      //   }
-                      //   console.log(res);
-                      //   return id;
-                      // }).catch((e) => {
-                      //   console.log(e.message);
-                      // });
+                      id = that.getStoryOptimized(id);
                     }
                   }
                 }),
-                // sortProperty: "id",
-                // filterProperty: "id",
-                // filterType: new sap.ui.model.type.Boolean(),
+                sortProperty: "id",
+                filterProperty: "id",
+                filterType: new sap.ui.model.type.Boolean(),
               }));
 
               // Unsupported Features
