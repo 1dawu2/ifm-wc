@@ -293,6 +293,7 @@
               ]).then(function (resolve) {
                 console.log("promise all");
                 console.log(resolve);
+                var id = false;
                 if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
                   id = resolve[0].cdata.content.optimizedEnabled;
                 } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
@@ -300,22 +301,12 @@
                 } else {
                   id = false;
                 }
-                return id;
               }).catch(function (error) {
                 console.log(error.message);
               });
 
-              // storyContent.then(function (value) {
-              //   return value;
+              return id;
 
-              // }).catch(function (error) {
-              //   return error;
-
-              // });
-              // return new Promise(function (resolve, reject) {
-              //   resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 300);
-
-              // });
             },
 
             onFilterSelect: function (oEvent) {
