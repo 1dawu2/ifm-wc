@@ -293,10 +293,10 @@
               ]).then(function (resolve) {
                 console.log("promise all");
                 console.log(resolve);
-                if (typeof resolve.cdata.content.optimizedEnabled !== 'undefined') {
-                  id = resolve.cdata.content.optimizedEnabled;
-                } else if (typeof resolve.cdata.isOptimizedEnabled !== 'undefined') {
-                  id = resolve.cdata.isOptimizedEnabled;
+                if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                  id = resolve[0].cdata.content.optimizedEnabled;
+                } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                  id = resolve[0].cdata.isOptimizedEnabled;
                 } else {
                   id = false;
                 }
