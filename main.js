@@ -283,17 +283,13 @@
 
             getStoryOptimized: function (storyID) {
 
-              // return await new Promise(function (resolve) {
-              //   setTimeout(
-              //     resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
-              //   );
-              // });
+              var id = false;
               Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
                 console.log("promise all");
                 console.log(resolve);
-                var id = false;
+
                 if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
                   id = resolve[0].cdata.content.optimizedEnabled;
                 } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
@@ -301,6 +297,7 @@
                 } else {
                   id = false;
                 }
+
               }).catch(function (error) {
                 console.log(error.message);
               });
