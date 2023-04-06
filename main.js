@@ -708,7 +708,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    type: "sap.ui.model.odata.type.Boolean",
+                    // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       // const story = sap.fpa.ui.story.StoryFetcher.getContent(id)
                       //   .then(function (result) {
