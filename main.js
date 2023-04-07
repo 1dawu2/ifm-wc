@@ -281,7 +281,20 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: function (storyID) {
+            getStoryOptimized: async function (storyID, mode) {
+
+              const promises = function () {
+                return sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+                  .then((result) => {
+                    console.log(`Immediate processing for "${result}"`);
+                    return result;
+                  });
+              };
+              const allResults = await Promise.all(promises);
+              console.log(`All processing done, all results:`);
+              for (const result of allResults) {
+                console.log(result);
+              }
 
               var id = false;
               Promise.all([
@@ -289,13 +302,23 @@
               ]).then(function (resolve) {
                 console.log("promise all");
                 console.log(resolve[0].cdata.content.optimizedEnabled);
+                console.log(resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures);
 
-                if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                  id = resolve[0].cdata.content.optimizedEnabled;
-                } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                  id = resolve[0].cdata.isOptimizedEnabled;
-                } else {
-                  id = false;
+                switch (mode) {
+                  case "ODM":
+                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                      id = resolve[0].cdata.content.optimizedEnabled;
+                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                      id = resolve[0].cdata.isOptimizedEnabled;
+                    } else {
+                      id = false;
+                    }
+                  case "USF":
+                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                      id = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                    } else {
+                      id = false;
+                    }
                 }
 
               }).catch(function (error) {
@@ -554,69 +577,16 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
 
-              oModel.attachRequestCompleted(function (oEvent) {
-                var oItems = oEvent.getSource().getData();
-                oItems.forEach(function (item, index) {
-                  // console.log(item.id);
-                  // var story = sap.fpa.ui.story.StoryFetcher.getContent(item.id);
-                  // console.log(story.cdata.content.optimizedEnabled);
+              // oModel.attachRequestCompleted(function (oEvent) {
+              //   var oItems = oEvent.getSource().getData();
+              //   oItems.forEach(function (item, index) {
+              //     // console.log(item.id);
+              //     // var story = sap.fpa.ui.story.StoryFetcher.getContent(item.id);
+              //     // console.log(story.cdata.content.optimizedEnabled);
 
-                });
-
-
-                // for (var i = 0; i < propID.length; i++) {
-                //   oModel.setProperty("/NotificationSet/" + iNotification + "/selected", bSelectAll);
-                // }
-                // tableData.forEach(function (item, index) {
-                // console.log(index);
-                // oModel.setProperty("/artifact/" + iNotification + "/isOpt", item['id']);
-
-                // oModel.create("isOpt", item['id']);
-                // get isOptimized
-                // var myPromise = that.getPromiseState(that.getStoryOptimized(item['id']));
-                // var res = false;
-                // myPromise.then((data) => {
-                //   if (myPromise.isFulfilled === true || myPromise.isPending) {
-                //     if (typeof data.cdata.content.optimizedEnabled !== 'undefined') {
-                //       res = data.cdata.content.optimizedEnabled;
-                //     } else if (typeof data.cdata.isOptimizedEnabled !== 'undefined') {
-                //       res = data.cdata.isOptimizedEnabled;
-                //     } else {
-                //       res = false;
-                //     }
-                //   } else if (myPromise.isRejected === true) {
-                //     res = false;
-                //   }
-                // }).catch((e) => {
-                //   res = false;
-                // });
-                // console.log("resource:");
-                // console.log(res);
-
-                // var isOptimized = false;
-                // const story = sap.fpa.ui.story.StoryFetcher.getContent()
-                //   .then(function (result) {
-                //     if (typeof result.cdata.content.optimizedEnabled !== 'undefined') {
-                //       isOptimized = result.cdata.content.optimizedEnabled;
-                //     } else if (typeof result.cdata.isOptimizedEnabled !== 'undefined') {
-                //       isOptimized = result.cdata.isOptimizedEnabled;
-                //     } else {
-                //       isOptimized = false;
-                //     }
-                //     console.log(isOptimized);
-                //   })
-                //   .catch(function (error) {
-                //     console.log(error);
-                //   });
-
-                // tableData.setProperty("isOptimized", res);
-
-                // item['models'].forEach(function (description) {
-                //   console.log(description);
-                // });
-                // });
-                oBusy.close();
-              });
+              //   });
+              //   oBusy.close();
+              // });
 
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
@@ -706,7 +676,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      return that.getStoryOptimized(id);
+                      return that.getStoryOptimized(id, "ODM");
                     }
                   }
                 }),
@@ -722,37 +692,14 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    // formatter: async function (id) {
-                    //   var isBlocking = await sap.fpa.ui.story.StoryFetcher.getContent(id).then(
-                    //     function () {
-                    //       if (typeof isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                    //         id = isBlocking.cdata.content.optimizedBlockingUnsupportedFeatures
-                    //       } else {
-                    //         id = false;
-                    //       }
-                    //     }
-                    //   );
-                    //   return id;
-
-                    //   // var storyContent = that.getStoryOptimized(id);
-                    //   // var isOptimized;
-                    //   // storyContent.then(function (data) {
-                    //   //   isOptimized = typeof data.cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined' ? data.cdata.content.optimizedBlockingUnsupportedFeatures : false;
-                    //   //   return isOptimized;
-
-                    //   // }.bind(that)).catch(function (oError) {
-                    //   //   console.log(oError);
-                    //   //   isOptimized = false;
-                    //   //   return isOptimized;
-
-                    //   // }.bind(that));
-
+                    formatter: function (id) {
+                      return that.getStoryOptimized(id, "USF");
+                    }
                   }
-                  // }
                 }),
                 sortProperty: "id",
                 filterProperty: "id",
-                // filterType: new sap.ui.model.type.Boolean(),
+                filterType: new sap.ui.model.type.Boolean(),
               }));
 
               // Models
