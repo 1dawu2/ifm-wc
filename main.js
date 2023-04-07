@@ -294,7 +294,7 @@
                     } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
                       return resolve[0].cdata.isOptimizedEnabled;
                     } else {
-                      return = false;
+                      return false;
                     }
                   case "USF":
                     if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
