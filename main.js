@@ -663,7 +663,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      return that.getStoryOptimized(id, "ODM");
+                      return getStoryOptimized(id, "ODM");
                     }
                   }
                 }),
@@ -680,7 +680,7 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      return that.getStoryOptimized(id, "USF");
+                      return getStoryOptimized(id, "USF");
                     }
                   }
                 }),
