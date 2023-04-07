@@ -281,8 +281,8 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID, mode) {
-              const promise = await Promise.all([
+            getStoryOptimized: function (storyID, mode) {
+              const promise = Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
                 console.log("promise resolve");
