@@ -281,31 +281,34 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: function (storyID, mode) {
+            getStoryOptimized: async function (storyID, mode) {
 
-              var id = false;
-              Promise.all([
+              const promise = await Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
-                switch (mode) {
-                  case "ODM":
-                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      return resolve[0].cdata.content.optimizedEnabled;
-                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      return resolve[0].cdata.isOptimizedEnabled;
-                    } else {
-                      return false;
-                    }
-                  case "USF":
-                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                    } else {
-                      return false;
-                    }
-                }
+                console.log("promise resolve");
+                console.log(resolve);
+                // switch (mode) {                  
+                //   case "ODM":
+                //     if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                //       return resolve[0].cdata.content.optimizedEnabled;
+                //     } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                //       return resolve[0].cdata.isOptimizedEnabled;
+                //     } else {
+                //       return false;
+                //     }
+                //   case "USF":
+                //     if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                //       return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                //     } else {
+                //       return false;
+                //     }
+                // }
               }).catch(function (error) {
                 console.log(error.message);
               });
+
+              return promise;
             },
 
             onFilterSelect: function (oEvent) {
