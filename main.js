@@ -281,7 +281,7 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID, mode) {
+            getStoryOptimized: function (storyID, mode) {
 
               const promises = function () {
                 return sap.fpa.ui.story.StoryFetcher.getContent(storyID)
@@ -290,7 +290,7 @@
                     return result;
                   });
               };
-              const allResults = await Promise.all(promises);
+              const allResults = Promise.all(promises);
               console.log(`All processing done, all results:`);
               for (const result of allResults) {
                 console.log(result);
