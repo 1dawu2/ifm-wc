@@ -296,36 +296,36 @@
                 console.log(result);
               }
 
-              var id = false;
-              Promise.all([
-                sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-              ]).then(function (resolve) {
-                console.log("promise all");
-                console.log(resolve[0].cdata.content.optimizedEnabled);
-                console.log(resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures);
+              // var id = false;
+              // Promise.all([
+              //   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              // ]).then(function (resolve) {
+              //   console.log("promise all");
+              //   console.log(resolve[0].cdata.content.optimizedEnabled);
+              //   console.log(resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures);
 
-                switch (mode) {
-                  case "ODM":
-                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      id = resolve[0].cdata.content.optimizedEnabled;
-                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      id = resolve[0].cdata.isOptimizedEnabled;
-                    } else {
-                      id = false;
-                    }
-                  case "USF":
-                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      id = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                    } else {
-                      id = false;
-                    }
-                }
+              //   switch (mode) {
+              //     case "ODM":
+              //       if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+              //         id = resolve[0].cdata.content.optimizedEnabled;
+              //       } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+              //         id = resolve[0].cdata.isOptimizedEnabled;
+              //       } else {
+              //         id = false;
+              //       }
+              //     case "USF":
+              //       if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+              //         id = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+              //       } else {
+              //         id = false;
+              //       }
+              //   }
 
-              }).catch(function (error) {
-                console.log(error.message);
-              });
+              // }).catch(function (error) {
+              //   console.log(error.message);
+              // });
 
-              return id;
+              // return id;
 
             },
 
