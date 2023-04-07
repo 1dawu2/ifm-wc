@@ -288,7 +288,7 @@
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
                 console.log("promise all");
-                console.log(resolve);
+                console.log(resolve[0].cdata.content.optimizedEnabled);
 
                 if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
                   id = resolve[0].cdata.content.optimizedEnabled;
