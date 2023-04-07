@@ -292,9 +292,10 @@
               };
               const allResults = Promise.all(promises);
               console.log(`All processing done, all results:`);
-              for (const result of allResults) {
-                console.log(result);
-              }
+              console.log(allResults);
+              // for (const result of allResults) {
+              //   console.log(result);
+              // }
 
               // var id = false;
               // Promise.all([
