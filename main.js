@@ -680,7 +680,7 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      return getStoryOptimized(id, "USF");
+                      // return getStoryOptimized(id, "USF");
                     }
                   }
                 }),
