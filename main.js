@@ -285,28 +285,25 @@
               const promise = Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
-                console.log("promise resolve");
-                console.log(resolve);
+                switch (mode) {
+                  case "ODM":
+                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                      return resolve[0].cdata.content.optimizedEnabled;
+                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                      return resolve[0].cdata.isOptimizedEnabled;
+                    } else {
+                      return false;
+                    }
+                  case "USF":
+                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                      return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                    } else {
+                      return false;
+                    }
+                }
               }).catch(function (error) {
                 console.log(error.message);
               });
-              console.log(promise);
-              switch (mode) {
-                case "ODM":
-                  if (typeof promise[0].cdata.content.optimizedEnabled !== 'undefined') {
-                    return promise[0].cdata.content.optimizedEnabled;
-                  } else if (typeof promise[0].cdata.isOptimizedEnabled !== 'undefined') {
-                    return promise[0].cdata.isOptimizedEnabled;
-                  } else {
-                    return false;
-                  }
-                case "USF":
-                  if (typeof promise[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                    return promise[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                  } else {
-                    return false;
-                  }
-              }
             },
 
             onFilterSelect: function (oEvent) {
