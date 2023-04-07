@@ -290,6 +290,7 @@
               }).catch(function (error) {
                 console.log(error.message);
               });
+              console.log(promise);
               switch (mode) {
                 case "ODM":
                   if (typeof promise[0].cdata.content.optimizedEnabled !== 'undefined') {
