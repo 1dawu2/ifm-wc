@@ -554,16 +554,16 @@
               var sHeaders = { "DataServiceVersion": "2.0", "Accept": "application/json" };
               oModel.loadData(that_._export_settings.restapiurl, null, true, "GET", null, false, sHeaders);
 
-              // oModel.attachRequestCompleted(function (oEvent) {
-              //   var oItems = oEvent.getSource().getData();
-              //   oItems.forEach(function (item, index) {
-              //     // console.log(item.id);
-              //     // var story = sap.fpa.ui.story.StoryFetcher.getContent(item.id);
-              //     // console.log(story.cdata.content.optimizedEnabled);
+              oModel.attachRequestCompleted(function (oEvent) {
+                var oItems = oEvent.getSource().getData();
+                oItems.forEach(function (item, index) {
+                  // console.log(item.id);
+                  // var story = sap.fpa.ui.story.StoryFetcher.getContent(item.id);
+                  // console.log(story.cdata.content.optimizedEnabled);
 
-              //   });
-              //   oBusy.close();
-              // });
+                });
+                oBusy.close();
+              });
 
               var oTable = new sap.ui.table.Table({
                 title: "Overview: SAC Stories",
