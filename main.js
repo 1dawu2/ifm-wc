@@ -645,39 +645,39 @@
               // }));
 
               // ODM
-              oTable.addColumn(new sap.ui.table.Column({
-                autoResizable: true,
-                label: new sap.ui.commons.Label({ text: "ODM (False/True)" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>id',
-                    // type: "sap.ui.model.odata.type.Boolean",
-                    // formatter: function (id) {
-                    //   return that.getStoryOptimized(id, "ODM");
-                    // }
-                  }
-                }),
-                sortProperty: "id",
-                filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
-              }));
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   autoResizable: true,
+              //   label: new sap.ui.commons.Label({ text: "ODM (False/True)" }),
+              //   template: new sap.ui.commons.TextView({
+              //     text: {
+              //       path: 'artifact>id',
+              //       // type: "sap.ui.model.odata.type.Boolean",
+              //       // formatter: function (id) {
+              //       //   return that.getStoryOptimized(id, "ODM");
+              //       // }
+              //     }
+              //   }),
+              //   sortProperty: "id",
+              //   filterProperty: "id",
+              //   filterType: new sap.ui.model.type.Boolean(),
+              // }));
 
-              // Unsupported Features
-              oTable.addColumn(new sap.ui.table.Column({
-                autoResizable: true,
-                label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
-                template: new sap.ui.commons.TextView({
-                  text: {
-                    path: 'artifact>id',
-                    //   formatter: function (id) {
-                    //     // return getStoryOptimized(id, "USF");
-                    //   }
-                  }
-                }),
-                sortProperty: "id",
-                filterProperty: "id",
-                filterType: new sap.ui.model.type.Boolean(),
-              }));
+              // // Unsupported Features
+              // oTable.addColumn(new sap.ui.table.Column({
+              //   autoResizable: true,
+              //   label: new sap.ui.commons.Label({ text: "Unsupported Features (False/True)" }),
+              //   template: new sap.ui.commons.TextView({
+              //     text: {
+              //       path: 'artifact>id',
+              //       //   formatter: function (id) {
+              //       //     // return getStoryOptimized(id, "USF");
+              //       //   }
+              //     }
+              //   }),
+              //   sortProperty: "id",
+              //   filterProperty: "id",
+              //   filterType: new sap.ui.model.type.Boolean(),
+              // }));
 
               // Models
               var listItem = new sap.m.CustomListItem({
