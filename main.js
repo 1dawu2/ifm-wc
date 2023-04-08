@@ -672,8 +672,8 @@
                     //   formatter: function (id) {
                     //     // return getStoryOptimized(id, "USF");
                     //   }
-                    // }
-                  }),
+                  }
+                }),
                 sortProperty: "id",
                 filterProperty: "id",
                 filterType: new sap.ui.model.type.Boolean(),
