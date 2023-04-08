@@ -652,9 +652,9 @@
                   text: {
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
-                    formatter: function (id) {
-                      return that.getStoryOptimized(id, "ODM");
-                    }
+                    // formatter: function (id) {
+                    //   return that.getStoryOptimized(id, "ODM");
+                    // }
                   }
                 }),
                 sortProperty: "id",
@@ -669,11 +669,11 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    formatter: function (id) {
-                      // return getStoryOptimized(id, "USF");
-                    }
-                  }
-                }),
+                    //   formatter: function (id) {
+                    //     // return getStoryOptimized(id, "USF");
+                    //   }
+                    // }
+                  }),
                 sortProperty: "id",
                 filterProperty: "id",
                 filterType: new sap.ui.model.type.Boolean(),
