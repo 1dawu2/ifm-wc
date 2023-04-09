@@ -288,16 +288,16 @@
                 console.log(values);
                 switch (mode) {
                   case "ODM":
-                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      odmMode = resolve[0].cdata.content.optimizedEnabled;
+                    if (typeof values[0].cdata.content.optimizedEnabled !== 'undefined') {
+                      odmMode = values[0].cdata.content.optimizedEnabled;
                     } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      odmMode = resolve[0].cdata.isOptimizedEnabled;
+                      odmMode = values[0].cdata.isOptimizedEnabled;
                     } else {
                       odmMode = false;
                     }
                   case "USF":
-                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      odmMode = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                    if (typeof values[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                      odmMode = values[0].cdata.content.optimizedBlockingUnsupportedFeatures;
                     } else {
                       odmMode = false;
                     }
