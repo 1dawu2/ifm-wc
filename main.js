@@ -283,12 +283,29 @@
 
             getStoryOptimized: function (storyID, mode) {
               const allPromise = Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
+              var odmMode = false;
               allPromise.then(values => {
                 console.log(values);
+                switch (mode) {
+                  case "ODM":
+                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                      odmMode = resolve[0].cdata.content.optimizedEnabled;
+                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                      odmMode = resolve[0].cdata.isOptimizedEnabled;
+                    } else {
+                      odmMode = false;
+                    }
+                  case "USF":
+                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                      odmMode = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                    } else {
+                      odmMode = false;
+                    }
+                }
               }).catch(error => {
                 console.log(error);
               });
-              return allPromise;
+              return odmMode;
               // const promise = Promise.all([
               //   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               // ]).then(function (resolve) {
