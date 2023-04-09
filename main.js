@@ -290,7 +290,7 @@
                   case "ODM":
                     if (typeof values[0].cdata.content.optimizedEnabled !== 'undefined') {
                       odmMode = values[0].cdata.content.optimizedEnabled;
-                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                    } else if (typeof values[0].cdata.isOptimizedEnabled !== 'undefined') {
                       odmMode = values[0].cdata.isOptimizedEnabled;
                     } else {
                       odmMode = false;
