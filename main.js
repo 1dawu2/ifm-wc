@@ -282,28 +282,35 @@
             },
 
             getStoryOptimized: function (storyID, mode) {
-              const promise = Promise.all([
-                sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-              ]).then(function (resolve) {
-                switch (mode) {
-                  case "ODM":
-                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      return resolve[0].cdata.content.optimizedEnabled;
-                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      return resolve[0].cdata.isOptimizedEnabled;
-                    } else {
-                      return false;
-                    }
-                  case "USF":
-                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                    } else {
-                      return false;
-                    }
-                }
-              }).catch(function (error) {
-                console.log(error.message);
+              const allPromise = Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
+              allPromise.then(values => {
+                console.log(values);
+              }).catch(error => {
+                console.log(error);
               });
+              return allPromise;
+              // const promise = Promise.all([
+              //   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              // ]).then(function (resolve) {
+              //   switch (mode) {
+              //     case "ODM":
+              //       if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+              //         return resolve[0].cdata.content.optimizedEnabled;
+              //       } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+              //         return resolve[0].cdata.isOptimizedEnabled;
+              //       } else {
+              //         return false;
+              //       }
+              //     case "USF":
+              //       if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+              //         return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+              //       } else {
+              //         return false;
+              //       }
+              //   }
+              // }).catch(function (error) {
+              //   console.log(error.message);
+              // });
             },
 
             onFilterSelect: function (oEvent) {
