@@ -281,9 +281,9 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID, mode) {
+            getStoryOptimized: async function (storyID) {
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
-              var odmMode = false;
+              // var odmMode = false;
               // allPromise.then(values => {
               //   console.log(values);
               //   switch (mode) {
@@ -309,26 +309,27 @@
               const promise = Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
-                switch (mode) {
-                  case "ODM":
-                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      odmMode = resolve[0].cdata.content.optimizedEnabled;
-                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      odmMode = resolve[0].cdata.isOptimizedEnabled;
-                    } else {
-                      odmMode = false;
-                    }
-                  case "USF":
-                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      odmMode = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                    } else {
-                      odmMode = false;
-                    }
-                }
+                return resolve;
+                // switch (mode) {
+                //   case "ODM":
+                //     if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                //       odmMode = resolve[0].cdata.content.optimizedEnabled;
+                //     } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                //       odmMode = resolve[0].cdata.isOptimizedEnabled;
+                //     } else {
+                //       odmMode = false;
+                //     }
+                //   case "USF":
+                //     if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                //       odmMode = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                //     } else {
+                //       odmMode = false;
+                //     }
+                // }
               }).catch(function (error) {
                 console.log(error.message);
               });
-              return odmMode;
+              // return odmMode;
             },
 
             onFilterSelect: function (oEvent) {
@@ -676,10 +677,11 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    // type: "sap.ui.model.odata.type.Boolean",
+                    type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      id = that.getStoryOptimized(id, "ODM");
-                      return id
+                      if (that.getStoryOptimized(id)) {
+                        console.log(that);
+                      };
                     }
                   }
                 }),
