@@ -282,52 +282,53 @@
             },
 
             getStoryOptimized: async function (storyID, mode) {
-              const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
+              // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
               var odmMode = false;
-              allPromise.then(values => {
-                console.log(values);
-                switch (mode) {
-                  case "ODM":
-                    if (typeof values[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      odmMode = values[0].cdata.content.optimizedEnabled;
-                    } else if (typeof values[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      odmMode = values[0].cdata.isOptimizedEnabled;
-                    } else {
-                      odmMode = false;
-                    }
-                  case "USF":
-                    if (typeof values[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      odmMode = values[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                    } else {
-                      odmMode = false;
-                    }
-                }
-              }).catch(error => {
-                console.log(error);
-              });
-              return odmMode;
-              // const promise = Promise.all([
-              //   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-              // ]).then(function (resolve) {
+              // allPromise.then(values => {
+              //   console.log(values);
               //   switch (mode) {
               //     case "ODM":
-              //       if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-              //         return resolve[0].cdata.content.optimizedEnabled;
-              //       } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-              //         return resolve[0].cdata.isOptimizedEnabled;
+              //       if (typeof values[0].cdata.content.optimizedEnabled !== 'undefined') {
+              //         odmMode = values[0].cdata.content.optimizedEnabled;
+              //       } else if (typeof values[0].cdata.isOptimizedEnabled !== 'undefined') {
+              //         odmMode = values[0].cdata.isOptimizedEnabled;
               //       } else {
-              //         return false;
+              //         odmMode = false;
               //       }
               //     case "USF":
-              //       if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-              //         return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+              //       if (typeof values[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+              //         odmMode = values[0].cdata.content.optimizedBlockingUnsupportedFeatures;
               //       } else {
-              //         return false;
+              //         odmMode = false;
               //       }
               //   }
-              // }).catch(function (error) {
-              //   console.log(error.message);
+              // }).catch(error => {
+              //   console.log(error);
               // });
+
+              const promise = Promise.all([
+                sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              ]).then(function (resolve) {
+                switch (mode) {
+                  case "ODM":
+                    if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
+                      return resolve[0].cdata.content.optimizedEnabled;
+                    } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
+                      return resolve[0].cdata.isOptimizedEnabled;
+                    } else {
+                      return false;
+                    }
+                  case "USF":
+                    if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                      return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                    } else {
+                      return false;
+                    }
+                }
+              }).catch(function (error) {
+                console.log(error.message);
+              });
+              return odmMode;
             },
 
             onFilterSelect: function (oEvent) {
