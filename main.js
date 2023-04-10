@@ -312,17 +312,17 @@
                 switch (mode) {
                   case "ODM":
                     if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      return resolve[0].cdata.content.optimizedEnabled;
+                      odmMode = resolve[0].cdata.content.optimizedEnabled;
                     } else if (typeof resolve[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      return resolve[0].cdata.isOptimizedEnabled;
+                      odmMode = resolve[0].cdata.isOptimizedEnabled;
                     } else {
-                      return false;
+                      odmMode = false;
                     }
                   case "USF":
                     if (typeof resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      return resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                      odmMode = resolve[0].cdata.content.optimizedBlockingUnsupportedFeatures;
                     } else {
-                      return false;
+                      odmMode = false;
                     }
                 }
               }).catch(function (error) {
@@ -679,6 +679,7 @@
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       id = that.getStoryOptimized(id, "ODM");
+                      return id
                     }
                   }
                 }),
