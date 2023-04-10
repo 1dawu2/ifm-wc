@@ -677,7 +677,7 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    type: "sap.ui.model.odata.type.Boolean",
+                    // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       if (that.getStoryOptimized(id)) {
                         console.log(that);
