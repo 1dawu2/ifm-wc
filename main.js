@@ -306,7 +306,7 @@
               //   console.log(error);
               // });
 
-              const promise = Promise.all([
+              const promise = await Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
                 switch (mode) {
