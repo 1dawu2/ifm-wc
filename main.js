@@ -679,7 +679,13 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      console.log(that.getStoryOptimized(id));
+                      const promise = that.getStoryOptimized(id);
+                      promise.then(function (resolve) {
+                        console.log(resolve);
+                      }).catch(function (error) {
+                        console.log(error);
+
+                      });
                     }
                   }
                 }),
