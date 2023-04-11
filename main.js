@@ -680,12 +680,13 @@
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       const promise = that.getStoryOptimized(id);
-                      promise.then(function (resolve) {
-                        console.log(resolve);
-                      }).catch(function (error) {
-                        console.log(error);
+                      console.log(promise)
+                      // promise.then(function (resolve) {
+                      //   console.log(resolve);
+                      // }).catch(function (error) {
+                      //   console.log(error);
 
-                      });
+                      // });
                     }
                   }
                 }),
