@@ -309,7 +309,7 @@
               const promise = Promise.all([
                 sap.fpa.ui.story.StoryFetcher.getContent(storyID)
               ]).then(function (resolve) {
-                return resolve;
+                return resolve[0].cdata;
                 // switch (mode) {
                 //   case "ODM":
                 //     if (typeof resolve[0].cdata.content.optimizedEnabled !== 'undefined') {
@@ -680,7 +680,8 @@
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       const promise = that.getStoryOptimized(id);
-                      console.log(promise)
+                      id = promise;
+                      return id
                       // promise.then(function (resolve) {
                       //   console.log(resolve);
                       // }).catch(function (error) {
