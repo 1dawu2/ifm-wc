@@ -316,7 +316,15 @@
                 console.log(data);
                 switch (mode) {
                   case "ODM":
-                    odmMode = data[0].cdata.isOptimizedEnable
+                    try {
+                      odmMode = data[0].cdata.isOptimizedEnable;
+                    } catch (exceptionVar) {
+                      odmMode = false;
+                      console.log("exception")
+                      console.log(odmMode);
+                    } finally {
+                      odmMode = false;
+                    }
                     if (odmMode === 'undefined') {
                       odmMode = false;
                     }
