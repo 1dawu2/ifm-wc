@@ -281,7 +281,7 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID) {
+            getStoryOptimized: async function (storyID, odmMode) {
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
               // var odmMode = false;
               // allPromise.then(values => {
@@ -305,6 +305,7 @@
               // }).catch(error => {
               //   console.log(error);
               // });
+              var odmMode = false;
               let promise = new Promise((resolve, reject) => {
                 resolve(
                   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
@@ -313,7 +314,24 @@
               promise.then(data => {
                 // use data here...
                 console.log(data);
+                switch (mode) {
+                  case "ODM":
+                    if (typeof data[0].cdata.content.optimizedEnabled !== 'undefined') {
+                      odmMode = data[0].cdata.content.optimizedEnabled;
+                    } else if (typeof data[0].cdata.isOptimizedEnabled !== 'undefined') {
+                      odmMode = data[0].cdata.isOptimizedEnabled;
+                    } else {
+                      odmMode = false;
+                    }
+                  case "USF":
+                    if (typeof data[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                      odmMode = data[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                    } else {
+                      odmMode = false;
+                    }
+                }
               });
+              return odmMode;
 
               // const promise = Promise.all([
               //   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
@@ -688,7 +706,7 @@
                     path: 'artifact>id',
                     // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
-                      const promise = that.getStoryOptimized(id);
+                      const promise = that.getStoryOptimized(id, "ODM");
                       id = promise;
                       return id
                       // promise.then(function (resolve) {
