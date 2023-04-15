@@ -316,13 +316,17 @@
                 console.log(data);
                 switch (mode) {
                   case "ODM":
-                    if (typeof data[0].cdata.content.optimizedEnabled !== 'undefined') {
-                      odmMode = data[0].cdata.content.optimizedEnabled;
-                    } else if (typeof data[0].cdata.isOptimizedEnabled !== 'undefined') {
-                      odmMode = data[0].cdata.isOptimizedEnabled;
-                    } else {
+                    odmMode = data[0].cdata.isOptimizedEnable
+                    if (odmMode === 'undefined') {
                       odmMode = false;
                     }
+                  // if (typeof data[0].cdata.content.optimizedEnabled !== 'undefined') {
+                  //   odmMode = data[0].cdata.content.optimizedEnabled;
+                  // } else if (typeof data[0].cdata.isOptimizedEnabled !== 'undefined') {
+                  //   odmMode = data[0].cdata.isOptimizedEnabled;
+                  // } else {
+                  //   odmMode = false;
+                  // }
                   case "USF":
                     if (typeof data[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
                       odmMode = data[0].cdata.content.optimizedBlockingUnsupportedFeatures;
