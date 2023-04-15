@@ -281,7 +281,7 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID, odmMode) {
+            getStoryOptimized: async function (storyID, mode) {
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
               // var odmMode = false;
               // allPromise.then(values => {
