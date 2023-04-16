@@ -317,7 +317,7 @@
                 switch (mode) {
                   case "ODM":
                     try {
-                      odmMode = data[0].cdata.isOptimizedEnable;
+                      odmMode = data.cdata.isOptimizedEnable;
                     } catch (error) {
                       odmMode = false;
                       console.log("exception" + error);
