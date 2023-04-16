@@ -312,20 +312,18 @@
                 );
               });
               promise.then(data => {
-                // use data here...
-                console.log(data);
                 switch (mode) {
                   case "ODM":
                     try {
                       odmMode = data.cdata.isOptimizedEnable;
                     } catch (error) {
-                      odmMode = false;
+
                       console.log("exception" + error);
-                      console.log(odmMode);
+
                     }
-                    if (odmMode === 'undefined') {
-                      odmMode = false;
-                    }
+                  // if (odmMode === 'undefined') {
+                  //   odmMode = false;
+                  // }
                   // if (typeof data[0].cdata.content.optimizedEnabled !== 'undefined') {
                   //   odmMode = data[0].cdata.content.optimizedEnabled;
                   // } else if (typeof data[0].cdata.isOptimizedEnabled !== 'undefined') {
