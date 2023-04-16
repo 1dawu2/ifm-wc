@@ -305,7 +305,7 @@
               // }).catch(error => {
               //   console.log(error);
               // });
-              var odmMode = false;
+
               let promise = new Promise((resolve, reject) => {
                 resolve(
                   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
@@ -315,6 +315,7 @@
                 switch (mode) {
                   case "ODM":
                     try {
+                      var odmMode = false;
                       odmMode = data.cdata.isOptimizedEnable;
                     } catch (error) {
 
@@ -339,7 +340,7 @@
                   //   }
                 }
               });
-              return odmMode;
+
 
               // const promise = Promise.all([
               //   sap.fpa.ui.story.StoryFetcher.getContent(storyID)
