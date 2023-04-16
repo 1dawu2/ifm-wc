@@ -307,7 +307,7 @@
               // });
 
               var data = sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-              console.log(data[0].cdata.isOptimizedEnable)
+              console.log(data.cdata.isOptimizedEnable)
               // let promise = new Promise((resolve, reject) => {
               //   resolve(
               //     sap.fpa.ui.story.StoryFetcher.getContent(storyID)
