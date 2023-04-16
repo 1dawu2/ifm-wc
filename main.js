@@ -316,11 +316,15 @@
                   case "ODM":
                     try {
                       var odmMode = false;
-                      odmMode = data.cdata.isOptimizedEnable;
+                      if (data.cdata.isOptimizedEnable === 'undefined') {
+                        odmMode = false;
+                        return odmMode;
+                      } else {
+                        odmMode = data.cdata.isOptimizedEnable;
+                        return odmMode;
+                      }
                     } catch (error) {
-
                       console.log("exception" + error);
-
                     }
                   // if (odmMode === 'undefined') {
                   //   odmMode = false;
