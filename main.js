@@ -335,12 +335,12 @@
                   // } else {
                   //   odmMode = false;
                   // }
-                  case "USF":
-                    if (typeof data[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                      odmMode = data[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                    } else {
-                      odmMode = false;
-                    }
+                  // case "USF":
+                  //   if (typeof data[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+                  //     odmMode = data[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+                  //   } else {
+                  //     odmMode = false;
+                  //   }
                 }
               });
               return odmMode;
