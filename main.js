@@ -306,44 +306,46 @@
               //   console.log(error);
               // });
 
-              let promise = new Promise((resolve, reject) => {
-                resolve(
-                  sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-                );
-              });
-              promise.then(data => {
-                switch (mode) {
-                  case "ODM":
-                    try {
-                      var odmMode = false;
-                      if (typeof data.cdata.isOptimizedEnable === 'undefined') {
-                        odmMode = false;
-                        return odmMode;
-                      } else {
-                        odmMode = data.cdata.isOptimizedEnable;
-                        return odmMode;
-                      }
-                    } catch (error) {
-                      console.log("exception" + error);
-                    }
-                  // if (odmMode === 'undefined') {
-                  //   odmMode = false;
-                  // }
-                  // if (typeof data[0].cdata.content.optimizedEnabled !== 'undefined') {
-                  //   odmMode = data[0].cdata.content.optimizedEnabled;
-                  // } else if (typeof data[0].cdata.isOptimizedEnabled !== 'undefined') {
-                  //   odmMode = data[0].cdata.isOptimizedEnabled;
-                  // } else {
-                  //   odmMode = false;
-                  // }
-                  // case "USF":
-                  //   if (typeof data[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
-                  //     odmMode = data[0].cdata.content.optimizedBlockingUnsupportedFeatures;
-                  //   } else {
-                  //     odmMode = false;
-                  //   }
-                }
-              });
+              var data = sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              console.log(data[0].cdata.isOptimizedEnable)
+              // let promise = new Promise((resolve, reject) => {
+              //   resolve(
+              //     sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              //   );
+              // });
+              // promise.then(data => {
+              //   switch (mode) {
+              //     case "ODM":
+              //       try {
+              //         var odmMode = false;
+              //         if (typeof data.cdata.isOptimizedEnable === 'undefined') {
+              //           odmMode = false;
+              //           return odmMode;
+              //         } else {
+              //           odmMode = data.cdata.isOptimizedEnable;
+              //           return odmMode;
+              //         }
+              //       } catch (error) {
+              //         console.log("exception" + error);
+              //       }
+              //     // if (odmMode === 'undefined') {
+              //     //   odmMode = false;
+              //     // }
+              //     // if (typeof data[0].cdata.content.optimizedEnabled !== 'undefined') {
+              //     //   odmMode = data[0].cdata.content.optimizedEnabled;
+              //     // } else if (typeof data[0].cdata.isOptimizedEnabled !== 'undefined') {
+              //     //   odmMode = data[0].cdata.isOptimizedEnabled;
+              //     // } else {
+              //     //   odmMode = false;
+              //     // }
+              //     // case "USF":
+              //     //   if (typeof data[0].cdata.content.optimizedBlockingUnsupportedFeatures !== 'undefined') {
+              //     //     odmMode = data[0].cdata.content.optimizedBlockingUnsupportedFeatures;
+              //     //   } else {
+              //     //     odmMode = false;
+              //     //   }
+              //   }
+              // });
 
 
               // const promise = Promise.all([
