@@ -316,7 +316,7 @@
                   case "ODM":
                     try {
                       var odmMode = false;
-                      if (data.cdata.isOptimizedEnable === 'undefined') {
+                      if (typeof data.cdata.isOptimizedEnable === 'undefined') {
                         odmMode = false;
                         return odmMode;
                       } else {
