@@ -281,7 +281,7 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: function (storyID, mode) {
+            getStoryOptimized: async function (storyID, mode) {
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
               // var odmMode = false;
               // allPromise.then(values => {
@@ -306,7 +306,7 @@
               //   console.log(error);
               // });              
               if (storyID != '') {
-                var data = sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+                var data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
                 console.log(data.cdata.isOptimizedEnable)
               } else {
                 return false;
