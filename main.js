@@ -312,6 +312,11 @@
                     sap.fpa.ui.story.StoryFetcher.getContent(storyID)
                       .then(result => {
                         data = result;
+                        if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
+                          return false;
+                        } else {
+                          return data.cdata.content.optimizedEnabled
+                        }
                         resolve();
                       })
                       .catch(err => { throw err });
@@ -320,12 +325,6 @@
                       console.log('Oh noes!! Error: ', err.code)
                     });
                 })();
-
-                if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
-                  return false;
-                } else {
-                  return data.cdata.content.optimizedEnabled
-                }
               } else {
                 return false;
               }
