@@ -312,12 +312,12 @@
                     sap.fpa.ui.story.StoryFetcher.getContent(storyID)
                       .then(result => {
                         data = result;
+                        resolve();
                         if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
                           return false;
                         } else {
                           return data.cdata.content.optimizedEnabled
                         }
-                        resolve();
                       })
                       .catch(err => { throw err });
                   })
