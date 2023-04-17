@@ -304,18 +304,34 @@
               //   }
               // }).catch(error => {
               //   console.log(error);
-              // });              
-              if (storyID != '') {
-                var data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-                console.log(data.cdata.isOptimizedEnable)
-                if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
-                  return false;
-                } else {
-                  return data.cdata.content.optimizedEnabled
-                }
-              } else {
-                return false;
-              }
+              // }); 
+
+              // if (storyID != '') {
+              //   var data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+              //   console.log(data.cdata.isOptimizedEnable)
+              //   if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
+              //     return false;
+              //   } else {
+              //     return data.cdata.content.optimizedEnabled
+              //   }
+              // } else {
+              //   return false;
+              // }
+              let x;
+              (async () => {
+                await new Promise((resolve, reject) => {
+                  sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+                    .then(result => {
+                      x = result;
+                      resolve();
+                    })
+                    .catch(err => { throw err });
+                })
+                  .catch(err => {
+                    console.log('Oh noes!! Error: ', err.code)
+                  });
+              })();
+              doAnotherThing(x);
 
               // let promise = new Promise((resolve, reject) => {
               //   resolve(
