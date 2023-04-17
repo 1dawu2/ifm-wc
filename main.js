@@ -305,29 +305,38 @@
               // }).catch(error => {
               //   console.log(error);
               // }); 
-              let data;
-              if (storyID != '') {
-                (async () => {
-                  await new Promise((resolve, reject) => {
-                    sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-                      .then(result => {
-                        data = result;
-                        resolve();
-                        if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
-                          return false;
-                        } else {
-                          return data.cdata.content.optimizedEnabled
-                        }
-                      })
-                      .catch(err => { throw err });
-                  })
-                    .catch(err => {
-                      console.log('Oh noes!! Error: ', err.code)
-                    });
-                })();
-              } else {
-                return false;
-              }
+              // let data;
+              await sap.fpa.ui.story.StoryFetcher.getContent(storyID).then(result => {
+                if (typeof result.cdata.content.optimizedEnabled === 'undefined') {
+                  return false;
+                } else {
+                  return result.cdata.content.optimizedEnabled
+                }
+              }).catch(err => {
+                throw err
+              });
+              // if (storyID != '') {
+              //   (async () => {
+              //     await new Promise((resolve, reject) => {
+              //       sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+              //         .then(result => {
+              //           data = result;
+              //           resolve();
+              //           if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
+              //             return false;
+              //           } else {
+              //             return data.cdata.content.optimizedEnabled
+              //           }
+              //         })
+              //         .catch(err => { throw err });
+              //     })
+              //       .catch(err => {
+              //         console.log('Oh noes!! Error: ', err.code)
+              //       });
+              //   })();
+              // } else {
+              //   return false;
+              // }
 
 
               // let promise = new Promise((resolve, reject) => {
