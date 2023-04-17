@@ -738,10 +738,10 @@
                       //   console.log(error);
 
                       // });
-                    }
+                    },
+                    type: "sap.ui.model.odata.type.Boolean",
                   }
                 }),
-                type: "sap.ui.model.odata.type.Boolean",
                 sortProperty: "id",
                 filterProperty: "id",
                 filterType: new sap.ui.model.type.Boolean(),
