@@ -308,6 +308,11 @@
               if (storyID != '') {
                 var data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
                 console.log(data.cdata.isOptimizedEnable)
+                if (typeof data.cdata.isOptimizedEnable === 'undefined') {
+                  return false;
+                } else {
+                  return data.cdata.isOptimizedEnable
+                }
               } else {
                 return false;
               }
