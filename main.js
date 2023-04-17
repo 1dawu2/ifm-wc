@@ -739,7 +739,7 @@
 
                       // });
                     },
-                    type: "sap.ui.model.odata.type.Boolean",
+                    // type: "sap.ui.model.odata.type.Boolean",
                   }
                 }),
                 sortProperty: "id",
