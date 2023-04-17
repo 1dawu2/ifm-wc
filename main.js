@@ -308,10 +308,10 @@
               if (storyID != '') {
                 var data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
                 console.log(data.cdata.isOptimizedEnable)
-                if (typeof data.cdata.isOptimizedEnable === 'undefined') {
+                if (typeof data.cdata.content.optimizedEnabled === 'undefined') {
                   return false;
                 } else {
-                  return data.cdata.isOptimizedEnable
+                  return data.cdata.content.optimizedEnabled
                 }
               } else {
                 return false;
@@ -728,7 +728,6 @@
                 template: new sap.ui.commons.TextView({
                   text: {
                     path: 'artifact>id',
-                    // type: "sap.ui.model.odata.type.Boolean",
                     formatter: function (id) {
                       const promise = that.getStoryOptimized(id, "ODM");
                       id = promise;
@@ -742,6 +741,7 @@
                     }
                   }
                 }),
+                type: "sap.ui.model.odata.type.Boolean",
                 sortProperty: "id",
                 filterProperty: "id",
                 filterType: new sap.ui.model.type.Boolean(),
