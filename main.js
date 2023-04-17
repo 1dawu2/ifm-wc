@@ -304,10 +304,14 @@
               //   }
               // }).catch(error => {
               //   console.log(error);
-              // });
+              // });              
+              if (storyID != '') {
+                var data = sap.fpa.ui.story.StoryFetcher.getContent(storyID)
+                console.log(data.cdata.isOptimizedEnable)
+              } else {
+                return false;
+              }
 
-              var data = sap.fpa.ui.story.StoryFetcher.getContent(storyID)
-              console.log(data.cdata.isOptimizedEnable)
               // let promise = new Promise((resolve, reject) => {
               //   resolve(
               //     sap.fpa.ui.story.StoryFetcher.getContent(storyID)
