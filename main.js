@@ -306,7 +306,7 @@
               //   console.log(error);
               // }); 
               // let data;
-              await sap.fpa.ui.story.StoryFetcher.getContent(storyID).then(result => {
+              await new Promise.resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)).then(result => {
                 if (typeof result.cdata.content.optimizedEnabled === 'undefined') {
                   return false;
                 } else {
