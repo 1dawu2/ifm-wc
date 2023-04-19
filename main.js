@@ -306,12 +306,13 @@
               //   console.log(error);
               // }); 
               // let data;
-              await new Promise.resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)).then(result => {
-                if (typeof result.cdata.content.optimizedEnabled === 'undefined') {
-                  return false;
-                } else {
-                  return result.cdata.content.optimizedEnabled
-                }
+              return await new Promise.resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)).then(result => {
+                // if (typeof result.cdata.content.optimizedEnabled === 'undefined') {
+                //   return false;
+                // } else {
+                //   return result.cdata.content.optimizedEnabled
+                // }
+                return result
               }).catch(err => {
                 throw err
               });
@@ -751,9 +752,9 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      const promise = that.getStoryOptimized(id, "ODM");
-                      id = promise;
-                      return id
+                      let optimised = that.getStoryOptimized(id, "ODM");
+
+                      return optimised;
                       // promise.then(function (resolve) {
                       //   console.log(resolve);
                       // }).catch(function (error) {
