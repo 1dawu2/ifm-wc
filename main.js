@@ -281,7 +281,23 @@
               this.configProductSwitch();
             },
 
-            getStoryOptimized: async function (storyID, mode) {
+            getStoryContent: function (storyID) {
+              return new Promise((res, rej) => {
+                setTimeout(() => {
+                  res(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
+                }, 1000);
+              });
+            },
+
+            getStoryOptimized: async function (storyID) {
+              // let data;
+              // data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+              // return data
+              const promises = [getStoryContent(storyID)];
+              const response = await Promise.allSettled(promises);
+              console.log(response);
+              return response
+
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
               // var odmMode = false;
               // allPromise.then(values => {
@@ -305,9 +321,7 @@
               // }).catch(error => {
               //   console.log(error);
               // }); 
-              let data;
-              data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-              return data
+
               // if (storyID != '') {
               //   (async () => {
               //     await new Promise((resolve, reject) => {
