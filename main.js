@@ -306,12 +306,13 @@
               //   console.log(error);
               // }); 
               // let data;
-              return await new Promise.resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)).then(result => {
+              return await new Promise(sap.fpa.ui.story.StoryFetcher.getContent(storyID)).then(result => {
                 // if (typeof result.cdata.content.optimizedEnabled === 'undefined') {
                 //   return false;
                 // } else {
                 //   return result.cdata.content.optimizedEnabled
                 // }
+
                 return result
               }).catch(err => {
                 throw err
