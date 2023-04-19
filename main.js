@@ -293,7 +293,7 @@
               // let data;
               // data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
               // return data
-              const response = await Promise.allSettled(getStoryContent(storyID));
+              const response = await Promise.allSettled(this.getStoryContent(storyID));
               console.log(response);
               return response
 
