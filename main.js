@@ -290,12 +290,19 @@
             },
 
             getStoryOptimized: async function (storyID) {
-              // let data;
-              // data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
-              // return data
-              const response = await Promise.allSettled(this.getStoryContent(storyID));
-              console.log(response);
-              return response
+              try {
+                if (storyID) {
+                  const response = await Promise.allSettled(this.getStoryContent(storyID));
+                  console.log(response);
+                  return response
+                } else {
+                  throw err
+                }
+              } catch (err) {
+                console.log(err);
+                throw err
+              }
+
 
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
               // var odmMode = false;
