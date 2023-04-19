@@ -296,7 +296,7 @@
                   console.log(response);
                   return response
                 } else {
-                  throw err
+                  console.log("no Story ID provided");
                 }
               } catch (err) {
                 console.log(err);
