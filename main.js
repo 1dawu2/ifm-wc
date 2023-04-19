@@ -305,18 +305,9 @@
               // }).catch(error => {
               //   console.log(error);
               // }); 
-              // let data;
-              return await new Promise(sap.fpa.ui.story.StoryFetcher.getContent(storyID)).then(result => {
-                // if (typeof result.cdata.content.optimizedEnabled === 'undefined') {
-                //   return false;
-                // } else {
-                //   return result.cdata.content.optimizedEnabled
-                // }
-
-                return result
-              }).catch(err => {
-                throw err
-              });
+              let data;
+              data = await sap.fpa.ui.story.StoryFetcher.getContent(storyID);
+              return data
               // if (storyID != '') {
               //   (async () => {
               //     await new Promise((resolve, reject) => {
