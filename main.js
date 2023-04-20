@@ -305,7 +305,7 @@
 
               if (storyID) {
                 const statusesPromise = Promise.allSettled([
-                  resolveTimeout([sap.fpa.ui.story.StoryFetcher.getContent(storyID)], 1000)
+                  resolveTimeout(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
                 ]);
                 // wait...
                 const statuses = await statusesPromise;
