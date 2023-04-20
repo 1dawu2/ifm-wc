@@ -291,7 +291,7 @@
 
               if (storyID) {
                 const statusesPromise = Promise.allSettled([
-                  this.resolveTimeout(1000)
+                  this.getStoryContent(1000)
                 ]);
                 // wait...
                 const statuses = await statusesPromise;
