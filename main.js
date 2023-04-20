@@ -281,23 +281,9 @@
               this.configProductSwitch();
             },
 
-            getStoryContent: function (storyID) {
-              return new Promise((res, rej) => {
-                setTimeout(() => {
-                  res(sap.fpa.ui.story.StoryFetcher.getContent(storyID));
-                }, 1000);
-              });
-            },
-
-            resolveTimeout(value, delay) {
+            getStoryContent: function (delay) {
               return new Promise(
-                resolve => setTimeout(() => resolve(value), delay)
-              );
-            },
-
-            rejectTimeout(reason, delay) {
-              return new Promise(
-                (r, reject) => setTimeout(() => reject(reason), delay)
+                resolve => setTimeout(() => resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)), delay)
               );
             },
 
@@ -305,7 +291,7 @@
 
               if (storyID) {
                 const statusesPromise = Promise.allSettled([
-                  resolveTimeout(sap.fpa.ui.story.StoryFetcher.getContent(storyID), 1000)
+                  this.resolveTimeout(1000)
                 ]);
                 // wait...
                 const statuses = await statusesPromise;
