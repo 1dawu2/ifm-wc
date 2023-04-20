@@ -292,8 +292,9 @@
             getStoryOptimized: async function (storyID) {
               try {
                 if (storyID) {
-                  const response = await Promise.allSettled(this.getStoryContent(storyID));
-                  console.log(response);
+                  const response = await Promise.allSettled(this.getStoryContent(storyID)).then((results) => results.forEach(
+                    (result) => console.log(result.status)
+                  ));
                   return response
                 } else {
                   console.log("no Story ID provided");
