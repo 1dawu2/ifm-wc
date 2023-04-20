@@ -289,20 +289,43 @@
               });
             },
 
+            resolveTimeout(value, delay) {
+              return new Promise(
+                resolve => setTimeout(() => resolve(value), delay)
+              );
+            },
+
+            rejectTimeout(reason, delay) {
+              return new Promise(
+                (r, reject) => setTimeout(() => reject(reason), delay)
+              );
+            },
+
             getStoryOptimized: async function (storyID) {
-              try {
-                if (storyID) {
-                  const response = await Promise.allSettled(this.getStoryContent(storyID)).then((results) => results.forEach(
-                    (result) => console.log(result.status)
-                  ));
-                  return response
-                } else {
-                  console.log("no Story ID provided");
-                }
-              } catch (err) {
-                console.log(err);
-                throw err
+
+              if (storyID) {
+                const statusesPromise = Promise.allSettled([
+                  resolveTimeout([sap.fpa.ui.story.StoryFetcher.getContent(storyID)], 1000)
+                ]);
+                // wait...
+                const statuses = await statusesPromise;
+                // after 1 second
+                console.log(statuses);
               }
+
+              // try {
+              //   if (storyID) {
+              //     const response = await Promise.allSettled(this.getStoryContent(storyID)).then((results) => results.forEach(
+              //       (result) => console.log(result.status)
+              //     ));
+              //     return response
+              //   } else {
+              //     console.log("no Story ID provided");
+              //   }
+              // } catch (err) {
+              //   console.log(err);
+              //   throw err
+              // }
 
 
               // const allPromise = await Promise.all([sap.fpa.ui.story.StoryFetcher.getContent(storyID)]);
