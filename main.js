@@ -281,23 +281,41 @@
               this.configProductSwitch();
             },
 
-            getStoryContent: function (delay) {
-              return new Promise(
-                resolve => setTimeout(() => resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)), delay)
-              );
+            // getStoryContent: function (delay) {
+            //   return new Promise(
+            //     resolve => setTimeout(() => resolve(sap.fpa.ui.story.StoryFetcher.getContent(storyID)), delay)
+            //   );
+            // },
+
+            getStoryContent: function (storyId) {
+              return new Promise(function (resolve, reject) {
+                sap.fpa.ui.story.StoryFetcher.getContent(storyId).then(function (content) {
+                  resolve(content);
+                }).catch(function (error) {
+                  reject(error);
+                });
+              });
             },
 
             getStoryOptimized: async function (storyID) {
 
-              if (storyID) {
-                const statusesPromise = Promise.allSettled([
-                  this.getStoryContent(1000)
-                ]);
-                // wait...
-                const statuses = await statusesPromise;
-                // after 1 second
-                console.log(statuses);
-              }
+              getStoryContent(storyID).then(function (content) {
+                // Do something with the story content
+                console.log(content);
+              }).catch(function (error) {
+                // Handle any errors that occur during the retrieval
+                console.error(error);
+              });
+
+              // if (storyID) {
+              //   const statusesPromise = Promise.allSettled([
+              //     this.getStoryContent(1000)
+              //   ]);
+              //   // wait...
+              //   const statuses = await statusesPromise;
+              //   // after 1 second
+              //   console.log(statuses);
+              // }
 
               // try {
               //   if (storyID) {
@@ -774,7 +792,7 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      let optimised = that.getStoryOptimized(id, "ODM");
+                      let optimised = that.getStoryOptimized(id);
 
                       return optimised;
                       // promise.then(function (resolve) {
