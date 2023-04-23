@@ -793,7 +793,7 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      odmMode = false;
+                      let odmMode = false;
                       let optimised = that.getStoryOptimized(id);
 
                       if (typeof optimised[0].cdata.content.optimizedEnabled !== 'undefined') {
