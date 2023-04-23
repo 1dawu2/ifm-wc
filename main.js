@@ -803,7 +803,8 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       let optimised = that.getStoryOptimized(id);
-
+                      console.log("optimised");
+                      console.log(optimised);
                       return optimised;
 
                     },
