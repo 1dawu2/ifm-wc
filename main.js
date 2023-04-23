@@ -299,7 +299,7 @@
 
             getStoryOptimized: async function (storyID) {
 
-              getStoryContent(storyID).then(function (content) {
+              this.getStoryContent(storyID).then(function (content) {
                 // Do something with the story content
                 console.log(content);
               }).catch(function (error) {
