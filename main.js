@@ -310,7 +310,8 @@
                   } else {
                     odmMode = false;
                   }
-                  return content;
+                  return odmMode;
+
                 }).catch(function (error) {
                   // Handle any errors that occur during the retrieval
                   console.error(error);
