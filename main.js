@@ -301,7 +301,15 @@
 
               if (storyID) {
                 this.getStoryContent(storyID).then(function (content) {
+                  let odmMode = false;
                   // Do something with the story content
+                  if (typeof content[0].cdata.content.optimizedEnabled !== 'undefined') {
+                    odmMode = content[0].cdata.content.optimizedEnabled;
+                  } else if (typeof content[0].cdata.isOptimizedEnabled !== 'undefined') {
+                    odmMode = content[0].cdata.isOptimizedEnabled;
+                  } else {
+                    odmMode = false;
+                  }
                   return content;
                 }).catch(function (error) {
                   // Handle any errors that occur during the retrieval
@@ -793,18 +801,9 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      let odmMode = false;
                       let optimised = that.getStoryOptimized(id);
 
-                      if (typeof optimised[0].cdata.content.optimizedEnabled !== 'undefined') {
-                        odmMode = optimised[0].cdata.content.optimizedEnabled;
-                      } else if (typeof optimised[0].cdata.isOptimizedEnabled !== 'undefined') {
-                        odmMode = optimised[0].cdata.isOptimizedEnabled;
-                      } else {
-                        odmMode = false;
-                      }
-
-                      return odmMode;
+                      return optimised;
 
                     },
                     // type: "sap.ui.model.odata.type.Boolean",
