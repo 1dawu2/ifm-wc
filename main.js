@@ -299,14 +299,15 @@
 
             getStoryOptimized: async function (storyID) {
 
-              this.getStoryContent(storyID).then(function (content) {
-                // Do something with the story content
-                console.log(content);
-              }).catch(function (error) {
-                // Handle any errors that occur during the retrieval
-                console.error(error);
-              });
-
+              if (storyID) {
+                this.getStoryContent(storyID).then(function (content) {
+                  // Do something with the story content
+                  return content;
+                }).catch(function (error) {
+                  // Handle any errors that occur during the retrieval
+                  console.error(error);
+                });
+              }
               // if (storyID) {
               //   const statusesPromise = Promise.allSettled([
               //     this.getStoryContent(1000)
@@ -792,15 +793,19 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
+                      odmMode = false;
                       let optimised = that.getStoryOptimized(id);
 
-                      return optimised;
-                      // promise.then(function (resolve) {
-                      //   console.log(resolve);
-                      // }).catch(function (error) {
-                      //   console.log(error);
+                      if (typeof optimised[0].cdata.content.optimizedEnabled !== 'undefined') {
+                        odmMode = optimised[0].cdata.content.optimizedEnabled;
+                      } else if (typeof optimised[0].cdata.isOptimizedEnabled !== 'undefined') {
+                        odmMode = optimised[0].cdata.isOptimizedEnabled;
+                      } else {
+                        odmMode = false;
+                      }
 
-                      // });
+                      return odmMode;
+
                     },
                     // type: "sap.ui.model.odata.type.Boolean",
                   }
