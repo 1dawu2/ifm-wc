@@ -303,10 +303,10 @@
                 this.getStoryContent(storyID).then(function (content) {
                   let odmMode = false;
                   // Do something with the story content
-                  if (typeof content[0].cdata.content.optimizedEnabled !== 'undefined') {
-                    odmMode = content[0].cdata.content.optimizedEnabled;
-                  } else if (typeof content[0].cdata.isOptimizedEnabled !== 'undefined') {
-                    odmMode = content[0].cdata.isOptimizedEnabled;
+                  if (typeof content.cdata.content.optimizedEnabled !== 'undefined') {
+                    odmMode = content.cdata.content.optimizedEnabled;
+                  } else if (typeof content.cdata.isOptimizedEnabled !== 'undefined') {
+                    odmMode = content.cdata.isOptimizedEnabled;
                   } else {
                     odmMode = false;
                   }
