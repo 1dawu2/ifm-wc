@@ -297,7 +297,7 @@
               });
             },
 
-            getStoryOptimized: async function (storyID) {
+            getStoryOptimized: function (storyID) {
 
               if (storyID) {
                 this.getStoryContent(storyID).then(function (content) {
