@@ -297,10 +297,10 @@
               });
             },
 
-            getStoryOptimized: function (storyID) {
+            getStoryOptimized: async function (storyID) {
 
               if (storyID) {
-                this.getStoryContent(storyID).then(function (content) {
+                await this.getStoryContent(storyID).then(function (content) {
                   let odmMode = false;
                   // Do something with the story content
                   if (typeof content.cdata.content.optimizedEnabled !== 'undefined') {
