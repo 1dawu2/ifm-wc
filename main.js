@@ -287,8 +287,8 @@
             //   );
             // },
 
-            getStoryContent: function (storyId) {
-              return new Promise(function (resolve, reject) {
+            getStoryContent: async function (storyId) {
+              return await new Promise(function (resolve, reject) {
                 sap.fpa.ui.story.StoryFetcher.getContent(storyId).then(function (content) {
                   resolve(content);
                 }).catch(function (error) {
