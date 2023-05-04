@@ -312,6 +312,7 @@
               if (storyID) {
                 await this.getStoryContent(storyID).then(function (content) {
                   let odmMode = false;
+                  console.log(content[0].value.cdata);
                   if (content[0].value.cdata.isOptimizedEnabled) {
                     // Do something with the story content
                     // if (typeof content.cdata.content.optimizedEnabled !== 'undefined') {
