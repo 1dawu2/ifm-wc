@@ -288,13 +288,23 @@
             // },
 
             getStoryContent: async function (storyId) {
-              return await new Promise(function (resolve, reject) {
-                sap.fpa.ui.story.StoryFetcher.getContent(storyId).then(function (content) {
-                  resolve(content);
-                }).catch(function (error) {
-                  reject(error);
-                });
-              });
+              if (storyID) {
+                const statusesPromise = Promise.allSettled([
+                  sap.fpa.ui.story.StoryFetcher.getContent(storyId)
+                ]);
+                // wait...
+                const statuses = await statusesPromise;
+                // after 1 second
+                console.log(statuses);
+                return statuses;
+              }
+              // return await new Promise(function (resolve, reject) {
+              //   sap.fpa.ui.story.StoryFetcher.getContent(storyId).then(function (content) {
+              //     resolve(content);
+              //   }).catch(function (error) {
+              //     reject(error);
+              //   });
+              // });
             },
 
             getStoryOptimized: async function (storyID) {
@@ -802,10 +812,14 @@
                   text: {
                     path: 'artifact>id',
                     formatter: function (id) {
-                      let optimised = that.getStoryOptimized(id);
-                      console.log("optimised");
-                      console.log(optimised);
-                      return optimised;
+                      if (id) {
+                        let optimised = that.getStoryOptimized(id);
+                        console.log("optimised");
+                        console.log(optimised);
+                        id = optimised
+                      } else {
+                        id = false;
+                      }
 
                     },
                     // type: "sap.ui.model.odata.type.Boolean",
