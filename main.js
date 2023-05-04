@@ -314,14 +314,14 @@
                   let odmMode = false;
                   if (content) {
                     // Do something with the story content
-                    if (typeof content.cdata.content.optimizedEnabled !== 'undefined') {
-                      odmMode = content.cdata.content.optimizedEnabled;
-                    } else if (typeof content.cdata.isOptimizedEnabled !== 'undefined') {
-                      odmMode = content.cdata.isOptimizedEnabled;
-                    } else {
-                      odmMode = false;
-                    }
-                    return odmMode;
+                    // if (typeof content.cdata.content.optimizedEnabled !== 'undefined') {
+                    //   odmMode = content.cdata.content.optimizedEnabled;
+                    // } else if (typeof content.cdata.isOptimizedEnabled !== 'undefined') {
+                    //   odmMode = content.cdata.isOptimizedEnabled;
+                    // } else {
+                    //   odmMode = false;
+                    // }
+                    return content.cdata.isOptimizedEnabled;;
                   }
                 }).catch(function (error) {
                   // Handle any errors that occur during the retrieval
