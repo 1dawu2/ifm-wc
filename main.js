@@ -288,7 +288,7 @@
             // },
 
             getStoryContent: async function (storyId) {
-              if (storyID) {
+              if (storyId) {
                 const statusesPromise = Promise.allSettled([
                   sap.fpa.ui.story.StoryFetcher.getContent(storyId)
                 ]);
