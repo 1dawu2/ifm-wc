@@ -312,7 +312,7 @@
               if (storyID) {
                 await this.getStoryContent(storyID).then(function (content) {
                   let odmMode = false;
-                  if (content) {
+                  if (content[0]) {
                     // Do something with the story content
                     // if (typeof content.cdata.content.optimizedEnabled !== 'undefined') {
                     //   odmMode = content.cdata.content.optimizedEnabled;
@@ -321,7 +321,7 @@
                     // } else {
                     //   odmMode = false;
                     // }
-                    return content.cdata.isOptimizedEnabled;;
+                    return content[0].cdata.isOptimizedEnabled;;
                   }
                 }).catch(function (error) {
                   // Handle any errors that occur during the retrieval
