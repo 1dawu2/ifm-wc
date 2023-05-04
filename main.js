@@ -312,7 +312,7 @@
               if (storyID) {
                 await this.getStoryContent(storyID).then(function (content) {
                   let odmMode = false;
-                  console.log(content[0].value.cdata.isOptimizedEnabled);
+                  // console.log(content[0].value.cdata.isOptimizedEnabled);
                   return content[0].value.cdata.isOptimizedEnabled
                   // if (content[0].value.cdata.isOptimizedEnabled) {
                   // Do something with the story content
@@ -819,9 +819,9 @@
                         let optimised = that.getStoryOptimized(id);
                         console.log("optimised");
                         console.log(optimised);
-                        id = optimised
+                        return optimised
                       } else {
-                        id = false;
+                        return false;
                       }
 
                     },
