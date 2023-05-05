@@ -311,7 +311,7 @@
 
               if (storyID) {
                 await this.getStoryContent(storyID).then(function (content) {
-                  let odmMode = false;
+                  // let odmMode = false;
                   // console.log(content[0].value.cdata.isOptimizedEnabled);
                   return content[0].value.cdata.isOptimizedEnabled
                   // if (content[0].value.cdata.isOptimizedEnabled) {
@@ -816,14 +816,18 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       if (id) {
-                        let optimised = that.getStoryOptimized(id);
-                        console.log("optimised");
-                        console.log(optimised);
-                        return optimised
+                        let optimised = this.getStoryOptimized(id);
+                        if (optimised === true) {
+                          id = true
+                          return id
+                        } else {
+                          id = false
+                          return id
+                        }
                       } else {
-                        return false;
+                        id = false
+                        return id;
                       }
-
                     },
                     // type: "sap.ui.model.odata.type.Boolean",
                   }
