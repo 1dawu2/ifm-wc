@@ -816,7 +816,7 @@
                     path: 'artifact>id',
                     formatter: function (id) {
                       if (id) {
-                        let optimised = this.getStoryOptimized(id);
+                        let optimised = that.getStoryOptimized(id);
                         if (optimised === true) {
                           id = true
                           return id
