@@ -793,6 +793,37 @@
                 template: new sap.m.Link({ text: "open", href: "{artifact>openURL}", target: "_blank" }),
               }));
 
+              // Check ODM
+              var listItem = new sap.m.CustomListItem({
+                content: new sap.ui.commons.Button({
+                  icon: "sap-icon://database",
+                  text: {
+                    parts: [
+                      { path: "artifact>id" }
+                    ],
+                    formatter: function (id) {
+                      return id;
+                    },
+                  },
+                  press: function (oEvent) {
+                    var sValue = oEvent.oSource.mProperties["text"];
+                    var id = sValue[0];
+                    that.that.getStoryOptimized(id);
+                  },
+                }),
+              });
+              oTable.addColumn(new sap.ui.table.Column({
+                autoResizable: true,
+                label: new sap.ui.commons.Label({ text: "ODM" }),
+                template: new sap.m.List({
+                  backgroundDesign: "Transparent",
+                  items: {
+                    path: "artifact>id",
+                    template: listItem
+                  },
+                })
+              }));
+
               // var oiFrame = new sap.ui.core.HTML({
               //   content: {
               //     path: "artifact>id",
