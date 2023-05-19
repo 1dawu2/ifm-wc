@@ -796,7 +796,7 @@
               // Check ODM
               var listItem = new sap.m.CustomListItem({
                 content: new sap.ui.commons.Button({
-                  icon: "sap-icon://database",
+                  icon: "sap-icon://checklist",
                   text: {
                     parts: [
                       { path: "artifact>id" }
